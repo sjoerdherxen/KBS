@@ -1,6 +1,5 @@
 #inlog{
     width: 250px;
-    height: 80px;
     position: relative;
     margin: 100px auto 0 auto;
     border: 1px solid #555;
@@ -10,7 +9,6 @@
 
 #inlog-inner{
     width:250px;
-    height:80px
 }
 
 #inlog-inner td input{
@@ -24,4 +22,9 @@
     left: 0;
     right: 0;
     bottom: 0;
+}
+
+.incorrect {
+    color:red;
+    font-size: 0.8em;
 }

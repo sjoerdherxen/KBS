@@ -7,3 +7,12 @@ function getUser(){
     return $_SESSION['inlog'];
 }
 
+function query($query, $params){
+    $pdo = new PDO();
+    $q = $pdo->prepare($query);
+    foreach ($params as $index => $value){
+        $q->bindParam($index, $value);
+    }
+    return $q->execute();
+    
+}

@@ -6,7 +6,7 @@ require 'functions.php';
 <html>
     <head>
         <title>admin</title>
-        <link href="../content/admin.css" type="text/css" rel="stylesheet">
+        <link href="/content/admin.css" type="text/css" rel="stylesheet">
     </head>
 
     <body>

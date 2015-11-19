@@ -1,10 +1,32 @@
 <?php
 
+$usernameError = "";
+$passwordError = "";
+$password = "";
+$username = "";
+
+$correct = true;
 if (isset($_POST["username"]) && isset($_POST["password"])) {
-    // todo: add db check voor username/password
-    if (true/* username+password is correct */) {
-        $_SESSION["inlog"] = $_POST["username"];
-        header("location: main.php");
+    $password = trim($_POST["password"]);
+    $username = trim($_POST["username"]);
+    if ($username == "") {
+        $usernameError = "Naam is verplicht";
+        $correct = false;
+    }
+    if ($password == "") {
+        $passwordError = "Wachtwoord is verplicht";
+        $correct = false;
+    }
+    if ($correct) {
+        $query = "SELECT id FROM users WHERE username = @username AND password = @password";
+        $result = query($query, array("username" => $username, "password" => $password));
+
+        if (count($result) == 1) {
+            $_SESSION["inlog"] = $_POST["username"];
+            header("location: main.php");
+        } else {
+            $passwordError = "De combinatie naam en wachtwoord is niet goed.";
+        }
     }
 }
 ?>
@@ -18,12 +40,24 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
                 </colgroup>
                 <tr>
                     <td>Naam </td>
-                    <td><input type="text" name="username"></td>
+                    <td><input type="text" name="username" value="<?php echo $username; ?>"></td>
                 </tr>
+                <?php
+
+                if ($usernameError != "") {
+                    echo "<tr><td></td><td class='incorrect'>" . $usernameError . "</td></tr>";
+                }
+                ?>
                 <tr>
                     <td>Wachtwoord </td>
                     <td><input type="password" name="password"></td>
                 </tr>
+                <?php
+
+                if ($passwordError != "") {
+                    echo "<tr><td></td><td class='incorrect'>" . $passwordError . "</td></tr>";
+                }
+                ?>
                 <tr>
                     <td></td>
                     <td><input type="submit" name="button" value="Inloggen"></td>
