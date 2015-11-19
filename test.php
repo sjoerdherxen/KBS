@@ -12,7 +12,7 @@ and open the template in the editor.
     <body>
         <?php
 
-        // For the push
+        // For the push12345
         ?>
     </body>
 </html>
