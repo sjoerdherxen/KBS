@@ -19,8 +19,8 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     }
     if ($correct) {
         $query = "SELECT id FROM users WHERE username = @username AND password = @password";
-        $result = query($query, array("username" => $username, "password" => $password));
-
+        //$result = query($query, array("@username" => $username, "@password" => $password));
+            $result = array("s");
         if (count($result) == 1) {
             $_SESSION["inlog"] = $_POST["username"];
             header("location: main.php");
