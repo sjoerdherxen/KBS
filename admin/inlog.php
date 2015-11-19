@@ -11,7 +11,11 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 <div id="inlog-background">
     <div id="inlog">
         <form method="post" action="#">
-            <table>
+            <table id="inlog-inner">
+                <colgroup>
+                    <col style="width: 100px">
+                    <col style="width: 200px">
+                </colgroup>
                 <tr>
                     <td>Naam </td>
                     <td><input type="text" name="username"></td>

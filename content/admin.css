@@ -1,11 +1,20 @@
 #inlog{
-    width: 300px;
-    height: 150px;
+    width: 250px;
+    height: 80px;
     position: relative;
     margin: 100px auto 0 auto;
     border: 1px solid #555;
     border-radius: 5px;
     background-color: white;    
+}
+
+#inlog-inner{
+    width:250px;
+    height:80px
+}
+
+#inlog-inner td input{
+    width: 100%;
 }
 
 #inlog-background{
