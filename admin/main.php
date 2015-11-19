@@ -17,8 +17,6 @@ if (!isLoggedIn()) {
 
         echo "welkom: " . getUser();
         
-        
-        
         ?>
         <a href="uitloggen.php">uitloggen</a>
         
