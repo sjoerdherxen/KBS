@@ -12,6 +12,12 @@ and open the template in the editor.
         <!--Commentaar -->
     </head>
     <body>
+        <ul>
+            <li>Home</li>
+            <li>Catalogus</li>
+            <li>Kopen</li>
+            <li>Contact</li>
+        </ul>
         <?php
 
         ?>
