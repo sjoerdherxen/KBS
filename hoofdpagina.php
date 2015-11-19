@@ -9,6 +9,9 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Hoofdpagina</title>
         <link rel="stylesheet" type="text/css" href="newcss.css">
+        <link rel="icon"
+              type="image/ico"
+              href="content/favicon.ico">
         <!--Commentaar -->
     </head>
     <body>
