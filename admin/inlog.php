@@ -8,19 +8,23 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     }
 }
 ?>
-<form method="post" action="#">
-    <table id="inlog">
-        <tr>
-            <td>Naam </td>
-            <td><input type="text" name="username"></td>
-        </tr>
-        <tr>
-            <td>Wachtwoord </td>
-            <td><input type="text" name="password"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" name="button" value="Inloggen"></td>
-        </tr>
-    </table>
-</form>
+<div id="inlog-background">
+    <div id="inlog">
+        <form method="post" action="#">
+            <table>
+                <tr>
+                    <td>Naam </td>
+                    <td><input type="text" name="username"></td>
+                </tr>
+                <tr>
+                    <td>Wachtwoord </td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="button" value="Inloggen"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
