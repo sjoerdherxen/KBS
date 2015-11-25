@@ -25,7 +25,10 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         if (count($result) == 1) {
             $_SESSION["inlog"] = $_POST["username"];
             header("location: main.php");
-        } else {
+            exit();
+        } elseif($result === null) {
+            $passwordError = "Er kan geen verbinding worden gemaakt met de database, probeer het later opnieuw";
+        }else{
             $passwordError = "De combinatie naam en wachtwoord is niet goed.";
         }
     }

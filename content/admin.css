@@ -28,3 +28,51 @@
     color:red;
     font-size: 0.8em;
 }
+
+.schilderijListItem{
+    color: black;
+    display: block;
+    height:100px;
+    border: 1px solid black;
+}
+.schilderijListItemImg{
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+.schilderijListItemInner{
+    float:left;
+    height: 100px;
+    overflow: hidden;
+    
+}
+.schilderijListItem img{
+    max-height: 90px;
+    max-width: 90px;
+    margin: 5px;
+}
+
+.number{
+    width:50px !important;
+}
+
+.editform{
+    
+}
+
+.editform select, .editform input{
+    width: 170px;
+}
+.editform textarea{
+    width:100%;
+    min-height: 100px;
+    resize: vertical;
+}
+.beschrijving{
+    white-space: pre;
+}
+
+.titel{
+    font-size: 1.5em;
+    font-weight: bold;
+}
