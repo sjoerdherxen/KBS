@@ -4,7 +4,7 @@ function renderHtmlStart($title, $extra) {
     ?><html>
         <head>
             <meta charset="UTF-8">
-            <title>Hoofdpagina</title>
+            <title><?php echo $title; ?></title>
             <link rel="stylesheet" type="text/css" href="newcss.css">
             <link rel="icon"
                   type="image/ico"

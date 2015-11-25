@@ -8,11 +8,11 @@ function getUser(){
 }
 
 function query($query, $params){
-    $pdo = new PDO();
+    $pdo = new PDO("mysql:host=localhost;dbname=databasekps01;port=3307", "root", "usbw");
     $q = $pdo->prepare($query);
-    foreach ($params as $index => $value){
-        $q->bindParam($index, $value);
-    }
-    return $q->execute();
-    
+    //foreach ($params as $index => $value){
+    //    $q->bindParam($index, $value);
+    //}
+    $q->execute($params);
+    return $q->fetchAll();
 }

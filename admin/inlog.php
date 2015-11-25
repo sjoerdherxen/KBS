@@ -18,9 +18,10 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         $correct = false;
     }
     if ($correct) {
-        $query = "SELECT id FROM users WHERE username = @username AND password = @password";
-        //$result = query($query, array("@username" => $username, "@password" => $password));
-            $result = array("s");
+        $password = hash("sha256", $password);
+        $query = "SELECT Username FROM gebruikers WHERE username = ? AND wachtwoord = ?";
+        $result = query($query, array($username, $password));
+        
         if (count($result) == 1) {
             $_SESSION["inlog"] = $_POST["username"];
             header("location: main.php");
