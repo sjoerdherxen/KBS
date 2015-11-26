@@ -103,6 +103,9 @@ if ($doSelectQuery) {
     } else {
         // schilderij gevonden
         $schilderij = $resultSchilderij[0];
+        if ($schilderij["Jaar"] == "0000") {
+            $schilderij["Jaar"] = "";
+        }
     }
 }
 ?>
@@ -219,11 +222,19 @@ if (isset($succes)) {
         <tr>
             <td></td>
             <td>
-                <input type="submit" value="Opslaan" name="knop">
+                <input type="submit" value="Opslaan" name="knop" class="button">
+                <input type="button" value="Verwijderen" class="button" id="verwijderen">
             </td>
         </tr>
     </table>
 </form>
+<script>
+    document.getElementById("verwijderen").onclick = function () {
+        if (confirm("Weet u zeker dat u dit schilderij wilt verwijderen?")) {
+            window.location = "deleteSchilderij.php?id=<?php echo $schilderijId; ?>";
+        }
+    };
+</script>
 
 
 <?php
