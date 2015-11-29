@@ -82,16 +82,15 @@ if (isset($_POST["knop"])) {
     }
     $schilderij["Techniek_naam"] = $_POST["techniek"];
     $schilderInsert[] = $_POST["techniek"];
-    
+
     if ($correct) {
-        query("INSERT INTO schilderij (Titel, beschrijving, jaar, hoogte, breedte, categorie_naam, techniek_naam) VALUES (?,?, ?, ?, ?, ?, ?)", $schilderijUpdate);
-        $succes = "Schilderij is aangepast.";
-    } else {
-        $doSelectQuery = false;
+        query("INSERT INTO schilderij (Titel, beschrijving, jaar, hoogte, breedte, categorie_naam, techniek_naam, naam_schilder) VALUES (?,?, ?, ?, ?, ?, ?, 't')", $schilderInsert);
+        header("location: schilderijList.php");
+        exit();
     }
 }
-
 ?>
+<a href="schilderijList.php">Terug naar lijst</a>
 <form action="addSchilderij.php" method="post" class="editform">
     <table>
         <tr>
