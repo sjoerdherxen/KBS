@@ -24,6 +24,34 @@
     bottom: 0;
 }
 
+#navigation{
+    height:40px;
+    width: 100%;
+}
+
+#navigation ul{
+    height: 40px;
+    padding: 0;
+    background-color: gray;
+}
+#navigation ul li{
+    height: 36px;
+    margin: 2px 10px;
+    float: left;
+}
+#navigation ul li.menu-right{
+    float: right;
+}
+#navigation ul li a, #navigation ul li span{
+    height: 18px;
+    display: block;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 9px;
+}
+
+
 .incorrect {
     color:red;
     font-size: 0.8em;
@@ -45,7 +73,7 @@
     float:left;
     height: 100px;
     overflow: hidden;
-    
+
 }
 .schilderijListItem img{
     max-height: 90px;
@@ -58,7 +86,7 @@
 }
 
 .editform{
-    
+
 }
 
 .editform select, .editform input{

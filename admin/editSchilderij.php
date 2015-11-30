@@ -7,7 +7,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStart("Schilderij bewerken", '<link href="../content/admin.css" type="text/css" rel="stylesheet">');
+renderHtmlStartAdmin("Schilderij bewerken", "");
 
 // schilderij id uit get of redirect naar main
 $schilderijId = $_GET["id"];
@@ -239,4 +239,4 @@ if (isset($succes)) {
 
 <?php
 
-renderHtmlEnd();
+renderHtmlEndAdmin();
