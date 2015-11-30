@@ -7,7 +7,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStart("inlog", '<link href="../content/admin.css" type="text/css" rel="stylesheet">');
+renderHtmlStartAdmin("inlog", "");
 $query = "SELECT * FROM schilderij";
 $schilderijen = query($query, null);
 
@@ -24,4 +24,4 @@ foreach ($schilderijen as $schilderij) {
 }
 echo "</div>";
 
-renderHtmlEnd();
+renderHtmlEndAdmin();

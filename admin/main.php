@@ -7,17 +7,16 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStart("inlog", '<link href="../content/admin.css" type="text/css" rel="stylesheet">');
+renderHtmlStartAdmin("inlog", "");
 
 
 echo "welkom: " . getUser();
 ?>
-<a href="uitloggen.php">uitloggen</a><br/>
-<a href="schilderijList.php">schilderijen</a>
+
 
 <?php
 
 //require "schilderijList.php";
 
-renderHtmlEnd();
+renderHtmlEndAdmin();
 

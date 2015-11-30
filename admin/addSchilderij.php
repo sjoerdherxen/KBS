@@ -7,7 +7,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStart("Schilderij bewerken", '<link href="../content/admin.css" type="text/css" rel="stylesheet">');
+renderHtmlStartAdmin("Schilderij bewerken", "");
 
 $schilderij = array();
 $schilderij["Titel"] = "";
@@ -204,4 +204,4 @@ if (isset($_POST["knop"])) {
 </form>
 <?php
 
-renderHtmlEnd();
+renderHtmlEndAdmin();
