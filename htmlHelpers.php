@@ -10,13 +10,33 @@ function renderHtmlStart($title, $extra) {
                   type="image/ico"
                   href="content/favicon.ico">
                   <?php
-
                   echo $extra;
                   ?>
             <!--Commentaar -->
         </head>
-        <body><?php
+        <body>
+            <ul class="ulmenu">
+                <li class="limenu"><a href="url">   Home</a></li>
+                <li class="limenu"><a href="url">Gallerij</a></li>
+                <li class="limenu"><a href="url">Kopen</a></li>
+                <li class="limenu"><a href="url">Contact</a></li>                
+            </ul>
 
+
+            
+            <footer>
+                <ul>
+                    <li><a href="url">Contact</a></li>
+                    <li><a href="url">Sitemap</a></li>
+                    <li>Powered by Windesheim</li>
+                    
+                </ul>
+                
+                
+                
+                
+            </footer>
+            <?php
         }
 
         function renderHtmlEnd() {
@@ -24,7 +44,6 @@ function renderHtmlStart($title, $extra) {
         </body>
     </html>
     <?php
-
 }
 
 function renderHtmlStartAdmin($title, $extra) {
@@ -37,10 +56,9 @@ function renderHtmlStartAdmin($title, $extra) {
             <link rel="icon" type="image/ico" href="/content/favicon.ico">
             <link href="/newcss.css" type="text/css" rel="stylesheet">
             <link href="/content/admin.css" type="text/css" rel="stylesheet">
-            <?php
-
-            echo $extra;
-            ?>
+    <?php
+    echo $extra;
+    ?>
             <!--Commentaar -->
         </head>
         <body>
@@ -55,14 +73,13 @@ function renderHtmlStartAdmin($title, $extra) {
                     <li class="menu-right"><a href="/admin/uitloggen.php">Uitloggen</a></li>
                 </ul>
             </div>
-            <?php
+    <?php
+}
 
-        }
-
-        function renderHtmlEndAdmin() {
-            ?>
+function renderHtmlEndAdmin() {
+    ?>
         </body>
     </html>
-    <?php
-
-}
+            <?php
+        }
+        
