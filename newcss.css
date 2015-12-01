@@ -13,3 +13,30 @@ body{
     font-family: Californian FB;
     margin: 0;
 }
+
+.ulmenu{
+    list-style-type: none;
+    margin: 0;
+    padding-left: 10px;
+   
+    background-color: grey;
+}
+
+.limenu{
+    float: left;
+}
+.limenu a {
+    border: 
+    display: inline-block;
+    
+    text-align: center;
+    padding: 14px 16px;
+    
+}
+
+.limenu a:hover {
+    background-color: #111;
+}
+.footermenu{
+    
+}
