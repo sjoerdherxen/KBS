@@ -15,16 +15,17 @@ function renderHtmlStart($title, $extra) {
             <!--Commentaar -->
         </head>
         <body>
+            <br>
             <ul class="ulmenu">
-                <li class="limenu"><a href="url">   Home</a></li>
-                <li class="limenu"><a href="url">Gallerij</a></li>
-                <li class="limenu"><a href="url">Kopen</a></li>
-                <li class="limenu"><a href="url">Contact</a></li>                
+                <li class="limenu"><a href="url" id="menutext">   Home</a></li>
+                <li class="limenu"><a href="url" id="menutext">Gallerij</a></li>
+                <li class="limenu"><a href="url" id="menutext">Kopen</a></li>
+                <li class="limenu"><a href="url" id="menutext">Contact</a></li>                
             </ul>
 
 
             
-            <footer>
+            <footer class="footermenu">
                 <ul>
                     <li><a href="url">Contact</a></li>
                     <li><a href="url">Sitemap</a></li>

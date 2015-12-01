@@ -16,27 +16,46 @@ body{
 
 .ulmenu{
     list-style-type: none;
-    margin: 0;
+    margin: 5px;
     padding-left: 10px;
-   
     background-color: grey;
-}
+    font-size: 24px;
+    margin-left: 50%;
 
+}
+#menutext{
+    color: black;
+}
 .limenu{
     float: left;
 }
 .limenu a {
-    border: 
-    display: inline-block;
     
+    display: block;
     text-align: center;
-    padding: 14px 16px;
+    padding: 10px;
+    border-radius: 10px;
     
+    background-color: wheat;
+        
+
 }
 
 .limenu a:hover {
-    background-color: #111;
+    background-color: #eae6ca;
 }
 .footermenu{
-    
+    position: absolute;
+    background-color: darkgray;
+    bottom:0;
+    width:100%;
+    height:10%;   
+}
+.ulfooter{
+    list-style-type: none;
+    margin: 5px;
+}
+.lifooter{
+    float: left;
+    text-align: center;
 }
