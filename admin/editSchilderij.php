@@ -118,6 +118,10 @@ if (isset($succes)) {
 ?>
 <form action="editSchilderij.php?id=<?php echo $schilderijId; ?>" method="post" class="editform">
     <table>
+        <colgroup>
+            <col style="width: 140px;">
+            <col>
+        </colgroup>
         <tr>
             <td>Titel</td>
             <td>
