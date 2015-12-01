@@ -25,6 +25,8 @@ body{
 }
 #menutext{
     color: black;
+    text-decoration:none;
+    
 }
 .limenu{
     float: left;

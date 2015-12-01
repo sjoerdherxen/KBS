@@ -27,9 +27,9 @@ function renderHtmlStart($title, $extra) {
             
             <footer class="footermenu">
                 <ul>
-                    <li><a href="url">Contact</a></li>
-                    <li><a href="url">Sitemap</a></li>
-                    <li>Powered by Windesheim</li>
+                    <li><a href="url" id="menutext">Contact</a></li>
+                    <li><a href="url" id="menutext">Sitemap</a></li>
+                    <li><a id="menutext">Powered by Windesheim</a></li>
                     
                 </ul>
                 
