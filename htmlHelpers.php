@@ -10,33 +10,37 @@ function renderHtmlStart($title, $extra) {
                   type="image/ico"
                   href="content/favicon.ico">
                   <?php
-
                   echo $extra;
                   ?>
             <!--Commentaar -->
         </head>
         <body>
-            <br>
-            <ul class="ulmenu">
-                <li class="limenu"><a href="url" id="menutext">   Home</a></li>
-                <li class="limenu"><a href="url" id="menutext">Gallerij</a></li>
-                <li class="limenu"><a href="url" id="menutext">Kopen</a></li>
-                <li class="limenu"><a href="url" id="menutext">Contact</a></li>                
-            </ul>
-
-
-
-            <footer class="footermenu">
-                <ul>
-                    <li><a href="url" id="menutext">Contact</a></li>
-                    <li><a href="url" id="menutext">Sitemap</a></li>
-                    <li><a id="menutext">Powered by Windesheim</a></li>
-                    
+            <div class="divcontent">
+                
+                <br>
+                
+                <ul class="ulmenu">
+                    <li class="limenu"><img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></li>
+                    <li class="limenu"><a href="url" id="menutext">   Home</a></li>
+                    <li class="limenu"><a href="url" id="menutext">Gallerij</a></li>
+                    <li class="limenu"><a href="url" id="menutext">Kopen</a></li>
+                    <li class="limenu"><a href="url" id="menutext">Contact</a></li>                
                 </ul>
+                
+                
+                
+                
+                
+                <footer class="footermenu">
+                    <ul>
+                        <li><a href="url" id="menutext">Contact</a></li>
+                        <li><a href="url" id="menutext">Sitemap</a></li>
+                        <li><a id="menutext">Powered by Windesheim</a></li>
 
-            </footer>
+                    </ul>
+                </footer>
+            </div>
             <?php
-
         }
 
         function renderHtmlEnd() {
@@ -44,7 +48,6 @@ function renderHtmlStart($title, $extra) {
         </body>
     </html>
     <?php
-
 }
 
 function renderHtmlStartAdmin($title, $extra) {
@@ -57,10 +60,9 @@ function renderHtmlStartAdmin($title, $extra) {
             <link rel="icon" type="image/ico" href="/content/favicon.ico">
             <link href="/newcss.css" type="text/css" rel="stylesheet">
             <link href="/content/admin.css" type="text/css" rel="stylesheet">
-    <?php
-
-    echo $extra;
-    ?>
+            <?php
+            echo $extra;
+            ?>
             <!--Commentaar -->
         </head>
         <body>
@@ -76,7 +78,6 @@ function renderHtmlStartAdmin($title, $extra) {
                 </ul>
             </div>
             <?php
-
         }
 
         function renderHtmlEndAdmin() {
@@ -84,5 +85,4 @@ function renderHtmlStartAdmin($title, $extra) {
         </body>
     </html>
     <?php
-
 }
