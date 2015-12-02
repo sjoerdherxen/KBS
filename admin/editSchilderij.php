@@ -12,7 +12,7 @@ renderHtmlStartAdmin("Schilderij bewerken", "");
 // schilderij id uit get of redirect naar main
 $schilderijId = $_GET["id"];
 if (!isset($schilderijId) || $schilderijId == "" || !is_numeric($schilderijId)) {
-    header("location: main.php");
+    header("location: schilderijList.php");
     exit();
 }
 
