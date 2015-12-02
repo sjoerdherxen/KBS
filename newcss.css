@@ -34,9 +34,9 @@ body{
 
 }
 #headlogo{
-   border-radius: 10px; 
-    
-    
+    border-radius: 10px; 
+
+
 }
 #menutext{
     color: black;
@@ -75,4 +75,28 @@ body{
     text-align: center;
 }
 
+div.img{
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
 
+}
+
+div.img:hover {
+    border: 1px solid teal;
+}
+
+div.img img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+div.title {
+    padding: 10px;
+    text-align: center;
+}
+div.gallerij{
+
+    
+}

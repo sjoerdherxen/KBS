@@ -26,11 +26,8 @@ function renderHtmlStart($title, $extra) {
                     <li class="limenu"><a href="url" id="menutext">Kopen</a></li>
                     <li class="limenu"><a href="url" id="menutext">Contact</a></li>                
                 </ul>
-                
-                
-                
-                
-                
+                               
+                              
                 <footer class="footermenu">
                     <ul>
                         <li><a href="url" id="menutext">Contact</a></li>
