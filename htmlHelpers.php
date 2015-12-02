@@ -15,7 +15,27 @@ function renderHtmlStart($title, $extra) {
                   ?>
             <!--Commentaar -->
         </head>
-        <body><?php
+        <body>
+            <br>
+            <ul class="ulmenu">
+                <li class="limenu"><a href="url" id="menutext">   Home</a></li>
+                <li class="limenu"><a href="url" id="menutext">Gallerij</a></li>
+                <li class="limenu"><a href="url" id="menutext">Kopen</a></li>
+                <li class="limenu"><a href="url" id="menutext">Contact</a></li>                
+            </ul>
+
+
+
+            <footer class="footermenu">
+                <ul>
+                    <li><a href="url" id="menutext">Contact</a></li>
+                    <li><a href="url" id="menutext">Sitemap</a></li>
+                    <li><a id="menutext">Powered by Windesheim</a></li>
+                    
+                </ul>
+
+            </footer>
+            <?php
 
         }
 
@@ -37,10 +57,10 @@ function renderHtmlStartAdmin($title, $extra) {
             <link rel="icon" type="image/ico" href="/content/favicon.ico">
             <link href="/newcss.css" type="text/css" rel="stylesheet">
             <link href="/content/admin.css" type="text/css" rel="stylesheet">
-            <?php
+    <?php
 
-            echo $extra;
-            ?>
+    echo $extra;
+    ?>
             <!--Commentaar -->
         </head>
         <body>
@@ -51,8 +71,8 @@ function renderHtmlStartAdmin($title, $extra) {
                     <li><a href="/admin/categorie.php">Categorie&euml;n</a></li>
                     <li><a href="/admin/main.php">Schilder technieken</a></li>
                     <li><a href="/admin/main.php">Overig</a></li>
-                    <li class="menu-right"><span><?php echo $_SESSION["inlog"]; ?></span></li>
                     <li class="menu-right"><a href="/admin/uitloggen.php">Uitloggen</a></li>
+                    <li class="menu-right"><span><?php echo $_SESSION["inlog"]; ?></span></li>
                 </ul>
             </div>
             <?php

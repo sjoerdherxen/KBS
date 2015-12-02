@@ -1,4 +1,5 @@
 <?php
+
 // test
 session_start();
 require 'functions.php';
@@ -36,8 +37,8 @@ if (isset($_POST["knop"])) {
     $schilderij["Beschrijving"] = $_POST["beschrijving"];
     $schilderInsert[] = $_POST["beschrijving"];
 
-    if (!is_numeric($_POST["jaar"]) && (isset($_POST["jaar"]) || trim($_POST["jaar"]) == "")) {
-        $hoogteError = "Jaar is geen getal";
+    if ((!is_numeric($_POST["jaar"]) && isset($_POST["jaar"])) || trim($_POST["jaar"]) == "") {
+        $jaarError = "Jaar is geen getal";
         $correct = false;
     }
     $schilderij["Jaar"] = $_POST["jaar"];
@@ -83,15 +84,36 @@ if (isset($_POST["knop"])) {
     $schilderij["Techniek_naam"] = $_POST["techniek"];
     $schilderInsert[] = $_POST["techniek"];
 
+    if (isset($_FILES["img"])) {
+        $imgExtension = strtolower(strrchr($_FILES["img"]["name"], "."));
+        $correctExtensions = array(".png", ".jpg", ".jpeg", ".gif");
+
+        if (!in_array($imgExtension, $correctExtensions) || $_FILES["img"]["error"] !== 0 || $_FILES["img"]["size"] == 0) {
+            $afbeeldingError = "Geen afbeelding gekozen";
+            $correct = false;
+        }
+    } else {
+        $afbeeldingError = "Geen afbeelding gekozen";
+        $correct = false;
+    }
+
     if ($correct) {
-        query("INSERT INTO schilderij (Titel, beschrijving, jaar, hoogte, breedte, categorie_naam, techniek_naam, naam_schilder) VALUES (?,?, ?, ?, ?, ?, ?, 't')", $schilderInsert);
+        $id = insert("INSERT INTO schilderij (Titel, beschrijving, jaar, hoogte, breedte, categorie_naam, techniek_naam, naam_schilder) VALUES (?,?, ?, ?, ?, ?, ?, 't')", $schilderInsert);
+
+
+        $newpath = "/content/uploads/" . $id . $imgExtension;
+
+        query("UPDATE schilderij SET Img = ? WHERE Schilderij_Id = ?", array($newpath, $id));
+
+        move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
+
         header("location: schilderijList.php");
         exit();
     }
 }
 ?>
 <a href="schilderijList.php">Terug naar lijst</a>
-<form action="addSchilderij.php" method="post" class="editform">
+<form action="addSchilderij.php" method="post" class="editform" enctype="multipart/form-data">
     <table>
         <tr>
             <td>Titel</td>
@@ -190,6 +212,20 @@ if (isset($_POST["knop"])) {
 
                 if (isset($techniekError)) {
                     echo "<br/>" . $techniekError;
+                }
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td>Afbeelding</td><td></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="file" name="img" accept="image/*">
+                <?php
+
+                if (isset($afbeeldingError)) {
+                    echo "<br/>" . $afbeeldingError;
                 }
                 ?>
             </td>

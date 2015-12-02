@@ -8,12 +8,7 @@ and open the template in the editor.
 include './htmlHelpers.php';
 renderHtmlStart("Home", "");
 ?>
-<ul>
-    <li>Home</li>
-    <li>Catalogus</li>
-    <li>Kopen</li>
-    <li>Contact</li>
-</ul>
+
 <?php
 
 renderHtmlEnd();
