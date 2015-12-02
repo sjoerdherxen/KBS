@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require 'functions.php';
 if (!isLoggedIn()) {
     header("location: index.php");
@@ -7,16 +8,16 @@ if (!isLoggedIn()) {
 }
 require '../htmlHelpers.php';
 renderHtmlStartAdmin("categorie", "");
-$query = "SELECT * FROM schi";
-$categorie = query($query, null);
+$query = "SELECT * FROM categorie";
+$categorieen = query($query, null);
 
 echo "<a href='addCategorie.php' id='addCategorieLink'>Toevoegen</a>";
 echo "<div id='categorieList'>";
-foreach ($categorie as $categorie) {
-    echo "<a class='categorieListItem' href='editcategorie.php?id=" . $categorie["Categorie_ID"] . "'>";
-    echo "<div class='categorieListItemImg' style='background-image: url(\"" . $categorie["Img"] . "\");'></div>";
+foreach ($categorieen as $categorie) {
+    echo "<a class='categorieListItem' href='editcategorie.php?id=" . $categorie["Categorie_naam"] . "'>";
+    //  echo "<div class='categorieListItemImg' style='background-image: url(\"" . $categorie["Img"] . "\");'></div>";
     echo "<div class='categorieListItemInner'>";
-    echo "<span class='titel'>" . $categorie["Titel"] . "</span><br/>  ";
+    echo "<span class='titel'>" . $categorie["Categorie_naam"] . "</span><br/>  ";
     echo "<span class='beschrijving'>" . $categorie["Beschrijving"] . "</span><br/>";
     echo "</div>";
     echo "</a>";

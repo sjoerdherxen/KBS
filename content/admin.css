@@ -57,11 +57,11 @@
     font-size: 0.8em;
 }
 
-#schilderijList, #addSchilderijLink{
+#schilderijList, #addSchilderijLink, #categorieList{
     padding: 5px;
 }
 
-.schilderijListItem{
+.schilderijListItem, .categorieListItem{
     color: black;
     display: block;
     height:100px;
@@ -77,7 +77,7 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
-.schilderijListItemInner{
+.schilderijListItemInner, .categorieListItemInner{
     float:left;
     height: 100px;
     overflow: hidden;
