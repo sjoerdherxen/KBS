@@ -23,7 +23,7 @@ function renderHtmlStart($title, $extra) {
                     <li class="limenu"><img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></li>
                     <li class="limenu"><a href="url" id="menutext">   Home</a></li>
                     <li class="limenu"><a href="url" id="menutext">Gallerij</a></li>
-                    <li class="limenu"><a href="url" id="menutext">Kopen</a></li>
+                    <li class="limenu"><a href="url" id="menutext">Over</a></li>
                     <li class="limenu"><a href="url" id="menutext">Contact</a></li>                
                 </ul>
                                
