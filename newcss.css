@@ -13,6 +13,17 @@ body{
     font-family: Californian FB;
     margin: 0;
 }
+.divcontent{
+    position:absolute;
+    width: 1250px;
+    display: inline;
+    margin: auto;
+    background-color: #3399FF;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 
 .ulmenu{
     list-style-type: none;
@@ -41,12 +52,12 @@ body{
     text-align: center;
     padding: 30px;
     border-radius: 20px;
-    background-color: #000099;
+    background-color: #0066cc;
 
 }
 
 .limenu a:hover {
-    background-color: #0066cc;
+    background-color: #3399FF;
 }
 .footermenu{
     position: fixed;
@@ -64,15 +75,4 @@ body{
     text-align: center;
 }
 
-.divcontent{
-    position:absolute;
-    width: 1250px;
-    display: inline;
-    margin: auto;
-    background-color: #0066cc;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
 
