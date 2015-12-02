@@ -36,12 +36,13 @@ function renderHtmlStart($title, $extra) {
 
                     </ul>
                 </footer>
-            </div>
+            
             <?php
         }
 
         function renderHtmlEnd() {
             ?>
+            </div>
         </body>
     </html>
     <?php
