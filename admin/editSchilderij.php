@@ -9,7 +9,7 @@ if (!isLoggedIn()) {
 require '../htmlHelpers.php';
 renderHtmlStartAdmin("Schilderij bewerken", "");
 
-// schilderij id uit get of redirect naar main
+// schilderij id uit get of redirect naar lijst
 $schilderijId = $_GET["id"];
 if (!isset($schilderijId) || $schilderijId == "" || !is_numeric($schilderijId)) {
     header("location: schilderijList.php");
@@ -102,11 +102,12 @@ if (isset($_POST["knop"])) {
         if ($updateImg) {
             $newpath = "/content/uploads/" . $schilderijId . $imgExtension;
             move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
-            
+
             query("UPDATE schilderij SET Img = ? WHERE Schilderij_Id = ?", array($newpath, $schilderijId));
         }
 
-        $succes = "Schilderij is aangepast.";
+        header("location: SchilderijList.php");
+        exit();
     } else {
         $doSelectQuery = false;
     }
@@ -128,18 +129,13 @@ if ($doSelectQuery) {
             $schilderij["Jaar"] = "";
         }
     }
-} else{
+} else {
     $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
     $schilderij["Img"] = $resultImg[0]["Img"];
 }
 ?>
 <a href="schilderijList.php">Terug naar lijst</a>
-<?php
 
-if (isset($succes)) {
-    echo $succes;
-}
-?>
 <form action="editSchilderij.php?id=<?php echo $schilderijId; ?>" method="post" class="editform" enctype="multipart/form-data">
     <table>
         <colgroup>
@@ -158,8 +154,8 @@ if (isset($succes)) {
                 }
                 ?>
             </td>
-            <td rowspan="10">
-                <img src="<?php echo $schilderij["Img"]; ?>">
+            <td rowspan="12">
+                <img src="<?php echo $schilderij["Img"] . ".?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
             </td>
         </tr>
         <tr>

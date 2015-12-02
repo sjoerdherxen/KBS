@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Europe/Amsterdam");
 
 function isLoggedIn() {
     return isset($_SESSION['inlog']) && $_SESSION['inlog'] != "";
