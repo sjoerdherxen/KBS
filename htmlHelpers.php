@@ -68,7 +68,7 @@ function renderHtmlStartAdmin($title, $extra) {
                 <ul>
                     <li><a href="/admin/main.php">Home</a></li>
                     <li><a href="/admin/schilderijList.php">Schilderijen</a></li>
-                    <li><a href="/admin/categorie.php">Categorie&euml;n</a></li>
+                    <li><a href="/admin/categorieList.php">Categorie&euml;n</a></li>
                     <li><a href="/admin/main.php">Schilder technieken</a></li>
                     <li><a href="/admin/main.php">Overig</a></li>
                     <li class="menu-right"><a href="/admin/uitloggen.php">Uitloggen</a></li>
