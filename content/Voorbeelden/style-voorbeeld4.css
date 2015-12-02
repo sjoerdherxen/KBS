@@ -1,0 +1,92 @@
+body {
+    background-color: #AA9739;
+}
+
+#logo {
+    float: left;
+    height: 100px;
+    widht: 10%;
+}
+
+#afbeelding1 {
+    float: left;
+    height: 102px;   
+    display: inline;
+}
+
+.header1 {
+    height: 100px;
+    width: 100%;
+}
+
+.header {
+    float: left;
+    height: 100px;
+    width: 90%;
+    background-color: #D4C26A;
+}
+
+.button {
+    text-align: center;
+    border: black 1px solid;
+    height: 50px;
+    width: 400px;
+    float: left;
+    margin-top: 25px;
+    margin-left: 120px;
+    background-color: #FFF0AA;  
+}
+
+.button:hover {
+    background-color: #806D15;
+}
+
+a {
+   color: black;
+   transition-property: blue;
+   transition-duration: 5s;
+   transition-timing-function: ease-in;
+   transition-delay: 0.3s;
+}
+
+
+/*
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a.visited {
+    text-decoration: none;
+    color: black;
+}
+
+a.hover {
+    background-color: black;
+}
+*/
+#content {
+    border: solid black 1px;
+    float: left;
+    height: 700px;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+#tekst {
+
+}
+
+#diashow {
+    border: solid black 1px;
+    width: auto;
+    height: 300px;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-top: 300px;
+    float: bottom;
+}
+
+
+

@@ -36,8 +36,8 @@ if (isset($_POST["knop"])) {
     $schilderij["Beschrijving"] = $_POST["beschrijving"];
     $schilderijUpdate[] = $_POST["beschrijving"];
 
-    if (!is_numeric($_POST["jaar"]) && (isset($_POST["jaar"]) || trim($_POST["jaar"]) == "")) {
-        $hoogteError = "Jaar is geen getal";
+    if (!isset($_POST["jaar"]) || !(is_numeric($_POST["jaar"]) || trim($_POST["jaar"]) == "")) {
+        $jaarError = "Jaar is geen getal";
         $correct = false;
     }
     $schilderij["Jaar"] = $_POST["jaar"];
@@ -82,9 +82,30 @@ if (isset($_POST["knop"])) {
     }
     $schilderij["Techniek_naam"] = $_POST["techniek"];
     $schilderijUpdate[] = $_POST["techniek"];
+
+    $updateImg = false;
+    if (isset($_FILES["img"]) && $_FILES["img"]["size"] > 0) {
+        $imgExtension = strtolower(strrchr($_FILES["img"]["name"], "."));
+        $correctExtensions = array(".png", ".jpg", ".jpeg", ".gif");
+
+        if (!in_array($imgExtension, $correctExtensions) || $_FILES["img"]["error"] !== 0 || $_FILES["img"]["size"] == 0) {
+            $afbeeldingError = "Geen afbeelding gekozen";
+            $correct = false;
+        } else {
+            $updateImg = true;
+        }
+    }
+
     $schilderijUpdate[] = $schilderijId;
     if ($correct) {
         query("UPDATE schilderij SET titel=?, beschrijving=?, jaar=?, hoogte=?, breedte=?, categorie_naam=?, techniek_naam=? WHERE Schilderij_ID=?", $schilderijUpdate);
+        if ($updateImg) {
+            $newpath = "/content/uploads/" . $schilderijId . $imgExtension;
+            move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
+            
+            query("UPDATE schilderij SET Img = ? WHERE Schilderij_Id = ?", array($newpath, $schilderijId));
+        }
+
         $succes = "Schilderij is aangepast.";
     } else {
         $doSelectQuery = false;
@@ -95,10 +116,10 @@ if (isset($_POST["knop"])) {
 if ($doSelectQuery) {
     $resultSchilderij = query("SELECT * FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
     if ($resultSchilderij === null) {
-        header("location: main.php");
+        header("location: schilderijList.php");
         exit();
     } elseif (count($resultSchilderij) == 0) {
-        header("location: main.php");
+        header("location: schilderijList.php");
         exit();
     } else {
         // schilderij gevonden
@@ -107,6 +128,9 @@ if ($doSelectQuery) {
             $schilderij["Jaar"] = "";
         }
     }
+} else{
+    $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
+    $schilderij["Img"] = $resultImg[0]["Img"];
 }
 ?>
 <a href="schilderijList.php">Terug naar lijst</a>
@@ -116,10 +140,11 @@ if (isset($succes)) {
     echo $succes;
 }
 ?>
-<form action="editSchilderij.php?id=<?php echo $schilderijId; ?>" method="post" class="editform">
+<form action="editSchilderij.php?id=<?php echo $schilderijId; ?>" method="post" class="editform" enctype="multipart/form-data">
     <table>
         <colgroup>
             <col style="width: 140px;">
+            <col>
             <col>
         </colgroup>
         <tr>
@@ -132,6 +157,9 @@ if (isset($succes)) {
                     echo "<br/>" . $titelError;
                 }
                 ?>
+            </td>
+            <td rowspan="10">
+                <img src="<?php echo $schilderij["Img"]; ?>">
             </td>
         </tr>
         <tr>
@@ -219,6 +247,20 @@ if (isset($succes)) {
 
                 if (isset($techniekError)) {
                     echo "<br/>" . $techniekError;
+                }
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">Afbeelding (laat leeg om huidige te houden)</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="file" name="img" accept="image/*">
+                <?php
+
+                if (isset($afbeeldingError)) {
+                    echo "<br/>" . $afbeeldingError;
                 }
                 ?>
             </td>
