@@ -72,7 +72,7 @@ function renderHtmlStartAdmin($title, $extra) {
                     <li><a href="/admin/main.php">Schilder technieken</a></li>
                     <li><a href="/admin/main.php">Overig</a></li>
                     <li class="menu-right"><a href="/admin/uitloggen.php">Uitloggen</a></li>
-                    <li class="menu-right"><span><?php echo $_SESSION["inlog"]; ?></span></li>
+                    <li class="menu-right"><a href="/admin/account.php"><?php echo $_SESSION["inlog"]; ?></a></li>
                 </ul>
             </div>
             <?php

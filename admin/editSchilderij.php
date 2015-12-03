@@ -100,6 +100,11 @@ if (isset($_POST["knop"])) {
     if ($correct) {
         query("UPDATE schilderij SET titel=?, beschrijving=?, jaar=?, hoogte=?, breedte=?, categorie_naam=?, techniek_naam=? WHERE Schilderij_ID=?", $schilderijUpdate);
         if ($updateImg) {
+            $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
+            if(file_exists("./.." . $resultImg[0]["Img"])){
+                unlink("./.." . $resultImg[0]["Img"]);
+            }
+            
             $newpath = "/content/uploads/" . $schilderijId . $imgExtension;
             move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
 
@@ -130,18 +135,19 @@ if ($doSelectQuery) {
         }
     }
 } else {
-    $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
-    $schilderij["Img"] = $resultImg[0]["Img"];
+   // $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
+    //$schilderij["Img"] = $resultImg[0]["Img"];
 }
 ?>
-<a href="schilderijList.php">Terug naar lijst</a>
+<p>
+    <a href="schilderijList.php">Terug naar lijst</a>
+</p>
 
 <form action="editSchilderij.php?id=<?php echo $schilderijId; ?>" method="post" class="editform" enctype="multipart/form-data">
     <table>
         <colgroup>
             <col style="width: 140px;">
-            <col>
-            <col>
+            <col style="width: 172px;">
         </colgroup>
         <tr>
             <td>Titel</td>
@@ -153,9 +159,6 @@ if ($doSelectQuery) {
                     echo "<br/>" . $titelError;
                 }
                 ?>
-            </td>
-            <td rowspan="12">
-                <img src="<?php echo $schilderij["Img"] . ".?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
             </td>
         </tr>
         <tr>
@@ -248,7 +251,7 @@ if ($doSelectQuery) {
             </td>
         </tr>
         <tr>
-            <td colspan="2">Afbeelding (laat leeg om huidige te houden)</td>
+            <td colspan="2">Afbeelding (laat leeg om huidige afbeelding     te houden)</td>
         </tr>
         <tr>
             <td colspan="2">
@@ -270,6 +273,10 @@ if ($doSelectQuery) {
         </tr>
     </table>
 </form>
+<div id="editSchilderijImg">
+     <img src="<?php echo $schilderij["Img"] . ".?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
+</div>
+
 <script>
     document.getElementById("verwijderen").onclick = function () {
         if (confirm("Weet u zeker dat u dit schilderij wilt verwijderen?")) {
