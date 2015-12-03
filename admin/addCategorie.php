@@ -33,7 +33,7 @@ $uitvoerDatabase = query("SELECT * FROM Categorie", NULL);
     <table>
         <tr>
             <td>
-                Naam categorie:
+                Naam categorie
             </td>
             <td>
                 <input type="text" name="Naam" placeholder="Vul hier de naam in" style="width: 375px">
@@ -47,7 +47,7 @@ if (isset($Naamerror)) {
         </tr>
         <tr>
             <td>
-                Beschrijving categorie:
+                Beschrijving categorie
             </td>
             <td>
                 <textarea rows="4" cols="50" name="Beschrijving" placeholder="Vul hier de beschrijving in"></textarea>
@@ -64,7 +64,7 @@ if (isset($Naamerror)) {
         </tr>
     </table>
 </form>
-<table border="1">
+<!--<table border="1">
     <tr>
         <th>
             Naam Categorie
@@ -75,7 +75,7 @@ if (isset($Naamerror)) {
     </tr>
     <?php
 
-    foreach ($uitvoerDatabase as $value1) {
+    /*foreach ($uitvoerDatabase as $value1) {
         foreach ($value1 as $key2 => $value2) {
             if ($key2 == "Categorie_naam") {
                 echo "<tr><td>$value2</td>";
@@ -87,9 +87,9 @@ if (isset($Naamerror)) {
                 }
             }
         }
-    }
+    }*/
     ?>
-</table>       
+</table>-->       
 <?php
 
 renderHtmlEndAdmin();

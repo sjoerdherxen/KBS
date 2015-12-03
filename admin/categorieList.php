@@ -7,7 +7,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("categorie", "");
+renderHtmlStartAdmin("Categori&euml;n", "");
 $query = "SELECT * FROM categorie";
 $categorieen = query($query, null);
 
