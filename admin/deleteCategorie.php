@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+
+<?php
+
+session_start();
+require 'functions.php';
+if (!isLoggedIn()) {
+    header("location: index.php");
+    exit();
+}
+if (isset($_GET["Categorie_naam"])) {
+    $result = query("SELECT Categorie_naam FROM Categorie WHERE Categorie_naam = ?", array($_GET["Categorie_naam"]));
+    if (count($result == 1)) {
+        query("DELETE FROM Categorie WHERE Categorie_naam_= ?", array($_GET["Categorie_naam"]));
+        header("location: categorieList.php");
+        exit();
+    } else {
+        header("location: categorieList.php");
+        exit();
+    }
+}
+header("location: categorieList.php");
+exit();
+?>

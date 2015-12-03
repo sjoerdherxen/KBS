@@ -19,16 +19,17 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     }
     if ($correct) {
         $password = hash("sha256", $password);
+
         $query = "SELECT Username FROM gebruikers WHERE username = ? AND wachtwoord = ?";
         $result = query($query, array($username, $password));
-        
+
         if (count($result) == 1) {
             $_SESSION["inlog"] = $_POST["username"];
             header("location: main.php");
             exit();
-        } elseif($result === null) {
+        } elseif ($result === null) {
             $passwordError = "Er kan geen verbinding worden gemaakt met de database, probeer het later opnieuw";
-        }else{
+        } else {
             $passwordError = "De combinatie naam en wachtwoord is niet goed.";
         }
     }
@@ -58,6 +59,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
                 </tr>
                 <?php
 
+                print($password);
                 if ($passwordError != "") {
                     echo "<tr><td></td><td class='incorrect'>" . $passwordError . "</td></tr>";
                 }
