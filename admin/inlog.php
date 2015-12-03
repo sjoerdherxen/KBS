@@ -59,7 +59,6 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
                 </tr>
                 <?php
 
-                print($password);
                 if ($passwordError != "") {
                     echo "<tr><td></td><td class='incorrect'>" . $passwordError . "</td></tr>";
                 }
