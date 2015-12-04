@@ -24,6 +24,11 @@ body{
     left: 0;
     right: 0;
 }
+div.menu{
+    width: 100%;
+    
+    
+}
 
 .ulmenu{
     list-style-type: none;
