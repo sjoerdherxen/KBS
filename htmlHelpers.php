@@ -15,19 +15,19 @@ function renderHtmlStart($title, $extra) {
             <!--Commentaar -->
         </head>
         <body>
-            <div class="divcontent">
-                
-                <br>
-                
-                <ul class="ulmenu">
-                    <li class="limenu"><img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></li>
-                    <li class="limenu"><a href="url" id="menutext">   Home</a></li>
-                    <li class="limenu"><a href="url" id="menutext">Gallerij</a></li>
-                    <li class="limenu"><a href="url" id="menutext">Over</a></li>
-                    <li class="limenu"><a href="url" id="menutext">Contact</a></li>                
-                </ul>
-                               
-                              
+            <div class="content">
+                <div class="menu">
+                    <br>
+
+                    <ul class="ulmenu">
+                        <li class="limenu"><img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></li>
+                        <li class="limenu"><a href="url" id="menutext">   Home</a></li>
+                        <li class="limenu"><a href="url" id="menutext">Gallerij</a></li>
+                        <li class="limenu"><a href="url" id="menutext">Over</a></li>
+                        <li class="limenu"><a href="url" id="menutext">Contact</a></li>                
+                    </ul>
+                </div>           
+
                 <footer class="footermenu">
                     <ul>
                         <li><a href="url" id="menutext">Contact</a></li>
@@ -36,12 +36,12 @@ function renderHtmlStart($title, $extra) {
 
                     </ul>
                 </footer>
-            
-            <?php
-        }
 
-        function renderHtmlEnd() {
-            ?>
+                <?php
+            }
+
+            function renderHtmlEnd() {
+                ?>
             </div>
         </body>
     </html>

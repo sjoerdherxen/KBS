@@ -12,22 +12,24 @@ body{
     background-color: wheat;
     font-family: Californian FB;
     margin: 0;
+
 }
-.divcontent{
-    position:absolute;
+div.content{
+    position: absolute;
     width: 1250px;
+    height: 100%;
     display: inline;
     margin: auto;
     background-color: #3399FF;
     top: 0;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
 }
 div.menu{
     width: 100%;
-    
-    
+
+
 }
 
 .ulmenu{
@@ -81,7 +83,7 @@ div.menu{
 }
 
 div.img{
-    
+
     margin: 5px;
     border: 1px solid #ccc;
     float: left;
@@ -103,5 +105,7 @@ div.title {
     text-align: center;
 }
 div.gallerij{
-    
+    float: left;
+    width: 100%;
+    margin: 100px;
 }
