@@ -71,7 +71,7 @@ div.menu{
     background-color: darkgray;
     bottom:0;
     width:1250px;
-    height:10%;   
+    height:7.5%;   
 }
 .ulfooter{
     list-style-type: none;
@@ -93,12 +93,24 @@ div.img{
 
 div.img:hover {
     border: 1px solid teal;
+
 }
 
 div.img img {
     width: 100%;
     height: auto;
     border-radius: 10px;
+
+}
+div.img img:hover{
+    position:relative;
+    top:-25px;
+    left:-35px;
+    width:400px;
+    height:auto;
+    display:  compact;
+    z-index: auto;
+
 }
 div.title {
     padding: 10px;
