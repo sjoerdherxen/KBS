@@ -38,8 +38,8 @@ if (isset($_GET["id"])) {
         ?>
     </table>
 </form>
+ 
 
-<?php
 
 <script>
     document.getElementById("verwijderen").onclick = function () {
