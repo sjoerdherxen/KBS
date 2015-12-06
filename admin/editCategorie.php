@@ -5,13 +5,13 @@ if (!isLoggedIn()) {
     header("location: index.php");
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Categorie&euml;n", '');
+renderHtmlStartAdmin("Categorie&euml;n", '<script src=\"/conten/editCategorie.js\"></script>>');
 
 if (isset($_GET["id"])) {
     $invoerDatabase = [$_GET["id"]];
     $uitvoerDatabase = query("SELECT * FROM Categorie WHERE Categorie_naam = ?", $invoerDatabase);
     ?>
-    <form>
+<form action="editCategorie.php">
         <table>
             <?php
             foreach ($uitvoerDatabase as $value1) {
@@ -29,7 +29,7 @@ if (isset($_GET["id"])) {
             <tr>
                 <td></td>
                 <td>
-                    <input type="submit" value="Opslaan" name="knop" class="button">
+                    <input type="button" value="Opslaan" name="knop" class="button" id="opslaan">
                     <input type="button" value="Verwijderen" class="button" id="verwijderen">
                 </td>
             </tr>
@@ -39,7 +39,7 @@ if (isset($_GET["id"])) {
     </table>
 </form>
 
-<?php
+
 
 <script>
     document.getElementById("verwijderen").onclick = function () {
