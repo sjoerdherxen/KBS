@@ -17,7 +17,7 @@ body{
 div.content{
     position: absolute;
     width: 1250px;
-    -height: 100%;
+    min-height: 100%;
     display: inline;
     margin: auto;
     background-color: #3399FF;
