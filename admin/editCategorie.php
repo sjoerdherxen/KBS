@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require 'functions.php';
 if (!isLoggedIn()) {
@@ -10,10 +11,16 @@ renderHtmlStartAdmin("Categorie&euml;n", '<script src=\"/conten/editCategorie.js
 if (isset($_GET["id"])) {
     $invoerDatabase = [$_GET["id"]];
     $uitvoerDatabase = query("SELECT * FROM Categorie WHERE Categorie_naam = ?", $invoerDatabase);
+}
+if(!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0){
+    header("location:categorieList.php");
+    exit();
+}
     ?>
-<form action="editCategorie.php">
+    <form action="editCategorie.php">
         <table>
             <?php
+
             foreach ($uitvoerDatabase as $value1) {
                 foreach ($value1 as $key2 => $value2) {
                     if ($key2 == "Categorie_naam") {
@@ -33,22 +40,22 @@ if (isset($_GET["id"])) {
                     <input type="button" value="Verwijderen" class="button" id="verwijderen">
                 </td>
             </tr>
-            <?php
-        }
-        ?>
-    </table>
-</form>
+
+        </table>
+    </form>
 
 
 
-<script>
-    document.getElementById("verwijderen").onclick = function () {
-        if (confirm("Weet u zeker dat u deze categorie wilt verwijderen?")) {
-            window.location = "deleteCategorie.php?Naam=<?php echo $uitvoerDatabase[0]["Categorie_naam"]; ?>";
-        }
-    };
-</script>
-<?php
+    <script>
+        document.getElementById("verwijderen").onclick = function () {
+            if (confirm("Weet u zeker dat u deze categorie wilt verwijderen?")) {
+                window.location = "deleteCategorie.php?Naam=<?php echo $uitvoerDatabase[0]["Categorie_naam"]; ?>";
+            }
+        };
+    </script> <?php
+
+
+
 renderHtmlEndAdmin();
 
 /* 
