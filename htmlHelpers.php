@@ -21,8 +21,8 @@ function renderHtmlStart($title, $extra) {
 
                     <ul class="ulmenu">
                         <li class="limenu"><img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></li>
-                        <li class="limenu"><a href="url" id="menutext">   Home</a></li>
-                        <li class="limenu"><a href="url" id="menutext">Gallerij</a></li>
+                        <li class="limenu"><a href="/hoofdpagina.php" id="menutext">Home</a></li>
+                        <li class="limenu"><a href="/gallerij.php" id="menutext">Gallerij</a></li>
                         <li class="limenu"><a href="url" id="menutext">Over</a></li>
                         <li class="limenu"><a href="url" id="menutext">Contact</a></li>                
                     </ul>
@@ -58,6 +58,7 @@ function renderHtmlStartAdmin($title, $extra) {
             <link rel="icon" type="image/ico" href="/content/favicon.ico">
             <link href="/newcss.css" type="text/css" rel="stylesheet">
             <link href="/content/admin.css" type="text/css" rel="stylesheet">
+            <script src="/content/jquery-1.11.3.min.js"></script>
             <?php
             echo $extra;
             ?>
