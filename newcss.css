@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 body{
-    background-color: wheat;
+    background-color: #E3F0F5;
     font-family: Californian FB;
     margin: 0;
 
@@ -20,7 +20,7 @@ div.content{
     min-height: 100%;
     display: inline;
     margin: auto;
-    background-color: #3399FF;
+    background-color: #A6DCF1;
     top: 0;
     right: 0;
     left: 0;
@@ -67,7 +67,7 @@ div.menu{
     text-align: center;
     padding: 30px;
     border-radius: 20px;
-    background-color: #0066cc;
+    background-color: #85AEBD;
 
 }
 

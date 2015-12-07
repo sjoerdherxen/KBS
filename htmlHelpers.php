@@ -21,10 +21,13 @@ function renderHtmlStart($title, $extra) {
 
                     <ul class="ulmenu">
                         <li class="limenu"><img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></li>
+                        <!-- even kijken hoe we het logo een link kunnen geven zonder dat deze verandert in .ulmenu<a href="url"></a>-->
                         <li class="limenu"><a href="/hoofdpagina.php" id="menutext">Home</a></li>
                         <li class="limenu"><a href="/gallerij.php" id="menutext">Gallerij</a></li>
+                        <li class="limenu"><a href="/zoeken.php" id="menutext">Zoeken</a></li> 
                         <li class="limenu"><a href="url" id="menutext">Over</a></li>
-                        <li class="limenu"><a href="url" id="menutext">Contact</a></li>                
+                        <li class="limenu"><a href="url" id="menutext">Contact</a></li>    
+                        
                     </ul>
                 </div>           
 
