@@ -9,9 +9,10 @@ function renderHtmlStart($title, $extra) {
             <link rel="icon"
                   type="image/ico"
                   href="content/favicon.ico">
-                  <?php
-                  echo $extra;
-                  ?>
+            <script src="/content/jquery-1.11.3.min.js"></script>
+            <?php
+            echo $extra;
+            ?>
             <!--Commentaar -->
         </head>
         <body>
@@ -25,9 +26,8 @@ function renderHtmlStart($title, $extra) {
                         <li class="limenu"><a href="/hoofdpagina.php" id="menutext">Home</a></li>
                         <li class="limenu"><a href="/gallerij.php" id="menutext">Gallerij</a></li>
                         <li class="limenu"><a href="/zoeken.php" id="menutext">Zoeken</a></li> 
-                        <li class="limenu"><a href="url" id="menutext">Over</a></li>
                         <li class="limenu"><a href="url" id="menutext">Contact</a></li>    
-                        
+
                     </ul>
                 </div>           
 
