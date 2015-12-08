@@ -1,5 +1,7 @@
 <?php
 
+require './functions.php';
+
 $usernameError = "";
 $passwordError = "";
 $password = "";
