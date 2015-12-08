@@ -12,14 +12,13 @@ renderHtmlStartAdmin("Schilderijen", "");
 $zoek = "";
 if (isset($_GET["zoek"]) && $_GET["zoek"] != "") {
     $zoek = $_GET["zoek"];
-    $query = "SELECT * FROM schilderij WHERE Titel LIKE ? OR Beschrijving LIKE ? OR Categorie_naam LIKE ? OR Techniek_naam LIKE ?";
+    $query = "SELECT * FROM schilderij S WHERE Titel LIKE ? OR Beschrijving LIKE ?";
     $zoek2 = "%" . $zoek . "%";
-    $schilderijen = query($query, array($zoek2, $zoek2, $zoek2, $zoek2));
+    $schilderijen = query($query, array($zoek2, $zoek2));
 } else {
     $query = "SELECT * FROM schilderij";
     $schilderijen = query($query, null);
 }
-
 ?>
 
 <div id='schilderijList'>
@@ -33,7 +32,7 @@ if (isset($_GET["zoek"]) && $_GET["zoek"] != "") {
 
     foreach ($schilderijen as $schilderij) {
         echo "<a class='schilderijListItem' href='editschilderij.php?id=" . $schilderij["Schilderij_ID"] . "'>";
-        echo "<div class='schilderijListItemImg' style='background-image: url(\"" . $schilderij["Img"] . "?_=".strtotime(date("Y-m-d H:i:s"))."\");'></div>";
+        echo "<div class='schilderijListItemImg' style='background-image: url(\"" . $schilderij["Img"] . "?_=" . strtotime(date("Y-m-d H:i:s")) . "\");'></div>";
         echo "<div class='schilderijListItemInner'>";
         echo "<span class='titel'>" . $schilderij["Titel"] . "</span><br/>  ";
         echo "<span class='beschrijving'>" . $schilderij["Beschrijving"] . "</span><br/>";
@@ -42,6 +41,12 @@ if (isset($_GET["zoek"]) && $_GET["zoek"] != "") {
     }
     ?>
 </div>
+<script>
+    if (window.location.hash != "") {
+        alert(window.location.hash.substr(1));
+        window.location.hash = "";
+    }
+</script>
 <?php
 
 renderHtmlEndAdmin();
