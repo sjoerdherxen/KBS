@@ -16,11 +16,13 @@ $schilderij["Beschrijving"] = "";
 $schilderij["Jaar"] = "";
 $schilderij["Hoogte"] = "";
 $schilderij["Breedte"] = "";
-$schilderij["Categorie_naam"] = "";
-$schilderij["Techniek_naam"] = "";
+$schilderij["CategorieID"] = "";
+$schilderij["SubCategorieID"] = "";
+$schilderij["MateriaalID"] = "";
 
-$resultTechniek = query("SELECT techniekId, techniek_naam FROM techniek", null);
+$resultTechniek = query("SELECT materiaalId, materiaal_naam FROM materiaal", null);
 $resultCategorie = query("SELECT categorieId, categorie_naam FROM categorie", null);
+$resultSubCategorie = query("SELECT subcategorieId, subcategorie_naam FROM subcategorie", null);
 
 if (isset($_POST["knop"])) {
     $correct = true;
@@ -74,15 +76,15 @@ if (isset($_POST["knop"])) {
     $schilderij["CategorieID"] = $_POST["categorie"];
     $schilderInsert[] = $_POST["categorie"];
 
-    if (!isset($_POST["techniek"]) || trim($_POST["techniek"]) == "") {
-        $techniekError = "Techniek is verplicht";
+    if (!isset($_POST["materiaal"]) || trim($_POST["materiaal"]) == "") {
+        $materiaalError = "Materiaal is verplicht";
         $correct = false;
-    } elseif (!in_query_result($resultTechniek, $_POST["techniek"], "techniekId")) {
-        $techniekError = "Techniek bestaat niet";
+    } elseif (!in_query_result($resultTechniek, $_POST["materiaal"], "materiaalId")) {
+        $materiaalError = "Materiaal bestaat niet";
         $correct = false;
     }
-    $schilderij["TechniekID"] = $_POST["techniek"];
-    $schilderInsert[] = $_POST["techniek"];
+    $schilderij["MarteriaalID"] = $_POST["materiaal"];
+    $schilderInsert[] = $_POST["materiaal"];
 
     if (isset($_FILES["img"])) {
         $imgExtension = strtolower(strrchr($_FILES["img"]["name"], "."));
@@ -98,7 +100,7 @@ if (isset($_POST["knop"])) {
     }
 
     if ($correct) {
-        $id = insert("INSERT INTO schilderij (Titel, beschrijving, jaar, hoogte, breedte, categorieid, techniekid, naam_schilder) VALUES (?,?, ?, ?, ?, ?, ?, 'ellenvanthof')", $schilderInsert);
+        $id = insert("INSERT INTO schilderij (Titel, beschrijving, jaar, hoogte, breedte, categorieid, materiaalid, naam_schilder) VALUES (?,?, ?, ?, ?, ?, ?, 'ellenvanthof')", $schilderInsert);
 
 
         $newpath = "/content/uploads/" . $id . $imgExtension;
@@ -192,26 +194,50 @@ if (isset($_POST["knop"])) {
                 ?>
             </td>
         </tr>
-        <tr>
-            <td>Techniek</td>
+         <tr>
+            <td>Subcategorie</td>
             <td>
-                <select name="techniek">
+                <select name="subcategorie">
                     <?php
 
-                    foreach ($resultTechniek as $techniek) {
+                    foreach ($resultCategorie as $categorie) {
                         $selected = "";
-                        if ($techniek["techniekId"] == $schilderij["TechniekID"]) {
+                        if ($categorie["subcategorieId"] == $schilderij["SubCategorieID"]) {
                             $selected = "selected='selected'";
                         }
 
-                        echo "<option " . $selected . " value='" . $techniek["techniekId"] . "'>" . $techniek["techniek_naam"] . "</option>";
+                        echo "<option " . $selected . " value='" . $categorie["subcategorieId"] . "'>" . $categorie["subcategorie_naam"] . "</option>";
                     }
                     ?>
                 </select>
                 <?php
 
-                if (isset($techniekError)) {
-                    echo "<br/>" . $techniekError;
+                if (isset($subcategorieError)) {
+                    echo "<br/>" . $subcategorieError;
+                }
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td>Materiaal</td>
+            <td>
+                <select name="materiaal">
+                    <?php
+
+                    foreach ($resultMateriaal as $materiaal) {
+                        $selected = "";
+                        if ($materiaal["materiaalId"] == $schilderij["MateriaalID"]) {
+                            $selected = "selected='selected'";
+                        }
+
+                        echo "<option " . $selected . " value='" . $materiaal["materiaalId"] . "'>" . $materiaal["materiaal_soort"] . "</option>";
+                    }
+                    ?>
+                </select>
+                <?php
+
+                if (isset($materiaalError)) {
+                    echo "<br/>" . $materiaalError;
                 }
                 ?>
             </td>
