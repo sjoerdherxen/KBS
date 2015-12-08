@@ -62,6 +62,6 @@ if (isset($_POST["oldpassword"])) {
 </div>
 
 <?php
-
+//test
 renderHtmlEndAdmin();
 
