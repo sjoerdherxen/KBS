@@ -140,7 +140,7 @@ renderHtmlStart("Gallerij", "");
 
     </div>
 </div>
-
+  
 <?php
 
 renderHtmlEnd();
