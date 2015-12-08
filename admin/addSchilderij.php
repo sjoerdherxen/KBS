@@ -19,8 +19,8 @@ $schilderij["Breedte"] = "";
 $schilderij["Categorie_naam"] = "";
 $schilderij["Techniek_naam"] = "";
 
-$resultTechniek = query("SELECT techniek_naam FROM techniek", null);
-$resultCategorie = query("SELECT categorie_naam FROM categorie", null);
+$resultTechniek = query("SELECT techniekId, techniek_naam FROM techniek", null);
+$resultCategorie = query("SELECT categorieId, categorie_naam FROM categorie", null);
 
 if (isset($_POST["knop"])) {
     $correct = true;
@@ -67,21 +67,21 @@ if (isset($_POST["knop"])) {
     if (!isset($_POST["categorie"]) || trim($_POST["categorie"]) == "") {
         $categorieError = "Categorie is verplicht";
         $correct = false;
-    } elseif (!in_query_result($resultCategorie, $_POST["categorie"], "categorie_naam")) {
+    } elseif (!in_query_result($resultCategorie, $_POST["categorie"], "categorieId")) {
         $categorieError = "Categorie bestaat niet";
         $correct = false;
     }
-    $schilderij["Categorie_naam"] = $_POST["categorie"];
+    $schilderij["CategorieID"] = $_POST["categorie"];
     $schilderInsert[] = $_POST["categorie"];
 
     if (!isset($_POST["techniek"]) || trim($_POST["techniek"]) == "") {
         $techniekError = "Techniek is verplicht";
         $correct = false;
-    } elseif (!in_query_result($resultTechniek, $_POST["techniek"], "techniek_naam")) {
+    } elseif (!in_query_result($resultTechniek, $_POST["techniek"], "techniekId")) {
         $techniekError = "Techniek bestaat niet";
         $correct = false;
     }
-    $schilderij["Techniek_naam"] = $_POST["techniek"];
+    $schilderij["TechniekID"] = $_POST["techniek"];
     $schilderInsert[] = $_POST["techniek"];
 
     if (isset($_FILES["img"])) {
@@ -98,7 +98,7 @@ if (isset($_POST["knop"])) {
     }
 
     if ($correct) {
-        $id = insert("INSERT INTO schilderij (Titel, beschrijving, jaar, hoogte, breedte, categorie_naam, techniek_naam, naam_schilder) VALUES (?,?, ?, ?, ?, ?, ?, 't')", $schilderInsert);
+        $id = insert("INSERT INTO schilderij (Titel, beschrijving, jaar, hoogte, breedte, categorieid, techniekid, naam_schilder) VALUES (?,?, ?, ?, ?, ?, ?, 'ellenvanthof')", $schilderInsert);
 
 
         $newpath = "/content/uploads/" . $id . $imgExtension;
@@ -176,11 +176,11 @@ if (isset($_POST["knop"])) {
 
                     foreach ($resultCategorie as $categorie) {
                         $selected = "";
-                        if ($categorie["categorie_naam"] == $schilderij["Categorie_naam"]) {
+                        if ($categorie["categorieId"] == $schilderij["CategorieID"]) {
                             $selected = "selected='selected'";
                         }
 
-                        echo "<option " . $selected . " value='" . $categorie["categorie_naam"] . "'>" . $categorie["categorie_naam"] . "</option>";
+                        echo "<option " . $selected . " value='" . $categorie["categorieId"] . "'>" . $categorie["categorie_naam"] . "</option>";
                     }
                     ?>
                 </select>
@@ -200,11 +200,11 @@ if (isset($_POST["knop"])) {
 
                     foreach ($resultTechniek as $techniek) {
                         $selected = "";
-                        if ($techniek["techniek_naam"] == $schilderij["techniek_naam"]) {
+                        if ($techniek["techniekId"] == $schilderij["TechniekID"]) {
                             $selected = "selected='selected'";
                         }
 
-                        echo "<option " . $selected . " value='" . $techniek["techniek_naam"] . "'>" . $techniek["techniek_naam"] . "</option>";
+                        echo "<option " . $selected . " value='" . $techniek["techniekId"] . "'>" . $techniek["techniek_naam"] . "</option>";
                     }
                     ?>
                 </select>

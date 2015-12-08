@@ -9,9 +9,11 @@ function renderHtmlStart($title, $extra) {
             <link rel="icon"
                   type="image/ico"
                   href="content/favicon.ico">
-                  <?php
-                  echo $extra;
-                  ?>
+            <script src="/content/jquery-1.11.3.min.js"></script>
+            <?php
+
+            echo $extra;
+            ?>
             <!--Commentaar -->
         </head>
         <body>
@@ -21,13 +23,23 @@ function renderHtmlStart($title, $extra) {
 
                     <ul class="ulmenu">
                         <li class="limenu"><img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></li>
-                        <li class="limenu"><a href="url" id="menutext">   Home</a></li>
-                        <li class="limenu"><a href="url" id="menutext">Gallerij</a></li>
-                        <li class="limenu"><a href="url" id="menutext">Over</a></li>
-                        <li class="limenu"><a href="url" id="menutext">Contact</a></li>                
+                        <!-- even kijken hoe we het logo een link kunnen geven zonder dat deze verandert in .ulmenu<a href="url"></a>-->
+                        <li class="limenu"><a href="/hoofdpagina.php" id="menutext">Home</a></li>
+                        <li class="limenu"><a href="/gallerij.php" id="menutext">Gallerij</a></li>
+                        <li class="limenu"><a href="/zoeken.php" id="menutext">Zoeken</a></li> 
+                        <li class="limenu"><a href="url" id="menutext">Contact</a></li>    
+
                     </ul>
                 </div>           
 
+
+
+                <?php
+
+            }
+
+            function renderHtmlEnd() {
+                ?>
                 <footer class="footermenu">
                     <ul>
                         <li><a href="url" id="menutext">Contact</a></li>
@@ -36,16 +48,11 @@ function renderHtmlStart($title, $extra) {
 
                     </ul>
                 </footer>
-
-                <?php
-            }
-
-            function renderHtmlEnd() {
-                ?>
             </div>
         </body>
     </html>
     <?php
+
 }
 
 function renderHtmlStartAdmin($title, $extra) {
@@ -58,9 +65,11 @@ function renderHtmlStartAdmin($title, $extra) {
             <link rel="icon" type="image/ico" href="/content/favicon.ico">
             <link href="/newcss.css" type="text/css" rel="stylesheet">
             <link href="/content/admin.css" type="text/css" rel="stylesheet">
-            <?php
-            echo $extra;
-            ?>
+            <script src="/content/jquery-1.11.3.min.js"></script>
+    <?php
+
+    echo $extra;
+    ?>
             <!--Commentaar -->
         </head>
         <body>
@@ -76,6 +85,7 @@ function renderHtmlStartAdmin($title, $extra) {
                 </ul>
             </div>
             <?php
+
         }
 
         function renderHtmlEndAdmin() {
@@ -83,4 +93,5 @@ function renderHtmlStartAdmin($title, $extra) {
         </body>
     </html>
     <?php
+
 }
