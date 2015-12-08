@@ -11,6 +11,7 @@ function renderHtmlStart($title, $extra) {
                   href="content/favicon.ico">
             <script src="/content/jquery-1.11.3.min.js"></script>
             <?php
+
             echo $extra;
             ?>
             <!--Commentaar -->
@@ -31,6 +32,14 @@ function renderHtmlStart($title, $extra) {
                     </ul>
                 </div>           
 
+
+
+                <?php
+
+            }
+
+            function renderHtmlEnd() {
+                ?>
                 <footer class="footermenu">
                     <ul>
                         <li><a href="url" id="menutext">Contact</a></li>
@@ -39,16 +48,11 @@ function renderHtmlStart($title, $extra) {
 
                     </ul>
                 </footer>
-
-                <?php
-            }
-
-            function renderHtmlEnd() {
-                ?>
             </div>
         </body>
     </html>
     <?php
+
 }
 
 function renderHtmlStartAdmin($title, $extra) {
@@ -62,9 +66,10 @@ function renderHtmlStartAdmin($title, $extra) {
             <link href="/newcss.css" type="text/css" rel="stylesheet">
             <link href="/content/admin.css" type="text/css" rel="stylesheet">
             <script src="/content/jquery-1.11.3.min.js"></script>
-            <?php
-            echo $extra;
-            ?>
+    <?php
+
+    echo $extra;
+    ?>
             <!--Commentaar -->
         </head>
         <body>
@@ -80,6 +85,7 @@ function renderHtmlStartAdmin($title, $extra) {
                 </ul>
             </div>
             <?php
+
         }
 
         function renderHtmlEndAdmin() {
@@ -87,4 +93,5 @@ function renderHtmlStartAdmin($title, $extra) {
         </body>
     </html>
     <?php
+
 }
