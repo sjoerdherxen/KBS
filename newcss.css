@@ -110,7 +110,6 @@ div.img:hover {
 div.img img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
 
 }/*
 div.img img:hover{
@@ -124,8 +123,24 @@ div.img img:hover{
 
 }*/
 div.title {
-    padding: 10px;
-    text-align: center;
+    padding: 5px 5px 0 5px;
+    color:black;
+    font-size: 1.3em;
+}
+div.extraInfo {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0 5px 0 5px;
+    color:black;
+    float: left;
+}
+div.extraInfoRight {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0 5px 0 5px;
+    color:black;
+    float:right;
+    text-align: right;
 }
 div.gallerij{
     float: left;
