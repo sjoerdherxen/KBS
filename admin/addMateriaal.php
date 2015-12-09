@@ -6,37 +6,37 @@ if (!isLoggedIn()) {
     header("location: index.php");
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Subcategorie&euml;n", '');
+renderHtmlStartAdmin("Materiaal", '');
 
 $limitDatabase = [30];
 
 
-$toevoegenSubcategorie = [];
+$toevoegenmateriaal = [];
 $doorgaan_naam = false;
 
 if (isset($_POST["Toevoegen"])) {
     if (!isset($_POST["Naam"]) || $_POST["Naam"] == "") {
-        $Naamerror = "Er moet een naam worden ingevuld.";
+        $Naamerror = "Er moet een soort worden ingevuld.";
     } else {
         $doorgaan_naam = true;
     }
     if ($doorgaan_naam == true) {
-        $toevoegenSubcategorie[] = $_POST["Naam"];
-        $toevoegenSubcategorie[] = $_POST["Beschrijving"];
-        query("INSERT INTO Subcategorie (Subcategorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenSubcategorie);
+        $toevoegenmateriaal[] = $_POST["Naam"];
+        $toevoegenmateriaal[] = $_POST["Beschrijving"];
+        query("INSERT INTO materiaal (materiaal_soort, Beschrijving) VALUES (?, ?)", $toevoegenmateriaal);
     }
 }
-$uitvoerDatabase = query("SELECT * FROM Subcategorie", NULL);
+$uitvoerDatabase = query("SELECT * FROM materiaal", NULL);
 ?>
-<form action="addSubcategorie.php" method="post">
-    <h1>Vul hier de subcategorienaam en beschrijving in:</h1>
+<form action="addmateriaal.php" method="post">
+    <h1>Vul hier de materiaal soort en beschrijving in:</h1>
     <table>
         <tr>
             <td>
-                Naam subcategorie
+                Soort materiaal
             </td>
             <td>
-                <input type="text" name="Naam" placeholder="Vul hier de naam in" style="width: 375px">
+                <input type="text" name="Naam" placeholder="Vul hier de soort in" style="width: 375px">
 <?php
 
 if (isset($Naamerror)) {
@@ -47,7 +47,7 @@ if (isset($Naamerror)) {
         </tr>
         <tr>
             <td>
-                Beschrijving subcategorie
+                Beschrijving materiaal
             </td>
             <td>
                 <textarea rows="4" cols="50" name="Beschrijving" placeholder="Vul hier de beschrijving in"></textarea>
