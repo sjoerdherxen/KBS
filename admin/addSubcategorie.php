@@ -63,43 +63,6 @@ if (isset($Naamerror)) {
             </td>
         </tr>
     </table>
-</form>
-<!--<table border="1">
-    <tr>
-        <th>
-            Naam Subcategorie
-        </th>
-        <th>
-            Beschrijving Subcategorie
-        </th>
-    </tr>
-    <?php
-
-    /*foreach ($uitvoerDatabase as $value1) {
-        foreach ($value1 as $key2 => $value2) {
-            if ($key2 == "Subcategorie_naam") {
-                echo "<tr><td>$value2</td>";
-            } elseif ($key2 == "Beschrijving") {
-                if ($value2 !== NULL && $value2 !== "") {
-                    echo "<td>$value2</td></tr>";
-                } else {
-                    echo"<td>Geen beschijving ingevuld</td></tr>";
-                }
-            }
-        }
-    }*/
-    ?>
-</table>-->       
+</form>     
 <?php
-
 renderHtmlEndAdmin();
-
-
-
-/* 
- * 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
