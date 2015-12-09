@@ -1,5 +1,4 @@
 <?php
-include './functions.php';
 function renderHtmlStart($title, $extra) {
     ?><html>
         <head>
