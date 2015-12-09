@@ -66,7 +66,7 @@
     float:left;
 }
 
-.schilderijListItem, .categorieListItem{
+.schilderijListItem, .categorieListItem, .subcategorieListItem{
     color: black;
     display: block;
     height:100px;
@@ -82,7 +82,7 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
-.schilderijListItemInner, .categorieListItemInner{
+.schilderijListItemInner, .categorieListItemInner, .subcategorieListItemInner{
     float:left;
     height: 100px;
     overflow: hidden;

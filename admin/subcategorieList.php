@@ -14,7 +14,7 @@ $subcategorieen = query($query, null);
 echo "<a href='addSubcategorie.php' id='addSubcategorieLink'>Toevoegen</a>";
 echo "<div id='subcategorieList'>";
 foreach ($subcategorieen as $subcategorie) {
-    echo "<a class='subcategorieListItem' href='editsubategorie.php?id=" . $subcategorie["SubcategorieID"] . "'>";
+    echo "<a class='subcategorieListItem' href='editSubcategorie.php?id=" . $subcategorie["SubcategorieID"] . "'>";
     echo "<div class='subcategorieListItemInner'>";
     echo "<span class='titel'>" . $subcategorie["Subcategorie_naam"] . "</span><br/>  ";
     echo "<span class='beschrijving'>" . $subcategorie["Beschrijving"] . "</span><br/>";
