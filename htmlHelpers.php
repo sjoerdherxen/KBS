@@ -1,5 +1,5 @@
 <?php
-
+include './functions.php';
 function renderHtmlStart($title, $extra) {
     ?><html>
         <head>
@@ -12,6 +12,7 @@ function renderHtmlStart($title, $extra) {
                   href="content/favicon.ico">
             <script src="/content/jquery-1.11.3.min.js"></script>
             <script src="/content/bootstrap/js/bootstrap.min.js"></script>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
             <?php
             echo $extra;
             ?>

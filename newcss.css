@@ -110,6 +110,287 @@ div.img:hover {
 div.img img {
     width: 100%;
     height: auto;
+    border-radius: 10px;
+
+}/*
+div.img img:hover{
+    position:relative;
+    top:-25px;
+    left:-35px;
+    width:400px;
+    height:auto;
+    display:  compact;
+    z-index: auto;
+
+}*/
+div.title {
+    padding: 10px;
+    text-align: center;
+}
+div.gallerij{
+    float: left;
+    width: 100%;
+    padding: 100px;
+    box-sizing: border-box;
+}
+/*
+Script voor slider
+*/
+#slider {
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto 0 auto;
+    border-radius: 4px;
+}
+
+#slider ul {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 200px;
+    list-style: none;
+}
+
+#slider ul li {
+    position: relative;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 500px;
+    height: 300px;
+    background: #ccc;
+    text-align: center;
+    line-height: 300px;
+}
+
+a.control_prev, a.control_next {
+    position: absolute;
+    top: 40%;
+    z-index: 999;
+    display: block;
+    padding: 4% 3%;
+    width: auto;
+    height: auto;
+    background: #2a2a2a;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+a.control_prev:hover, a.control_next:hover {
+    opacity: 1;
+    -webkit-transition: all 0.5s ease;
+}
+
+a.control_prev {
+    border-radius: 0 2px 2px 0;
+}
+
+a.control_next {
+    right: 0;
+    border-radius: 2px 0 0 2px;
+}
+
+.slider_option {
+    position: relative;
+    margin: 10px auto;
+    width: 160px;
+    font-size: 18px;
+}
+
+div.slider2{
+    position: fixed;
+    top: 350px;
+    left: 37.5%;
+}
+
+}
+
+#contact-form {
+    position: relative;
+    margin-top: 100px;
+    margin-left: 100px;
+    float: left;
+}
+
+#contact-foutmelding {
+    position: relative;
+    margin-top: 120px;
+    margin-left: 200px;
+    float:left;
+}
+div.comment{
+    min-height: 100%;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+
+}
+
+#pages-wrapper{
+    position: relative;
+    text-align: center;
+}
+
+#pages {
+    display: inline-block;
+    position: relative;
+}
+
+#pages .prev, #pages .next{
+    padding: 9px 12px;
+}
+
+#pages .active, #pages a:not([href]){
+    background-color: #ccc;
+    cursor: initial;
+}
+
+#pages a {
+    background-color: #fff;
+}
+/*
+Alles hieronder is een test
+*/
+table.comment{
+    width:400px;
+    border:0px;
+    text-align: center;
+    padding: 3px;
+    border-spacing: 0px;
+}
+table.comment1{
+    width:400px;
+    border:0px;
+    text-align: center;
+    padding: 0px;
+    border-spacing: 1px;
+}
+table.comment2{
+    width:400px;
+    border:0px;
+    text-align: center;
+    padding: 3px;
+    border-spacing: 1px;
+}
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19-nov-2015, 11:09:31
+    Author     : ruben
+*/
+
+body{
+    background-color: #E3F0F5;
+    font-family: Californian FB;
+    margin: 0;
+
+}
+div.content{
+    position: absolute;
+    width: 1250px;
+    min-height: 100%;
+    display: inline;
+    margin: auto;
+    background-color: #A6DCF1;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+div.menu{
+    width: 100%;
+
+
+}
+
+.ulmenu{
+    list-style-type: none;
+    padding-left: 10px;
+    background-color: grey;
+    font-size: 24px;
+    margin-left: 15%;
+
+}
+#headlogo{
+    border-radius: 10px; 
+
+
+}
+#headlogo:hover{
+    position:relative;
+    top:-25px;
+    left:-35px;
+    width:400px;
+    height:auto;
+    display:  compact;
+    z-index: auto;
+}
+#menutext{
+    color: black;
+    text-decoration:none;
+
+}
+.limenu{
+    float: left;
+}
+.limenu a {
+    display: block;
+    margin: 2px;
+    text-align: center;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: #85AEBD;
+
+}
+
+.limenu a:hover {
+    background-color: #3399FF;
+}
+.footermenu{
+    position: fixed;
+    background-color: darkgray;
+    bottom:0;
+    width:1250px;
+    height:85px;   
+    z-index:1000;
+}
+.ulfooter{
+    list-style-type: none;
+    margin: 5px;
+}
+.lifooter{
+    float: left;
+    text-align: center;
+}
+
+div.img{
+
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 240px;
+    background-color: white;
+    padding: 5px;
+    
+}
+
+div.img:hover {
+    border: 1px solid teal;
+
+}
+
+div.img img {
+    width: 100%;
+    height: auto;
 
 }/*
 div.img img:hover{
