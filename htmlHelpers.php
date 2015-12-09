@@ -81,7 +81,7 @@ function renderHtmlStartAdmin($title, $extra) {
                     <li><a href="/admin/categorieList.php">Categorie&euml;n</a></li>
                     <li><a href="/admin/subcategorieList.php">Subcategori&euml;n</a></li>
                     <li><a href="/admin/materiaalList.php">Materialen</a></li>
-                    <li><a href="/admin/main.php">Contactgegevens</a></li>
+                    <li><a href="/admin/editContactgegevens.php">Contactgegevens</a></li>
                     <li class="menu-right"><a href="/admin/uitloggen.php">Uitloggen</a></li>
                     <li class="menu-right"><a href="/admin/account.php"><?php echo $_SESSION["inlog"]; ?></a></li>
                 </ul>
