@@ -203,7 +203,37 @@ div.slider2{
     position: fixed;
     top: 350px;
     left: 37.5%;
-    
-    
+}
 
+div.comment{
+    min-height: 100%;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+
+}
+/*
+Alles hieronder is een test
+*/
+table.comment{
+    width:400px;
+    border:0px;
+    text-align: center;
+    padding: 3px;
+    border-spacing: 0px;
+}
+table.comment1{
+    width:400px;
+    border:0px;
+    text-align: center;
+    padding: 0px;
+    border-spacing: 1px;
+}
+table.comment2{
+    width:400px;
+    border:0px;
+    text-align: center;
+    padding: 3px;
+    border-spacing: 1px;
 }

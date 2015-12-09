@@ -19,7 +19,6 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     }
     if ($correct) {
         $password = hash("sha256", $password);
-
         $query = "SELECT Username FROM gebruikers WHERE username = ? AND wachtwoord = ?";
         $result = query($query, array($username, $password));
 

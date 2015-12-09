@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require 'functions.php';
 if (!isLoggedIn()) {
@@ -48,6 +47,7 @@ if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
 
     </table>
 </form>
+ 
 
 <?php
 if (isset($_POST["knopje"])) {
