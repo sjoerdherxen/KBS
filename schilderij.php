@@ -26,6 +26,7 @@ $schilderij;
  * Alles hieronder is de commentaarsectie. 
  * Moet nog afgemaakt worden
  * Onderandere de error code
+ * plus een error code als naam of commentaar leeg is, Email maakt niet uit
  * 
  
 
