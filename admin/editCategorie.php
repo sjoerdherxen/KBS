@@ -12,10 +12,6 @@ if (isset($_GET["id"])) {
     $invoerDatabase = [$_GET["id"]];
     $uitvoerDatabase = query("SELECT * FROM Categorie WHERE CategorieID = ?", $invoerDatabase);
 }
-if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
-    // header("location:categorieList.php");
-    // exit();
-}
 ?>
 <form action="editCategorie.php?id=<?php echo $id; ?>" method="post">
     <table>
