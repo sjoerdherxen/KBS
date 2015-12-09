@@ -80,6 +80,7 @@ div.menu{
     bottom:0;
     width:1250px;
     height:85px;   
+    z-index:1000;
 }
 .ulfooter{
     list-style-type: none;
@@ -222,13 +223,17 @@ div.comment{
 }
 
 #pages {
-    border: 1px solid #ddd;
     display: inline-block;
     position: relative;
 }
 
+#pages .prev, #pages .next{
+    padding: 9px 12px;
+}
+
 #pages .active, #pages a:not([href]){
     background-color: #ccc;
+    cursor: initial;
 }
 
 #pages a {

@@ -1,8 +1,11 @@
 <?php
 
 include './htmlHelpers.php';
-include './admin/functions.php';
+include './functions.php';
 renderHtmlStart("Gallerij", "");
+
+checkCaptcha("safd");
+
 ?>
 
 <div class="gallerij">
@@ -28,12 +31,12 @@ renderHtmlStart("Gallerij", "");
         }
         $i++;
         ?>
-        <a href="/afbeelding.php?id=<?php echo $schilderij["Schilderij_ID"] ?>" class="col-md-3"> 
+        <a href="/schilderij.php?id=<?php echo $schilderij["Schilderij_ID"] ?>" class="col-md-3"> 
             <div class="img">
                 <img src="<?php echo $schilderij["Img"]; ?> " alt="Logo" >
 
                 <div class="title">
-                    <?php echo $schilderij["Titel"] . " > " . ($i % 4); ?>
+                    <?php echo $schilderij["Titel"]; ?>
                 </div>
             </div> 
         </a>
@@ -49,26 +52,34 @@ renderHtmlStart("Gallerij", "");
     ?>
 
     <div style="clear: both;"></div>
-    <div id="pages-wrapper">
-        <div id="pages" class="btn-group">
-            <?php
+    <?php
 
-            $prevPageHref = $page == 1 ? "" : 'href="gallerij.php?page=' . ($page - 1) . '"';
-            echo '<a class="btn btn-default" ' . $prevPageHref . '><span class="glyphicon glyphicon-chevron-left"><</span></a>';
+    if ($pageCount != 1) {
+        ?>
+        <div id="pages-wrapper">
+            <div id="pages" class="btn-group">
+                <?php
 
-            for ($i = 1; $i <= $pageCount; $i++) {
-                if ($i == $page) {
-                    echo "<span class='active btn btn-default btn-active'>" . $i . "</span>";
-                } else {
-                    echo "<a class='btn btn-default' href='/gallerij.php?page=" . $i . "'>" . $i . "</a>";
+                $prevPageHref = $page == 1 ? "" : 'href="gallerij.php?page=' . ($page - 1) . '"';
+                echo '<a class="btn btn-default prev" ' . $prevPageHref . '><span class="glyphicon glyphicon-chevron-left"></span></a>';
+
+                for ($i = 1; $i <= $pageCount; $i++) {
+                    if ($i == $page) {
+                        echo "<span class='active btn btn-default btn-active'>" . $i . "</span>";
+                    } else {
+                        echo "<a class='btn btn-default' href='/gallerij.php?page=" . $i . "'>" . $i . "</a>";
+                    }
                 }
-            }
 
-            $nextPageHref = $page == $pageCount ? "" : 'href="gallerij.php?page=' . ($page + 1) . '"';
-            echo '<a class="btn btn-default" ' . $nextPageHref . '><span class="glyphicon glyphicon-chevron-right">></span></a>';
-            ?>
+                $nextPageHref = $page == $pageCount ? "" : 'href="gallerij.php?page=' . ($page + 1) . '"';
+                echo '<a class="btn btn-default next" ' . $nextPageHref . '><span class="glyphicon glyphicon-chevron-right"></span></a>';
+                ?>
+            </div>
         </div>
-    </div>
+        <?php
+
+    }
+    ?>
 
 </div>
 
