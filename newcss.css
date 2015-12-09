@@ -95,8 +95,10 @@ div.img{
     margin: 5px;
     border: 1px solid #ccc;
     float: left;
-    width: 250px;
-
+    width: 240px;
+    background-color: white;
+    padding: 5px;
+    
 }
 
 div.img:hover {
@@ -109,7 +111,7 @@ div.img img {
     height: auto;
     border-radius: 10px;
 
-}
+}/*
 div.img img:hover{
     position:relative;
     top:-25px;
@@ -119,7 +121,7 @@ div.img img:hover{
     display:  compact;
     z-index: auto;
 
-}
+}*/
 div.title {
     padding: 10px;
     text-align: center;
@@ -213,6 +215,25 @@ div.comment{
     left: 0;
 
 }
+
+#pages-wrapper{
+    position: relative;
+    text-align: center;
+}
+
+#pages {
+    border: 1px solid #ddd;
+    display: inline-block;
+    position: relative;
+}
+
+#pages .active, #pages a:not([href]){
+    background-color: #ccc;
+}
+
+#pages a {
+    background-color: #fff;
+}
 /*
 Alles hieronder is een test
 */
@@ -237,3 +258,4 @@ table.comment2{
     padding: 3px;
     border-spacing: 1px;
 }
+
