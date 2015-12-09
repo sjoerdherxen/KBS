@@ -63,33 +63,7 @@ if (isset($Naamerror)) {
             </td>
         </tr>
     </table>
-</form>
-<!--<table border="1">
-    <tr>
-        <th>
-            Naam Categorie
-        </th>
-        <th>
-            Beschrijving Categorie
-        </th>
-    </tr>
-    <?php
-
-    /*foreach ($uitvoerDatabase as $value1) {
-        foreach ($value1 as $key2 => $value2) {
-            if ($key2 == "Categorie_naam") {
-                echo "<tr><td>$value2</td>";
-            } elseif ($key2 == "Beschrijving") {
-                if ($value2 !== NULL && $value2 !== "") {
-                    echo "<td>$value2</td></tr>";
-                } else {
-                    echo"<td>Geen beschijving ingevuld</td></tr>";
-                }
-            }
-        }
-    }*/
-    ?>
-</table>-->       
+</form>      
 <?php
 
 renderHtmlEndAdmin();
