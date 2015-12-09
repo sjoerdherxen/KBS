@@ -208,6 +208,102 @@ div.slider2{
     left: 37.5%;
 }
 
+
+
+#contact-form {
+    position: relative;
+    margin-top: 100px;
+    margin-left: 100px;
+    float: left;
+}
+
+#contact-foutmelding {
+    position: relative;
+    margin-top: 120px;
+    margin-left: 200px;
+    float:left;
+}
+div.comment{
+    min-height: 100%;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+
+}
+
+#pages-wrapper{
+    position: relative;
+    text-align: center;
+}
+
+#pages {
+    display: inline-block;
+    position: relative;
+}
+
+#pages .prev, #pages .next{
+    padding: 9px 12px;
+}
+
+#pages .active, #pages a:not([href]){
+    background-color: #ccc;
+    cursor: initial;
+}
+
+#pages a {
+    background-color: #fff;
+}
+/*
+Alles hieronder is een test
+*/
+
+
+#contact-form {
+    position: relative;
+    margin-top: 100px;
+    margin-left: 100px;
+    float: left;
+}
+
+#contact-foutmelding {
+    position: relative;
+    margin-top: 120px;
+    margin-left: 200px;
+    float:left;
+}
+div.comment{
+    min-height: 100%;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+
+}
+
+#pages-wrapper{
+    position: relative;
+    text-align: center;
+}
+
+#pages {
+    display: inline-block;
+    position: relative;
+}
+
+#pages .prev, #pages .next{
+    padding: 9px 12px;
+}
+
+#pages .active, #pages a:not([href]){
+    background-color: #ccc;
+    cursor: initial;
+}
+
+#pages a {
+    background-color: #fff;
+}
+
 }
 
 #contact-form {
