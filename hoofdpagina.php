@@ -5,6 +5,8 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
+
+include './functions.php';
 include './htmlHelpers.php';
 renderHtmlStart("Home", "");
 ?>
@@ -13,13 +15,16 @@ renderHtmlStart("Home", "");
 <script src="slider.js"></script>
 <div class="slider2">
     <div id="slider">
-        <a href="#" class="control_next">>></a>
-        <a href="#" class="control_prev"><</a>
+        <a href="#" class="control_next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a href="#" class="control_prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
         <ul>
-            <li>SLIDE 1</li>
-            <li>SLIDE 2</li>
-            <li>SLIDE 3</li>
-            <li>SLIDE 4</li>
+            <?php
+
+            $schilderijen = query("SELECT schilderij_id, titel, img FROM schilderij ORDER BY schilderij_id DESC LIMIT 0,6", null);
+            foreach ($schilderijen as $schilderij) {
+                echo "<li><a href='/schilderij.php?id=" . $schilderij["schilderij_id"] . "'><img src='" . $schilderij["img"] . "'><span class='slider-titel'>" . $schilderij["titel"] . "</span></a></li>";
+            }
+            ?>
         </ul>  
     </div>
 
@@ -30,6 +35,7 @@ renderHtmlStart("Home", "");
 </div>
 
 <?php
+
 renderHtmlEnd();
 ?>
 
