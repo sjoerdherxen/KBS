@@ -4,7 +4,6 @@ $usernameError = "";
 $passwordError = "";
 $password = "";
 $username = "";
-
 $correct = true;
 if (isset($_POST["username"]) && isset($_POST["password"])) {
     $password = trim($_POST["password"]);
