@@ -6,10 +6,12 @@ function renderHtmlStart($title, $extra) {
             <meta charset="UTF-8">
             <title><?php echo $title; ?></title>
             <link rel="stylesheet" type="text/css" href="newcss.css">
+            <link href="/content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
             <link rel="icon"
                   type="image/ico"
                   href="content/favicon.ico">
             <script src="/content/jquery-1.11.3.min.js"></script>
+            <script src="/content/bootstrap/js/bootstrap.min.js"></script>
             <?php
             echo $extra;
             ?>
@@ -62,7 +64,9 @@ function renderHtmlStartAdmin($title, $extra) {
             <link rel="icon" type="image/ico" href="/content/favicon.ico">
             <link href="/newcss.css" type="text/css" rel="stylesheet">
             <link href="/content/admin.css" type="text/css" rel="stylesheet">
-            <script src="/content/jquery-1.11.3.min.js"></script>
+            <link href="/content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <script src="/content/jquery-1.11.3.min.js"></script> 
+            <script src="/content/bootstrap/js/bootstrap.min.js"></script>
             <?php
             echo $extra;
             ?>
