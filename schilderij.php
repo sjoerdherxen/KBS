@@ -1,9 +1,10 @@
 <?php
 include './htmlHelpers.php';
-include './admin/functions.php';
 renderHtmlStart("commentaar", "");
 ?>
-
+ <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
 
 <?php
 $id = 1; // komt uit get of post
@@ -26,7 +27,7 @@ $commentaar = "";
 $commentaarleeg = "";
 $correct = true;
 
-if (isset($_POST["naam"]) && isset($_POST["commentaar"])) {
+if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST["g-recaptcha-response"])) {
     $commentaar = trim($_POST["commentaar"]);
     $naam = trim($_POST["naam"]);
     if ($naam == "") {
@@ -39,7 +40,7 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"])) {
         $commentaarsucces = false;
     }
     if($correct) {
-        insert("insert into commentaar (?, ?, ?, ? , array(Naam_klant, Email_klant, opmerking, $_GET["id"])
+        insert("insert into commentaar (naam_klant, email_klant, opmerking, schilderij_id) VALUES (?, ?, ?, ?)", array($_POST["Naam_klant"] , $_POST["Email_klant"], $_POST["opmerking"], $_GET["id"]));
     }
 }
 ?>
