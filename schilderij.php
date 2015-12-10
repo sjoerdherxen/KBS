@@ -22,7 +22,7 @@ $schilderij;
 
 <?php
 
-
+/*
 //  Alles hieronder is de commentaarsectie. 
 //  Moet nog afgemaakt worden
 //  Onderandere de error code
@@ -91,6 +91,8 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
 
 </form>
 <?php
+ * */
+
 ?>
 
     
