@@ -5,7 +5,7 @@ if (!isLoggedIn()) {
     header("location: index.php");
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Contact", '<script src="/content/editContactgegevens.js"></script>');
+renderHtmlStartAdmin("Contact", '<script src="/content/editCategorie.js"></script>');
 
 $uitvoerDatabase = query("SELECT * FROM schilder", NULL);
 
@@ -115,12 +115,18 @@ if (isset($_POST["knopske"])) {
         $invoerDatabase = [$naam1, $email1, $telefoon1, $woonplaats1, $adres1, $gebdat1];
         var_dump($invoerDatabase);
         query("UPDATE Schilder SET Naam_schilder=?, Email=?, Telefoon=?, Woonplaats=?, Adres=?, Gebdat=?", $invoerDatabase);
+        ?>
+<script>
+
+    alert("Wijzigingen zijn opgeslagen");
+
+</script>
+        <?php
         header('location:main.php#Wijzigingen zijn opgeslagen');
         exit();
     } else {
         echo "hoi :D";
     }
 }
-
 
 renderHtmlEndAdmin();
