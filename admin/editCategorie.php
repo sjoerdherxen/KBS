@@ -68,7 +68,7 @@ if (isset($_POST["knopje"])) {
 <script>
     document.getElementById("verwijderen").onclick = function () {
         if (confirm("Weet u zeker dat u deze categorie wilt verwijderen?")) {
-            window.location = "deleteCategorie.php?id=<?php echo $uitvoerDatabase[0]["id"]; ?>";
+            window.location = "deleteCategorie.php?id=<?php echo $id; ?>";
         }
     };
 </script> <?php
