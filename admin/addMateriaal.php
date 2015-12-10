@@ -41,7 +41,6 @@ if ($saved) {
     <?php
 }
 ?>
-?>
 <form action="addmateriaal.php" method="post">
     <h1>Vul hier de materiaal soort en beschrijving in:</h1>
     <table>

@@ -40,8 +40,6 @@ if ($saved) {
     <?php
 }
 ?>
-
-?>
 <form action="addSubcategorie.php" method="post">
     <h1>Vul hier de subcategorienaam en beschrijving in:</h1>
     <table>
