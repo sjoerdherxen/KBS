@@ -13,7 +13,6 @@ $limitDatabase = [30];
 
 $toevoegenSubcategorie = [];
 $doorgaan_naam = false;
-
 if (isset($_POST["Toevoegen"])) {
     if (!isset($_POST["Naam"]) || $_POST["Naam"] == "") {
         $Naamerror = "Er moet een naam worden ingevuld.";
@@ -29,18 +28,6 @@ if (isset($_POST["Toevoegen"])) {
 }
 $uitvoerDatabase = query("SELECT * FROM Subcategorie", NULL);
 
-if ($saved) {
-    ?>
-    <script>
-        setTimeout(function () {
-            if (confirm("De wijzigingen zijn opgeslagen.\n\nWilt u terug naar het overzicht?")) {
-                location = "/admin/categorieList.php";
-            }
-        }, 1);
-    </script>
-    <?php
-}
-?>
 ?>
 <form action="addSubcategorie.php" method="post">
     <h1>Vul hier de subcategorienaam en beschrijving in:</h1>
