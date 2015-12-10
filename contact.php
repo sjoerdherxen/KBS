@@ -21,31 +21,31 @@ $contact_bericht = "";
 ?>
 
 <?php
-if (isset($_GET["contact-submit"]) && $_GET["contact-submit"] == "verzenden") {
+if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") {
     
-    $contact_voornaam = $_GET["contact-voornaam"];
-    $contact_achternaam = $_GET["contact-achternaam"];
-    $contact_email = $_GET["contact-email"];
-    $contact_onderwerp = $_GET["contact-onderwerp"];
-    $contact_bericht = $_GET["contact-bericht"];
+    $contact_voornaam = $_POST["contact-voornaam"];
+    $contact_achternaam = $_POST["contact-achternaam"];
+    $contact_email = $_POST["contact-email"];
+    $contact_onderwerp = $_POST["contact-onderwerp"];
+    $contact_bericht = $_POST["contact-bericht"];
     
-    if (!isset($_GET["contact-voornaam"]) || $_GET["contact-voornaam"] == "") {
+    if (!isset($_POST["contact-voornaam"]) || $_POST["contact-voornaam"] == "") {
         $contact_voornaam_error = "voornaam is niet ingevuld!";
         $controle = false;
     }
-    if (!isset($_GET["contact-achternaam"]) || $_GET["contact-achternaam"] == "") {
+    if (!isset($_POST["contact-achternaam"]) || $_POST["contact-achternaam"] == "") {
         $contact_achternaam_error = "achternaam is niet ingevuld!";
         $controle = false;
     }
-    if (!isset($_GET["contact-email"]) || $_GET["contact-email"] == "") {
+    if (!isset($_POST["contact-email"]) || $_POST["contact-email"] == "") {
         $contact_email_error = "e-mail adres is niet ingevuld";
         $controle = false;
     }
-    if (!isset($_GET["contact-onderwerp"]) || $_GET["contact-onderwerp"] == "") {
+    if (!isset($_POST["contact-onderwerp"]) || $_POST["contact-onderwerp"] == "") {
         $contact_onderwerp_error = "onderwerp is niet ingevuld!";
         $controle = false;
     }
-    if (!isset($_GET["contact-bericht"]) || $_GET["contact-bericht"] == "") {
+    if (!isset($_POST["contact-bericht"]) || $_POST["contact-bericht"] == "") {
         $contact_bericht_error = "bericht is niet ingevuld!";
         $controle = false;
     }
@@ -53,9 +53,9 @@ if (isset($_GET["contact-submit"]) && $_GET["contact-submit"] == "verzenden") {
 
         $to = query("SELECT email FROM schilder WHERE naam_schilder = 'Thijs Ronda'", NULL);
         $to = $to[0]['email'];
-        $subject = $_GET["contact-onderwerp"];
-        $message = "naam afzender: " . $_GET["contact-voornaam"] . " " . $_GET["contact-achternaam"] . "\n\n" . $_GET["contact-bericht"];
-        $email = $_GET["contact-email"];
+        $subject = $_POST["contact-onderwerp"];
+        $message = "naam afzender: " . $_POST["contact-voornaam"] . " " . $_POST["contact-achternaam"] . "\n\n" . $_POST["contact-bericht"];
+        $email = $_POST["contact-email"];
         $header = "From:$email \r\n";
 
         $mail = mail($to, $subject, $message, $header);
@@ -63,7 +63,7 @@ if (isset($_GET["contact-submit"]) && $_GET["contact-submit"] == "verzenden") {
 }
 ?>
 <div id="contact-form">
-    <form method="get" action="contact.php">
+    <form method="post" action="contact.php">
         <input type="text" name="contact-voornaam" placeholder="Voornaam" value="<?php print($contact_voornaam) ?>">
         <?php print("$contact_voornaam_error"); ?><br>
         <input type="text" name="contact-achternaam" placeholder="Achternaam" value="<?php print($contact_achternaam) ?>">
@@ -80,8 +80,8 @@ if (isset($_GET["contact-submit"]) && $_GET["contact-submit"] == "verzenden") {
 
 <div id="contact-foutmelding">
     <?php
-    if (isset($_GET["contact-submit"])) {
-        if ($_GET["contact-voornaam"] == "" && $_GET["contact-achternaam"] == "" && $_GET["contact-email"] == "" && $_GET["contact-onderwerp"] == "" && $_GET["contact-bericht"] == "") {
+    if (isset($_POST["contact-submit"])) {
+        if ($_POST["contact-voornaam"] == "" && $_POST["contact-achternaam"] == "" && $_POST["contact-email"] == "" && $_POST["contact-onderwerp"] == "" && $_POST["contact-bericht"] == "") {
             if ($mail) {
                 echo "mail is goed verzonden!";
             } else {
