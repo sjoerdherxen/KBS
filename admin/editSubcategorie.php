@@ -64,7 +64,7 @@ if (isset($_POST["knopje"])) {
 <script>
     document.getElementById("verwijderen").onclick = function () {
         if (confirm("Weet u zeker dat u deze subcategorie wilt verwijderen?")) {
-            window.location = "deleteSubcategorie.php?Naam=<?php echo $uitvoerDatabase[0]["Subcategorie_naam"]; ?>";
+            window.location = "deleteSubcategorie.php?id=<?php echo $uitvoerDatabase[0]["id"]; ?>";
         }
     };
 </script> <?php

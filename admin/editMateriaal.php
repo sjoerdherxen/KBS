@@ -64,7 +64,7 @@ if (isset($_POST["knopje"])) {
 <script>
     document.getElementById("verwijderen").onclick = function () {
         if (confirm("Weet u zeker dat u dit materiaal wilt verwijderen?")) {
-            window.location = "deleteMateriaal.php?Naam=<?php echo $uitvoerDatabase[0]["Materiaal_soort"]; ?>";
+            window.location = "deleteMateriaal.php?id=<?php echo $uitvoerDatabase[0]["id"]; ?>";
         }
     };
 </script> <?php
