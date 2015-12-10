@@ -7,7 +7,7 @@ renderHtmlStart("commentaar", "");
     </script>
 
 <?php
-$id = 1; // komt uit get of post
+$id = $_GET["id"]; // komt uit get of post
 
 $schilderij;
 ?>
@@ -22,11 +22,11 @@ $schilderij;
 
 <?php
 
-/*
- * Alles hieronder is de commentaarsectie. 
- * Moet nog afgemaakt worden
- * Onderandere de error code
- * 
+
+//  Alles hieronder is de commentaarsectie. 
+//  Moet nog afgemaakt worden
+//  Onderandere de error code
+//  
  
 
 
@@ -91,9 +91,8 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
 
 </form>
 <?php
- * 
- * 
- */?>
+?>
+
     
 <?php
 renderHtmlEnd();
