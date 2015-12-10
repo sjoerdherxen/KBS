@@ -17,8 +17,9 @@ if (!isset($schilderijId) || $schilderijId == "" || !is_numeric($schilderijId)) 
 }
 
 $doSelectQuery = true;
-$resultTechniek = query("SELECT techniekId, techniek_naam FROM techniek", null);
+$resultMateriaal = query("SELECT materiaalId, materiaal_soort FROM materiaal", null);
 $resultCategorie = query("SELECT categorieId, categorie_naam FROM categorie", null);
+$resultSubCategorie = query("SELECT subcategorieId, subcategorie_naam FROM subcategorie", null);
 
 // update schilderij
 if (isset($_POST["knop"])) {
@@ -26,6 +27,7 @@ if (isset($_POST["knop"])) {
     $schilderij = array();
     $schilderijUpdate = array();
 
+    // validate inputs
     if (!isset($_POST["titel"]) || trim($_POST["titel"]) == "") {
         $titelError = "Titel is verplicht";
         $correct = false;
@@ -35,15 +37,29 @@ if (isset($_POST["knop"])) {
 
     $schilderij["Beschrijving"] = $_POST["beschrijving"];
     $schilderijUpdate[] = $_POST["beschrijving"];
-    
-    $schilderij["Lijst"] = $_POST["lijst"] == "true";
 
-    if (!isset($_POST["jaar"]) || !(is_numeric($_POST["jaar"]) || trim($_POST["jaar"]) == "")) {
+    $schilderij["lijst"] = isset($_POST["lijst"]);
+    $schilderijUpdate[] = $schilderij["lijst"] ? 1 : 0;
+
+    $schilderij["passepartout"] = isset($_POST["passepartout"]);
+    $schilderijUpdate[] = $schilderij["passepartout"] ? 1 : 0;
+
+    $schilderij["isStaand"] = $_POST["isStaand"] == "true";
+    $schilderijUpdate[] = $schilderij["isStaand"] ? 1 : 0;
+
+    if (!is_numeric($_POST["jaar"]) && isset($_POST["jaar"]) && trim($_POST["jaar"]) != "") {
         $jaarError = "Jaar is geen getal";
         $correct = false;
     }
     $schilderij["Jaar"] = $_POST["jaar"];
-    $schilderijUpdate[] = $_POST["jaar"];
+    $schilderijUpdate[] = $_POST["jaar"] == "" ? null : $_POST["jaar"];
+
+    if (!is_numeric($_POST["prijs"]) && isset($_POST["prijs"]) && trim($_POST["prijs"]) != "") {
+        $jaarError = "Prijs is geen getal";
+        $correct = false;
+    }
+    $schilderij["prijs"] = $_POST["prijs"];
+    $schilderijUpdate[] = $_POST["prijs"] == "" ? null : $_POST["prijs"];
 
     if (!isset($_POST["hoogte"]) || trim($_POST["hoogte"]) == "") {
         $hoogteError = "Hoogte is verplicht";
@@ -76,10 +92,10 @@ if (isset($_POST["knop"])) {
     $schilderijUpdate[] = $_POST["categorie"];
 
     if (!isset($_POST["materiaal"]) || trim($_POST["materiaal"]) == "") {
-        $techniekError = "Materiaal is verplicht";
+        $resultMateriaal = "Materiaal is verplicht";
         $correct = false;
-    } elseif (!in_query_result($resultTechniek, $_POST["materiaal"], "materiaalId")) {
-        $techniekError = "Materiaal bestaat niet";
+    } elseif (!in_query_result($resultMateriaal, $_POST["materiaal"], "materiaalId")) {
+        $resultMateriaal = "Materiaal bestaat niet";
         $correct = false;
     }
     $schilderij["MateriaalID"] = $_POST["materiaal"];
@@ -100,20 +116,20 @@ if (isset($_POST["knop"])) {
 
     $schilderijUpdate[] = $schilderijId;
     if ($correct) {
-        query("UPDATE schilderij SET titel=?, beschrijving=?, jaar=?, hoogte=?, breedte=?, categorieId=?, materiaalId=? WHERE Schilderij_ID=?", $schilderijUpdate);
+        query("UPDATE schilderij SET titel=?, beschrijving=?, lijst=?, passepartout=?, isStaand=?, jaar=?, prijs=?, hoogte=?, breedte=?, categorieId=?, materiaalId=? WHERE Schilderij_ID=?", $schilderijUpdate);
         if ($updateImg) {
             $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
-            if(file_exists("./.." . $resultImg[0]["Img"])){
+            if (file_exists("./.." . $resultImg[0]["Img"])) {
                 unlink("./.." . $resultImg[0]["Img"]);
             }
-            
+
             $newpath = "/content/uploads/" . $schilderijId . $imgExtension;
             move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
 
             query("UPDATE schilderij SET Img = ? WHERE Schilderij_Id = ?", array($newpath, $schilderijId));
         }
 
-        header("location: SchilderijList.php#Schilderij is aangepast");
+        header("location: SchilderijList.php#Schilderij " . $schilderij["Titel"] . " is aangepast");
         exit();
     } else {
         $doSelectQuery = false;
@@ -135,10 +151,9 @@ if ($doSelectQuery) {
         if ($schilderij["Jaar"] == "0000") {
             $schilderij["Jaar"] = "";
         }
-        $schilderij["Lijst"] = $schilderij["Lijst"] == 1;
     }
 } else {
-   // $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
+    // $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
     //$schilderij["Img"] = $resultImg[0]["Img"];
 }
 ?>
@@ -205,7 +220,7 @@ if ($doSelectQuery) {
                 ?>
             </td>
         </tr>
-       <tr>
+        <tr>
             <td>Categorie</td>
             <td>
                 <select name="categorie">
@@ -235,7 +250,7 @@ if ($doSelectQuery) {
                 <select name="subcategorie">
                     <?php
 
-                    foreach ($resultCategorie as $categorie) {
+                    foreach ($resultSubCategorie as $categorie) {
                         $selected = "";
                         if ($categorie["subcategorieId"] == $schilderij["SubCategorieID"]) {
                             $selected = "selected='selected'";
@@ -280,7 +295,28 @@ if ($doSelectQuery) {
         <tr>
             <td>In lijst</td>
             <td>
-                <input type="checkbox" name="lijst" value="true" <?php if($schilderij["Lijst"]) echo "checked='checked'"; ?>>
+                <input type="checkbox" name="lijst" value="true" <?php if ($schilderij["lijst"]) echo "checked='checked'"; ?>>
+            </td>
+        </tr>
+        <tr>
+            <td>Passepartout</td>
+            <td>
+                <input type="checkbox" name="passepartout" value="true" <?php if ($schilderij["passepartout"]) echo "checked='checked'"; ?>>
+            </td>
+        </tr>
+        <tr>
+            <td>Staand/liggend</td>
+            <td>
+                <select name="isStaand">
+                    <option value="false" <?php if (!$schilderij["isStaand"]) echo "selected='selected'"; ?> >liggend</option>
+                    <option value="true" <?php if ($schilderij["isStaand"]) echo "selected='selected'"; ?> >staand</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Prijs</td>
+            <td>
+                &euro; <input type="text" name="prijs" class="number" value="<?php echo $schilderij["prijs"]; ?>">
             </td>
         </tr>
         <tr>
@@ -307,7 +343,7 @@ if ($doSelectQuery) {
     </table>
 </form>
 <div id="editSchilderijImg">
-     <img src="<?php echo $schilderij["Img"] . ".?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
+    <img src="<?php echo $schilderij["Img"] . ".?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
 </div>
 
 <script>

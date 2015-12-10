@@ -13,6 +13,7 @@ function query($query, $params) {
     try {
         $pdo = new PDO("mysql:host=localhost;dbname=databasekps01;port=3307", "root", "usbw");
         $q = $pdo->prepare($query);
+        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $q->execute($params);
         return $q->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
