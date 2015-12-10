@@ -31,7 +31,7 @@ div.menu{
 
 }
 
-.ulmenu{
+#ulmenu{
     list-style-type: none;
     padding-left: 10px;
     background-color: grey;
@@ -52,7 +52,7 @@ height: 100px;
     display:  compact;
     z-index: auto;
 }*/
-#menutext{
+.menutext{
     color: black;
     text-decoration:none;
 
@@ -60,7 +60,7 @@ height: 100px;
 .limenu{
     float: left;
 }
-.limenu a {
+.limenu a.menutext{
     display: block;
     margin: 2px;
     text-align: center;
@@ -125,307 +125,9 @@ div.img img:hover{
 div.title {
     padding: 10px;
     text-align: center;
-}
-div.gallerij{
-    float: left;
-    width: 100%;
-    padding: 100px;
-    box-sizing: border-box;
-}
-
-#contact-form {
-    position: relative;
-    margin-top: 100px;
-    margin-left: 100px;
-    float: left;
-}
-
-#contact-foutmelding {
-    position: relative;
-    margin-top: 120px;
-    margin-left: 200px;
-    float:left;
-}
-div.comment{
-    min-height: 100%;
-    margin: auto;
-    top: 0;
-    right: 0;
-    left: 0;
-
-}
-
-#pages-wrapper{
-    position: relative;
-    text-align: center;
-}
-
-#pages {
-    display: inline-block;
-    position: relative;
-}
-
-#pages .prev, #pages .next{
-    padding: 9px 12px;
-}
-
-#pages .active, #pages a:not([href]){
-    background-color: #ccc;
-    cursor: initial;
-}
-
-#pages a {
-    background-color: #fff;
-}
-/*
-Alles hieronder is een test
-*/
-
-
-#contact-form {
-    position: relative;
-    margin-top: 100px;
-    margin-left: 100px;
-    float: left;
-}
-
-#contact-foutmelding {
-    position: relative;
-    margin-top: 120px;
-    margin-left: 200px;
-    float:left;
-}
-div.comment{
-    min-height: 100%;
-    margin: auto;
-    top: 0;
-    right: 0;
-    left: 0;
-
-}
-
-#pages-wrapper{
-    position: relative;
-    text-align: center;
-}
-
-#pages {
-    display: inline-block;
-    position: relative;
-}
-
-#pages .prev, #pages .next{
-    padding: 9px 12px;
-}
-
-#pages .active, #pages a:not([href]){
-    background-color: #ccc;
-    cursor: initial;
-}
-
-#pages a {
-    background-color: #fff;
-}
-
-#contact-form {
-    position: relative;
-    margin-top: 100px;
-    margin-left: 100px;
-    float: left;
-}
-
-#contact-foutmelding {
-    position: relative;
-    margin-top: 120px;
-    margin-left: 200px;
-    float:left;
-}
-div.comment{
-    min-height: 100%;
-    margin: auto;
-    top: 0;
-    right: 0;
-    left: 0;
-
-}
-
-#pages-wrapper{
-    position: relative;
-    text-align: center;
-}
-
-#pages {
-    display: inline-block;
-    position: relative;
-}
-
-#pages .prev, #pages .next{
-    padding: 9px 12px;
-}
-
-#pages .active, #pages a:not([href]){
-    background-color: #ccc;
-    cursor: initial;
-}
-
-#pages a {
-    background-color: #fff;
-}
-/*
-Alles hieronder is een test
-*/
-table.comment{
-    width:400px;
-    border:0px;
-    text-align: center;
-    padding: 3px;
-    border-spacing: 0px;
-}
-table.comment1{
-    width:400px;
-    border:0px;
-    text-align: center;
-    padding: 0px;
-    border-spacing: 1px;
-}
-table.comment2{
-    width:400px;
-    border:0px;
-    text-align: center;
-    padding: 3px;
-    border-spacing: 1px;
-}
-
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 19-nov-2015, 11:09:31
-    Author     : ruben
-*/
-
-body{
-    background-color: #E3F0F5;
-    font-family: Californian FB;
-    margin: 0;
-
-}
-div.content{
-    position: absolute;
-    width: 1250px;
-    min-height: 100%;
-    display: inline;
-    margin: auto;
-    background-color: #A6DCF1;
-    top: 0;
-    right: 0;
-    left: 0;
-}
-div.menu{
-    width: 100%;
-
-
-}
-
-.ulmenu{
-    list-style-type: none;
-    padding-left: 10px;
-    background-color: grey;
-    font-size: 24px;
-    margin-left: 15%;
-
-}
-#headlogo{
-    border-radius: 10px; 
-}
-/*
-#headlogo:hover{
-    position:relative;
-    top:-25px;
-    left:-35px;
-    width:400px;
-    height:auto;
-    display: compact;
-    z-index: auto;
-}*/
-#menutext{
-    color: black;
-    text-decoration:none;
-
-}
-.limenu{
-    float: left;
-}
-.limenu a {
-    display: block;
-    margin: 2px;
-    text-align: center;
-    padding: 30px;
-    border-radius: 20px;
-    background-color: #85AEBD;
-
-}
-
-.limenu a:hover {
-    background-color: #3399FF;
-}
-.footermenu{
-    position: fixed;
-    background-color: darkgray;
-    bottom:0;
-    width:1250px;
-    height:85px;   
-    z-index:1000;
-}
-.ulfooter{
-    list-style-type: none;
-    margin: 5px;
-}
-.lifooter{
-    float: left;
-    text-align: center;
-}
-
-div.img{
-
-    margin: 5px;
-    border: 1px solid #ccc;
-    float: left;
-    width: 240px;
-    background-color: white;
-    padding: 5px;
-    text-align: center;
-    
-}
-
-div.img:hover {
-    border: 1px solid teal;
-
-}
-
-div.img img {
-    width: 100%;
-    height: auto;
-    max-height: 275px;
-
-}/*
-div.img img:hover{
-    position:relative;
-    top:-25px;
-    left:-35px;
-    width:400px;
-    height:auto;
-    display:  compact;
-    z-index: auto;
-
-}*/
-div.title {
-    padding: 5px 5px 0 5px;
-    color:black;
     font-size: 1.3em;
     text-align: left;
+
 }
 div.extraInfo {
     width: 50%;
@@ -443,11 +145,26 @@ div.extraInfoRight {
     float:right;
     text-align: right;
 }
+
 div.gallerij{
     float: left;
     width: 100%;
     padding: 100px;
     box-sizing: border-box;
+}
+
+#contact-form {
+    position: relative;
+    margin-top: 100px;
+    margin-left: 100px;
+    float: left;
+}
+
+#contact-foutmelding {
+    position: relative;
+    margin-top: 120px;
+    margin-left: 200px;
+    float:left;
 }
 /*
 Script voor slider
@@ -572,6 +289,100 @@ div.comment{
 /*
 Alles hieronder is een test
 */
+
+
+#contact-form {
+    position: relative;
+    margin-top: 100px;
+    margin-left: 100px;
+    float: left;
+}
+
+#contact-foutmelding {
+    position: relative;
+    margin-top: 120px;
+    margin-left: 200px;
+    float:left;
+}
+div.comment{
+    min-height: 100%;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+
+}
+
+#pages-wrapper{
+    position: relative;
+    text-align: center;
+}
+
+#pages {
+    display: inline-block;
+    position: relative;
+}
+
+#pages .prev, #pages .next{
+    padding: 9px 12px;
+}
+
+#pages .active, #pages a:not([href]){
+    background-color: #ccc;
+    cursor: initial;
+}
+
+#pages a {
+    background-color: #fff;
+}
+
+#contact-form {
+    position: relative;
+    margin-top: 100px;
+    margin-left: 100px;
+    float: left;
+}
+
+#contact-foutmelding {
+    position: relative;
+    margin-top: 120px;
+    margin-left: 200px;
+    float:left;
+}
+div.comment{
+    min-height: 100%;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+
+}
+
+#pages-wrapper{
+    position: relative;
+    text-align: center;
+}
+
+#pages {
+    display: inline-block;
+    position: relative;
+}
+
+#pages .prev, #pages .next{
+    padding: 9px 12px;
+}
+
+#pages .active, #pages a:not([href]){
+    background-color: #ccc;
+    cursor: initial;
+}
+
+#pages a {
+    background-color: #fff;
+}
+/*
+Alles hieronder is een test
+*/
 table.comment{
     width:400px;
     border:0px;
@@ -593,4 +404,3 @@ table.comment2{
     padding: 3px;
     border-spacing: 1px;
 }
-

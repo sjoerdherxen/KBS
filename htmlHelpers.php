@@ -23,13 +23,13 @@ function renderHtmlStart($title, $extra) {
                 <div class="menu">
                     <br>
 
-                    <ul class="ulmenu">
-                        <li class="limenu"><img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></li>
+                    <ul id="ulmenu">
+                        <li class="limenu"><a href="url" target="_blank"> <img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></a></li>
                         <!-- even kijken hoe we het logo een link kunnen geven zonder dat deze verandert in .ulmenu<a href="url"></a>-->
-                        <li class="limenu"><a href="/hoofdpagina.php" id="menutext">Home</a></li>
-                        <li class="limenu"><a href="/gallerij.php" id="menutext">Gallerij</a></li>
-                        <li class="limenu"><a href="/zoeken.php" id="menutext">Zoeken</a></li> 
-                        <li class="limenu"><a href="/contact.php" id="menutext">Contact</a></li>    
+                        <li class="limenu"><a href="/hoofdpagina.php" class="menutext">Home</a></li>
+                        <li class="limenu"><a href="/gallerij.php" class="menutext">Gallerij</a></li>
+                        <li class="limenu"><a href="/zoeken.php" class="menutext">Zoeken</a></li> 
+                        <li class="limenu"><a href="/contact.php" class="menutext">Contact</a></li>    
 
                     </ul>
                 </div>           
@@ -43,8 +43,7 @@ function renderHtmlStart($title, $extra) {
                 ?>
                 <footer class="footermenu">
                     <ul>
-                        <li><a href="url" id="menutext">Contact</a></li>
-                        <li><a href="url" id="menutext">Sitemap</a></li>
+                        <li><a href="/contact.php" id="menutext">Contact</a></li>
                         <li><a id="menutext">Powered by Windesheim</a></li>
 
                     </ul>
