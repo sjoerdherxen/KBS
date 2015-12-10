@@ -7,6 +7,7 @@ if (!isLoggedIn()) {
 require '../htmlHelpers.php';
 renderHtmlStartAdmin("Categorie&euml;n", '<script src="/content/editCategorie.js"></script>');
 
+$saved = false;
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $invoerDatabase = [$_GET["id"]];
@@ -43,7 +44,7 @@ if (isset($_GET["id"])) {
 
     </table>
 </form>
- 
+
 
 <?php
 if (isset($_POST["knopje"])) {
@@ -51,13 +52,12 @@ if (isset($_POST["knopje"])) {
         $id = $_GET["id"];
         $invoerDatabase2 = [$_POST["Categorie_Naam"], $_POST["BEschrijving"], $_GET["id"]];
         query("UPDATE Categorie SET Categorie_naam = ?, Beschrijving = ? WHERE CategorieID = ?", $invoerDatabase2);
-        
         ?>
-<script>
-function Popup(){
-    alert("Wijzigingen zijn opgeslagen");
-}
-</script>
+        <script>
+            function Popup() {
+                alert("Wijzigingen zijn opgeslagen");
+            }
+        </script>
         <?php
         header('location:categorieList.php#Wijzigingen zijn opgeslagen');
         exit();
