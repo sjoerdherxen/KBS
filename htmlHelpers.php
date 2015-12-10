@@ -43,8 +43,8 @@ function renderHtmlStart($title, $extra) {
                 ?>
                 <footer class="footermenu">
                     <ul>
-                        <li><a href="/contact.php" id="menutext">Contact</a></li>
-                        <li><a id="menutext">Powered by Windesheim</a></li>
+                        <li><a href="/contact.php" class="menutext">Contact</a></li>
+                        <li><a class="menutext">Powered by Windesheim</a></li>
 
                     </ul>
                 </footer>
