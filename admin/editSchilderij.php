@@ -92,14 +92,25 @@ if (isset($_POST["knop"])) {
     $schilderijUpdate[] = $_POST["categorie"];
 
     if (!isset($_POST["materiaal"]) || trim($_POST["materiaal"]) == "") {
-        $resultMateriaal = "Materiaal is verplicht";
+        $materiaalError = "Materiaal is verplicht";
         $correct = false;
     } elseif (!in_query_result($resultMateriaal, $_POST["materiaal"], "materiaalId")) {
-        $resultMateriaal = "Materiaal bestaat niet";
+        $materiaalError = "Materiaal bestaat niet";
         $correct = false;
     }
     $schilderij["MateriaalID"] = $_POST["materiaal"];
     $schilderijUpdate[] = $_POST["materiaal"];
+
+    if (!isset($_POST["subcategorie"])) {
+        $subcategorieError = "Subcategorie is fout";
+        $correct = false;
+    } elseif (trim($_POST["subcategorie"]) != "" && !in_query_result($resultSubCategorie, $_POST["subcategorie"], "subcategorieId")) {
+        $subcategorieError = "Subcategorie bestaat niet";
+        $correct = false;
+    }
+    $schilderij["SubcategorieID"] = $_POST["subcategorie"];
+    $schilderijUpdate[] = $_POST["subcategorie"];
+
 
     $updateImg = false;
     if (isset($_FILES["img"]) && $_FILES["img"]["size"] > 0) {
@@ -116,7 +127,7 @@ if (isset($_POST["knop"])) {
 
     $schilderijUpdate[] = $schilderijId;
     if ($correct) {
-        query("UPDATE schilderij SET titel=?, beschrijving=?, lijst=?, passepartout=?, isStaand=?, jaar=?, prijs=?, hoogte=?, breedte=?, categorieId=?, materiaalId=? WHERE Schilderij_ID=?", $schilderijUpdate);
+        query("UPDATE schilderij SET titel=?, beschrijving=?, lijst=?, passepartout=?, isStaand=?, jaar=?, prijs=?, hoogte=?, breedte=?, categorieId=?, materiaalId=?, subcategorieid=? WHERE Schilderij_ID=?", $schilderijUpdate);
         if ($updateImg) {
             $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
             if (file_exists("./.." . $resultImg[0]["Img"])) {
@@ -252,7 +263,7 @@ if ($doSelectQuery) {
 
                     foreach ($resultSubCategorie as $categorie) {
                         $selected = "";
-                        if ($categorie["subcategorieId"] == $schilderij["SubCategorieID"]) {
+                        if ($categorie["subcategorieId"] == $schilderij["SubcategorieID"]) {
                             $selected = "selected='selected'";
                         }
 
