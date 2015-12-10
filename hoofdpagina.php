@@ -21,8 +21,21 @@ renderHtmlStart("Home", "");
             <?php
 
             $schilderijen = query("SELECT schilderij_id, titel, img FROM schilderij ORDER BY schilderij_id DESC LIMIT 0,6", null);
+
+            $i = 0;
             foreach ($schilderijen as $schilderij) {
-                echo "<li><a href='/schilderij.php?id=" . $schilderij["schilderij_id"] . "'><img src='" . $schilderij["img"] . "'><span class='slider-titel'>" . $schilderij["titel"] . "</span></a></li>";
+                if ($i % 3 == 0 && $i != count($schilderijen)) {
+                    echo "<li>";
+                }
+                echo "<a href='/schilderij.php?id=" . $schilderij["schilderij_id"] . "'>";
+                echo "<img src='" . $schilderij["img"] . "'>";
+                echo "<span class='slider-titel'>" . $schilderij["titel"] . "</span>";
+                echo "</a>";
+                
+                $i++;
+                if ($i % 3 == 0) {
+                    echo "</li>";
+                }
             }
             ?>
         </ul>  

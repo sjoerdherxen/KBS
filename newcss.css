@@ -40,7 +40,7 @@ div.menu{
 
 }
 #headlogo{
-height: 40px;
+height: 100px;
 
 }/*
 #headlogo:hover{
@@ -132,88 +132,6 @@ div.gallerij{
     padding: 100px;
     box-sizing: border-box;
 }
-/*
-Script voor slider
-*/
-#slider {
-    position: relative;
-    overflow: hidden;
-    margin: 20px auto 0 auto;
-    border-radius: 4px;
-}
-
-#slider ul {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    height: 200px;
-    list-style: none;
-}
-
-#slider ul li {
-    position: relative;
-    display: block;
-    float: left;
-    margin: 0;
-    padding: 0;
-    width: 500px;
-    height: 300px;
-    background: #ccc;
-}
-#slider ul li a{
-    display: block;
-    height: 100%;
-    width: 100%;
-}
-#slider ul li img{
-    position: absolute;
-    max-height: 300px;
-    max-width: 500px;
-}
-
-a.control_prev, a.control_next {
-    position: absolute;
-    top: 40%;
-    z-index: 999;
-    display: block;
-    padding: 4% 3%;
-    width: auto;
-    height: auto;
-    background: #2a2a2a;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 18px;
-    opacity: 0.8;
-    cursor: pointer;
-}
-
-a.control_prev:hover, a.control_next:hover {
-    opacity: 1;
-    -webkit-transition: all 0.5s ease;
-}
-
-a.control_prev {
-    border-radius: 0 2px 2px 0;
-}
-
-a.control_next {
-    right: 0;
-    border-radius: 2px 0 0 2px;
-}
-
-.slider_option {
-    position: relative;
-    margin: 10px auto;
-    width: 160px;
-    font-size: 18px;
-}
-
-div.slider2{
-    position: relative;
-}
-
-
 
 #contact-form {
     position: relative;
@@ -421,18 +339,17 @@ div.menu{
 }
 #headlogo{
     border-radius: 10px; 
-
-
 }
+/*
 #headlogo:hover{
     position:relative;
     top:-25px;
     left:-35px;
     width:400px;
     height:auto;
-    display:  compact;
+    display: compact;
     z-index: auto;
-}
+}*/
 #menutext{
     color: black;
     text-decoration:none;
@@ -479,6 +396,7 @@ div.img{
     width: 240px;
     background-color: white;
     padding: 5px;
+    text-align: center;
     
 }
 
@@ -490,6 +408,7 @@ div.img:hover {
 div.img img {
     width: 100%;
     height: auto;
+    max-height: 275px;
 
 }/*
 div.img img:hover{
@@ -506,6 +425,7 @@ div.title {
     padding: 5px 5px 0 5px;
     color:black;
     font-size: 1.3em;
+    text-align: left;
 }
 div.extraInfo {
     width: 50%;
@@ -513,6 +433,7 @@ div.extraInfo {
     padding: 0 5px 0 5px;
     color:black;
     float: left;
+    text-align: left;
 }
 div.extraInfoRight {
     width: 50%;
@@ -542,7 +463,7 @@ Script voor slider
     position: relative;
     margin: 0;
     padding: 0;
-    height: 200px;
+    height: 300px;
     list-style: none;
 }
 
@@ -552,7 +473,7 @@ Script voor slider
     float: left;
     margin: 0;
     padding: 0;
-    width: 500px;
+    width: 900px;
     height: 300px;
     background: #ccc;
 }
@@ -561,10 +482,22 @@ Script voor slider
     color: black;
     position: absolute;
     display: block;
-    width: 500px;
+    width: 300px;
     text-align: center;
     bottom: 0;
     font-size: 1.4em;
+}
+
+#slider ul li a{
+    display: block;
+    height: 100%;
+    width: 300px;
+    float:left;
+}
+#slider ul li img{
+    position: absolute;
+    max-height: 300px;
+    max-width: 300px;
 }
 
 a.control_prev, a.control_next {
@@ -572,7 +505,7 @@ a.control_prev, a.control_next {
     top: 40%;
     z-index: 999;
     display: block;
-    padding: 4% 3%;
+    padding: 3% 2%;
     width: auto;
     height: auto;
     background: #2a2a2a;
