@@ -1,4 +1,5 @@
 <?php
+
 function renderHtmlStart($title, $extra) {
     ?><html>
         <head>
@@ -85,6 +86,12 @@ function renderHtmlStartAdmin($title, $extra) {
                     <li class="menu-right"><a href="/admin/account.php"><?php echo $_SESSION["inlog"]; ?></a></li>
                 </ul>
             </div>
+            <script>
+                if (window.location.hash != "") {
+                    alert(window.location.hash.substr(1));
+                    window.location.hash = "";
+                }
+            </script>
             <?php
         }
 
