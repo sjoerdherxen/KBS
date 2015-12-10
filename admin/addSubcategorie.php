@@ -9,7 +9,7 @@ require '../htmlHelpers.php';
 renderHtmlStartAdmin("Subcategorie&euml;n", '');
 
 $limitDatabase = [30];
-
+$saved = false;
 
 $toevoegenSubcategorie = [];
 $doorgaan_naam = false;
@@ -27,6 +27,19 @@ if (isset($_POST["Toevoegen"])) {
     }
 }
 $uitvoerDatabase = query("SELECT * FROM Subcategorie", NULL);
+
+if ($saved) {
+    ?>
+    <script>
+        setTimeout(function () {
+            if (confirm("De subcategorie is toegevoegd.\n\nWilt u terug naar het overzicht?")) {
+                location = "/admin/categorieList.php";
+            }
+        }, 1);
+    </script>
+    <?php
+}
+?>
 
 ?>
 <form action="addSubcategorie.php" method="post">
