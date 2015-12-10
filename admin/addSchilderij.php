@@ -17,7 +17,7 @@ $schilderij["Jaar"] = "";
 $schilderij["Hoogte"] = "";
 $schilderij["Breedte"] = "";
 $schilderij["CategorieID"] = "";
-$schilderij["SubCategorieID"] = "";
+$schilderij["SubcategorieID"] = "";
 $schilderij["MateriaalID"] = "";
 $schilderij["lijst"] = 0;
 $schilderij["passepartout"] = 0;
@@ -47,13 +47,13 @@ if (isset($_POST["knop"])) {
     $schilderInsert[] = $_POST["beschrijving"];
     
     $schilderij["lijst"] = isset($_POST["lijst"]);
-    $schilderijUpdate[] = $schilderij["lijst"] ? 1 : 0;
+    $schilderInsert[] = $schilderij["lijst"] ? 1 : 0;
     
     $schilderij["passepartout"] = isset($_POST["passepartout"]);
-    $schilderijUpdate[] = $schilderij["passepartout"] ? 1 : 0;
+    $schilderInsert[] = $schilderij["passepartout"] ? 1 : 0;
     
     $schilderij["isStaand"] = $_POST["isStaand"] == "true";
-    $schilderijUpdate[] = $schilderij["isStaand"] ? 1 : 0;
+    $schilderInsert[] = $schilderij["isStaand"] ? 1 : 0;
 
     if (!is_numeric($_POST["jaar"]) && isset($_POST["jaar"]) && trim($_POST["jaar"]) != "") {
         $jaarError = "Jaar is geen getal";
@@ -67,7 +67,7 @@ if (isset($_POST["knop"])) {
         $correct = false;
     }
     $schilderij["prijs"] = $_POST["prijs"];
-    $schilderijUpdate[] = $_POST["prijs"] == "" ? null : $_POST["prijs"];
+    $schilderInsert[] = $_POST["prijs"] == "" ? null : $_POST["prijs"];
 
     if (!isset($_POST["hoogte"]) || trim($_POST["hoogte"]) == "") {
         $hoogteError = "Hoogte is verplicht";
@@ -109,6 +109,16 @@ if (isset($_POST["knop"])) {
     $schilderij["MateriaalID"] = $_POST["materiaal"];
     $schilderInsert[] = $_POST["materiaal"];
 
+    if (!isset($_POST["subcategorie"])) {
+        $subcategorieError = "Subcategorie is fout";
+        $correct = false;
+    } elseif (trim($_POST["subcategorie"]) != "" && !in_query_result($resultSubCategorie, $_POST["subcategorie"], "subcategorieId")) {
+        $subcategorieError = "Subcategorie bestaat niet";
+        $correct = false;
+    }
+    $schilderij["SubcategorieID"] = $_POST["subcategorie"];
+    $schilderInsert[] = $_POST["subcategorie"];
+    
     if (isset($_FILES["img"])) {
         $imgExtension = strtolower(strrchr($_FILES["img"]["name"], "."));
         $correctExtensions = array(".png", ".jpg", ".jpeg", ".gif");
@@ -123,7 +133,12 @@ if (isset($_POST["knop"])) {
     }
 
     if ($correct) {
-        $id = insert("INSERT INTO schilderij (Titel, beschrijving, lijst, passepartout, isStaand, jaar, prijs, hoogte, breedte, categorieid, materiaalid, naam_schilder) VALUES (?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, 'ellenvanthof')", $schilderInsert);
+        $schilder = query("SELECT schilderid FROM schilder LIMIT 0,1", null);
+        $schilderInsert[] = $schilder[0]["schilderid"];
+        
+        $id = insert("INSERT INTO schilderij (Titel, beschrijving, lijst, passepartout, isStaand, jaar, prijs, hoogte, "
+                . "                             breedte, categorieid, materiaalid, schilderId, subcategorieId)"
+                . "  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", $schilderInsert);
 
         $newpath = "/content/uploads/" . $id . $imgExtension;
 
@@ -131,8 +146,8 @@ if (isset($_POST["knop"])) {
 
         move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
 
-        header("location: schilderijList.php");
-        exit();
+        //header("location: schilderijList.php");
+        //exit();
     }
 }
 ?>
@@ -224,7 +239,7 @@ if (isset($_POST["knop"])) {
 
                     foreach ($resultSubCategorie as $categorie) {
                         $selected = "";
-                        if ($categorie["subcategorieId"] == $schilderij["SubCategorieID"]) {
+                        if ($categorie["subcategorieId"] == $schilderij["SubcategorieID"]) {
                             $selected = "selected='selected'";
                         }
 
