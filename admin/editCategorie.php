@@ -68,7 +68,7 @@ function Popup(){
 <script>
     document.getElementById("verwijderen").onclick = function () {
         if (confirm("Weet u zeker dat u deze categorie wilt verwijderen?")) {
-            window.location = "deleteCategorie.php?id=<?php echo $uitvoerDatabase[0]["Categorie_naam"]; ?>";
+            window.location = "deleteCategorie.php?id=<?php echo $uitvoerDatabase[0]["id"]; ?>";
         }
     };
 </script> <?php

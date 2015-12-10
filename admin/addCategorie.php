@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require 'functions.php';
 if (!isLoggedIn()) {
@@ -9,7 +8,7 @@ require '../htmlHelpers.php';
 renderHtmlStartAdmin("Categorie&euml;n", '');
 
 $limitDatabase = [30];
-
+$saved = false;
 
 $toevoegenCategorie = [];
 $doorgaan_naam = false;
@@ -24,9 +23,22 @@ if (isset($_POST["Toevoegen"])) {
         $toevoegenCategorie[] = $_POST["Naam"];
         $toevoegenCategorie[] = $_POST["Beschrijving"];
         query("INSERT INTO Categorie (Categorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenCategorie);
+        $saved = true;
     }
 }
 $uitvoerDatabase = query("SELECT * FROM Categorie", NULL);
+
+if ($saved) {
+    ?>
+    <script>
+        setTimeout(function () {
+            if (confirm("De wijzigingen zijn opgeslagen.\n\nWilt u terug naar het overzicht?")) {
+                location = "/admin/categorieList.php";
+            }
+        }, 1);
+    </script>
+    <?php
+}
 ?>
 <form action="addCategorie.php" method="post">
     <h1>Vul hier de categorienaam en beschrijving in:</h1>
@@ -37,12 +49,11 @@ $uitvoerDatabase = query("SELECT * FROM Categorie", NULL);
             </td>
             <td>
                 <input type="text" name="Naam" placeholder="Vul hier de naam in" style="width: 375px">
-<?php
-
-if (isset($Naamerror)) {
-    echo '<br>' . "<span class=\"incorrect\">$Naamerror</span>";
-}
-?>
+                <?php
+                if (isset($Naamerror)) {
+                    echo '<br>' . "<span class=\"incorrect\">$Naamerror</span>";
+                }
+                ?>
             </td>
         </tr>
         <tr>
@@ -51,8 +62,7 @@ if (isset($Naamerror)) {
             </td>
             <td>
                 <textarea rows="4" cols="50" name="Beschrijving" placeholder="Vul hier de beschrijving in"></textarea>
-                <?php
-                ?>
+                <?php ?>
             </td>
         </tr>
         <tr>
@@ -63,9 +73,15 @@ if (isset($Naamerror)) {
             </td>
         </tr>
     </table>
-</form>      
+</form>
+<script>
+    document.getElementById("verwijderen").onclick = function () {
+        if (confirm"De wijzigingen zijn opgeslagen/n/n Wilt u terug gaan naar de hoofdpagina?")) {
+            window.location = "categorieList.php";
+        }
+    };
+</script>
 <?php
-
 renderHtmlEndAdmin();
 
 
