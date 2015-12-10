@@ -32,7 +32,7 @@ if ($saved) {
     ?>
     <script>
         setTimeout(function () {
-            if (confirm("De wijzigingen zijn opgeslagen.\n\nWilt u terug naar het overzicht?")) {
+            if (confirm("De categorie is toegevoegd.\n\nWilt u terug naar het overzicht?")) {
                 location = "/admin/categorieList.php";
             }
         }, 1);

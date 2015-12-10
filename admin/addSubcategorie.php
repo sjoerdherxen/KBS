@@ -9,11 +9,10 @@ require '../htmlHelpers.php';
 renderHtmlStartAdmin("Subcategorie&euml;n", '');
 
 $limitDatabase = [30];
-
+$saved = false;
 
 $toevoegenSubcategorie = [];
 $doorgaan_naam = false;
-
 if (isset($_POST["Toevoegen"])) {
     if (!isset($_POST["Naam"]) || $_POST["Naam"] == "") {
         $Naamerror = "Er moet een naam worden ingevuld.";
@@ -33,7 +32,7 @@ if ($saved) {
     ?>
     <script>
         setTimeout(function () {
-            if (confirm("De wijzigingen zijn opgeslagen.\n\nWilt u terug naar het overzicht?")) {
+            if (confirm("De subcategorie is toegevoegd.\n\nWilt u terug naar het overzicht?")) {
                 location = "/admin/categorieList.php";
             }
         }, 1);
@@ -41,6 +40,7 @@ if ($saved) {
     <?php
 }
 ?>
+
 ?>
 <form action="addSubcategorie.php" method="post">
     <h1>Vul hier de subcategorienaam en beschrijving in:</h1>
