@@ -24,9 +24,23 @@ if (isset($_POST["Toevoegen"])) {
         $toevoegenmateriaal[] = $_POST["Naam"];
         $toevoegenmateriaal[] = $_POST["Beschrijving"];
         query("INSERT INTO materiaal (materiaal_soort, Beschrijving) VALUES (?, ?)", $toevoegenmateriaal);
+        $saved = true;
     }
 }
 $uitvoerDatabase = query("SELECT * FROM materiaal", NULL);
+
+if ($saved) {
+    ?>
+    <script>
+        setTimeout(function () {
+            if (confirm("De wijzigingen zijn opgeslagen.\n\nWilt u terug naar het overzicht?")) {
+                location = "/admin/categorieList.php";
+            }
+        }, 1);
+    </script>
+    <?php
+}
+?>
 ?>
 <form action="addmateriaal.php" method="post">
     <h1>Vul hier de materiaal soort en beschrijving in:</h1>

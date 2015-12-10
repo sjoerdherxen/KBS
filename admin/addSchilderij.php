@@ -19,8 +19,15 @@ $schilderij["Breedte"] = "";
 $schilderij["CategorieID"] = "";
 $schilderij["SubCategorieID"] = "";
 $schilderij["MateriaalID"] = "";
+$schilderij["lijst"] = 0;
+$schilderij["passepartout"] = 0;
+$schilderij["isStaand"] = 0;
+$schilderij["prijs"] = "";
 
-$resultTechniek = query("SELECT materiaalId, materiaal_naam FROM materiaal", null);
+
+
+
+$resultMateriaal = query("SELECT materiaalId, materiaal_soort FROM materiaal", null);
 $resultCategorie = query("SELECT categorieId, categorie_naam FROM categorie", null);
 $resultSubCategorie = query("SELECT subcategorieId, subcategorie_naam FROM subcategorie", null);
 
@@ -38,13 +45,29 @@ if (isset($_POST["knop"])) {
 
     $schilderij["Beschrijving"] = $_POST["beschrijving"];
     $schilderInsert[] = $_POST["beschrijving"];
+    
+    $schilderij["lijst"] = isset($_POST["lijst"]);
+    $schilderijUpdate[] = $schilderij["lijst"] ? 1 : 0;
+    
+    $schilderij["passepartout"] = isset($_POST["passepartout"]);
+    $schilderijUpdate[] = $schilderij["passepartout"] ? 1 : 0;
+    
+    $schilderij["isStaand"] = $_POST["isStaand"] == "true";
+    $schilderijUpdate[] = $schilderij["isStaand"] ? 1 : 0;
 
-    if ((!is_numeric($_POST["jaar"]) && isset($_POST["jaar"])) || trim($_POST["jaar"]) == "") {
+    if (!is_numeric($_POST["jaar"]) && isset($_POST["jaar"]) && trim($_POST["jaar"]) != "") {
         $jaarError = "Jaar is geen getal";
         $correct = false;
     }
     $schilderij["Jaar"] = $_POST["jaar"];
     $schilderInsert[] = $_POST["jaar"];
+    
+    if (!is_numeric($_POST["prijs"]) && isset($_POST["prijs"]) && trim($_POST["prijs"]) != "") {
+        $jaarError = "Prijs is geen getal";
+        $correct = false;
+    }
+    $schilderij["prijs"] = $_POST["prijs"];
+    $schilderijUpdate[] = $_POST["prijs"] == "" ? null : $_POST["prijs"];
 
     if (!isset($_POST["hoogte"]) || trim($_POST["hoogte"]) == "") {
         $hoogteError = "Hoogte is verplicht";
@@ -79,11 +102,11 @@ if (isset($_POST["knop"])) {
     if (!isset($_POST["materiaal"]) || trim($_POST["materiaal"]) == "") {
         $materiaalError = "Materiaal is verplicht";
         $correct = false;
-    } elseif (!in_query_result($resultTechniek, $_POST["materiaal"], "materiaalId")) {
+    } elseif (!in_query_result($resultMateriaal, $_POST["materiaal"], "materiaalId")) {
         $materiaalError = "Materiaal bestaat niet";
         $correct = false;
     }
-    $schilderij["MarteriaalID"] = $_POST["materiaal"];
+    $schilderij["MateriaalID"] = $_POST["materiaal"];
     $schilderInsert[] = $_POST["materiaal"];
 
     if (isset($_FILES["img"])) {
@@ -100,8 +123,7 @@ if (isset($_POST["knop"])) {
     }
 
     if ($correct) {
-        $id = insert("INSERT INTO schilderij (Titel, beschrijving, jaar, hoogte, breedte, categorieid, materiaalid, naam_schilder) VALUES (?,?, ?, ?, ?, ?, ?, 'ellenvanthof')", $schilderInsert);
-
+        $id = insert("INSERT INTO schilderij (Titel, beschrijving, lijst, passepartout, isStaand, jaar, prijs, hoogte, breedte, categorieid, materiaalid, naam_schilder) VALUES (?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, 'ellenvanthof')", $schilderInsert);
 
         $newpath = "/content/uploads/" . $id . $imgExtension;
 
@@ -114,7 +136,7 @@ if (isset($_POST["knop"])) {
     }
 }
 ?>
-<a href="schilderijList.php">Terug naar lijst</a>
+<p><a href="schilderijList.php">Terug naar lijst</a></p>
 <form action="addSchilderij.php" method="post" class="editform" enctype="multipart/form-data">
     <table>
         <tr>
@@ -124,7 +146,7 @@ if (isset($_POST["knop"])) {
                 <?php
 
                 if (isset($titelError)) {
-                    echo "<br/>" . $titelError;
+                    echo "<br/><span class='incorrect'>" . $titelError . "</span>";
                 }
                 ?>
             </td>
@@ -142,7 +164,7 @@ if (isset($_POST["knop"])) {
                 <?php
 
                 if (isset($jaarError)) {
-                    echo "<br/>" . $jaarError;
+                    echo "<br/><span class='incorrect'>" . $jaarError . "</span>";
                 }
                 ?>
             </td>
@@ -154,7 +176,7 @@ if (isset($_POST["knop"])) {
                 <?php
 
                 if (isset($hoogteError)) {
-                    echo "<br/>" . $hoogteError;
+                    echo "<br/><span class='incorrect'>" . $hoogteError . "</span>";
                 }
                 ?>
             </td>
@@ -165,7 +187,7 @@ if (isset($_POST["knop"])) {
                 <?php
 
                 if (isset($breedteError)) {
-                    echo "<br/>" . $breedteError;
+                    echo "<br/><span class='incorrect'>" . $breedteError . "</span>";
                 }
                 ?>
             </td>
@@ -189,18 +211,18 @@ if (isset($_POST["knop"])) {
                 <?php
 
                 if (isset($categorieError)) {
-                    echo "<br/>" . $categorieError;
+                    echo "<br/><span class='incorrect'>" . $categorieError . "</span>";
                 }
                 ?>
             </td>
         </tr>
-         <tr>
+        <tr>
             <td>Subcategorie</td>
             <td>
                 <select name="subcategorie">
                     <?php
 
-                    foreach ($resultCategorie as $categorie) {
+                    foreach ($resultSubCategorie as $categorie) {
                         $selected = "";
                         if ($categorie["subcategorieId"] == $schilderij["SubCategorieID"]) {
                             $selected = "selected='selected'";
@@ -213,7 +235,7 @@ if (isset($_POST["knop"])) {
                 <?php
 
                 if (isset($subcategorieError)) {
-                    echo "<br/>" . $subcategorieError;
+                    echo "<br/><span class='incorrect'>" . $subcategorieError . "</span>";
                 }
                 ?>
             </td>
@@ -237,9 +259,36 @@ if (isset($_POST["knop"])) {
                 <?php
 
                 if (isset($materiaalError)) {
-                    echo "<br/>" . $materiaalError;
+                    echo "<br/><span class='incorrect'>" . $materiaalError . "</span>";
                 }
                 ?>
+            </td>
+        </tr>
+        <tr>
+            <td>In lijst</td>
+            <td>
+                <input type="checkbox" name="lijst" value="true" <?php if ($schilderij["lijst"]) echo "checked='checked'"; ?>>
+            </td>
+        </tr>
+        <tr>
+            <td>Passepartout</td>
+            <td>
+                <input type="checkbox" name="passepartout" value="true" <?php if ($schilderij["passepartout"]) echo "checked='checked'"; ?>>
+            </td>
+        </tr>
+        <tr>
+            <td>Staand/liggend</td>
+            <td>
+                <select name="isStaand">
+                    <option value="false" <?php if (!$schilderij["isStaand"]) echo "selected='selected'"; ?> >liggend</option>
+                    <option value="true" <?php if ($schilderij["isStaand"]) echo "selected='selected'"; ?> >staand</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Prijs</td>
+            <td>
+                &euro; <input type="text" name="prijs" class="number" value="<?php echo $schilderij["prijs"]; ?>">
             </td>
         </tr>
         <tr>
@@ -251,7 +300,7 @@ if (isset($_POST["knop"])) {
                 <?php
 
                 if (isset($afbeeldingError)) {
-                    echo "<br/>" . $afbeeldingError;
+                    echo "<span class='incorrect'>" . $afbeeldingError . "</span>";
                 }
                 ?>
             </td>

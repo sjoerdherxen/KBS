@@ -7,6 +7,7 @@ if (!isLoggedIn()) {
 require '../htmlHelpers.php';
 renderHtmlStartAdmin("Materiaal", '<script src="/content/editMateriaal.js"></script>');
 
+$saved = false;
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $invoerDatabase = [$_GET["id"]];

@@ -24,9 +24,23 @@ if (isset($_POST["Toevoegen"])) {
         $toevoegenSubcategorie[] = $_POST["Naam"];
         $toevoegenSubcategorie[] = $_POST["Beschrijving"];
         query("INSERT INTO Subcategorie (Subcategorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenSubcategorie);
+        $saved = true;
     }
 }
 $uitvoerDatabase = query("SELECT * FROM Subcategorie", NULL);
+
+if ($saved) {
+    ?>
+    <script>
+        setTimeout(function () {
+            if (confirm("De wijzigingen zijn opgeslagen.\n\nWilt u terug naar het overzicht?")) {
+                location = "/admin/categorieList.php";
+            }
+        }, 1);
+    </script>
+    <?php
+}
+?>
 ?>
 <form action="addSubcategorie.php" method="post">
     <h1>Vul hier de subcategorienaam en beschrijving in:</h1>

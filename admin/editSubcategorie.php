@@ -8,6 +8,7 @@ if (!isLoggedIn()) {
 require '../htmlHelpers.php';
 renderHtmlStartAdmin("Categorie&euml;n", '<script src="/content/editSubcategorie.js"></script>');
 
+$saved = false;
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $invoerDatabase = [$_GET["id"]];
