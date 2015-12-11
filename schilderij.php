@@ -1,5 +1,6 @@
 <?php
 include './htmlHelpers.php';
+include './functions.php';
 renderHtmlStart("commentaar", "");
 ?>
  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
@@ -20,9 +21,18 @@ $schilderij;
 </div>
 
 
+    
+    
+    <!-- hier komt de rest van de schilderij-->
+    
+    
+    
+    
+    
+    
+    
+    
 <?php
-
-/*
 //  Alles hieronder is de commentaarsectie. 
 //  Moet nog afgemaakt worden
 //  Onderandere de error code
@@ -44,12 +54,12 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
         $naamsucces = false;
         
     }
-    if ($comment == ""){
+    if ($commentaar == ""){
         $commentaarleeg = "Dit veld mag niet leeg zijn";
         $commentaarsucces = false;
     }
     if($correct) {
-        insert("insert into commentaar (naam_klant, email_klant, opmerking, schilderij_id) VALUES (?, ?, ?, ?)", array($_POST["Naam_klant"] , $_POST["Email_klant"], $_POST["opmerking"], $_GET["id"]));
+        query("insert into commentaar (naam_klant, email_klant, opmerking, schilderij_id) VALUES (?, ?, ?, ?)", array($_POST["Naam_klant"] , $_POST["Email_klant"], $_POST["opmerking"], $_GET["id"]));
     }
 }
 ?>
@@ -64,7 +74,11 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
                     <tr>
                         <td>Naam</td>
                         <td>:</td>
-                        <td><input name="naam" type="text" id="naam" size="40" /></td>
+                        <td><input name="naam" type="text" id="naam" size="40"/>
+                        <?PHP if (isset($naamleeg)){
+                            echo $naamleeg;
+                        }
+                        ?></td>
                     </tr>
                     <tr>
                         <td>Email</td>
@@ -74,7 +88,12 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
                     <tr>
                         <td >Commentaar</td>
                         <td >:</td>
-                        <td><textarea name="commentaar" cols="40" rows="4" id="commentaar"></textarea></td>
+                        <td><textarea name="commentaar" cols="40" rows="4" id="commentaar" ></textarea>
+                        <?PHP  if (isset($commentaarleeg)){
+                            echo $commentaarleeg;
+                            
+                        } ?>
+                        </td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
@@ -85,13 +104,17 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
 
                 </table>
             </td><td>
+                <?php
+                
+                
+                ?>
                 <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div></td>
+            
         </tr>
     </table>
 
 </form>
 <?php
- * */
 
 ?>
 
