@@ -12,10 +12,10 @@ if (isset($_GET["id"])) {
     $result = query("SELECT CategorieID FROM Categorie WHERE CategorieID = ?", $invoer);
     if (count($result == 1)) {
         query("DELETE FROM Categorie WHERE CategorieID = ?", array($_GET["id"]));
-        header("location: categorieList.php");
+        header("location: categorieList.php#Categorie is verwijderd!");
         exit();
     } else {
-        header("location: categorieList.php");
+        header("location: categorieList.php#Categorie verwijderen mislukt!");
         exit();
     } 
 } 
