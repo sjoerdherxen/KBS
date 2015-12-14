@@ -21,24 +21,24 @@ $params= array($_GET["id"] );
          alt="schilderij" >
     
     <ul>
-        <li>Titel:<?php /*query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?></li>
-        <li>Jaar:<?php /*query(SELECT JAAR FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?></li>
-        <li>Dimensies(HxB):<?php /*query(SELECT HOOGTE FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?> * <?php /*query(SELECT BREEDTE FROM SCHILDERIJ WHERE Schilderij_id=$id, $params)  */  ?></li>   
+        <li>Titel:<?php /*query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */  ?></li>
+        <li>Jaar:<?php /*query(SELECT JAAR FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */  ?></li>
+        <li>Dimensies(HxB):<?php /*query(SELECT HOOGTE FROM SCHILDERIJ WHERE Schilderijod=?, $params)  */  ?> * <?php /*query(SELECT BREEDTE FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */  ?></li>   
         <li>Catagorie:<?php /*query(SELECT CATEGORIE_NAAM FROM CATEGORIE WHERE CATEGORIEID =(SELECT CATEGORIEID FROM SCHILDERIJ WHERE SCHILDERIJID = ?), $params)  */  ?><?php /*query(SELECT SUBCATEGORIE_NAAM FROM SUBCATEGORIE WHERE SUBCATEGORIEID =(SELECT SUBCATEGORIEID FROM SCHILDERIJ WHERE SCHILDERIJID = ?), $params)  */  ?></li>
-        <li>Materiaal:<?php /*query(SELECT MATERIAAL FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?></li>
+        <li>Materiaal:<?php /*query(SELECT MATERIAAL FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */  ?></li>
         
     </ul>
     
     
 
-    <div class="title">Titel<?php /*query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderij_id=$id, $params)  */  ?></div>
+    <div class="title">Titel<?php /*query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */  ?></div>
 </div>
 
 <div class="beschrijving">
     
     
     <a>Beschrijving</a>
-    <a><?php /*query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderij_id=$id, $params)  */  ?></a>
+    <a><?php /*query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderijid=?,  $params)  */  ?></a>
 
 </div>
 
