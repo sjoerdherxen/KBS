@@ -9,6 +9,11 @@ renderHtmlStart("Schilderij", "");
 
 <?php
 $params = array($_GET["id"]);
+// query(SELECT * FROM SCHILDERIJ (join van maken)WHERE Schilderijid=?, $params) 
+//fetch
+$schilderijlijst = query("SELECT * FROM SCHILDERIJ WHERE Schilderijid=?", $params) ;
+$schilderij = $schilderijlijst[0];
+
 ?>
 <br>
 <br>
@@ -19,7 +24,7 @@ $params = array($_GET["id"]);
          alt="schilderij" >
 
     <ul class="schilderij">
-        <li>Titel:<?php /* query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></li>
+        <li>Titel:<?php print $schilderij["titel"]/* query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></li>
         <li>Jaar:<?php /* query(SELECT JAAR FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></li>
         <li>Dimensies(HxB):<?php /* query(SELECT HOOGTE FROM SCHILDERIJ WHERE Schilderijod=?, $params)  */ ?> * <?php /* query(SELECT BREEDTE FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></li>   
         <li>Catagorie:<?php /* query(SELECT CATEGORIE_NAAM FROM CATEGORIE WHERE CATEGORIEID =(SELECT CATEGORIEID FROM SCHILDERIJ WHERE SCHILDERIJID = ?), $params)  */ ?>
@@ -31,7 +36,6 @@ $params = array($_GET["id"]);
                 print(", ");
                 print($result[0]["SUBCATEGORIE_NAAM"]);
             }
-            
             ?></li>
         <li>Materiaal:<?php /* query(SELECT MATERIAAL FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></li>
 
@@ -39,15 +43,17 @@ $params = array($_GET["id"]);
 
 
 
-    
+
 </div>
-<div class="title">Titel<?php /* query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></div>
-<div class="beschrijving">
+<br>
+<br>
+<div class="onderschilderij">
+    <div class="title">Titel<?php /* query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></div>
+    <div class="beschrijving">
+        <a>Beschrijving</a>
+        <a><?php /* query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderijid=?,  $params)  */ ?></a>
 
-
-    <a>Beschrijving</a>
-    <a><?php /* query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderijid=?,  $params)  */ ?></a>
-
+    </div>
 </div>
 
 
