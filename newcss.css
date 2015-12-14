@@ -99,12 +99,22 @@ div.img{
     width: 240px;
     background-color: white;
     padding: 5px;
-
+    position: relative;
 }
 
 div.img:hover {
     border: 1px solid teal;
-
+    
+    
+}
+div.img.hover img{
+    position: absolute;
+    left: -80px;
+    z-index: 1000;
+    width: 400px;
+}
+div.img.hover .title, div.img.hover .extraInfo, div.img.extraInfoRight .title{
+    position: absolute;
 }
 
 div.img img {
