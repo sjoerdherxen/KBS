@@ -6,35 +6,42 @@ if (!isLoggedIn()) {
     header("location: index.php");
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Materiaal", '');
+renderHtmlStartAdmin("Materiaalen", '');
 
 $limitDatabase = [30];
 $saved = false;
 
-$toevoegenmateriaal = [];
+$toevoegenMateriaal = [];
 $doorgaan_naam = false;
+$invoerDatabase = [];
 
 if (isset($_POST["Toevoegen"])) {
     if (!isset($_POST["Naam"]) || $_POST["Naam"] == "") {
-        $Naamerror = "Er moet een soort worden ingevuld.";
+        $Naamerror = "Er moet een naam worden ingevuld.";
     } else {
-        $doorgaan_naam = true;
-    }
-    if ($doorgaan_naam == true) {
-        $toevoegenmateriaal[] = $_POST["Naam"];
-        $toevoegenmateriaal[] = $_POST["Beschrijving"];
-        query("INSERT INTO materiaal (materiaal_soort, Beschrijving) VALUES (?, ?)", $toevoegenmateriaal);
-        $saved = true;
+        $toevoegenMateriaal[] = $_POST["Naam"];
+        $toevoegenMateriaal[] = $_POST["Beschrijving"];
+        $invoerDatabase[] = $_POST["Naam"];
+        $uitvoerDatabase = query("SELECT Materiaal_soort FROM Materiaal Where Materiaal_soort = ?", $invoerDatabase);
+        if (count($uitvoerDatabase) === 0) {
+            query("INSERT INTO Materiaal (Materiaal_soort, Beschrijving) VALUES (?, ?)", $toevoegenMateriaal);
+            $saved = true;
+        } else {
+            ?>
+            <script>
+                alert("Toevoegen materiaal is mislukt, materiaal bestaat al.");
+            </script>
+            <?php
+        }
     }
 }
-$uitvoerDatabase = query("SELECT * FROM materiaal", NULL);
 
 if ($saved) {
     ?>
     <script>
         setTimeout(function () {
             if (confirm("Het materiaal is toegevoegd.\n\nWilt u terug naar het overzicht?")) {
-                location = "/admin/categorieList.php";
+                location = "/admin/materiaalList.php";
             }
         }, 1);
     </script>

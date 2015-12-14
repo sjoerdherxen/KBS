@@ -13,27 +13,35 @@ $saved = false;
 
 $toevoegenSubcategorie = [];
 $doorgaan_naam = false;
+$invoerDatabase = [];
+
 if (isset($_POST["Toevoegen"])) {
     if (!isset($_POST["Naam"]) || $_POST["Naam"] == "") {
         $Naamerror = "Er moet een naam worden ingevuld.";
     } else {
-        $doorgaan_naam = true;
-    }
-    if ($doorgaan_naam == true) {
         $toevoegenSubcategorie[] = $_POST["Naam"];
         $toevoegenSubcategorie[] = $_POST["Beschrijving"];
-        query("INSERT INTO Subcategorie (Subcategorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenSubcategorie);
-        $saved = true;
+        $invoerDatabase[] = $_POST["Naam"];
+        $uitvoerDatabase = query("SELECT Subcategorie_naam FROM Materiaal Where Subcategorie_naam = ?", $invoerDatabase);
+        if (count($uitvoerDatabase) === 0) {
+            query("INSERT INTO Subcategorie (Subcategorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenSubcategorie);
+            $saved = true;
+        } else {
+            ?>
+            <script>
+                alert("Toevoegen subcategorie is mislukt, subcategorie bestaat al.");
+            </script>
+            <?php
+        }
     }
 }
-$uitvoerDatabase = query("SELECT * FROM Subcategorie", NULL);
 
 if ($saved) {
     ?>
     <script>
         setTimeout(function () {
             if (confirm("De subcategorie is toegevoegd.\n\nWilt u terug naar het overzicht?")) {
-                location = "/admin/categorieList.php";
+                location = "/admin/subcategorieList.php";
             }
         }, 1);
     </script>
