@@ -8,24 +8,23 @@ renderHtmlStart("Schilderij", "");
 </script>
 
 <?php
-/*
-  $id = $_GET["id"]; // komt uit get of post
- */
-$schilderij;
+$params= array($_GET["id"] );
+
+
 ?>
 <br>
 <br>
 
 <div class="schilderijimg">
 
-    <img src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg/266px-Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg
+    <img src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg/266px-Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg <?php /*query(SELECT IMG FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?>
          alt="schilderij" >
     
     <ul>
         <li>Titel:<?php /*query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?></li>
         <li>Jaar:<?php /*query(SELECT JAAR FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?></li>
         <li>Dimensies(HxB):<?php /*query(SELECT HOOGTE FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?> * <?php /*query(SELECT BREEDTE FROM SCHILDERIJ WHERE Schilderij_id=$id, $params)  */  ?></li>   
-        <li>Catagorie:<?php /*query(SELECT CATAGORIE FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?></li>
+        <li>Catagorie:<?php /*query(SELECT CATEGORIE_NAAM FROM CATEGORIE WHERE CATEGORIEID =(SELECT CATEGORIEID FROM SCHILDERIJ WHERE SCHILDERIJID = ?), $params)  */  ?><?php /*query(SELECT SUBCATEGORIE_NAAM FROM SUBCATEGORIE WHERE SUBCATEGORIEID =(SELECT SUBCATEGORIEID FROM SCHILDERIJ WHERE SCHILDERIJID = ?), $params)  */  ?></li>
         <li>Materiaal:<?php /*query(SELECT MATERIAAL FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?></li>
         
     </ul>
@@ -35,10 +34,15 @@ $schilderij;
     <div class="title">Titel<?php /*query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderij_id=$id, $params)  */  ?></div>
 </div>
 
-<div class="beschrijving">Beschrijving</div>
+<div class="beschrijving">
+    
+    
+    <a>Beschrijving</a>
+    <a><?php /*query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderij_id=$id, $params)  */  ?></a>
+
+</div>
 
 
-<!-- hier komt de rest van de schilderij-->
 
 
 
