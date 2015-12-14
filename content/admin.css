@@ -25,18 +25,18 @@
 }
 
 #navigation{
-    height:40px;
+    height:48px;
     width: 100%;
 }
 
 #navigation ul{
-    height: 40px;
+    height: 48px;
+    margin: 0px;
     padding: 0;
     background-color: gray;
 }
 #navigation ul li{
-    height: 36px;
-    margin: 2px 10px;
+    height: 40px;
     float: left;
     list-style: none;
 }
@@ -44,12 +44,11 @@
     float: right;
 }
 #navigation ul li a, #navigation ul li span{
-    height: 18px;
     display: block;
     color: white;
     text-decoration: none;
     text-align: center;
-    padding: 9px;
+    padding: 14px 16px;
 }
 
 
