@@ -45,13 +45,13 @@ if (isset($_POST["knop"])) {
 
     $schilderij["Beschrijving"] = $_POST["beschrijving"];
     $schilderInsert[] = $_POST["beschrijving"];
-    
+
     $schilderij["lijst"] = isset($_POST["lijst"]);
     $schilderInsert[] = $schilderij["lijst"] ? 1 : 0;
-    
+
     $schilderij["passepartout"] = isset($_POST["passepartout"]);
     $schilderInsert[] = $schilderij["passepartout"] ? 1 : 0;
-    
+
     $schilderij["isStaand"] = $_POST["isStaand"] == "true";
     $schilderInsert[] = $schilderij["isStaand"] ? 1 : 0;
 
@@ -61,7 +61,7 @@ if (isset($_POST["knop"])) {
     }
     $schilderij["Jaar"] = $_POST["jaar"];
     $schilderInsert[] = $_POST["jaar"];
-    
+
     if (!is_numeric($_POST["prijs"]) && isset($_POST["prijs"]) && trim($_POST["prijs"]) != "") {
         $jaarError = "Prijs is geen getal";
         $correct = false;
@@ -118,7 +118,7 @@ if (isset($_POST["knop"])) {
     }
     $schilderij["SubcategorieID"] = $_POST["subcategorie"];
     $schilderInsert[] = $_POST["subcategorie"];
-    
+
     if (isset($_FILES["img"])) {
         $imgExtension = strtolower(strrchr($_FILES["img"]["name"], "."));
         $correctExtensions = array(".png", ".jpg", ".jpeg", ".gif");
@@ -134,8 +134,14 @@ if (isset($_POST["knop"])) {
 
     if ($correct) {
         $schilder = query("SELECT schilderid FROM schilder LIMIT 0,1", null);
-        $schilderInsert[] = $schilder[0]["schilderid"];
-        
+        if (count($schilder) == 0) {
+            $schilderid = insert("INSERT INTO schilder (naam_schilder) VALUES (Ellen van 't Hof)", null);
+        } else {
+            $schilderid = $schilder[0]["schilderid"];
+        }
+
+        $schilderInsert[] = $schilderid;
+
         $id = insert("INSERT INTO schilderij (Titel, beschrijving, lijst, passepartout, isStaand, jaar, prijs, hoogte, "
                 . "                             breedte, categorieid, materiaalid, schilderId, subcategorieId)"
                 . "  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", $schilderInsert);
