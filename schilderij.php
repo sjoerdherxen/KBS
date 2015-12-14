@@ -8,37 +8,55 @@ renderHtmlStart("Schilderij", "");
 </script>
 
 <?php
-/*
-  $id = $_GET["id"]; // komt uit get of post
- */
-$schilderij;
+$params = array($_GET["id"]);
+// query(SELECT * FROM SCHILDERIJ (join van maken)WHERE Schilderijid=?, $params) 
+//fetch
+$schilderijlijst = query("SELECT * FROM SCHILDERIJ WHERE Schilderijid=?", $params) ;
+$schilderij = $schilderijlijst[0];
+
 ?>
 <br>
 <br>
 
 <div class="schilderijimg">
 
-    <img src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg/266px-Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg
+    <img src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg/266px-Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg <?php /* query(SELECT IMG FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */ ?>
          alt="schilderij" >
-    
-    <ul>
-        <li>Titel:<?php /*query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?></li>
-        <li>Jaar:<?php /*query(SELECT JAAR FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?></li>
-        <li>Dimensies(HxB):<?php /*query(SELECT HOOGTE FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?> * <?php /*query(SELECT BREEDTE FROM SCHILDERIJ WHERE Schilderij_id=$id, $params)  */  ?></li>   
-        <li>Catagorie:<?php /*query(SELECT CATAGORIE FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?></li>
-        <li>Materiaal:<?php /*query(SELECT MATERIAAL FROM SCHILDERIJ WHERE Schilderij_id="$id", $params)  */  ?></li>
-        
-    </ul>
-    
-    
 
-    <div class="title">Titel<?php /*query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderij_id=$id, $params)  */  ?></div>
+    <ul class="schilderij">
+        <li>Titel:<?php print $schilderij["titel"]/* query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></li>
+        <li>Jaar:<?php /* query(SELECT JAAR FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></li>
+        <li>Dimensies(HxB):<?php /* query(SELECT HOOGTE FROM SCHILDERIJ WHERE Schilderijod=?, $params)  */ ?> * <?php /* query(SELECT BREEDTE FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></li>   
+        <li>Catagorie:<?php /* query(SELECT CATEGORIE_NAAM FROM CATEGORIE WHERE CATEGORIEID =(SELECT CATEGORIEID FROM SCHILDERIJ WHERE SCHILDERIJID = ?), $params)  */ ?>
+
+
+            <?php
+            $result = query("SELECT SUBCATEGORIE_NAAM FROM SUBCATEGORIE WHERE SUBCATEGORIEID =(SELECT SUBCATEGORIEID FROM SCHILDERIJ WHERE SCHILDERIJID = ?)", $params);
+            if (count($result) == 1) {
+                print(", ");
+                print($result[0]["SUBCATEGORIE_NAAM"]);
+            }
+            ?></li>
+        <li>Materiaal:<?php /* query(SELECT MATERIAAL FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></li>
+
+    </ul>
+
+
+
+
+</div>
+<br>
+<br>
+<div class="onderschilderij">
+    <div class="title">Titel<?php /* query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></div>
+    <div class="beschrijving">
+        <a>Beschrijving</a>
+        <a><?php /* query(SELECT TITEL FROM SCHILDERIJ WHERE Schilderijid=?,  $params)  */ ?></a>
+
+    </div>
 </div>
 
-<div class="beschrijving">Beschrijving</div>
 
-
-<!-- hier komt de rest van de schilderij-->
 
 
 

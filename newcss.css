@@ -8,6 +8,11 @@ and open the template in the editor.
     Author     : ruben
 */
 
+/* gebruiken om alle divs te checken
+div, ul, img {
+    border: solid 1px ;
+}
+*/
 body{
     background-color: #E3F0F5;
     font-family: Californian FB;
@@ -419,14 +424,21 @@ div.schilderijimg
 {
  position:relative;
     top:45px;
-    left:55px;
-    width:400px;
-    
-    
+    left:75px;
+    width: 450px;
+
    
 
 }
-
+ul.schilderij{
+    float: right;
+    margin: 0px 0px 10px 10px;
+    text-align: left;
+     list-style-type: none;
+}
 div.beschrijving{
     
+}
+div.onderschilderij{
+    padding-left: 75px;
 }
