@@ -12,10 +12,10 @@ if (isset($_GET["id"])) {
     $result1 = query('SELECT SubcategorieID FROM subcategorie WHERE SubcategorieID = ?', $paragram);
     if (count($result1 == 1)) {
         query('DELETE FROM subcategorie WHERE SubcategorieID = ?', array($_GET["id"]));
-        header('location:subcategorieList.php');
+        header('location:subcategorieList.php#Subcategorie is verwijderd!');
         exit();
     } else {
-        header('location:subcategorieList.php');
+        header('location:subcategorieList.php#Subcategorie verwijderen is mislukt!');
         exit();
     }
 } 

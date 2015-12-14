@@ -31,6 +31,7 @@ function renderHtmlStart($title, $extra) {
                         <li class="limenu"><a href="/zoeken.php" class="menutext">Zoeken</a></li> 
                         <li class="limenu"><a href="/contact.php" class="menutext">Contact</a></li>    
 
+
                     </ul>
                 </div>           
 

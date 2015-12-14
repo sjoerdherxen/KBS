@@ -6,7 +6,7 @@ if (!isLoggedIn()) {
     header("location: index.php");
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Materiaalen", '');
+renderHtmlStartAdmin("Materialen", '');
 
 $limitDatabase = [30];
 $saved = false;

@@ -2,7 +2,7 @@
 
 include './htmlHelpers.php';
 include './functions.php';
-renderHtmlStart("Gallerij", "");
+renderHtmlStart("Gallerij", "<script src='/content/gallerij.js'></script>");
 ?>
 
 <div class="gallerij">

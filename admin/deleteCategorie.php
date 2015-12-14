@@ -15,7 +15,7 @@ if (isset($_GET["id"])) {
         header("location: categorieList.php#Categorie is verwijderd!");
         exit();
     } else {
-        header("location: categorieList.php#Categorie verwijderen mislukt!");
+        header("location: categorieList.php#Categorie verwijderen is mislukt!");
         exit();
     } 
 } 
