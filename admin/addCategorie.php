@@ -12,21 +12,28 @@ $saved = false;
 
 $toevoegenCategorie = [];
 $doorgaan_naam = false;
+$uitvoerDatabase = query("SELECT * FROM Categorie", NULL);
 
 if (isset($_POST["Toevoegen"])) {
     if (!isset($_POST["Naam"]) || $_POST["Naam"] == "") {
         $Naamerror = "Er moet een naam worden ingevuld.";
     } else {
-        $doorgaan_naam = true;
-    }
-    if ($doorgaan_naam == true) {
         $toevoegenCategorie[] = $_POST["Naam"];
         $toevoegenCategorie[] = $_POST["Beschrijving"];
-        query("INSERT INTO Categorie (Categorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenCategorie);
-        $saved = true;
+        $invoerDatabase[] = $_POST["Naam"];
+        $uitvoerDatabase = query("SELECT Categorie_naam FROM Categorie Where Categorie_naam = ?", $invoerDatabase);
+        if (count($uitvoerDatabase) === 0) {
+            query("INSERT INTO Categorie (Categorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenCategorie);
+            $saved = true;
+        } else {
+            ?>
+            <script>
+                alert("Toevoegen categorie is mislukt, categorie bestaat al.");
+            </script>
+            <?php
+        }
     }
 }
-$uitvoerDatabase = query("SELECT * FROM Categorie", NULL);
 
 if ($saved) {
     ?>
@@ -86,10 +93,11 @@ renderHtmlEndAdmin();
 
 
 
-/* 
- * 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*
+         * 
+         * To change this license header, choose License Headers in Project Properties.
+         * To change this template file, choose Tools | Templates
+         * and open the template in the editor.
+         */
 
+        
