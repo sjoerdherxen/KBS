@@ -22,7 +22,7 @@ if (isset($_POST["Toevoegen"])) {
         $toevoegenSubcategorie[] = $_POST["Naam"];
         $toevoegenSubcategorie[] = $_POST["Beschrijving"];
         $invoerDatabase[] = $_POST["Naam"];
-        $uitvoerDatabase = query("SELECT Subcategorie_naam FROM Materiaal Where Subcategorie_naam = ?", $invoerDatabase);
+        $uitvoerDatabase = query("SELECT Subcategorie_naam FROM Subcategorie Where Subcategorie_naam = ?", $invoerDatabase);
         if (count($uitvoerDatabase) === 0) {
             query("INSERT INTO Subcategorie (Subcategorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenSubcategorie);
             $saved = true;
