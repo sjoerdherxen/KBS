@@ -416,7 +416,10 @@ div.schilderijimg
    
 
 }
-
+ul.schilderij{
+    float: right;
+    margin: 0px 0px 10px 10px;
+}
 div.beschrijving{
     
 }
