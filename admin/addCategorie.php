@@ -12,7 +12,7 @@ $saved = false;
 
 $toevoegenCategorie = [];
 $doorgaan_naam = false;
-$uitvoerDatabase = query("SELECT * FROM Categorie", NULL);
+$invoerDatabase = [];
 
 if (isset($_POST["Toevoegen"])) {
     if (!isset($_POST["Naam"]) || $_POST["Naam"] == "") {

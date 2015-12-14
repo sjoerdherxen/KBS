@@ -13,7 +13,7 @@ if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
         header("location: schilderijList.php#Schilderij " . $result[0]["titel"] . " is verwijderd.");
         exit();
     } else {
-        header("location: schilderijList.php");
+        header("location: schilderijList.php#Schilderij " . $result[0]["titel"] . " verwijderen is mislukt!");
         exit();
     }
 }
