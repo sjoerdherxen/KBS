@@ -9,7 +9,7 @@ if (!isLoggedIn()) {
 }
 if (isset($_GET["id"])) {
     $invoer = array($_GET["id"]);
-    $result = query("select MateriaalID from materiaal where MateriaalID = ?", $invoer);
+    $result = query("SELECT MateriaalID FROM materiaal WHERE MateriaalID = ?", $invoer);
     if (count($result) == 1) {
         query("DELETE FROM materiaal WHERE MateriaalID = ?", array($_GET["id"]));
         header("location:materiaalList.php#Materiaal is verwijderd!");
