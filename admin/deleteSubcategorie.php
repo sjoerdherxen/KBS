@@ -9,8 +9,8 @@ if (!isLoggedIn()) {
 }
 if (isset($_GET["id"])) {
     $paragram = array($_GET["id"]);
-    $result1 = query('SELECT SubcategorieID FROM subcategorie WHERE SubcategorieID = ?', $paragram);
-    if (count($result1 == 1)) {
+    $result = query('SELECT SubcategorieID FROM subcategorie WHERE SubcategorieID = ?', $paragram);
+    if (count($result == 1)) {
         query('DELETE FROM subcategorie WHERE SubcategorieID = ?', array($_GET["id"]));
         header('location:subcategorieList.php#Subcategorie is verwijderd!');
         exit();
