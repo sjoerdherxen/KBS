@@ -10,7 +10,7 @@ if (!isLoggedIn()) {
 if (isset($_GET["id"])) {
     $invoer = array($_GET["id"]);
     $result = query("SELECT CategorieID FROM Categorie WHERE CategorieID = ?", $invoer);
-    if (count($result == 1)) {
+    if (count($result) == 1) {
         query("DELETE FROM Categorie WHERE CategorieID = ?", array($_GET["id"]));
         header("location: categorieList.php#Categorie is verwijderd!");
         exit();
