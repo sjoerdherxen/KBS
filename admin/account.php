@@ -7,7 +7,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Account", "");
+renderHtmlStartAdmin("Account", "", "account");
 
 if (isset($_POST["oldpassword"])) {
     $wachtwoordHash = hash("sha256", $_POST["oldpassword"]);

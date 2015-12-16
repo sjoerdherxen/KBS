@@ -5,7 +5,7 @@ if (!isLoggedIn()) {
     header("location: index.php");
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Contact", '');
+renderHtmlStartAdmin("Contact", '', "contact");
 
 $uitvoerDatabase = query("SELECT * FROM schilder", NULL);
 

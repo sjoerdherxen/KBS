@@ -7,7 +7,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Schilderijen", "");
+renderHtmlStartAdmin("Schilderijen", "", "schilderij");
 
 $zoek = "";
 if (isset($_GET["zoek"]) && $_GET["zoek"] != "") {

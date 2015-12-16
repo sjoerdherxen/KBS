@@ -7,7 +7,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("inlog", "");
+renderHtmlStartAdmin("inlog", "","main");
 
 
 echo "welkom: " . getUser();

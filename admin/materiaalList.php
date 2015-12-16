@@ -7,7 +7,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Materiaal", "");
+renderHtmlStartAdmin("Materiaal", "", "materiaal");
 $query = "SELECT * FROM Materiaal";
 $materiaalen = query($query, null);
 

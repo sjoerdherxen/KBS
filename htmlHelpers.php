@@ -55,7 +55,7 @@ function renderHtmlStart($title, $extra) {
     <?php
 }
 
-function renderHtmlStartAdmin($title, $extra) {
+function renderHtmlStartAdmin($title, $extra, $page) {
     ?>
     <html>
         <head>
@@ -76,14 +76,14 @@ function renderHtmlStartAdmin($title, $extra) {
         <body>
             <div id="navigation">
                 <ul>
-                    <li><a href="/admin/main.php">Home</a></li>
-                    <li><a href="/admin/schilderijList.php">Schilderijen</a></li>
-                    <li><a href="/admin/categorieList.php">Categorie&euml;n</a></li>
-                    <li><a href="/admin/subcategorieList.php">Subcategori&euml;n</a></li>
-                    <li><a href="/admin/materiaalList.php">Materialen</a></li>
-                    <li><a href="/admin/editContactgegevens.php">Contactgegevens</a></li>
+                    <li><a href="/admin/main.php" <?php if($page == "main") echo "class='active'";?>>Home</a></li>
+                    <li><a href="/admin/schilderijList.php" <?php if($page == "schilderij") echo "class='active'";?>>Schilderijen</a></li>
+                    <li><a href="/admin/categorieList.php" <?php if($page == "categorie") echo "class='active'";?>>Categorie&euml;n</a></li>
+                    <li><a href="/admin/subcategorieList.php" <?php if($page == "subcategorie") echo "class='active'";?>>Subcategori&euml;n</a></li>
+                    <li><a href="/admin/materiaalList.php" <?php if($page == "materiaal") echo "class='active'";?>>Materialen</a></li>
+                    <li><a href="/admin/editContactgegevens.php" <?php if($page == "contact") echo "class='active'";?>>Contactgegevens</a></li>
                     <li class="menu-right"><a href="/admin/uitloggen.php">Uitloggen</a></li>
-                    <li class="menu-right"><a href="/admin/account.php"><?php echo $_SESSION["inlog"]; ?></a></li>
+                    <li class="menu-right"><a href="/admin/account.php" <?php if($page == "account") echo "class='active'";?>><?php echo $_SESSION["inlog"]; ?></a></li>
                 </ul>
             </div>
             <script>

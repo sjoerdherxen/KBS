@@ -7,7 +7,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Subcategori&euml;n", "");
+renderHtmlStartAdmin("Subcategori&euml;n", "", "subcategorie");
 $query = "SELECT * FROM subcategorie";
 $subcategorieen = query($query, null);
 

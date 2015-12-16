@@ -5,7 +5,7 @@ if (!isLoggedIn()) {
     header("location: index.php");
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Materiaal", '<script src="/content/editMateriaal.js"></script>');
+renderHtmlStartAdmin("Materiaal", '<script src="/content/editMateriaal.js"></script>', "materiaal");
 
 $saved = false;
 if (isset($_GET["id"])) {

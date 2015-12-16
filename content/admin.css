@@ -43,6 +43,10 @@
 #navigation ul li.menu-right{
     float: right;
 }
+#navigation ul li a.active, #navigation ul li a:hover{
+    background-color: #444;
+}
+
 #navigation ul li a, #navigation ul li span{
     display: block;
     color: white;
@@ -63,6 +67,9 @@
 
 #editSchilderijImg{
     float:left;
+    border: 1px solid #888;
+    padding: 5px;
+    margin: 0 5px;
 }
 
 .schilderijListItem, .categorieListItem, .subcategorieListItem, .materiaalListItem{

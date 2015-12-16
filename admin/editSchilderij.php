@@ -7,7 +7,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Schilderij bewerken", "");
+renderHtmlStartAdmin("Schilderij bewerken", "", "schilderij");
 
 // schilderij id uit get of redirect naar lijst
 $schilderijId = $_GET["id"];
