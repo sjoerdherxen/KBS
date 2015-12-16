@@ -9,13 +9,13 @@ if (!isLoggedIn()) {
 }
 if (isset($_GET["id"])) {
     $invoer = array($_GET["id"]);
-    $result = query('SELECT SubcategorieID FROM subcategorie WHERE SubcategorieID = ?', $invoer);
+    $result = query("SELECT SubcategorieID FROM subcategorie WHERE SubcategorieID = ?", $invoer);
     if (count($result) == 1) {
-        query('DELETE FROM subcategorie WHERE SubcategorieID = ?', array($_GET["id"]));
-        header('location: subcategorieList.php#Subcategorie is verwijderd!');
+        query("DELETE FROM Subcategorie WHERE SubcategorieID = ?", array($_GET["id"]));
+        header("location: subcategorieList.php#Subcategorie is verwijderd!");
         exit();
     } else {
-        header('location:subcategorieList.php#Subcategorie verwijderen is mislukt!');
+        header("location:subcategorieList.php#Subcategorie verwijderen is mislukt!");
         exit();
     }
 }

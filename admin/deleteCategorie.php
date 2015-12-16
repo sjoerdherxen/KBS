@@ -3,6 +3,7 @@
 
 session_start();
 require 'functions.php';
+confirm("Weet u zeker dat u deze subcategorie wilt verwijderen?");
 if (!isLoggedIn()) {
     header("location: index.php");
     exit();
