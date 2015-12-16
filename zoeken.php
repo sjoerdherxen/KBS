@@ -21,13 +21,34 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                 Zoek: <input type="text" name="zoek" id="gallerij-zoek-text" value="<?php echo $zoek; ?>">
                 <input type="submit" value="Filter" name="button">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
+                Lijst
+                <select name="lijst">
+                    <option value="">Beide</option>
+                    <option>Met</option>
+                    <option>Zonder</option>
+                </select> <br/>
+                Passepartout
+                <select name="passepartout">
+                    <option value="">Beide</option>
+                    <option>Met</option>
+                    <option>Zonder</option>
+                </select> <br/>
+                Orientatie 
+                <select name="orientatie">
+                    <option value="">Beide</option>
+                    <option>Staand</option>
+                    <option>Liggend</option>
+                </select> <br/>
 
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
 
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-3">
 
             </div>
         </div>
