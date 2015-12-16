@@ -6,7 +6,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Welkomstekst", "");
+renderHtmlStartAdmin("Welkomstekst", "", "Welkomteskst");
 
 if (isset($_POST["verzendknop"])){
     if (isset($_POST["Beschrijving"]) && $_POST["Beschrijving"] !== ""){
@@ -37,14 +37,13 @@ foreach ($uitvoerDatabase as $value1){
         <tr>
             <td>
                 <textarea name="Beschrijving" rows="4" cols="50"
-                          placeholder="Vul de welkomstekst (die op de hoofdpagina wordt weergeven) hier in"><?php echo $waarde; ?>
-                </textarea>
+                          placeholder="Vul de welkomstekst (die op de hoofdpagina wordt weergeven) hier in"><?php echo $waarde; ?></textarea>
             </td>
         </tr>
         <tr>
             <td>
                 <input type="button" name="empty" value="Leegmaken">
-                <input type ="submit" name="verzendkonp" value="Opslaan">
+                <input type ="submit" name="verzendknop" value="Opslaan">
             </td>
         </tr>
     </table>
