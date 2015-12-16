@@ -54,11 +54,10 @@ $schilderij = $schilderijlijst[0];
 
 
 
-<?php
-$comments = query("SELECT * FROM commentaar C join schilderij S on Cm.Schilderij_ID = S.Schilderij_ID where schilderij_ID=?", $params); 
-$opmerkingen = $comments;
-
-?>
+    <?php
+    $comments = query("SELECT * FROM commentaar C join schilderij S on Cm.Schilderij_ID = S.Schilderij_ID where schilderij_ID=?", $params);
+    $opmerkingen = $comments;
+    ?>
 </div>
 <br>
 <br>
@@ -99,13 +98,15 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
         $commentaarsucces = false;
         $correct = false;
     }
-    if ($correct ) {
+    if ($correct) {
         $input = array($_POST["naam"], $_POST["email"], $_POST["commentaar"], $_GET["id"]);
         query("insert into commentaar (naam_klant, email_klant, opmerking, schilderij_id) VALUES (?, ?, ?, ?)", $input);
-    
-        echo ("Gelukt");/*  HIER EEN POPUP DIE AANGEEFT DAT HET SUCCESVOL WAS  */ 
+        ?>
+        <script>
+          alert("Commentaar is toegevoegd");
+        </script>
+        <?php
     }
-    
 }
 ?>
 
@@ -119,11 +120,11 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
                 <td class="commentaar">Naam</td>
                 <td>:</td>
                 <td><input name="naam" type="text" id="naam" size="40"/>
-                    <?PHP
-                    if (isset($naamleeg)) {
-                        echo $naamleeg;
-                    }
-                    ?></td>
+<?PHP
+if (isset($naamleeg)) {
+    echo $naamleeg;
+}
+?></td>
             </tr>
             <tr>
                 <td class="commentaar">Email</td>
@@ -134,11 +135,11 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
                 <td class="commentaar">Commentaar</td>
                 <td >:</td>
                 <td><textarea name="commentaar" cols="42" rows="4" id="opmerking" ></textarea>
-                    <?PHP
-                    if (isset($commentaarleeg)) {
-                        echo $commentaarleeg;
-                    }
-                    ?>
+<?PHP
+if (isset($commentaarleeg)) {
+    echo $commentaarleeg;
+}
+?>
                 </td>
             </tr>
             <tr>
