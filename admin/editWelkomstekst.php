@@ -8,11 +8,14 @@ if (!isLoggedIn()) {
 require '../htmlHelpers.php';
 renderHtmlStartAdmin("Welkomstekst", "", "Welkomteskst");
 
+$naamerror = false;
+
 if (isset($_POST["verzendknop"])){
     if (isset($_POST["Beschrijving"]) && $_POST["Beschrijving"] !== ""){
-        var_dump($_POST["Beschrijving"]);
         $invoerDatabase = [$_POST["Beschrijving"]];
         query("UPDATE Welkomstekst SET Beschrijving = ? WHERE ID = 1", $invoerDatabase);
+    } else {
+        $naamerror = true;
     }
 }
 
@@ -36,19 +39,29 @@ foreach ($uitvoerDatabase as $value1){
         </tr>
         <tr>
             <td>
-                <textarea name="Beschrijving" rows="4" cols="50"
+                <textarea name="Beschrijving" rows="4" cols="50" id="text"
                           placeholder="Vul de welkomstekst (die op de hoofdpagina wordt weergeven) hier in"><?php echo $waarde; ?></textarea>
             </td>
         </tr>
         <tr>
             <td>
-                <input type="button" name="empty" value="Leegmaken">
+                <?php if ($naamerror === true){echo"Er moet een beschrijving worden ingevuld";} ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" name="empty" value="Leegmaken" id="leegmaakknop">
                 <input type ="submit" name="verzendknop" value="Opslaan">
             </td>
         </tr>
     </table>
 </form>
 
+<script>
+    document.getElementById("leegmaakknop").onclick=function(){
+        document.getElementById("text").value="";
+    }
+</script>
 
 <?php
 renderHtmlEndAdmin();
