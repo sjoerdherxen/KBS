@@ -21,7 +21,7 @@ renderHtmlStart("Gallerij", "<script src='/content/gallerij.js'></script>");
 
     $schilderijen = query("SELECT * FROM schilderij LIMIT " . ($page * $pageSize - $pageSize) . ", " . $pageSize, null);
 //echo "<div class='row'>";
-    toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize);
+    toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, "/gallerij.php?");
     ?>
 
 </div>

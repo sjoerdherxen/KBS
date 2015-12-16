@@ -55,7 +55,7 @@ function checkCaptcha($captchaInput) {
     return $response->success == true;
 }
 
-function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize) {
+function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) {
     $i = 0;
     foreach ($schilderijen as $schilderij) {
         if ($i % 4 == 0 && $i != $pageSize) {
@@ -92,24 +92,24 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize) {
     <div style="clear: both;"></div>
     <?php
 
-    if ($pageCount != 1) {
+    if ($pageCount >= 2) {
         ?>
         <div id="pages-wrapper">
             <div id="pages" class="btn-group">
                 <?php
 
-                $prevPageHref = $page == 1 ? "" : 'href="gallerij.php?page=' . ($page - 1) . '"';
+                $prevPageHref = $page == 1 ? "" : 'href="'.$url.'page=' . ($page - 1) . '"';
                 echo '<a class="btn btn-default prev" ' . $prevPageHref . '><span class="glyphicon glyphicon-chevron-left"></span></a>';
 
                 for ($i = 1; $i <= $pageCount; $i++) {
                     if ($i == $page) {
                         echo "<span class='active btn btn-default btn-active'>" . $i . "</span>";
                     } else {
-                        echo "<a class='btn btn-default' href='/gallerij.php?page=" . $i . "'>" . $i . "</a>";
+                        echo "<a class='btn btn-default' href='".$url."page=" . $i . "'>" . $i . "</a>";
                     }
                 }
 
-                $nextPageHref = $page == $pageCount ? "" : 'href="gallerij.php?page=' . ($page + 1) . '"';
+                $nextPageHref = $page == $pageCount ? "" : 'href="'.$url.'page=' . ($page + 1) . '"';
                 echo '<a class="btn btn-default next" ' . $nextPageHref . '><span class="glyphicon glyphicon-chevron-right"></span></a>';
                 ?>
             </div>
