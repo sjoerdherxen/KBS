@@ -17,7 +17,7 @@ $schilderijlijst = query("SELECT S.titel, S.jaar, S.hoogte, C.Categorie_naam, SC
   JOIN Categorie C ON C.CategorieID = S.CategorieID 
   LEFT JOIN SubCategorie SC ON SC.SubcategorieID = S.SubcategorieID 
   JOIN Materiaal M ON M.MateriaalID = S.MateriaalID
-  JOIN Commentaar Cm on Cm.Schilderij_ID = S.Schilderij_ID
+  
   WHERE S.schilderij_id = ?", $params);
 
 $schilderij = $schilderijlijst[0];
@@ -32,7 +32,7 @@ $schilderij = $schilderijlijst[0];
     <ul class="schilderij">
         <li>Titel:<?php print $schilderij["titel"] ?></li>
         <li>Jaar:<?php print $schilderij["jaar"] ?></li>
-        <li>Dimensies(HxB):<?php print $schilderij["hoogte"] ?> * <?php print $schilderij["breedte"] ?></li>   
+        <li>Dimensies(HxB):<?php print $schilderij["hoogte"] ?> * <?php print $schilderij["Breedte"] ?></li>   
         <li>Catagorie:<?php print $schilderij["Categorie_naam"] ?>
 
 
@@ -49,7 +49,11 @@ $schilderij = $schilderijlijst[0];
 
 
 
+<?php
+$comments = query("SELECT * FROM commentaar C join schilderij S on Cm.Schilderij_ID = S.Schilderij_ID where schilderij_ID=?", $params); 
+$opmerkingen = $comments;
 
+?>
 </div>
 <br>
 <br>
@@ -64,6 +68,12 @@ $schilderij = $schilderijlijst[0];
 </div>
 
 
+<div class="comments">
+    <div>
+        <h4>Commentaar</h4>
+    </div>
+
+</div>
 <?php
 $naamleeg = "";
 $naam = "";
@@ -146,12 +156,7 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
 
     </form>
 </div>
-<div class="comments">
-    <div>
-        <h4>Commentaar</h4>
-    </div>
 
-</div>
 
 <?php
 renderHtmlEnd();

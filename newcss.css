@@ -438,18 +438,17 @@ div.onderschilderij{
 }
 
 div.capthapositie{
-    padding-top: 100px;
     padding-left: 350px;
     margin-bottom: 200px;
-    
-    
+
+
 }
 div.capthapositie1{
-    margin-left: 20px
-    
+    margin-left: 25px
+
 }
 div.comments{
     text-align: center;
+    margin-top: 100px;
 
-    
 }
