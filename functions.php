@@ -74,7 +74,7 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize) {
                     <?php echo $schilderij["Hoogte"]; ?> x <?php echo $schilderij["Breedte"]; ?> cm
                 </div>
                 <div class="extraInfoRight">
-                    <?php echo $schilderij["Jaar"]; ?>
+                    <?php echo $schilderij["Jaar"] == "0000" ? "" : $schilderij["Jaar"]; ?>
                 </div>
             </div> 
         </a>

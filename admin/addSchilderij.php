@@ -139,11 +139,10 @@ if (isset($_POST["knop"])) {
         } else {
             $schilderid = $schilder[0]["schilderid"];
         }
-
         $schilderInsert[] = $schilderid;
 
         $id = insert("INSERT INTO schilderij (Titel, beschrijving, lijst, passepartout, isStaand, jaar, prijs, hoogte, "
-                . "                             breedte, categorieid, materiaalid, schilderId, subcategorieId)"
+                . "                             breedte, categorieid, materiaalid, subcategorieId, schilderId)"
                 . "  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", $schilderInsert);
 
         $newpath = "/content/uploads/" . $id . $imgExtension;
@@ -152,8 +151,8 @@ if (isset($_POST["knop"])) {
 
         move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
 
-        //header("location: schilderijList.php");
-        //exit();
+        header("location: schilderijList.php");
+        exit();
     }
 }
 ?>
