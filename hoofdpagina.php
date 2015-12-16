@@ -14,7 +14,11 @@ renderHtmlStart("Home", "");
 <div>
     <?php
     $uitvoerDatabase = query("SELECT Beschrijving FROM Welkomstekst WHERE ID = 1", NULL);
-    echo"$uitvoerDatabase";
+    foreach ($uitvoerDatabase as $value1){
+        foreach ($value1 as $value2){
+            echo "<td>$value2</td></tr>";
+        }
+    }
     ?>
 </div>
 
