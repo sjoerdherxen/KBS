@@ -10,7 +10,12 @@ renderHtmlStart("Schilderij", "");
 <?php
 $params = array($_GET["id"]);
 
-
+/* TE DOEN
+ * 
+ * TOEVOEGEN CONFIRMATIE WANNEER EEN COMMENTAAR IS TOEGEVOEGD DOOR MIDDEL VAN POP UP IN HETZELFDE TABBLAD
+ * OPMAAK COMMENTAAR BOX
+ * PRINT COMMENTAAR UIT DATABASE VAN DAT SPECIFIEKE SCHILDERIJ 
+ *   */
 
 $schilderijlijst = query("SELECT S.titel, S.jaar, S.hoogte, C.Categorie_naam, SC.Subcategorie_naam, M.Materiaal_soort, S.img
  FROM Schilderij S 
@@ -32,7 +37,7 @@ $schilderij = $schilderijlijst[0];
     <ul class="schilderij">
         <li>Titel:<?php print $schilderij["titel"] ?></li>
         <li>Jaar:<?php print $schilderij["jaar"] ?></li>
-        <li>Dimensies(HxB):<?php print $schilderij["hoogte"] ?> * <?php print $schilderij["Breedte"] ?></li>   
+        <li>Dimensies:<?php print $schilderij["hoogte"] ?> * <?php print $schilderij["Breedte"] ?></li>   
         <li>Catagorie:<?php print $schilderij["Categorie_naam"] ?>
 
 
@@ -49,11 +54,10 @@ $schilderij = $schilderijlijst[0];
 
 
 
-<?php
-$comments = query("SELECT * FROM commentaar C join schilderij S on Cm.Schilderij_ID = S.Schilderij_ID where schilderij_ID=?", $params); 
-$opmerkingen = $comments;
-
-?>
+    <?php
+    $comments = query("SELECT * FROM commentaar C join schilderij S on Cm.Schilderij_ID = S.Schilderij_ID where schilderij_ID=?", $params);
+    $opmerkingen = $comments;
+    ?>
 </div>
 <br>
 <br>
@@ -70,7 +74,7 @@ $opmerkingen = $comments;
 
 <div class="comments">
     <div>
-        <h4>Commentaar</h4>
+        <h3 class="commentaar">Commentaar</h3>
     </div>
 
 </div>
@@ -87,48 +91,55 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
     if ($naam == "") {
         $naamleeg = "Naam is verplicht";
         $naamsucces = false;
+        $correct = false;
     }
     if ($commentaar == "") {
         $commentaarleeg = "Dit veld mag niet leeg zijn";
         $commentaarsucces = false;
+        $correct = false;
     }
     if ($correct) {
         $input = array($_POST["naam"], $_POST["email"], $_POST["commentaar"], $_GET["id"]);
         query("insert into commentaar (naam_klant, email_klant, opmerking, schilderij_id) VALUES (?, ?, ?, ?)", $input);
+        ?>
+        <script>
+          alert("Commentaar is toegevoegd");
+        </script>
+        <?php
     }
 }
 ?>
 
 <div class="capthapositie">
-    <form id="form1" name="form1" method="post" action="schilderij.php?id=<?php echo $id; ?>">
+    <form id="form1" name="form1" method="post" action="schilderij.php?id=<?php echo $_GET["id"]; ?>">
         <input type="hidden"  name="id" value="<?php echo $id; ?>" />
         <table class="comment1">
 
 
             <tr>
-                <td>Naam</td>
+                <td class="commentaar">Naam</td>
                 <td>:</td>
                 <td><input name="naam" type="text" id="naam" size="40"/>
-                    <?PHP
-                    if (isset($naamleeg)) {
-                        echo $naamleeg;
-                    }
-                    ?></td>
+<?PHP
+if (isset($naamleeg)) {
+    echo $naamleeg;
+}
+?></td>
             </tr>
             <tr>
-                <td>Email</td>
+                <td class="commentaar">Email</td>
                 <td>:</td>
-                <td><input name="email" type="text" id="email" size="40" /></td>
+                <td><input name="email" type="email" id="email" size="40" /></td>
             </tr>
             <tr>
-                <td >Commentaar</td>
+                <td class="commentaar">Commentaar</td>
                 <td >:</td>
                 <td><textarea name="commentaar" cols="42" rows="4" id="opmerking" ></textarea>
-                    <?PHP
-                    if (isset($commentaarleeg)) {
-                        echo $commentaarleeg;
-                    }
-                    ?>
+<?PHP
+if (isset($commentaarleeg)) {
+    echo $commentaarleeg;
+}
+?>
                 </td>
             </tr>
             <tr>

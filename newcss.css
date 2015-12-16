@@ -430,8 +430,9 @@ ul.schilderij{
 }
 .beschrijving{
     width: 300px;
-    text-align: left;
+    text-align: justify;
     white-space: pre;
+    text-indent: 50px;
 }
 div.onderschilderij{
     padding-left: 100px;
@@ -451,4 +452,12 @@ div.comments{
     text-align: center;
     margin-top: 100px;
 
+}
+/* opmaak commentaar box*/
+h3.commentaar{
+    color: saddlebrown;
+    
+}
+td.commentaar{
+    text-decoration: 
 }
