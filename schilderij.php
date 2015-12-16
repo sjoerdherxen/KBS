@@ -17,11 +17,19 @@ $params = array($_GET["id"]);
 $schilderijlijst = query("SELECT * FROM SCHILDERIJ WHERE Schilderijid=?", $params) ;
 $schilderij = $schilderijlijst[0];
  * */
-$schilderijlijst = query("SELECT * FROM SCHILDERIJ s JOIN CATEGORIE c ON S.CategorieID=C.CategorieID WHERE Schilderijid=?", $params);
+
+//verbeterde query
+// SELECT S.titel, S.jaar, S.hoogte, C.Categorie_naam, SC.Subcategorie_naam, M.Materiaal_soort 
+// FROM Schilderij S 
+//  JOIN Categorie C ON C.CategorieID = S.CategorieID 
+//  LEFT JOIN SubCategorie SC ON SC.SubcategorieID = S.SubcategorieID 
+//  JOIN Materiaal M ON M.MateriaalID = S.MateriaalID
+//  WHERE S.schilderij_id = ?
+
+$schilderijlijst = query("SELECT * FROM SCHILDERIJ S JOIN CATEGORIE C ON S.CategorieID=C.CategorieID WHERE S.Schilderijid=?", $params);
 $schilderij = $schilderijlijst[0];
-$schilderijlijstsub = query("SELECT * FROM SCHILDERIJ s JOIN Subcategorie sc ON  S.SubCategorieID=SC.SubcategorieID WHERE Schilderijid=?", $params);
-$subcat = $schilderijlijstsub[0];
-$schilderijlijstmat = query("SELECT * FROM SCHILDERIJ s JOIN MATERIAAL M ON S.MateriaalID=M.MateriaalID WHERE Schilderijid=?", $params);
+$schilderijlijstsub = query("SELECT * FROM SCHILDERIJ S JOIN Subcategorie SC ON  S.SubCategorieID=SC.SubcategorieID WHERE S.Schilderijid=?", $params);
+$schilderijlijstmat = query("SELECT * FROM SCHILDERIJ S JOIN MATERIAAL M ON S.MateriaalID=M.MateriaalID WHERE S.Schilderijid=?", $params);
 $mater = $schilderijlijstmat[0];
 
 ?>
@@ -41,13 +49,13 @@ $mater = $schilderijlijstmat[0];
 
 
             <?php
-            $result = $subcat["SUBCATEGORIE_NAAM"];
-            if (count($result) == 1) {
+            //$result = $schilderijlijstsub;
+            if (count($schilderijlijstsub) == 1) {
                 print(", ");
-                print($result[0]["SUBCATEGORIE_NAAM"]);
+                print($schilderijlijstsub[0]["Subcategorie_naam"]);
             }
             ?></li>
-        <li>Materiaal:<?php print $schilderijlijstmat["Materiaal_soort"] /* query(SELECT MATERIAAL_SOORT FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></li>
+        <li>Materiaal:<?php print $mater["Materiaal_soort"] /* query(SELECT MATERIAAL_SOORT FROM SCHILDERIJ WHERE Schilderijid=?, $params)  */ ?></li>
 
     </ul>
 
