@@ -6,7 +6,7 @@ if (!isLoggedIn()) {
     header("location: index.php");
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Subcategorie&euml;n", '');
+renderHtmlStartAdmin("Subcategorie&euml;n", '', "subcategorie");
 
 $limitDatabase = [30];
 $saved = false;

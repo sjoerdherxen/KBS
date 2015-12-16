@@ -5,7 +5,7 @@ if (!isLoggedIn()) {
     header("location: index.php");
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Categorie&euml;n", '');
+renderHtmlStartAdmin("Categorie&euml;n", '', "categorie");
 
 $limitDatabase = [30];
 $saved = false;

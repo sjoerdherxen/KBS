@@ -11,6 +11,12 @@ include './htmlHelpers.php';
 renderHtmlStart("Home", "");
 ?>
 
+<div>
+    <?php
+    $uitvoerDatabase = query("SELECT Beschrijving FROM Welkomstekst WHERE ID = 1", NULL);
+    echo"$uitvoerDatabase";
+    ?>
+</div>
 
 <script src="slider.js"></script>
 <div class="slider2">

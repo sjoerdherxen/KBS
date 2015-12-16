@@ -6,7 +6,7 @@ if (!isLoggedIn()) {
     header("location: index.php");
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Categorie&euml;n", '<script src="/content/editSubcategorie.js"></script>');
+renderHtmlStartAdmin("Categorie&euml;n", '<script src="/content/editSubcategorie.js"></script>', "subcategorie");
 
 $saved = false;
 if (isset($_GET["id"])) {
