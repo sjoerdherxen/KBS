@@ -17,6 +17,7 @@ $schilderijlijst = query("SELECT S.titel, S.jaar, S.hoogte, C.Categorie_naam, SC
   JOIN Categorie C ON C.CategorieID = S.CategorieID 
   LEFT JOIN SubCategorie SC ON SC.SubcategorieID = S.SubcategorieID 
   JOIN Materiaal M ON M.MateriaalID = S.MateriaalID
+  JOIN Commentaar Cm on Cm.Schilderij_ID = S.Schilderij_ID
   WHERE S.schilderij_id = ?", $params);
 
 $schilderij = $schilderijlijst[0];
@@ -54,26 +55,13 @@ $schilderij = $schilderijlijst[0];
 <br>
 <div class="onderschilderij">
     <div class="title"><?php print $schilderij["titel"] ?></div>
-    <div class="beschrijving">
+    <div >
         Beschrijving
         <br>
-        <a><?php print $schilderij["beschrijving"] ?></a>
+        <div class="beschrijving"><?php print $schilderij["beschrijving"] ?></div>
 
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <?php
@@ -95,65 +83,75 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
         $commentaarsucces = false;
     }
     if ($correct) {
-        query("insert into commentaar (naam_klant, email_klant, opmerking, schilderij_id) VALUES (?, ?, ?, ?)", array($_POST["Naam_klant"], $_POST["Email_klant"], $_POST["opmerking"], $_GET["id"]));
+        $input = array($_POST["naam"], $_POST["email"], $_POST["commentaar"], $_GET["id"]);
+        query("insert into commentaar (naam_klant, email_klant, opmerking, schilderij_id) VALUES (?, ?, ?, ?)", $input);
     }
 }
 ?>
 
+<div class="capthapositie">
+    <form id="form1" name="form1" method="post" action="schilderij.php?id=<?php echo $id; ?>">
+        <input type="hidden"  name="id" value="<?php echo $id; ?>" />
+        <table class="comment1">
 
-<form id="form1" name="form1" method="post" action="schilderij.php">
-    <input type="hidden"  name="id" value="<?php echo $id; ?>" />
-    <table class="comment1">
-        <tr>
-            <td>
-                <table class="comment2">
-                    <tr>
-                        <td>Naam</td>
-                        <td>:</td>
-                        <td><input name="naam" type="text" id="naam" size="40"/>
-<?PHP
-if (isset($naamleeg)) {
-    echo $naamleeg;
-}
-?></td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td>:</td>
-                        <td><input name="email" type="text" id="email" size="40" /></td>
-                    </tr>
-                    <tr>
-                        <td >Commentaar</td>
-                        <td >:</td>
-                        <td><textarea name="commentaar" cols="40" rows="4" id="commentaar" ></textarea>
-<?PHP
-if (isset($commentaarleeg)) {
-    echo $commentaarleeg;
-}
-?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td><input type="submit"  name="Submit" value="Submit" />
-                            <input type="reset" name="Submit2" value="Reset" /></td>
-                    </tr>
 
-                </table>
-            </td><td>
+            <tr>
+                <td>Naam</td>
+                <td>:</td>
+                <td><input name="naam" type="text" id="naam" size="40"/>
+                    <?PHP
+                    if (isset($naamleeg)) {
+                        echo $naamleeg;
+                    }
+                    ?></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>:</td>
+                <td><input name="email" type="text" id="email" size="40" /></td>
+            </tr>
+            <tr>
+                <td >Commentaar</td>
+                <td >:</td>
+                <td><textarea name="commentaar" cols="42" rows="4" id="opmerking" ></textarea>
+                    <?PHP
+                    if (isset($commentaarleeg)) {
+                        echo $commentaarleeg;
+                    }
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
 
-<?php
-?>
+                <td>
 
-                <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div></td>
+                    <div class="capthapositie1">
 
-        </tr>
-    </table>
+                        <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><input type="submit"  name="Submit" value="Submit">
 
-</form>
-<?php ?>
+            </tr>
 
+        </table>
+
+
+
+    </form>
+</div>
+<div class="comments">
+    <div>
+        <h4>Commentaar</h4>
+    </div>
+
+</div>
 
 <?php
 renderHtmlEnd();
