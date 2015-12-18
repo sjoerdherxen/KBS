@@ -14,6 +14,7 @@ function renderHtmlStart($title, $extra) {
             <script src="/content/bootstrap/js/bootstrap.min.js"></script>
             <script src='https://www.google.com/recaptcha/api.js'></script>
             <?php
+
             echo $extra;
             ?>
             <!--Commentaar -->
@@ -38,6 +39,7 @@ function renderHtmlStart($title, $extra) {
 
 
                 <?php
+
             }
 
             function renderHtmlEnd() {
@@ -53,6 +55,7 @@ function renderHtmlStart($title, $extra) {
         </body>
     </html>
     <?php
+
 }
 
 function renderHtmlStartAdmin($title, $extra, $page) {
@@ -68,22 +71,23 @@ function renderHtmlStartAdmin($title, $extra, $page) {
             <link href="/content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
             <script src="/content/jquery-1.11.3.min.js"></script> 
             <script src="/content/bootstrap/js/bootstrap.min.js"></script>
-            <?php
-            echo $extra;
-            ?>
+    <?php
+
+    echo $extra;
+    ?>
             <!--Commentaar -->
         </head>
         <body>
             <div id="navigation">
                 <ul>
-                    <li><a href="/admin/main.php" <?php if($page == "main") echo "class='active'";?>>Home</a></li>
-                    <li><a href="/admin/schilderijList.php" <?php if($page == "schilderij") echo "class='active'";?>>Schilderijen</a></li>
-                    <li><a href="/admin/categorieList.php" <?php if($page == "categorie") echo "class='active'";?>>Categorie&euml;n</a></li>
-                    <li><a href="/admin/subcategorieList.php" <?php if($page == "subcategorie") echo "class='active'";?>>Subcategori&euml;n</a></li>
-                    <li><a href="/admin/materiaalList.php" <?php if($page == "materiaal") echo "class='active'";?>>Materialen</a></li>
-                    <li><a href="/admin/editContactgegevens.php" <?php if($page == "contact") echo "class='active'";?>>Contactgegevens</a></li>
+                    <li><a href="/admin/main.php" <?php if ($page == "main") echo "class='active'"; ?>>Home</a></li>
+                    <li><a href="/admin/schilderijList.php" <?php if ($page == "schilderij") echo "class='active'"; ?>>Schilderijen</a></li>
+                    <li><a href="/admin/categorieList.php" <?php if ($page == "categorie") echo "class='active'"; ?>>Categorie&euml;n</a></li>
+                    <li><a href="/admin/subcategorieList.php" <?php if ($page == "subcategorie") echo "class='active'"; ?>>Subcategori&euml;n</a></li>
+                    <li><a href="/admin/materiaalList.php" <?php if ($page == "materiaal") echo "class='active'"; ?>>Materialen</a></li>
+                    <li><a href="/admin/editContactgegevens.php" <?php if ($page == "contact") echo "class='active'"; ?>>Contactgegevens</a></li>
                     <li class="menu-right"><a href="/admin/uitloggen.php">Uitloggen</a></li>
-                    <li class="menu-right"><a href="/admin/account.php" <?php if($page == "account") echo "class='active'";?>><?php echo $_SESSION["inlog"]; ?></a></li>
+                    <li class="menu-right"><a href="/admin/account.php" <?php if ($page == "account") echo "class='active'"; ?>><?php echo $_SESSION["inlog"]; ?></a></li>
                 </ul>
             </div>
             <script>
@@ -92,12 +96,16 @@ function renderHtmlStartAdmin($title, $extra, $page) {
                     window.location.hash = "";
                 }
             </script>
-            <?php
-        }
+            <div id="content">
+                <?php
 
-        function renderHtmlEndAdmin() {
-            ?>
+            }
+
+            function renderHtmlEndAdmin() {
+                ?>
+            </div>
         </body>
     </html>
     <?php
+
 }

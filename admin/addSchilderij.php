@@ -151,8 +151,13 @@ if (isset($_POST["knop"])) {
 
         move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
 
-        header("location: schilderijList.php");
-        exit();
+        if ($_POST["knop"] == "Toevoegen, nieuw") {
+            header("location: addSchilderij.php#Schilderij is toegevoegd");
+            exit();
+        } else {
+            header("location: schilderijList.php#Schilderij is toegevoegd");
+            exit();
+        }
     }
 }
 ?>
@@ -326,9 +331,9 @@ if (isset($_POST["knop"])) {
             </td>
         </tr>
         <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Opslaan" name="knop">
+            <td colspan="2">
+                <input type="submit" value="Toevoegen, nieuw" name="knop">
+                <input type="submit" value="Toevoegen, naar lijst" name="knop">
             </td>
         </tr>
     </table>

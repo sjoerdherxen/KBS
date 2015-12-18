@@ -1,22 +1,28 @@
 <?php
+
 session_start();
 require 'functions.php';
 if (!isLoggedIn()) {
     header("location: index.php");
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Categorie&euml;n", '<script src="/content/editCategorie.js"></script>',"categorie");
+renderHtmlStartAdmin("Categorie&euml;n", '<script src="/content/editCategorie.js"></script>', "categorie");
 
 $saved = false;
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $invoerDatabase = [$_GET["id"]];
     $uitvoerDatabase = query("SELECT * FROM Categorie WHERE CategorieID = ?", $invoerDatabase);
+    
+// check of schiderij is gekoppeld voor verwijderen
+    $schilderijResult = query("SELECT COUNT(*) c FROM Schilderij WHERE CategorieId = ?", $invoerDatabase);
+    $verwijderPossible = $schilderijResult[0]["c"] == 0;
 }
 ?>
 <form action="editCategorie.php?id=<?php echo $id; ?>" method="post">
     <table>
         <?php
+
         foreach ($uitvoerDatabase as $value1) {
             foreach ($value1 as $key2 => $value2) {
 
@@ -38,7 +44,14 @@ if (isset($_GET["id"])) {
             <td></td>
             <td>
                 <input type="submit" value="Opslaan" name="knopje">
-                <input type="button" value="Verwijderen" class="button" id="verwijderen">
+                <?php
+
+                if ($verwijderPossible) {
+                    echo '<input type="button" value="Verwijderen" class="button" id="verwijderen">';
+                } else {
+                    echo '<input type="button" value="Verwijderen" class="button" disabled="disabled" title="Categorie kan niet worden verwijderd, want er zijn schilderijen aan gekoppeld.">';
+                }
+                ?>
             </td>
         </tr>
 
@@ -47,6 +60,7 @@ if (isset($_GET["id"])) {
 
 
 <?php
+
 if (isset($_POST["knopje"])) {
     if (isset($_POST["Categorie_Naam"]) && $_POST["Categorie_Naam"] !== "") {
         $id = $_GET["id"];
@@ -65,4 +79,5 @@ if (isset($_POST["knopje"])) {
         }
     };
 </script> <?php
+
 renderHtmlEndAdmin();

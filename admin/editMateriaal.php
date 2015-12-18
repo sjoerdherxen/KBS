@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require 'functions.php';
 if (!isLoggedIn()) {
@@ -12,15 +13,21 @@ if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $invoerDatabase = [$_GET["id"]];
     $uitvoerDatabase = query("SELECT * FROM Materiaal WHERE MateriaalID = ?", $invoerDatabase);
+
+// check of schiderij is gekoppeld voor verwijderen
+    $schilderijResult = query("SELECT COUNT(*) c FROM Schilderij WHERE MateriaalId = ?", $invoerDatabase);
+    $verwijderPossible = $schilderijResult[0]["c"] == 0;
+    
 }
 if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
-    // header("location:materiaalList.php");
-    // exit();
+    header("location:materiaalList.php");
+    exit();
 }
 ?>
 <form action="editMateriaal.php?id=<?php echo $id; ?>" method="post">
     <table>
         <?php
+
         foreach ($uitvoerDatabase as $value1) {
             foreach ($value1 as $key2 => $value2) {
 
@@ -42,15 +49,24 @@ if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
             <td></td>
             <td>
                 <input type="submit" value="Opslaan" name="knopje">
-                <input type="button" value="Verwijderen" class="button" id="verwijderen">
+                <?php
+
+                if ($verwijderPossible) {
+                    echo '<input type="button" value="Verwijderen" class="button" id="verwijderen">';
+                } else {
+                    echo '<input type="button" value="Verwijderen" class="button" disabled="disabled" title="Materiaal kan niet worden verwijderd, want er zijn schilderijen aan gekoppeld.">';
+                }
+                ?>
             </td>
         </tr>
 
     </table>
 </form>
- 
+
+
 
 <?php
+
 if (isset($_POST["knopje"])) {
     if (isset($_POST["Materiaal_Soort"]) && $_POST["Materiaal_Soort"] !== "") {
         $id = $_GET["id"];
@@ -69,4 +85,5 @@ if (isset($_POST["knopje"])) {
         }
     };
 </script> <?php
+
 renderHtmlEndAdmin();

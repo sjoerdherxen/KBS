@@ -10,7 +10,7 @@ require '../htmlHelpers.php';
 renderHtmlStartAdmin("inlog", "","main");
 
 
-echo "welkom: " . getUser();
+echo "<h2>welkom: " . getUser()."</h2>";
 ?>
 
 <?php

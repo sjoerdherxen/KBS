@@ -13,15 +13,21 @@ if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $invoerDatabase = [$_GET["id"]];
     $uitvoerDatabase = query("SELECT * FROM Subcategorie WHERE SubcategorieID = ?", $invoerDatabase);
+
+
+// check of schiderij is gekoppeld voor verwijderen
+    $schilderijResult = query("SELECT COUNT(*) c FROM Schilderij WHERE SubcategorieId = ?", $invoerDatabase);
+    $verwijderPossible = $schilderijResult[0]["c"] == 0;
 }
 if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
-    // header("location:subcategorieList.php");
-    // exit();
+    header("location:subcategorieList.php");
+    exit();
 }
 ?>
 <form action="editSubcategorie.php?id=<?php echo $id; ?>" method="post">
     <table>
         <?php
+
         foreach ($uitvoerDatabase as $value1) {
             foreach ($value1 as $key2 => $value2) {
 
@@ -43,7 +49,14 @@ if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
             <td></td>
             <td>
                 <input type="submit" value="Opslaan" name="knopje">
-                <input type="button" value="Verwijderen" class="button" id="verwijderen">
+                <?php
+
+                if ($verwijderPossible) {
+                    echo '<input type="button" value="Verwijderen" class="button" id="verwijderen">';
+                } else {
+                    echo '<input type="button" value="Verwijderen" class="button" disabled="disabled" title="Subcategorie kan niet worden verwijderd, want er zijn schilderijen aan gekoppeld.">';
+                }
+                ?>
             </td>
         </tr>
 
@@ -51,6 +64,7 @@ if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
 </form>
 
 <?php
+
 if (isset($_POST["knopje"])) {
     if (isset($_POST["Subcategorie_Naam"]) && $_POST["Subcategorie_Naam"] !== "") {
         $id = $_GET["id"];
@@ -69,6 +83,7 @@ if (isset($_POST["knopje"])) {
         }
     };
 </script> <?php
+
 renderHtmlEndAdmin();
 
 /*

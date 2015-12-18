@@ -1,16 +1,19 @@
 #inlog{
-    width: 250px;
+    width: 280px;
     position: relative;
     margin: 100px auto 0 auto;
     border: 1px solid #555;
     border-radius: 5px;
     background-color: white;    
+    padding: 10px 10px 5px 10px;
 }
 
 #inlog-inner{
     width:250px;
 }
-
+#inlog-inner td{
+    padding: 2px;
+}
 #inlog-inner td input{
     width: 100%;
 }
@@ -55,6 +58,16 @@
     padding: 14px 16px;
 }
 
+#content{
+    padding: 5px;
+}
+
+form td{
+    padding: 1px;
+}
+
+form td input[type='button'][disabled='disabled']{
+}
 
 .incorrect {
     color:red;
@@ -113,7 +126,7 @@
 }
 
 .editform input[type="submit"], .editform input[type="button"]{
-    width: 83px;
+    width: auto;
 }
 
 .editform input[type="file"]{

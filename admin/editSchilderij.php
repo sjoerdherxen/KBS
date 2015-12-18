@@ -345,10 +345,9 @@ if ($doSelectQuery) {
             </td>
         </tr>
         <tr>
-            <td></td>
-            <td>
+            <td colspan="2">
                 <input type="submit" value="Opslaan" name="knop" class="button">
-                <input type="button" value="Verwijderen" class="button" id="verwijderen">
+                <input type="button" value="Verwijder" class="button" id="verwijderen">
             </td>
         </tr>
     </table>
