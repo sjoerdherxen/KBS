@@ -10,12 +10,12 @@ require '../htmlHelpers.php';
 renderHtmlStartAdmin("Schilderijen", "", "schilderij");
 
 $zoek = "";
-if (isset($_GET["zoek"]) && $_GET["zoek"] != "") {
+if (isset($_GET["zoek"]) && $_GET["zoek"] != "") { // zoek boxje zoeken
     $zoek = $_GET["zoek"];
     $query = "SELECT * FROM schilderij S WHERE Titel LIKE ? OR Beschrijving LIKE ?";
     $zoek2 = "%" . $zoek . "%";
     $schilderijen = query($query, array($zoek2, $zoek2));
-} else {
+} else { // standaard
     $query = "SELECT * FROM schilderij";
     $schilderijen = query($query, null);
 }
@@ -29,7 +29,7 @@ if (isset($_GET["zoek"]) && $_GET["zoek"] != "") {
     </form>
 
     <?php
-
+    // schilderijen tonen
     foreach ($schilderijen as $schilderij) {
         echo "<a class='schilderijListItem' href='editschilderij.php?id=" . $schilderij["Schilderij_ID"] . "'>";
         echo "<div class='schilderijListItemImg' style='background-image: url(\"" . $schilderij["Img"] . "?_=" . strtotime(date("Y-m-d H:i:s")) . "\");'></div>";
@@ -41,12 +41,6 @@ if (isset($_GET["zoek"]) && $_GET["zoek"] != "") {
     }
     ?>
 </div>
-<script>
-    if (window.location.hash != "") {
-        alert(window.location.hash.substr(1));
-        window.location.hash = "";
-    }
-</script>
 <?php
 
 renderHtmlEndAdmin();

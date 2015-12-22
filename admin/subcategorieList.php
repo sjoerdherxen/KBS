@@ -8,11 +8,15 @@ if (!isLoggedIn()) {
 }
 require '../htmlHelpers.php';
 renderHtmlStartAdmin("Subcategori&euml;n", "", "subcategorie");
+
+// subcategorien ophalen
 $query = "SELECT * FROM subcategorie";
 $subcategorieen = query($query, null);
 
 echo "<a href='addSubcategorie.php' id='addSubcategorieLink'>Toevoegen</a>";
 echo "<div id='subcategorieList'>";
+
+// subcategorieen tonen
 foreach ($subcategorieen as $subcategorie) {
     echo "<a class='subcategorieListItem' href='editSubcategorie.php?id=" . $subcategorie["SubcategorieID"] . "'>";
     echo "<div class='subcategorieListItemInner'>";
@@ -22,13 +26,5 @@ foreach ($subcategorieen as $subcategorie) {
     echo "</a>";
 }
 echo "</div>";
-?>
-<script>
-    if (window.location.hash != "") {
-        alert(window.location.hash.substr(1));
-        window.location.hash = "";
-    }
-</script>
-<?php
 
 renderHtmlEndAdmin();

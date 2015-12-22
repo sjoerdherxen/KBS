@@ -1,5 +1,5 @@
 <?php
-
+ // start stuff
 session_start();
 require 'functions.php';
 if (!isLoggedIn()) {
@@ -9,16 +9,19 @@ if (!isLoggedIn()) {
 require '../htmlHelpers.php';
 renderHtmlStartAdmin("Account", "", "account");
 
+// na de post
 if (isset($_POST["oldpassword"])) {
     $wachtwoordHash = hash("sha256", $_POST["oldpassword"]);
+    // query voor checken huidige wachtwoord
     $result = query("SELECT * FROM gebruikers WHERE username = ? AND wachtwoord = ?", array($_SESSION["inlog"], $wachtwoordHash));
-    if (count($result) === 0) {
+   
+    if (count($result) === 0) { // ww is niet goed
         $errorMessage = "Huidig wachtwoord klopt niet";
-    } elseif ($_POST["newpassword"] != $_POST["new2password"]) {
+    } elseif ($_POST["newpassword"] != $_POST["new2password"]) { // nieuwe ww zijn niet gelijk
         $errorMessage = "Nieuwe wachtwoorden zijn niet gelijk aan elkaar";
-    } elseif (strlen($_POST["newpassword"]) < 4) {
+    } elseif (strlen($_POST["newpassword"]) < 4) {// te kort
         $errorMessage = "Nieuwe wachtwoord moet minimaal 5 karakters lang zijn";
-    } else {
+    } else { // invoer is goed update de db
         $newpassword = hash("sha256", $_POST["newpassword"]);
         query("UPDATE gebruikers SET wachtwoord = ? WHERE username = ?", array($newpassword, $_SESSION["inlog"]));
         $successMessage = "Wachtwoord is aangepast";
@@ -29,7 +32,7 @@ if (isset($_POST["oldpassword"])) {
 <div>
     <?php
 
-    if (isset($successMessage)) {
+    if (isset($successMessage)) { // bij success tonen
         echo $successMessage;
     }
     ?>
@@ -49,7 +52,7 @@ if (isset($_POST["oldpassword"])) {
             </tr>
             <?php
 
-            if (isset($errorMessage)) {
+            if (isset($errorMessage)) { // niet goed message
                 echo "<tr><td colspan='2' class='incorrect'>" . $errorMessage . "</td></tr>";
             }
             ?>

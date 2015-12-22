@@ -6,13 +6,15 @@ if (!isLoggedIn()) {
     header("location: index.php");
     exit();
 }
-if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
-    $result = query("SELECT schilderij_id, titel FROM schilderij WHERE schilderij_id = ?", array($_GET["id"]));
+if (isset($_GET["id"]) && is_numeric($_GET["id"])) {// get is goed
+    $result = query("SELECT schilderij_id, titel FROM schilderij WHERE schilderij_id = ?", array($_GET["id"])); // check of schilderij bestaat
     if (count($result == 1)) {
+         // verwijderen
         query("DELETE FROM schilderij WHERE schilderij_id = ?", array($_GET["id"]));
         header("location: schilderijList.php#Schilderij " . $result[0]["titel"] . " is verwijderd!");
         exit();
     } else {
+         // schilderij bestaat niet
         header("location: schilderijList.php#Schilderij " . $result[0]["titel"] . " verwijderen is mislukt!");
         exit();
     }

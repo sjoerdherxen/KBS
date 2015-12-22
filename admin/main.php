@@ -9,13 +9,11 @@ if (!isLoggedIn()) {
 require '../htmlHelpers.php';
 renderHtmlStartAdmin("inlog", "","main");
 
-
+// toon welkomstext
 echo "<h2>welkom: " . getUser()."</h2>";
 ?>
 
 <?php
-
-//require "schilderijList.php";
 
 renderHtmlEndAdmin();
 

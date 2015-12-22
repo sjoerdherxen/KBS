@@ -1,5 +1,6 @@
 <?php
 
+// start stuff
 session_start();
 require 'functions.php';
 if (!isLoggedIn()) {
@@ -8,30 +9,31 @@ if (!isLoggedIn()) {
 require '../htmlHelpers.php';
 renderHtmlStartAdmin("Materialen", '', "materiaal");
 
-$limitDatabase = [30];
 $saved = false;
 
 $toevoegenMateriaal = [];
 $doorgaan_naam = false;
 $invoerDatabase = [];
 
+// post is gedaan
 if (isset($_POST["Toevoegen"])) {
     if (!isset($_POST["Naam"]) || $_POST["Naam"] == "") {
         $Naamerror = "Er moet een naam worden ingevuld.";
     } else {
-        $toevoegenMateriaal[] = $_POST["Naam"];
-        $toevoegenMateriaal[] = $_POST["Beschrijving"];
+        // check of materiaal al bestaat indb
         $invoerDatabase[] = $_POST["Naam"];
         $uitvoerDatabase = query("SELECT Materiaal_soort FROM Materiaal Where Materiaal_soort = ?", $invoerDatabase);
-        if (count($uitvoerDatabase) === 0) {
+        if (count($uitvoerDatabase) === 0) { 
+            // materiaal bestaat nog niet 
+            $toevoegenMateriaal[] = $_POST["Naam"];
+            $toevoegenMateriaal[] = $_POST["Beschrijving"];
+            // add materiaal
             query("INSERT INTO Materiaal (Materiaal_soort, Beschrijving) VALUES (?, ?)", $toevoegenMateriaal);
             $saved = true;
         } else {
-            ?>
-            <script>
-                alert("Toevoegen materiaal is mislukt, materiaal bestaat al.");
-            </script>
-            <?php
+            // bestaat al
+            $errorMessage = "Toevoegen materiaal is mislukt, materiaal bestaat al.";
+
         }
     }
 }
@@ -46,10 +48,16 @@ if ($saved) {
         }, 1);
     </script>
     <?php
+
 }
 ?>
 <form action="addmateriaal.php" method="post">
     <h1>Vul hier de materiaal soort en beschrijving in:</h1>
+    <?php
+        if(isset($errorMessage)){
+            echo "<p class='incorrect'>$errorMessage</p>";
+        }
+    ?>
     <table>
         <tr>
             <td>
@@ -57,12 +65,12 @@ if ($saved) {
             </td>
             <td>
                 <input type="text" name="Naam" placeholder="Vul hier de soort in" style="width: 375px">
-<?php
+                <?php
 
-if (isset($Naamerror)) {
-    echo '<br>' . "<span class=\"incorrect\">$Naamerror</span>";
-}
-?>
+                if (isset($Naamerror)) {
+                    echo '<br>' . "<span class=\"incorrect\">$Naamerror</span>";
+                }
+                ?>
             </td>
         </tr>
         <tr>
@@ -71,8 +79,6 @@ if (isset($Naamerror)) {
             </td>
             <td>
                 <textarea rows="4" cols="50" name="Beschrijving" placeholder="Vul hier de beschrijving in"></textarea>
-                <?php
-                ?>
             </td>
         </tr>
         <tr>
@@ -85,4 +91,5 @@ if (isset($Naamerror)) {
     </table>
 </form>     
 <?php
+
 renderHtmlEndAdmin();

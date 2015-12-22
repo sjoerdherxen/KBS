@@ -10,6 +10,7 @@ if (!isLoggedIn()) {
 require '../htmlHelpers.php';
 renderHtmlStartAdmin("Schilderij bewerken", "", "schilderij");
 
+// init alle velden 
 $schilderij = array();
 $schilderij["Titel"] = "";
 $schilderij["Beschrijving"] = "";
@@ -24,18 +25,18 @@ $schilderij["passepartout"] = 0;
 $schilderij["isStaand"] = 0;
 $schilderij["prijs"] = "";
 
-
-
-
+// haal alle gerelateerde gegevens op voor dropdowns
 $resultMateriaal = query("SELECT materiaalId, materiaal_soort FROM materiaal", null);
 $resultCategorie = query("SELECT categorieId, categorie_naam FROM categorie", null);
 $resultSubCategorie = query("SELECT subcategorieId, subcategorie_naam FROM subcategorie", null);
 
+// submit is gedaan
 if (isset($_POST["knop"])) {
     $correct = true;
-    $schilderij = array();
-    $schilderInsert = array();
+    $schilderij = array(); //zet waardes voor inputs
+    $schilderInsert = array(); // waardes voor query params
 
+    // check titel
     if (!isset($_POST["titel"]) || trim($_POST["titel"]) == "") {
         $titelError = "Titel is verplicht";
         $correct = false;
@@ -55,6 +56,7 @@ if (isset($_POST["knop"])) {
     $schilderij["isStaand"] = $_POST["isStaand"] == "true";
     $schilderInsert[] = $schilderij["isStaand"] ? 1 : 0;
 
+    // check jaar
     if (!is_numeric($_POST["jaar"]) && isset($_POST["jaar"]) && trim($_POST["jaar"]) != "") {
         $jaarError = "Jaar is geen getal";
         $correct = false;
@@ -62,6 +64,7 @@ if (isset($_POST["knop"])) {
     $schilderij["Jaar"] = $_POST["jaar"];
     $schilderInsert[] = $_POST["jaar"];
 
+     // check prijs
     if (!is_numeric($_POST["prijs"]) && isset($_POST["prijs"]) && trim($_POST["prijs"]) != "") {
         $jaarError = "Prijs is geen getal";
         $correct = false;
@@ -69,6 +72,7 @@ if (isset($_POST["knop"])) {
     $schilderij["prijs"] = $_POST["prijs"];
     $schilderInsert[] = $_POST["prijs"] == "" ? null : $_POST["prijs"];
 
+     // check hoogte
     if (!isset($_POST["hoogte"]) || trim($_POST["hoogte"]) == "") {
         $hoogteError = "Hoogte is verplicht";
         $correct = false;
@@ -79,6 +83,7 @@ if (isset($_POST["knop"])) {
     $schilderij["Hoogte"] = $_POST["hoogte"];
     $schilderInsert[] = $_POST["hoogte"];
 
+     // check breedte
     if (!isset($_POST["breedte"]) || trim($_POST["breedte"]) == "") {
         $breedteError = "Breedte is verplicht";
         $correct = false;
@@ -89,6 +94,7 @@ if (isset($_POST["knop"])) {
     $schilderij["Breedte"] = $_POST["breedte"];
     $schilderInsert[] = $_POST["breedte"];
 
+     // check categorie
     if (!isset($_POST["categorie"]) || trim($_POST["categorie"]) == "") {
         $categorieError = "Categorie is verplicht";
         $correct = false;
@@ -99,6 +105,7 @@ if (isset($_POST["knop"])) {
     $schilderij["CategorieID"] = $_POST["categorie"];
     $schilderInsert[] = $_POST["categorie"];
 
+     // check materiaal
     if (!isset($_POST["materiaal"]) || trim($_POST["materiaal"]) == "") {
         $materiaalError = "Materiaal is verplicht";
         $correct = false;
@@ -109,6 +116,7 @@ if (isset($_POST["knop"])) {
     $schilderij["MateriaalID"] = $_POST["materiaal"];
     $schilderInsert[] = $_POST["materiaal"];
 
+     // check subcategorie
     if (!isset($_POST["subcategorie"])) {
         $subcategorieError = "Subcategorie is fout";
         $correct = false;
@@ -119,6 +127,7 @@ if (isset($_POST["knop"])) {
     $schilderij["SubcategorieID"] = $_POST["subcategorie"];
     $schilderInsert[] = $_POST["subcategorie"];
 
+     // check img upload
     if (isset($_FILES["img"])) {
         $imgExtension = strtolower(strrchr($_FILES["img"]["name"], "."));
         $correctExtensions = array(".png", ".jpg", ".jpeg", ".gif");
@@ -133,20 +142,23 @@ if (isset($_POST["knop"])) {
     }
 
     if ($correct) {
+        // haal correcte schilder id op of insert als geen bestaat
         $schilder = query("SELECT schilderid FROM schilder LIMIT 0,1", null);
         if (count($schilder) == 0) {
-            $schilderid = insert("INSERT INTO schilder (naam_schilder) VALUES (Ellen van 't Hof)", null);
+            $schilderid = insert("INSERT INTO schilder (naam_schilder) VALUES (\"Ellen van 't Hof\")", null);
         } else {
             $schilderid = $schilder[0]["schilderid"];
         }
         $schilderInsert[] = $schilderid;
 
+        // insert 
         $id = insert("INSERT INTO schilderij (Titel, beschrijving, lijst, passepartout, isStaand, jaar, prijs, hoogte, "
                 . "                             breedte, categorieid, materiaalid, subcategorieId, schilderId)"
                 . "  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", $schilderInsert);
 
+        // zet afbeelding correct
         $newpath = "/content/uploads/" . $id . $imgExtension;
-
+        
         query("UPDATE schilderij SET Img = ? WHERE Schilderij_Id = ?", array($newpath, $id));
 
         move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);

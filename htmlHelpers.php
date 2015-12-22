@@ -1,6 +1,6 @@
 <?php
 
-function renderHtmlStart($title, $extra) {
+function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
     ?><html>
         <head>
             <meta charset="UTF-8">
@@ -42,7 +42,7 @@ function renderHtmlStart($title, $extra) {
 
             }
 
-            function renderHtmlEnd() {
+            function renderHtmlEnd() { // einde klant gedeelte
                 ?>
                 <footer class="footermenu">
                     <ul>
@@ -64,7 +64,6 @@ function renderHtmlStartAdmin($title, $extra, $page) {
         <head>
             <meta charset="UTF-8">
             <title><?php echo $title; ?></title>
-            <link rel="stylesheet" type="text/css" href="newcss.css">
             <link rel="icon" type="image/ico" href="/content/favicon.ico">
             <link href="/newcss.css" type="text/css" rel="stylesheet">
             <link href="/content/admin.css" type="text/css" rel="stylesheet">

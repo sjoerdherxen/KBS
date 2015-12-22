@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <?php
-
 include './functions.php';
 include './htmlHelpers.php';
 renderHtmlStart("Home", "");
@@ -13,15 +6,16 @@ renderHtmlStart("Home", "");
 
 <div>
     <?php
+    // welkoms text
     $uitvoerDatabase = query("SELECT Beschrijving FROM Welkomstekst WHERE ID = 1", NULL);
     foreach ($uitvoerDatabase as $value1){
         foreach ($value1 as $value2){
-            echo "<td>$value2</td></tr>";
+            echo "<p>$value2</p>";
         }
     }
     ?>
 </div>
-
+<?php // slider  ?>
 <script src="slider.js"></script>
 <div class="slider2">
     <div id="slider">

@@ -8,11 +8,14 @@ if (!isLoggedIn()) {
 }
 require '../htmlHelpers.php';
 renderHtmlStartAdmin("Materiaal", "", "materiaal");
+
+// materialen ophalen
 $query = "SELECT * FROM Materiaal";
 $materiaalen = query($query, null);
 
 echo "<a href='addMateriaal.php' id='addMateriaalLink'>Toevoegen</a>";
 echo "<div id='materiaalList'>";
+// door lijst materialen gaan en tonen
 foreach ($materiaalen as $materiaal) {
     echo "<a class='materiaalListItem' href='editMateriaal.php?id=" . $materiaal["MateriaalID"] . "'>";
     echo "<div class='materiaalListItemInner'>";
@@ -22,13 +25,5 @@ foreach ($materiaalen as $materiaal) {
     echo "</a>";
 }
 echo "</div>";
-?>
-<script>
-    if (window.location.hash != "") {
-        alert(window.location.hash.substr(1));
-        window.location.hash = "";
-    }
-</script>
-<?php
 
 renderHtmlEndAdmin();

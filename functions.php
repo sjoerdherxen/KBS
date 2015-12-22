@@ -5,34 +5,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+// spaties printen
 function printspace($aantal) {
     for ($i = 0; $i < $aantal; $i++) {
         print(" ");
     }
 }
-
+//print teken
 function printteken($aantal, $teken) {
     for ($i = 0; $i < $aantal; $i++) {
         print($teken);
     }
 }
-
+// query op db uitvoeren
 function query($query, $params) {
     try {
+        // connectie maken
         $pdo = new PDO("mysql:host=localhost;dbname=databasekps01;port=3307", "root", "usbw");
+        // query opbouwe
         $q = $pdo->prepare($query);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        // uitvoeren
         $q->execute($params);
-        return $q->fetchAll(PDO::FETCH_ASSOC);
+        //get results
+        $result =  $q->fetchAll(PDO::FETCH_ASSOC);
+        $pdo = null;// drop connection
+        return $result;
     } catch (PDOException $e) {
         return null;
     }
 }
 
 function checkCaptcha($captchaInput) {
-
-
     $clientIp = $_SERVER['REMOTE_ADDR'];
 
     $url = 'https://www.google.com/recaptcha/api/siteverify';
@@ -41,14 +45,14 @@ function checkCaptcha($captchaInput) {
         "response" => $captchaInput,
         "remoteip" => $clientIp
     );
-
+    // curl doet post request naar google
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); // zet op 1 bij upload
 
     $response = json_decode(curl_exec($ch));
 
@@ -59,7 +63,8 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) 
     $i = 0;
     foreach ($schilderijen as $schilderij) {
         if ($i % 4 == 0 && $i != $pageSize) {
-            echo "<div class='row'>";
+            // elke rij
+            echo "<div class='row'>"; 
         }
         $i++;
         ?>
@@ -81,34 +86,40 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) 
         <?php
 
         if ($i % 4 == 0 && $i != 0) {
+            // einde rij
             echo "</div>";
         }
     }
     if ($i % 4 != 0) {
+        // einde rij indien niet pagina vullende content
         echo "</div>";
     }
     ?>
 
     <div style="clear: both;"></div>
     <?php
-
+// pager
     if ($pageCount >= 2) {
         ?>
         <div id="pages-wrapper">
             <div id="pages" class="btn-group">
                 <?php
 
+                //prev button
                 $prevPageHref = $page == 1 ? "" : 'href="'.$url.'page=' . ($page - 1) . '"';
                 echo '<a class="btn btn-default prev" ' . $prevPageHref . '><span class="glyphicon glyphicon-chevron-left"></span></a>';
 
                 for ($i = 1; $i <= $pageCount; $i++) {
                     if ($i == $page) {
+                        // current
                         echo "<span class='active btn btn-default btn-active'>" . $i . "</span>";
                     } else {
+                        // other pages
                         echo "<a class='btn btn-default' href='".$url."page=" . $i . "'>" . $i . "</a>";
                     }
                 }
 
+                // next button
                 $nextPageHref = $page == $pageCount ? "" : 'href="'.$url.'page=' . ($page + 1) . '"';
                 echo '<a class="btn btn-default next" ' . $nextPageHref . '><span class="glyphicon glyphicon-chevron-right"></span></a>';
                 ?>

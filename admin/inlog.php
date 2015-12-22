@@ -1,33 +1,37 @@
 <?php
+// niet via hier openen ga naar /admin/index.php
 
 $usernameError = "";
 $passwordError = "";
 $password = "";
 $username = "";
 $correct = true;
+
+// check post
 if (isset($_POST["username"]) && isset($_POST["password"])) {
     $password = trim($_POST["password"]);
     $username = trim($_POST["username"]);
-    if ($username == "") {
+    if ($username == "") { // check naam input
         $usernameError = "Naam is verplicht";
         $correct = false;
     }
-    if ($password == "") {
+    if ($password == "") { // check ww input
         $passwordError = "Wachtwoord is verplicht";
         $correct = false;
     }
     if ($correct) {
+        // check combi naam+ww
         $password = hash("sha256", $password);
         $query = "SELECT Username FROM gebruikers WHERE username = ? AND wachtwoord = ?";
         $result = query($query, array($username, $password));
 
-        if (count($result) == 1) {
+        if (count($result) == 1) { // correct
             $_SESSION["inlog"] = $_POST["username"];
             header("location: main.php");
             exit();
-        } elseif ($result === null) {
+        } elseif ($result === null) { // database fout
             $passwordError = "Er kan geen verbinding worden gemaakt met de database, probeer het later opnieuw";
-        } else {
+        } else { 
             $passwordError = "De combinatie naam en wachtwoord is niet goed.";
         }
     }

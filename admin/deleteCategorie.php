@@ -7,14 +7,16 @@ if (!isLoggedIn()) {
     header("location: index.php");
     exit();
 }
-if (isset($_GET["id"])) {
+if (isset($_GET["id"])) { // get is goed
     $invoer = array($_GET["id"]);
-    $result = query("SELECT CategorieID FROM Categorie WHERE CategorieID = ?", $invoer);
+    $result = query("SELECT CategorieID FROM Categorie WHERE CategorieID = ?", $invoer); // check of categorie bestaat
     if (count($result) == 1) {
-        query("DELETE FROM Categorie WHERE CategorieID = ?", array($_GET["id"]));
+        // verwijderen
+        query("DELETE FROM Categorie WHERE CategorieID = ?",$invoer);
         header("location: categorieList.php#Categorie is verwijderd!");
         exit();
     } else {
+        // categorie bestaat niet
         header("location: categorieList.php#Categorie verwijderen is mislukt!");
         exit();
     } 
