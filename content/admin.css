@@ -1,3 +1,7 @@
+
+/*
+    INLOG --------------------------------------------------------------------------------
+*/
 #inlog{
     width: 280px;
     position: relative;
@@ -26,6 +30,10 @@
     right: 0;
     bottom: 0;
 }
+
+/*
+    NAVIGATIE --------------------------------------------------------------------------------
+*/
 
 #navigation{
     height:48px;
@@ -58,6 +66,11 @@
     padding: 14px 16px;
 }
 
+
+/*
+    RANDOM STUFF --------------------------------------------------------------------------------
+*/
+
 #content{
     padding: 5px;
 }
@@ -73,6 +86,10 @@ form td input[type='button'][disabled='disabled']{
     color:red;
     font-size: 0.8em;
 }
+
+/*
+   edits+ lijsten --------------------------------------------------------------------------------
+*/
 
 #schilderijList, #addSchilderijLink, #categorieList{
     padding: 5px;
@@ -120,6 +137,10 @@ form td input[type='button'][disabled='disabled']{
 .number{
     width:50px !important;
 }
+
+/*
+    FORMS --------------------------------------------------------------------------------
+*/
 
 .editform{
     float:left;
