@@ -343,7 +343,7 @@ div.comment{
 #pages a {
     background-color: #fff;
 }
-
+//Dit is voor de contact.php pagina:
 #contact-form {
     position: relative;
     margin-top: 100px;
@@ -357,6 +357,7 @@ div.comment{
     margin-left: 200px;
     float:left;
 }
+//einde opmaak contact.php pagina
 div.comment{
     min-height: 100%;
     margin: auto;
