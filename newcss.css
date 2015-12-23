@@ -47,7 +47,7 @@ div.menu{
 }
 #headlogo{
     height: 100px;
-    border-radius: 10px;
+    
 
 }
 .menutext{
@@ -461,4 +461,8 @@ h3.commentaar{
 }
 td.commentaar{
     text-decoration:  none;
+}
+
+img.schilderij{
+    
 }

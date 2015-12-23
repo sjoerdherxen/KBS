@@ -14,7 +14,6 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
             <script src="/content/bootstrap/js/bootstrap.min.js"></script>
             <script src='https://www.google.com/recaptcha/api.js'></script>
             <?php
-
             echo $extra;
             ?>
             <!--Commentaar -->
@@ -23,10 +22,10 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
             <div class="content">
                 <div class="menu">
                     <br>
-
-                    <ul id="ulmenu">
-                        <li class="limenu"><a href="url" target="_blank"> <img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></a></li>
-                        <!-- even kijken hoe we het logo een link kunnen geven zonder dat deze verandert in .ulmenu<a href="url"></a>-->
+<!--
+                    <ul >
+                        
+                        even kijken hoe we het logo een link kunnen geven zonder dat deze verandert in .ulmenu<a href="url"></a>
                         <li class="limenu"><a href="/hoofdpagina.php" class="menutext">Home</a></li>
                         <li class="limenu"><a href="/gallerij.php" class="menutext">Gallerij</a></li>
                         <li class="limenu"><a href="/zoeken.php" class="menutext">Zoeken</a></li> 
@@ -34,12 +33,19 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
 
 
                     </ul>
+                    -->
+                    <ul class="nav nav-tabs" id="ulmenu">
+                        <li><a href="url" target="_blank"> <img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></a></li>
+                        <li role="presentation" ><a href="/hoofdpagina.php" class="menutext">Home</a></li>
+                        <li role="presentation"><a href="/gallerij.php" class="menutext">Gallerij</a></li>
+                        <li role="presentation"><a href="/zoeken.php" class="menutext">Zoeken</a></li>
+                        <li role="presentation"><a href="/contact.php" class="menutext">Contact</a></li> 
+                    </ul>
                 </div>           
 
 
 
                 <?php
-
             }
 
             function renderHtmlEnd() { // einde klant gedeelte
@@ -55,7 +61,6 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
         </body>
     </html>
     <?php
-
 }
 
 function renderHtmlStartAdmin($title, $extra, $page) {
@@ -71,7 +76,6 @@ function renderHtmlStartAdmin($title, $extra, $page) {
             <script src="/content/jquery-1.11.3.min.js"></script> 
             <script src="/content/bootstrap/js/bootstrap.min.js"></script>
     <?php
-
     echo $extra;
     ?>
             <!--Commentaar -->
@@ -96,15 +100,14 @@ function renderHtmlStartAdmin($title, $extra, $page) {
                 }
             </script>
             <div id="content">
-                <?php
+    <?php
+}
 
-            }
-
-            function renderHtmlEndAdmin() {
-                ?>
+function renderHtmlEndAdmin() {
+    ?>
             </div>
         </body>
     </html>
-    <?php
-
-}
+                <?php
+            }
+            

@@ -17,7 +17,7 @@ $params = array($_GET["id"]);
  * PRINT COMMENTAAR UIT DATABASE VAN DAT SPECIFIEKE SCHILDERIJ 
  *   */
 
-$schilderijlijst = query("SELECT S.titel, S.jaar, S.hoogte, C.Categorie_naam, SC.Subcategorie_naam, M.Materiaal_soort, S.img
+$schilderijlijst = query("SELECT S.titel, S.jaar, S.hoogte, S.breedte, S.beschrijving, C.Categorie_naam, SC.Subcategorie_naam, M.Materiaal_soort, S.img
  FROM Schilderij S 
   JOIN Categorie C ON C.CategorieID = S.CategorieID 
   LEFT JOIN SubCategorie SC ON SC.SubcategorieID = S.SubcategorieID 
@@ -32,13 +32,13 @@ $schilderij = $schilderijlijst[0];
 
 <div class="schilderijimg">
 
-    <img src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg/266px-Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg alt="schilderij" <?php /* print($schilderij["img"]); */ ?>>
+    <img class="schilderij" alt="schilderij" src="<?php  print($schilderij["img"]); ?>">
 
     <ul class="schilderij">
-        <li>Titel:<?php print $schilderij["titel"] ?></li>
-        <li>Jaar:<?php print $schilderij["jaar"] ?></li>
-        <li>Dimensies:<?php print $schilderij["hoogte"] ?> * <?php print $schilderij["Breedte"] ?></li>   
-        <li>Catagorie:<?php print $schilderij["Categorie_naam"] ?>
+        <li>Titel: <?php print $schilderij["titel"] ?></li>
+        <li>Jaar: <?php print $schilderij["jaar"] ?></li>
+        <li>Dimensies: <?php print $schilderij["hoogte"] ?> * <?php print $schilderij["breedte"] ?></li>   
+        <li>Catagorie: <?php print $schilderij["Categorie_naam"] ?>
 
 
             <?php
@@ -48,7 +48,7 @@ $schilderij = $schilderijlijst[0];
                 print($schilderij[0]["Subcategorie_naam"]);
             }
             ?></li>
-        <li>Materiaal:<?php print $schilderij["Materiaal_soort"] ?></li>
+        <li>Materiaal: <?php print $schilderij["Materiaal_soort"] ?></li>
 
     </ul>
 
