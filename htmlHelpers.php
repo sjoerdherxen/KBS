@@ -20,19 +20,20 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
         </head>
         <body>
             <div class="content">
+
                 <div class="menu">
                     <br>
-<!--
-                    <ul >
-                        
-                        even kijken hoe we het logo een link kunnen geven zonder dat deze verandert in .ulmenu<a href="url"></a>
-                        <li class="limenu"><a href="/hoofdpagina.php" class="menutext">Home</a></li>
-                        <li class="limenu"><a href="/gallerij.php" class="menutext">Gallerij</a></li>
-                        <li class="limenu"><a href="/zoeken.php" class="menutext">Zoeken</a></li> 
-                        <li class="limenu"><a href="/contact.php" class="menutext">Contact</a></li>    
-
-
-                    </ul>
+                    <!--
+                                        <ul >
+                                            
+                                            even kijken hoe we het logo een link kunnen geven zonder dat deze verandert in .ulmenu<a href="url"></a>
+                                            <li class="limenu"><a href="/hoofdpagina.php" class="menutext">Home</a></li>
+                                            <li class="limenu"><a href="/gallerij.php" class="menutext">Gallerij</a></li>
+                                            <li class="limenu"><a href="/zoeken.php" class="menutext">Zoeken</a></li> 
+                                            <li class="limenu"><a href="/contact.php" class="menutext">Contact</a></li>    
+                    
+                    
+                                        </ul>
                     -->
                     <ul class="nav nav-pills" id="ulmenu"><!-- Hier wil ik nog voor zorgen dat het grijze balkje de hele midden div betrekt. Nog niet gelukt(Ruben)  -->
                         <li><img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></li>
@@ -58,6 +59,7 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
                     </ul>
                 </footer>
             </div>
+
         </body>
     </html>
     <?php
@@ -75,9 +77,9 @@ function renderHtmlStartAdmin($title, $extra, $page) {
             <link href="/content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
             <script src="/content/jquery-1.11.3.min.js"></script> 
             <script src="/content/bootstrap/js/bootstrap.min.js"></script>
-    <?php
-    echo $extra;
-    ?>
+            <?php
+            echo $extra;
+            ?>
             <!--Commentaar -->
         </head>
         <body>
@@ -100,14 +102,13 @@ function renderHtmlStartAdmin($title, $extra, $page) {
                 }
             </script>
             <div id="content">
-    <?php
-}
+                <?php
+            }
 
-function renderHtmlEndAdmin() {
-    ?>
+            function renderHtmlEndAdmin() {
+                ?>
             </div>
         </body>
     </html>
-                <?php
-            }
-            
+    <?php
+}

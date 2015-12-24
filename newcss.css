@@ -29,14 +29,12 @@ div.content{
     top: 0;
     right: 0;
     left: 0;
-  
+
 }
+
 div.menu{
     width: 100%;
-     
     height: 130px;
-    
-
 }
 
 #ulmenu{
@@ -50,7 +48,7 @@ div.menu{
 #headlogo{
     height: 125px;
     border-radius: 0px 10px 10px 0px;
-    
+
 }
 .menutext{
     color: black;
@@ -78,7 +76,7 @@ div.menu{
     background-color: darkgray;
     bottom:0;
     width:1250px;
-    height:75px;   
+    height:50px;   
     z-index:1000;
 }
 .ulfooter{
@@ -459,12 +457,12 @@ div.comments{
 /* opmaak commentaar box*/
 h3.commentaar{
     color: saddlebrown;
-    
+
 }
 td.commentaar{
     text-decoration:  none;
 }
 
 img.schilderij{
-    
+
 }
