@@ -29,11 +29,13 @@ div.content{
     top: 0;
     right: 0;
     left: 0;
-    margin-bottom: 82px;
+  
 }
 div.menu{
     width: 100%;
+     
     height: 130px;
+    
 
 }
 
@@ -46,9 +48,9 @@ div.menu{
 
 }
 #headlogo{
-    height: 100px;
+    height: 125px;
+    border-radius: 0px 10px 10px 0px;
     
-
 }
 .menutext{
     color: black;
@@ -389,9 +391,7 @@ div.comment{
 #pages a {
     background-color: #fff;
 }
-/*
-Alles hieronder is een test
-*/
+
 table.comment{
     width:400px;
     border:0px;
@@ -413,6 +413,7 @@ table.comment2{
     padding: 3px;
     border-spacing: 1px;
 }
+/*Begin schilderij   */
 div.schilderijimg
 {
     position:relative;
@@ -425,9 +426,11 @@ div.schilderijimg
 }
 ul.schilderij{
     float: right;
-    margin: 0px 0px 10px 10px;
     text-align: left;
     list-style-type: none;
+}
+div.onderschilderij{
+    padding-left: 100px;
 }
 .beschrijving{
     width: 300px;
@@ -435,10 +438,9 @@ ul.schilderij{
     white-space: pre;
     text-indent: 50px;
 }
-div.onderschilderij{
-    padding-left: 100px;
-}
 
+/* einde schilderij*/
+/*commentaar box*/
 div.capthapositie{
     padding-left: 350px;
     margin-bottom: 200px;
