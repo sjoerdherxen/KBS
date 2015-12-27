@@ -52,14 +52,15 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
     }
     if ($controle == true) {
 
-        $email_to = "you@yourdomain.com";
-        $name = $_POST["name"];
-        $email_from = $_POST["email"];
-        $message = $_POST["message"];
-        $email_subject = "Feedback from website";
+        $email_to = "thijs@hofvanellen.nl";
+        $first_name = $_POST["contact-voornaam"];
+        $last_name = $_POST["contact-achternaam"];
+        $email_from = $_POST["contact-email"];
+        $message = $_POST["contact-bericht"];
+        $email_subject = $_POST["contact-voornaam"].$_POST["contact-achternaam"];
         $headers = "From: " . $email_from . "\n";
         $headers .= "Reply-To: " . $email_from . "\n";
-        $message = "Name: " . $name . "\r\nMessage: " . $message;
+        $message = "Voornaam: " . $first_name . "\r\nAchternaam: ". $last_name ."\r\nMessage: " . $message;
         ini_set("sendmail_from", $email_from);
         $sent = mail($email_to, $email_subject, $message, $headers, "-f" . $email_from);
         
