@@ -30,6 +30,11 @@ $schilderijlijst = query("SELECT S.titel, S.jaar, S.hoogte, S.breedte, S.beschri
   
   WHERE S.schilderij_id = ?", $params);
 
+if(count($schilderijlijst) != 1){
+    header("location: gallerij.php");
+    exit();
+}
+
 $schilderij = $schilderijlijst[0];
 $naam = "";
 $commentaar = "";
