@@ -12,7 +12,11 @@ and open the template in the editor.
 div, ul, img {
     border: solid 1px ;
 }
+
+kleuren nog aanpassen
+
 */
+
 body{
     background-color: #E3F0F5;
     font-family: Californian FB;
@@ -263,14 +267,6 @@ a.control_next {
     font-size: 18px;
 }
 
-div.comment{
-    min-height: 100%;
-    margin: auto;
-    top: 0;
-    right: 0;
-    left: 0;
-
-}
 
 #pages-wrapper{
     position: relative;
@@ -440,7 +436,7 @@ div.onderschilderij{
 /* einde schilderij*/
 /*commentaar box*/
 div.capthapositie{
-    padding-left: 350px;
+    padding-left: 200px;
     margin-bottom: 200px;
 
 
@@ -451,9 +447,30 @@ div.capthapositie1{
 }
 div.comments{
     text-align: center;
-    margin-top: 100px;
+    margin-top: 150px;
 
 }
+div.comment{
+    min-height: 100%;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+
+}
+div.bordercomment{
+    margin-top: 100px;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-bottom: 100px;
+    /*
+    border: 2px solid black;
+    */
+    border-radius: 3px;
+    /* een tint lichter/donkerder dan normale kleur*/
+    background-color: wheat
+}
+
 /* opmaak commentaar box*/
 h3.commentaar{
     color: saddlebrown;
