@@ -411,26 +411,26 @@ table.comment2{
 div.schilderijimg
 {
     position:relative;
-    top:45px;
-    left:100px;
-    width: 450px;
-
-
+    text-align: center;
+    margin: 40px 0 20px 0;
 
 }
+
+div.schilderijinfo{
+    margin: 0 50px;
+}
+
 ul.schilderij{
-    float: right;
-    text-align: left;
     list-style-type: none;
 }
 div.onderschilderij{
-    padding-left: 100px;
+    /*padding-left: 100px;*/
 }
 .beschrijving{
-    width: 300px;
+    /*width: 300px;*/
     text-align: justify;
     white-space: pre;
-    text-indent: 50px;
+    /*text-indent: 50px;*/
 }
 
 /* einde schilderij*/
@@ -446,8 +446,6 @@ div.capthapositie1{
 
 }
 div.comments{
-    text-align: center;
-    margin-top: 150px;
 
 }
 div.comment{
@@ -459,27 +457,27 @@ div.comment{
 
 }
 div.bordercomment{
-    margin-top: 100px;
-    margin-left: 150px;
-    margin-right: 150px;
-    margin-bottom: 100px;
-    /*
-    border: 2px solid black;
-    */
-    border-radius: 3px;
-    /* een tint lichter/donkerder dan normale kleur*/
-    background-color: wheat
 }
 
+.comment-box{
+    margin: 5px;
+    border: 1px solid #999;
+    padding: 2px 4px;
+    background-color: white;
+    
+}
+.comment-box .comment-naam{
+    border-bottom: 1px solid #999;
+}
+
+.comment-box .comment-beschrijving{
+    white-space: pre;
+}
 /* opmaak commentaar box*/
-h3.commentaar{
-    color: saddlebrown;
-
-}
 td.commentaar{
     text-decoration:  none;
 }
 
 img.schilderij{
-
+    max-width: 1150px;
 }
