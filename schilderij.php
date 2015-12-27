@@ -78,8 +78,8 @@ $schilderij = $schilderijlijst[0];
             <h3 class="commentaar">Commentaar</h3>
         </div>
 
-
-<!--   hier worden alle opmerkingen geprint  <?php /*print $opmerkingen["opmerking"] */?> -->
+        <?php/* print $opmerkingen["Naam_klant"] */?>
+         <?php  /*print $opmerkingen["Opmerking"] */?> 
 
 
 
