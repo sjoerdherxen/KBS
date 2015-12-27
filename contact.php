@@ -51,13 +51,14 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         $controle = false;
     }
     if ($controle == true) {
+        
         $to = query("SELECT email FROM schilder WHERE naam_schilder = 'Thijs Ronda'", NULL);
         $to = $to[0]['email'];
         $subject = $_POST["contact-onderwerp"];
         $message = "naam afzender: " . $_POST["contact-voornaam"] . " " . $_POST["contact-achternaam"] . "\n\n" . $_POST["contact-bericht"];
         $email = $_POST["contact-email"];
         $header = "From:$email \r\n";
-        $mail = mail($to, $subject, $message, $header);
+        mail($to, $subject, $message, $header);
     }
 }
 ?>
