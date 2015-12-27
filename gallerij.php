@@ -15,7 +15,7 @@ renderHtmlStart("Gallerij", "<script src='/content/gallerij.js'></script>");
         $page = $_GET["page"];
     }
     // haal aantal pagina's op
-    $pageCountResult = query("SELECT COUNT(*) as aantal FROM Schilderij", null);
+    $pageCountResult = query("SELECT COUNT(*) as aantal FROM schilderij", null);
     $pageCount = ceil($pageCountResult[0]["aantal"] / $pageSize);
     if ($page > $pageCount) {
         $page = $pageCount;
