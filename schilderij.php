@@ -1,5 +1,4 @@
 <?php
-
 include './htmlHelpers.php';
 include './functions.php';
 renderHtmlStart("Schilderij", "");
@@ -9,7 +8,6 @@ renderHtmlStart("Schilderij", "");
 </script>
 
 <?php
-
 $params = array($_GET["id"]);
 
 /* TE DOEN
@@ -30,7 +28,7 @@ $schilderijlijst = query("SELECT S.titel, S.jaar, S.hoogte, S.breedte, S.beschri
   
   WHERE S.schilderij_id = ?", $params);
 
-if(count($schilderijlijst) != 1){
+if (count($schilderijlijst) != 1) {
     header("location: gallerij.php");
     exit();
 }
@@ -59,7 +57,6 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
             alert("Commentaar is toegevoegd");
         </script>
         <?php
-
     }
 }
 ?>
@@ -72,7 +69,7 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
         <div class="onderschilderij">
             <h3><?php print $schilderij["titel"] ?></h3>
             <div >
-                Beschrijving
+
                 <br>
                 <div class="beschrijving"><?php print $schilderij["beschrijving"] ?></div>
 
@@ -82,37 +79,33 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
     <div class="col-md-4">
         <ul class="schilderij">
             <li><h3>Extra info</h3></li>
-            <?php
-
-            if ($schilderij["prijs"] != "" && $schilderij["prijs"] != null) {
-                ?>
+<?php
+if ($schilderij["prijs"] != "" && $schilderij["prijs"] != null) {
+    ?>
                 <li>Prijs indicatie: &euro;<?php print $schilderij["prijs"] ?></li>
                 <?php
-
             }
 
             if ($schilderij["jaar"] != "" && $schilderij["jaar"] != "0000" && $schilderij["jaar"] != null) {
                 ?>
                 <li>Jaar: <?php print $schilderij["jaar"] ?></li>
                 <?php
-
             }
             ?>
             <li>Groote: <?php print $schilderij["hoogte"] ?> X <?php print $schilderij["breedte"] ?> cm</li>   
             <li>Catagorie: 
-                <?php
-
-                print $schilderij["Categorie_naam"];
-                if ($schilderij["Subcategorie_naam"] != null) {
-                    print(", ");
-                    print($schilderij["Subcategorie_naam"]);
-                }
-                ?>
+            <?php
+            print $schilderij["Categorie_naam"];
+            if ($schilderij["Subcategorie_naam"] != null) {
+                print(", ");
+                print($schilderij["Subcategorie_naam"]);
+            }
+            ?>
             </li>
             <li>Materiaal: <?php print $schilderij["Materiaal_soort"] ?></li>
             <li>Lijst: <?php print $schilderij["lijst"] ? "met lijst" : "zonder lijst"; ?> </li>   
             <li>Passepartout: <?php print $schilderij["passepartout"] ? "met passepartout" : "zonder passepartout"; ?> </li> 
-            <li>Orientatie: <?php print $schilderij["isStaand"] ? "staand" : "liggend";  ?> </li>   
+            <li>Orientatie: <?php print $schilderij["isStaand"] ? "staand" : "liggend"; ?> </li>   
         </ul>
 
     </div>
@@ -122,19 +115,17 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
                 <div>
                     <h3 class="commentaar">Commentaar</h3>
                 </div>
-                <?php
-
-                $comments = query("SELECT * FROM commentaar C where schilderij_ID=?", $params);
-                foreach ($comments as $comment) {
-                    ?>
+<?php
+$comments = query("SELECT * FROM commentaar C where schilderij_ID=?", $params);
+foreach ($comments as $comment) {
+    ?>
                     <div class="comment-box">
                         <div class="comment-naam">
-                            <?php echo $comment["Naam_klant"]; ?>
+                    <?php echo $comment["Naam_klant"]; ?>
                         </div>
                         <div class="comment-beschrijving"><?php echo $comment["Opmerking"]; ?></div>
                     </div>
                     <?php
-
                 }
                 ?>
             </div>
@@ -151,12 +142,11 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
                 <td class="commentaar">Naam</td>
                 <td>:</td>
                 <td><input name="naam" type="text" id="naam" size="40"/>
-                    <?PHP
-
-                    if (isset($naamleeg)) {
-                        echo $naamleeg;
-                    }
-                    ?></td>
+<?PHP
+if (isset($naamleeg)) {
+    echo $naamleeg;
+}
+?></td>
             </tr>
             <tr>
                 <td class="commentaar">Email</td>
@@ -167,12 +157,11 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
                 <td class="commentaar">Commentaar</td>
                 <td >:</td>
                 <td><textarea name="commentaar" cols="42" rows="4" id="opmerking" ></textarea>
-                    <?PHP
-
-                    if (isset($commentaarleeg)) {
-                        echo $commentaarleeg;
-                    }
-                    ?>
+<?PHP
+if (isset($commentaarleeg)) {
+    echo $commentaarleeg;
+}
+?>
                 </td>
             </tr>
             <tr>
@@ -204,6 +193,5 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
 
 
 <?php
-
 renderHtmlEnd();
 ?>

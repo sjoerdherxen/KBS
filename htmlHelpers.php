@@ -23,18 +23,7 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
 
                 <div class="menu">
                     <br>
-                    <!--
-                                        <ul >
-                                            
-                                            even kijken hoe we het logo een link kunnen geven zonder dat deze verandert in .ulmenu<a href="url"></a>
-                                            <li class="limenu"><a href="/hoofdpagina.php" class="menutext">Home</a></li>
-                                            <li class="limenu"><a href="/gallerij.php" class="menutext">Gallerij</a></li>
-                                            <li class="limenu"><a href="/zoeken.php" class="menutext">Zoeken</a></li> 
-                                            <li class="limenu"><a href="/contact.php" class="menutext">Contact</a></li>    
-                    
-                    
-                                        </ul>
-                    -->
+
                     <ul class="nav nav-pills" id="ulmenu"><!-- Hier wil ik nog voor zorgen dat het grijze balkje de hele midden div betrekt. Nog niet gelukt(Ruben)  -->
                         <li><img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></li>
                         <li role="presentation" ><a href="/hoofdpagina.php" class="menutext">Home</a></li>
