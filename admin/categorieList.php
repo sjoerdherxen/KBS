@@ -13,7 +13,15 @@ renderHtmlStartAdmin("Categori&euml;n", "", "categorie"); // &euml; = ë in html
 $query = "SELECT * FROM categorie";
 $categorieen = query($query, null);
 
-echo "<a href='addCategorie.php' id='addCategorieLink'>Toevoegen</a>";
+$error = "";
+
+if(isset($_GET["x"])){
+    if($_GET["x"] === 1){
+        $error = "Categorie is toegevoegd.";
+    }
+}
+
+echo "<table><tr><td><a href='addCategorie.php' id='addCategorieLink'>Toevoegen</a></td><td>$error</td></tr></table>";
 
 echo "<div id='categorieList'>";
 foreach ($categorieen as $categorie) {
