@@ -22,7 +22,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     if ($correct) {
         // check combi naam+ww
         $password = hash("sha256", $password);
-        $query = "SELECT Username FROM gebruikers WHERE username = ? AND wachtwoord = ?";
+        $query = "SELECT Username FROM gebruikers WHERE Username = ? AND Wachtwoord = ?";
         $result = query($query, array($username, $password));
 
         if (count($result) == 1) { // correct

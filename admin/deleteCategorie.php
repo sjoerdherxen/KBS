@@ -9,10 +9,10 @@ if (!isLoggedIn()) {
 }
 if (isset($_GET["id"])) { // get is goed
     $invoer = array($_GET["id"]);
-    $result = query("SELECT CategorieID FROM Categorie WHERE CategorieID = ?", $invoer); // check of categorie bestaat
+    $result = query("SELECT CategorieID FROM categorie WHERE CategorieID = ?", $invoer); // check of categorie bestaat
     if (count($result) == 1) {
         // verwijderen
-        query("DELETE FROM Categorie WHERE CategorieID = ?",$invoer);
+        query("DELETE FROM categorie WHERE CategorieID = ?",$invoer);
         header("location: categorieList.php#Categorie is verwijderd!");
         exit();
     } else {

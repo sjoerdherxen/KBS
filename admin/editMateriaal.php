@@ -12,10 +12,10 @@ $saved = false;
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $invoerDatabase = [$_GET["id"]];
-    $uitvoerDatabase = query("SELECT * FROM Materiaal WHERE MateriaalID = ?", $invoerDatabase);
+    $uitvoerDatabase = query("SELECT * FROM materiaal WHERE MateriaalID = ?", $invoerDatabase);
 
 // check of schiderij is gekoppeld voor verwijderen
-    $schilderijResult = query("SELECT COUNT(*) c FROM Schilderij WHERE MateriaalId = ?", $invoerDatabase);
+    $schilderijResult = query("SELECT COUNT(*) c FROM schilderij WHERE MateriaalID = ?", $invoerDatabase);
     $verwijderPossible = $schilderijResult[0]["c"] == 0;
     
 }
@@ -28,7 +28,7 @@ if (isset($_POST["knopje"])) {
     if (isset($_POST["Materiaal_Soort"]) && $_POST["Materiaal_Soort"] !== "") {
         $id = $_GET["id"];
         $invoerDatabase2 = [$_POST["Materiaal_Soort"], $_POST["BEschrijving"], $_GET["id"]];
-        query("UPDATE Materiaal SET Materiaal_soort = ?, Beschrijving = ? WHERE MateriaalID = ?", $invoerDatabase2);
+        query("UPDATE materiaal SET Materiaal_soort = ?, Beschrijving = ? WHERE MateriaalID = ?", $invoerDatabase2);
         header('location:materiaalList.php#Wijzigingen zijn opgeslagen');
         exit();
     } else {

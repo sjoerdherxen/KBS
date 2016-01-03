@@ -22,12 +22,12 @@ if (isset($_POST["Toevoegen"])) {
     } else {
         // check naam al bestaad
         $invoerDatabase[] = $_POST["Naam"];
-        $uitvoerDatabase = query("SELECT Subcategorie_naam FROM Subcategorie Where Subcategorie_naam = ?", $invoerDatabase);
+        $uitvoerDatabase = query("SELECT Subcategorie_naam FROM subcategorie WHERE Subcategorie_naam = ?", $invoerDatabase);
         if (count($uitvoerDatabase) === 0) {
             // subcat bestaat nog niet dus invoeren
             $toevoegenSubcategorie[] = $_POST["Naam"];
             $toevoegenSubcategorie[] = $_POST["Beschrijving"];
-            query("INSERT INTO Subcategorie (Subcategorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenSubcategorie);
+            query("INSERT INTO subcategorie (Subcategorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenSubcategorie);
             $saved = true;
         } else {
             // bestaat al

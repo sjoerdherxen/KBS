@@ -7,7 +7,7 @@ renderHtmlStart("Home", "");
 <div>
     <?php
     // welkoms text
-    $uitvoerDatabase = query("SELECT Beschrijving FROM Welkomstekst WHERE ID = 1", NULL);
+    $uitvoerDatabase = query("SELECT Welkomstekst FROM welkomstekst WHERE ID = 1", NULL);
     foreach ($uitvoerDatabase as $value1){
         foreach ($value1 as $value2){
             echo "<p>$value2</p>";
@@ -24,7 +24,7 @@ renderHtmlStart("Home", "");
         <ul>
             <?php
 
-            $schilderijen = query("SELECT schilderij_id, titel, img FROM schilderij ORDER BY schilderij_id DESC LIMIT 0,6", null);
+            $schilderijen = query("SELECT Schilderij_ID, Titel, Img FROM schilderij ORDER BY Schilderij_ID DESC LIMIT 0,6", null);
 
             $i = 0;
             foreach ($schilderijen as $schilderij) {

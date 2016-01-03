@@ -26,9 +26,9 @@ $schilderij["isStaand"] = 0;
 $schilderij["prijs"] = "";
 
 // haal alle gerelateerde gegevens op voor dropdowns
-$resultMateriaal = query("SELECT materiaalId, materiaal_soort FROM materiaal", null);
-$resultCategorie = query("SELECT categorieId, categorie_naam FROM categorie", null);
-$resultSubCategorie = query("SELECT subcategorieId, subcategorie_naam FROM subcategorie", null);
+$resultMateriaal = query("SELECT MateriaalID, Materiaal_soort FROM materiaal", null);
+$resultCategorie = query("SELECT CategorieID, Categorie_naam FROM categorie", null);
+$resultSubCategorie = query("SELECT SubcategorieID, Subcategorie_naam FROM subcategorie", null);
 
 // submit is gedaan
 if (isset($_POST["knop"])) {
@@ -143,23 +143,23 @@ if (isset($_POST["knop"])) {
 
     if ($correct) {
         // haal correcte schilder id op of insert als geen bestaat
-        $schilder = query("SELECT schilderid FROM schilder LIMIT 0,1", null);
+        $schilder = query("SELECT SchilderID FROM schilder LIMIT 0,1", null);
         if (count($schilder) == 0) {
-            $schilderid = insert("INSERT INTO schilder (naam_schilder) VALUES (\"Ellen van 't Hof\")", null);
+            $schilderid = insert("INSERT INTO schilder (Naam_schilder) VALUES (\"Ellen van 't Hof\")", null);
         } else {
             $schilderid = $schilder[0]["schilderid"];
         }
         $schilderInsert[] = $schilderid;
 
         // insert 
-        $id = insert("INSERT INTO schilderij (Titel, beschrijving, lijst, passepartout, isStaand, jaar, prijs, hoogte, "
-                . "                             breedte, categorieid, materiaalid, subcategorieId, schilderId)"
+        $id = insert("INSERT INTO schilderij (Titel, Beschrijving, lijst, passepartout, isStaand, Jaar, prijs, Hoogte, "
+                . "                             Breedte, CategorieID, MateriaalID, SubcategorieID, SchilderID)"
                 . "  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", $schilderInsert);
 
         // zet afbeelding correct
         $newpath = "/content/uploads/" . $id . $imgExtension;
         
-        query("UPDATE schilderij SET Img = ? WHERE Schilderij_Id = ?", array($newpath, $id));
+        query("UPDATE schilderij SET Img = ? WHERE Schilderij_ID = ?", array($newpath, $id));
 
         move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
 

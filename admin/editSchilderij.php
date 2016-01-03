@@ -17,9 +17,9 @@ if (!isset($schilderijId) || $schilderijId == "" || !is_numeric($schilderijId)) 
 }
 
 $doSelectQuery = true;
-$resultMateriaal = query("SELECT materiaalId, materiaal_soort FROM materiaal", null);
-$resultCategorie = query("SELECT categorieId, categorie_naam FROM categorie", null);
-$resultSubCategorie = query("SELECT subcategorieId, subcategorie_naam FROM subcategorie", null);
+$resultMateriaal = query("SELECT MateriaalId, Materiaal_soort FROM materiaal", null);
+$resultCategorie = query("SELECT CategorieID, Categorie_naam FROM categorie", null);
+$resultSubCategorie = query("SELECT SubcategorieID, Subcategorie_naam FROM subcategorie", null);
 
 // update schilderij
 if (isset($_POST["knop"])) {
@@ -127,9 +127,9 @@ if (isset($_POST["knop"])) {
 
     $schilderijUpdate[] = $schilderijId;
     if ($correct) {
-        query("UPDATE schilderij SET titel=?, beschrijving=?, lijst=?, passepartout=?, isStaand=?, jaar=?, prijs=?, hoogte=?, breedte=?, categorieId=?, materiaalId=?, subcategorieid=? WHERE Schilderij_ID=?", $schilderijUpdate);
+        query("UPDATE schilderij SET Titel=?, Beschrijving=?, lijst=?, passepartout=?, isStaand=?, Jaar=?, prijs=?, Hoogte=?, Breedte=?, CategorieID=?, MateriaalID=?, SubcategorieID=? WHERE Schilderij_ID=?", $schilderijUpdate);
         if ($updateImg) {
-            $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
+            $resultImg = query("SELECT Img FROM schilderij WHERE Schilderij_ID = ?", array($schilderijId));
             if (file_exists("./.." . $resultImg[0]["Img"])) {
                 unlink("./.." . $resultImg[0]["Img"]);
             }
@@ -137,7 +137,7 @@ if (isset($_POST["knop"])) {
             $newpath = "/content/uploads/" . $schilderijId . $imgExtension;
             move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
 
-            query("UPDATE schilderij SET Img = ? WHERE Schilderij_Id = ?", array($newpath, $schilderijId));
+            query("UPDATE schilderij SET Img = ? WHERE Schilderij_ID = ?", array($newpath, $schilderijId));
         }
 
         header("location: SchilderijList.php#Schilderij " . $schilderij["Titel"] . " is aangepast");
@@ -149,7 +149,7 @@ if (isset($_POST["knop"])) {
 
 // schilderij ophalen anders naar main
 if ($doSelectQuery) {
-    $resultSchilderij = query("SELECT * FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
+    $resultSchilderij = query("SELECT * FROM schilderij WHERE Schilderij_ID = ?", array($schilderijId));
     if ($resultSchilderij === null) {
         header("location: schilderijList.php");
         exit();

@@ -9,9 +9,9 @@ if (isset($_GET['button'])) {
     $zoek = $_GET['zoek'];
 }
 
-$categorieen = query("SELECT * FROM categorie c WHERE (SELECT COUNT(*) FROM schilderij s WHERE s.categorieid = c.categorieid) >= 1", null);
-$subcategorieen = query("SELECT * FROM subcategorie c WHERE (SELECT COUNT(*) FROM schilderij s WHERE s.subcategorieid = c.subcategorieid) >= 1", null);
-$materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schilderij s WHERE s.materiaalid = c.materiaalid) >= 1", null);
+$categorieen = query("SELECT * FROM categorie c WHERE (SELECT COUNT(*) FROM schilderij s WHERE s.CategorieID = c.CategorieID) >= 1", null);
+$subcategorieen = query("SELECT * FROM subcategorie c WHERE (SELECT COUNT(*) FROM schilderij s WHERE s.SubcategorieID = c.SubcategorieID) >= 1", null);
+$materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schilderij s WHERE s.MateriaalID = c.MateriaalID) >= 1", null);
 ?>
 
 <div class="gallerij">
@@ -64,12 +64,12 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
     $where = "";
     $params = array();
     if ($zoek != "") {
-        $where = " WHERE titel LIKE ? OR beschrijving LIKE ?";
+        $where = " WHERE Titel LIKE ? OR Beschrijving LIKE ?";
         $params[] = $zoek;
         $params[] = $zoek;
     }
 
-    $pageCountResult = query("SELECT COUNT(*) as aantal FROM Schilderij" . $where, $params);
+    $pageCountResult = query("SELECT COUNT(*) as aantal FROM schilderij" . $where, $params);
     $pageCount = ceil($pageCountResult[0]["aantal"] / $pageSize);
     if ($page > $pageCount) {
         $page = $pageCount;

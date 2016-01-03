@@ -12,7 +12,7 @@ if (isset($_GET["id"])) {// get is goed
     $result = query("SELECT SubcategorieID FROM subcategorie WHERE SubcategorieID = ?", $invoer);// check of subcategorie bestaat
     if (count($result) == 1) {
         // verwijderen
-        query("DELETE FROM Subcategorie WHERE SubcategorieID = ?", $invoer );
+        query("DELETE FROM subcategorie WHERE SubcategorieID = ?", $invoer );
         header("location: subcategorieList.php#Subcategorie is verwijderd!");
         exit();
     } else {
