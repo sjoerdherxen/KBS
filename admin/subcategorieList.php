@@ -13,9 +13,17 @@ renderHtmlStartAdmin("Subcategori&euml;n", "", "subcategorie");
 $query = "SELECT * FROM subcategorie";
 $subcategorieen = query($query, null);
 
-echo "<a href='addSubcategorie.php' id='addSubcategorieLink'>Toevoegen</a>";
-echo "<div id='subcategorieList'>";
+$succes = "";
 
+if(isset($_GET["x"])){
+    if($_GET["x"] === "1"){
+        $succes = "Subategorie is toegevoegd.";
+    }
+}
+
+echo "<table><tr><td><a href='addSubcategorie.php' id='addSubcategorieLink'>Toevoegen</a></td><td>$error</td></tr></table>";
+
+echo "<div id='subcategorieList'>";
 // subcategorieen tonen
 foreach ($subcategorieen as $subcategorie) {
     echo "<a class='subcategorieListItem' href='editSubcategorie.php?id=" . $subcategorie["SubcategorieID"] . "'>";

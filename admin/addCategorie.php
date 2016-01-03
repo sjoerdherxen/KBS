@@ -53,9 +53,9 @@ if ($saved && isset($_POST["Terug"])) {
             $error = "Categorie is toegevoegd.";
         }
     }
-        if(isset($errorMessage)){
+    if(isset($errorMessage)){
             echo "<p class='incorrect'>$errorMessage</p>";
-        }
+    }
     ?>
     <table>
         <tr>

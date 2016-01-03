@@ -24,6 +24,7 @@ if(isset($_GET["x"])){
 echo "<table><tr><td><a href='addCategorie.php' id='addCategorieLink'>Toevoegen</a></td><td>$error</td></tr></table>";
 
 echo "<div id='categorieList'>";
+//Categorieën tonen
 foreach ($categorieen as $categorie) {
     echo "<a class='categorieListItem' href='editcategorie.php?id=" . $categorie["CategorieID"] . "'>"; // link
     echo "<div class='categorieListItemInner'>";// block

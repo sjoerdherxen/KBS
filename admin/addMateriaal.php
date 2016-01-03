@@ -38,25 +38,26 @@ if (isset($_POST["Toevoegen"])) {
     }
 }
 
-if ($saved) {
-    ?>
-    <script>
-        setTimeout(function () {
-            if (confirm("Het materiaal is toegevoegd.\n\nWilt u terug naar het overzicht?")) {
-                location = "/admin/materiaalList.php";
-            }
-        }, 1);
-    </script>
-    <?php
-
+// terug naar overzicht
+if ($saved && isset($_POST["Terug"])) {
+    header("location:materiaalList.php?x=1");
+    exit();
+} elseif ($saved && isset($_POST["Toevoegen"])){
+    header("location:addMateriaal.php?x=1");
+    exit();
 }
 ?>
 <form action="addmateriaal.php" method="post">
     <h1>Vul hier de materiaal soort en beschrijving in:</h1>
     <?php
-        if(isset($errorMessage)){
-            echo "<p class='incorrect'>$errorMessage</p>";
+    if (isset ($_GET["x"])){
+        if ($_GET["x"] === "1"){
+            $succes = "Materiaal is toegevoegd.";
         }
+    }
+    if(isset($errorMessage)){
+        echo "<p class='incorrect'>$errorMessage</p>";
+    }
     ?>
     <table>
         <tr>
@@ -66,7 +67,9 @@ if ($saved) {
             <td>
                 <input type="text" name="Naam" placeholder="Vul hier de soort in" style="width: 375px">
                 <?php
-
+                if (isset($error)){
+                    echo '<br>' . $succes;
+                }
                 if (isset($Naamerror)) {
                     echo '<br>' . "<span class=\"incorrect\">$Naamerror</span>";
                 }
