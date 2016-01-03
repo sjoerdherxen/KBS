@@ -13,6 +13,14 @@ renderHtmlStartAdmin("Materiaal", "", "materiaal");
 $query = "SELECT * FROM materiaal";
 $materiaalen = query($query, null);
 
+$succes = "";
+
+if(isset($_GET["x"])){
+    if($_GET["x"] === "1"){
+        $succes = "Materiaal is toegevoegd.";
+    }
+}
+
 echo "<a href='addMateriaal.php' id='addMateriaalLink'>Toevoegen</a>";
 echo "<div id='materiaalList'>";
 // door lijst materialen gaan en tonen
