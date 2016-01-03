@@ -16,7 +16,7 @@ $categorieen = query($query, null);
 $error = "";
 
 if(isset($_GET["x"])){
-    if($_GET["x"] === 1){
+    if($_GET["x"] === "1"){
         $error = "Categorie is toegevoegd.";
     }
 }

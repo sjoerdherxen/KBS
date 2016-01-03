@@ -49,7 +49,7 @@ if ($saved && isset($_POST["Terug"])) {
     <h1>Vul hier de categorienaam en beschrijving in:</h1>
     <?php
     if (isset ($_GET["x"])){
-        if ($_GET["x"] === 1){
+        if ($_GET["x"] === "1"){
             $error = "Categorie is toegevoegd.";
         }
     }
