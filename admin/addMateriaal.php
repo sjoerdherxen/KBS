@@ -22,7 +22,7 @@ if (isset($_POST["Toevoegen"])) {
     } else {
         // check of materiaal al bestaat indb
         $invoerDatabase[] = $_POST["Naam"];
-        $uitvoerDatabase = query("SELECT Materiaal_soort FROM Materiaal Where Materiaal_soort = ?", $invoerDatabase);
+        $uitvoerDatabase = query("SELECT Materiaal_soort FROM materiaal WHERE Materiaal_soort = ?", $invoerDatabase);
         if (count($uitvoerDatabase) === 0) { 
             // materiaal bestaat nog niet 
             $toevoegenMateriaal[] = $_POST["Naam"];
