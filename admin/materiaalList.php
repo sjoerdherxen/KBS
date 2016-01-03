@@ -10,7 +10,7 @@ require '../htmlHelpers.php';
 renderHtmlStartAdmin("Materiaal", "", "materiaal");
 
 // materialen ophalen
-$query = "SELECT * FROM Materiaal";
+$query = "SELECT * FROM materiaal";
 $materiaalen = query($query, null);
 
 echo "<a href='addMateriaal.php' id='addMateriaalLink'>Toevoegen</a>";
