@@ -13,8 +13,8 @@ function getUser() {
 function query($query, $params) {
     try {
         // connectie maken
-        $pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
-        // query opbouwe
+        $pdo = new PDO("mysql:host=localhost;dbname=databasekps01;port=3307", "root", "usbw");
+        // query opbouwe;dbname=d
         $q = $pdo->prepare($query);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         // uitvoeren
