@@ -21,9 +21,10 @@ if(isset($_GET["x"])){
     }
 }
 
-echo "<a href='addMateriaal.php' id='addMateriaalLink'>Toevoegen</a>";
+echo "<table><tr><td><a href='addMateriaal.php' id='addMateriaalLink'>Toevoegen</a></td><td>$succes</td></tr></table>";
+
 echo "<div id='materiaalList'>";
-// door lijst materialen gaan en tonen
+// materialen tonen
 foreach ($materiaalen as $materiaal) {
     echo "<a class='materiaalListItem' href='editMateriaal.php?id=" . $materiaal["MateriaalID"] . "'>";
     echo "<div class='materiaalListItemInner'>";
