@@ -18,14 +18,13 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
             ?>
             <!--Commentaar -->
         </head>
+      
         <body>
             <div class="content">
-
+                <div class="bovenmenu"> <span class="menutext">Tel: +31testest | Email:Test@test.nl | </span><a class="menutext" href="/admin/">Login</a> &nbsp; &nbsp;  </div>
                 <div class="menu">
-                    <br>
-
-                    <ul class="nav nav-pills" id="ulmenu"><!-- Hier wil ik nog voor zorgen dat het grijze balkje de hele midden div betrekt. Nog niet gelukt(Ruben)  -->
-                        <li><img id="headlogo" src="http://s9.postimg.org/6wmkzix6n/logo.jpg" alt="Logo"></li>
+                    <ul class="nav nav-pills" id="ulmenu">
+                        <li><img id="headlogo" src="/content/uploads/IMG_2309.jpeg" alt="Logo"></li>
                         <li role="presentation" ><a href="/hoofdpagina.php" class="menutext">Home</a></li>
                         <li role="presentation"><a href="/gallerij.php" class="menutext">Gallerij</a></li>
                         <li role="presentation"><a href="/zoeken.php" class="menutext">Zoeken</a></li>
