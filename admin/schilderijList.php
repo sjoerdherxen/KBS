@@ -31,7 +31,7 @@ if (isset($_GET["zoek"]) && $_GET["zoek"] != "") { // zoek boxje zoeken
     <?php
     // schilderijen tonen
     foreach ($schilderijen as $schilderij) {
-        echo "<a class='schilderijListItem' href='editschilderij.php?id=" . $schilderij["Schilderij_ID"] . "'>";
+        echo "<a class='schilderijListItem' href='editSchilderij.php?id=" . $schilderij["Schilderij_ID"] . "'>";
         echo "<div class='schilderijListItemImg' style='background-image: url(\"" . $schilderij["Img"] . "?_=" . strtotime(date("Y-m-d H:i:s")) . "\");'></div>";
         echo "<div class='schilderijListItemInner'>";
         echo "<span class='titel'>" . $schilderij["Titel"] . "</span><br/>  ";

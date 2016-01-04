@@ -28,7 +28,7 @@ if (isset($_POST["Toevoegen"])) {
             $toevoegenMateriaal[] = $_POST["Naam"];
             $toevoegenMateriaal[] = $_POST["Beschrijving"];
             // add materiaal
-            query("INSERT INTO Materiaal (Materiaal_soort, Beschrijving) VALUES (?, ?)", $toevoegenMateriaal);
+            query("INSERT INTO materiaal (Materiaal_soort, Beschrijving) VALUES (?, ?)", $toevoegenMateriaal);
             $saved = true;
         } else {
             // bestaat al
