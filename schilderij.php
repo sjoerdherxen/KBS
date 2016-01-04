@@ -10,12 +10,7 @@ renderHtmlStart("Schilderij", "");
 <?php
 $params = array($_GET["id"]);
 
-/* TE DOEN
- * 
- * TOEVOEGEN CONFIRMATIE WANNEER EEN COMMENTAAR IS TOEGEVOEGD DOOR MIDDEL VAN POP UP IN HETZELFDE TABBLAD
- * OPMAAK COMMENTAAR BOX
- * PRINT COMMENTAAR UIT DATABASE VAN DAT SPECIFIEKE SCHILDERIJ 
- *   */
+
 
 // eerst schilderij ophalen
 $schilderijlijst = query("SELECT S.titel, S.jaar, S.hoogte, S.breedte, S.beschrijving, 

@@ -41,18 +41,22 @@ div.menu{
     height: 130px;
     
 }
+div.bovenmenu{
+    text-align: right;
+    background-color: wheat;
+}
 
 #ulmenu{
     list-style-type: none;
     padding-left: 10px;
     background-color: grey;
     font-size: 24px;
-    margin-left: 15%;
+   
 
 }
 #headlogo{
     height: 125px;
-    border-radius: 0px 10px 10px 0px;
+    
 
 }
 .menutext{
@@ -62,6 +66,7 @@ div.menu{
 }
 .limenu{
     float: left;
+   
 }
 .limenu a.menutext{
     display: block;
