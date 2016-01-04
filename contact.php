@@ -1,4 +1,5 @@
-<?php // include './htmlHelpers.php';
+<?php 
+include './htmlHelpers.php';
 include './admin/functions.php';
 renderHtmlStart("Contact", "");
 ?>
