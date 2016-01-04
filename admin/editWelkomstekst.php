@@ -13,13 +13,13 @@ $naamerror = false;
 if (isset($_POST["verzendknop"])){
     if (isset($_POST["Beschrijving"]) && $_POST["Beschrijving"] !== ""){
         $invoerDatabase = [$_POST["Beschrijving"]];
-        query("UPDATE Welkomstekst SET Beschrijving = ? WHERE ID = 1", $invoerDatabase);
+        query("UPDATE welkomstekst SET Welkomstekst = ? WHERE ID = 1", $invoerDatabase);
     } else {
         $naamerror = true;
     }
 }
 
-$uitvoerDatabase = query("SELECT Beschrijving FROM Welkomstekst", NULL);
+$uitvoerDatabase = query("SELECT Welkomstekst FROM welkomstekst", NULL);
 foreach ($uitvoerDatabase as $value1){
     foreach ($value1 as $value2){
         if (trim($value2) === ""){

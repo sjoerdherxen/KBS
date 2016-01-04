@@ -17,9 +17,9 @@ if (!isset($schilderijId) || $schilderijId == "" || !is_numeric($schilderijId)) 
 }
 
 $doSelectQuery = true;
-$resultMateriaal = query("SELECT materiaalId, materiaal_soort FROM materiaal", null);
-$resultCategorie = query("SELECT categorieId, categorie_naam FROM categorie", null);
-$resultSubCategorie = query("SELECT subcategorieId, subcategorie_naam FROM subcategorie", null);
+$resultMateriaal = query("SELECT MateriaalId, Materiaal_soort FROM materiaal", null);
+$resultCategorie = query("SELECT CategorieID, Categorie_naam FROM categorie", null);
+$resultSubCategorie = query("SELECT SubcategorieID, Subcategorie_naam FROM subcategorie", null);
 
 // update schilderij
 if (isset($_POST["knop"])) {
@@ -127,9 +127,9 @@ if (isset($_POST["knop"])) {
 
     $schilderijUpdate[] = $schilderijId;
     if ($correct) {
-        query("UPDATE schilderij SET titel=?, beschrijving=?, lijst=?, passepartout=?, isStaand=?, jaar=?, prijs=?, hoogte=?, breedte=?, categorieId=?, materiaalId=?, subcategorieid=? WHERE Schilderij_ID=?", $schilderijUpdate);
+        query("UPDATE schilderij SET Titel=?, Beschrijving=?, lijst=?, passepartout=?, isStaand=?, Jaar=?, prijs=?, Hoogte=?, Breedte=?, CategorieID=?, MateriaalID=?, SubcategorieID=? WHERE Schilderij_ID=?", $schilderijUpdate);
         if ($updateImg) {
-            $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
+            $resultImg = query("SELECT Img FROM schilderij WHERE Schilderij_ID = ?", array($schilderijId));
             if (file_exists("./.." . $resultImg[0]["Img"])) {
                 unlink("./.." . $resultImg[0]["Img"]);
             }
@@ -137,7 +137,7 @@ if (isset($_POST["knop"])) {
             $newpath = "/content/uploads/" . $schilderijId . $imgExtension;
             move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
 
-            query("UPDATE schilderij SET Img = ? WHERE Schilderij_Id = ?", array($newpath, $schilderijId));
+            query("UPDATE schilderij SET Img = ? WHERE Schilderij_ID = ?", array($newpath, $schilderijId));
         }
 
         header("location: SchilderijList.php#Schilderij " . $schilderij["Titel"] . " is aangepast");
@@ -149,7 +149,7 @@ if (isset($_POST["knop"])) {
 
 // schilderij ophalen anders naar main
 if ($doSelectQuery) {
-    $resultSchilderij = query("SELECT * FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
+    $resultSchilderij = query("SELECT * FROM schilderij WHERE Schilderij_ID = ?", array($schilderijId));
     if ($resultSchilderij === null) {
         header("location: schilderijList.php");
         exit();
@@ -171,197 +171,242 @@ if ($doSelectQuery) {
 <p>
     <a href="schilderijList.php">Terug naar lijst</a>
 </p>
+<div class="row">
+    <div class="col-md-3">
+        <form action="editSchilderij.php?id=<?php echo $schilderijId; ?>" method="post" class="editform" enctype="multipart/form-data">
+            <table>
+                <colgroup>
+                    <col style="width: 140px;">
+                    <col style="width: 172px;">
+                </colgroup>
+                <tr>
+                    <td>Titel</td>
+                    <td>
+                        <input type="text" name="titel" value="<?php echo $schilderij["Titel"]; ?>">
+                        <?php
 
-<form action="editSchilderij.php?id=<?php echo $schilderijId; ?>" method="post" class="editform" enctype="multipart/form-data">
-    <table>
-        <colgroup>
-            <col style="width: 140px;">
-            <col style="width: 172px;">
-        </colgroup>
-        <tr>
-            <td>Titel</td>
-            <td>
-                <input type="text" name="titel" value="<?php echo $schilderij["Titel"]; ?>">
+                        if (isset($titelError)) {
+                            echo "<br/>" . $titelError;
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Beschrijving</td><td></td></tr><tr>
+                    <td colspan="2">
+                        <textarea name="beschrijving" ><?php echo $schilderij["Beschrijving"]; ?></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jaar</td>
+                    <td>
+                        <input type="text"  class="number" name="jaar" value="<?php echo $schilderij["Jaar"]; ?>">
+                        <?php
+
+                        if (isset($jaarError)) {
+                            echo "<br/>" . $jaarError;
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hoogte</td>
+                    <td>
+                        <input type="text" class="number" name="hoogte" value="<?php echo $schilderij["Hoogte"]; ?>"> cm
+                        <?php
+
+                        if (isset($hoogteError)) {
+                            echo "<br/>" . $hoogteError;
+                        }
+                        ?>
+                    </td>
+                </tr><tr>
+                    <td>Breedte</td>
+                    <td>
+                        <input type="text" class="number" name="breedte" value="<?php echo $schilderij["Breedte"]; ?>"> cm
+                        <?php
+
+                        if (isset($breedteError)) {
+                            echo "<br/>" . $breedteError;
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Categorie</td>
+                    <td>
+                        <select name="categorie">
+                            <?php
+
+                            foreach ($resultCategorie as $categorie) {
+                                $selected = "";
+                                if ($categorie["categorieId"] == $schilderij["CategorieID"]) {
+                                    $selected = "selected='selected'";
+                                }
+
+                                echo "<option " . $selected . " value='" . $categorie["categorieId"] . "'>" . $categorie["categorie_naam"] . "</option>";
+                            }
+                            ?>
+                        </select>
+                        <?php
+
+                        if (isset($categorieError)) {
+                            echo "<br/>" . $categorieError;
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Subcategorie</td>
+                    <td>
+                        <select name="subcategorie">
+                            <?php
+
+                            foreach ($resultSubCategorie as $categorie) {
+                                $selected = "";
+                                if ($categorie["subcategorieId"] == $schilderij["SubcategorieID"]) {
+                                    $selected = "selected='selected'";
+                                }
+
+                                echo "<option " . $selected . " value='" . $categorie["subcategorieId"] . "'>" . $categorie["subcategorie_naam"] . "</option>";
+                            }
+                            ?>
+                        </select>
+                        <?php
+
+                        if (isset($subcategorieError)) {
+                            echo "<br/>" . $subcategorieError;
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Materiaal</td>
+                    <td>
+                        <select name="materiaal">
+                            <?php
+
+                            foreach ($resultMateriaal as $materiaal) {
+                                $selected = "";
+                                if ($materiaal["materiaalId"] == $schilderij["MateriaalID"]) {
+                                    $selected = "selected='selected'";
+                                }
+
+                                echo "<option " . $selected . " value='" . $materiaal["materiaalId"] . "'>" . $materiaal["materiaal_soort"] . "</option>";
+                            }
+                            ?>
+                        </select>
+                        <?php
+
+                        if (isset($materiaalError)) {
+                            echo "<br/>" . $materiaalError;
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>In lijst</td>
+                    <td>
+                        <input type="checkbox" name="lijst" value="true" <?php if ($schilderij["lijst"]) echo "checked='checked'"; ?>>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Passepartout</td>
+                    <td>
+                        <input type="checkbox" name="passepartout" value="true" <?php if ($schilderij["passepartout"]) echo "checked='checked'"; ?>>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Staand/liggend</td>
+                    <td>
+                        <select name="isStaand">
+                            <option value="false" <?php if (!$schilderij["isStaand"]) echo "selected='selected'"; ?> >liggend</option>
+                            <option value="true" <?php if ($schilderij["isStaand"]) echo "selected='selected'"; ?> >staand</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Prijs</td>
+                    <td>
+                        &euro; <input type="text" name="prijs" class="number" value="<?php echo $schilderij["prijs"]; ?>">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Afbeelding (laat leeg om huidige afbeelding     te houden)</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="file" name="img" accept="image/*">
+                        <?php
+
+                        if (isset($afbeeldingError)) {
+                            echo "<br/>" . $afbeeldingError;
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Opslaan" name="knop" class="button">
+                        <input type="button" value="Verwijder" class="button" id="verwijderen">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <div id="editSchilderijImg">
+            <img src="<?php echo $schilderij["Img"] . ".?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="bordercomment">
+            <div class="comments">
                 <?php
 
-                if (isset($titelError)) {
-                    echo "<br/>" . $titelError;
-                }
-                ?>
-            </td>
-        </tr>
-        <tr>
-            <td>Beschrijving</td><td></td></tr><tr>
-            <td colspan="2">
-                <textarea name="beschrijving" ><?php echo $schilderij["Beschrijving"]; ?></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td>Jaar</td>
-            <td>
-                <input type="text"  class="number" name="jaar" value="<?php echo $schilderij["Jaar"]; ?>">
-                <?php
-
-                if (isset($jaarError)) {
-                    echo "<br/>" . $jaarError;
-                }
-                ?>
-            </td>
-        </tr>
-        <tr>
-            <td>Hoogte</td>
-            <td>
-                <input type="text" class="number" name="hoogte" value="<?php echo $schilderij["Hoogte"]; ?>"> cm
-                <?php
-
-                if (isset($hoogteError)) {
-                    echo "<br/>" . $hoogteError;
-                }
-                ?>
-            </td>
-        </tr><tr>
-            <td>Breedte</td>
-            <td>
-                <input type="text" class="number" name="breedte" value="<?php echo $schilderij["Breedte"]; ?>"> cm
-                <?php
-
-                if (isset($breedteError)) {
-                    echo "<br/>" . $breedteError;
-                }
-                ?>
-            </td>
-        </tr>
-        <tr>
-            <td>Categorie</td>
-            <td>
-                <select name="categorie">
+                $comments = query("SELECT * FROM commentaar C where Schilderij_ID=?", [$schilderijId]);
+                foreach ($comments as $comment) {
+                    ?>
+                    <div class="comment-box">
+                        <div class="comment-naam">
+                            <?php echo $comment["Naam_klant"]; ?>
+                            <a class="delete-comment" data-id="<?php echo $comment["Id"]; ?>" data-name="<?php echo $comment["Naam_klant"]; ?>" href="">verwijderen</a>
+                        </div>
+                        <div class="comment-beschrijving"><?php echo $comment["Opmerking"]; ?></div>
+                    </div>
                     <?php
 
-                    foreach ($resultCategorie as $categorie) {
-                        $selected = "";
-                        if ($categorie["categorieId"] == $schilderij["CategorieID"]) {
-                            $selected = "selected='selected'";
-                        }
-
-                        echo "<option " . $selected . " value='" . $categorie["categorieId"] . "'>" . $categorie["categorie_naam"] . "</option>";
-                    }
-                    ?>
-                </select>
-                <?php
-
-                if (isset($categorieError)) {
-                    echo "<br/>" . $categorieError;
                 }
                 ?>
-            </td>
-        </tr>
-        <tr>
-            <td>Subcategorie</td>
-            <td>
-                <select name="subcategorie">
-                    <?php
-
-                    foreach ($resultSubCategorie as $categorie) {
-                        $selected = "";
-                        if ($categorie["subcategorieId"] == $schilderij["SubcategorieID"]) {
-                            $selected = "selected='selected'";
-                        }
-
-                        echo "<option " . $selected . " value='" . $categorie["subcategorieId"] . "'>" . $categorie["subcategorie_naam"] . "</option>";
-                    }
-                    ?>
-                </select>
-                <?php
-
-                if (isset($subcategorieError)) {
-                    echo "<br/>" . $subcategorieError;
-                }
-                ?>
-            </td>
-        </tr>
-        <tr>
-            <td>Materiaal</td>
-            <td>
-                <select name="materiaal">
-                    <?php
-
-                    foreach ($resultMateriaal as $materiaal) {
-                        $selected = "";
-                        if ($materiaal["materiaalId"] == $schilderij["MateriaalID"]) {
-                            $selected = "selected='selected'";
-                        }
-
-                        echo "<option " . $selected . " value='" . $materiaal["materiaalId"] . "'>" . $materiaal["materiaal_soort"] . "</option>";
-                    }
-                    ?>
-                </select>
-                <?php
-
-                if (isset($materiaalError)) {
-                    echo "<br/>" . $materiaalError;
-                }
-                ?>
-            </td>
-        </tr>
-        <tr>
-            <td>In lijst</td>
-            <td>
-                <input type="checkbox" name="lijst" value="true" <?php if ($schilderij["lijst"]) echo "checked='checked'"; ?>>
-            </td>
-        </tr>
-        <tr>
-            <td>Passepartout</td>
-            <td>
-                <input type="checkbox" name="passepartout" value="true" <?php if ($schilderij["passepartout"]) echo "checked='checked'"; ?>>
-            </td>
-        </tr>
-        <tr>
-            <td>Staand/liggend</td>
-            <td>
-                <select name="isStaand">
-                    <option value="false" <?php if (!$schilderij["isStaand"]) echo "selected='selected'"; ?> >liggend</option>
-                    <option value="true" <?php if ($schilderij["isStaand"]) echo "selected='selected'"; ?> >staand</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Prijs</td>
-            <td>
-                &euro; <input type="text" name="prijs" class="number" value="<?php echo $schilderij["prijs"]; ?>">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">Afbeelding (laat leeg om huidige afbeelding     te houden)</td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="file" name="img" accept="image/*">
-                <?php
-
-                if (isset($afbeeldingError)) {
-                    echo "<br/>" . $afbeeldingError;
-                }
-                ?>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="Opslaan" name="knop" class="button">
-                <input type="button" value="Verwijder" class="button" id="verwijderen">
-            </td>
-        </tr>
-    </table>
-</form>
-<div id="editSchilderijImg">
-    <img src="<?php echo $schilderij["Img"] . ".?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
+            </div>
+        </div>
+    </div>
 </div>
-
 <script>
-    document.getElementById("verwijderen").onclick = function () {
-        if (confirm("Weet u zeker dat u dit schilderij wilt verwijderen?")) {
-            window.location = "deleteSchilderij.php?id=<?php echo $schilderijId; ?>";
-        }
-    };
+    $(function () {
+
+        $("#verwijderen").click(function () {
+            if (confirm("Weet u zeker dat u dit schilderij wilt verwijderen?")) {
+                window.location = "deleteSchilderij.php?id=<?php echo $schilderijId; ?>";
+            }
+        });
+
+        $(".delete-comment").click(function () {
+            var element = $(this);
+            var name = element.data("name");
+            if (confirm("Weet u zeker dat u de comment van " + name + " wilt verwijderen?")) {
+                var id = element.data("id");
+                $.get("/admin/deleteComment.php?id=" + id).done(function (response) {
+                    if(response == "true"){
+                        element.parents(".comment-box").remove();
+                    }
+                });
+            }
+        });
+
+    });
 </script>
 
 

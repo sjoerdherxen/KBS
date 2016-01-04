@@ -13,10 +13,10 @@ $saved = false;
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $invoerDatabase = [$id];
-    $uitvoerDatabase = query("SELECT * FROM Categorie WHERE CategorieID = ?", $invoerDatabase);
+    $uitvoerDatabase = query("SELECT * FROM categorie WHERE CategorieID = ?", $invoerDatabase);
     
 // check of schiderij is gekoppeld voor verwijderen
-    $schilderijResult = query("SELECT COUNT(*) c FROM Schilderij WHERE CategorieId = ?", $invoerDatabase);
+    $schilderijResult = query("SELECT COUNT(*) c FROM schilderij WHERE CategorieID = ?", $invoerDatabase);
     $verwijderPossible = $schilderijResult[0]["c"] == 0;
 }
 ?>
@@ -66,7 +66,7 @@ if (isset($_POST["knopje"])) {
     if (isset($_POST["Categorie_Naam"]) && $_POST["Categorie_Naam"] !== "") { // correcte invoer
         $id = $_GET["id"];
         $invoerDatabase2 = [$_POST["Categorie_Naam"], $_POST["BEschrijving"], $id]; // BEschrijving?? (zelfde als op regel 38)
-        query("UPDATE Categorie SET Categorie_naam = ?, Beschrijving = ? WHERE CategorieID = ?", $invoerDatabase2);
+        query("UPDATE categorie SET Categorie_naam = ?, Beschrijving = ? WHERE CategorieID = ?", $invoerDatabase2);
         header('location:categorieList.php#Wijzigingen zijn opgeslagen');
         exit();
     }

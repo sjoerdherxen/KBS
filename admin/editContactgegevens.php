@@ -114,7 +114,7 @@ if (isset($_POST["knopske"])) {
         $email1 = $_POST["Email"];
         $invoerDatabase = [$naam1, $email1, $telefoon1, $woonplaats1, $adres1, $gebdat1];
         var_dump($invoerDatabase);
-        query("UPDATE Schilder SET Naam_schilder=?, Email=?, Telefoon=?, Woonplaats=?, Adres=?, Gebdat=?", $invoerDatabase);
+        query("UPDATE schilder SET Naam_schilder=?, Email=?, Telefoon=?, Woonplaats=?, Adres=?, Gebdat=?", $invoerDatabase);
         header('location:main.php#Wijzigingen zijn opgeslagen');
         exit();
     } else {

@@ -12,11 +12,11 @@ $saved = false;
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $invoerDatabase = [$_GET["id"]];
-    $uitvoerDatabase = query("SELECT * FROM Subcategorie WHERE SubcategorieID = ?", $invoerDatabase);
+    $uitvoerDatabase = query("SELECT * FROM subcategorie WHERE SubcategorieID = ?", $invoerDatabase);
 
 
 // check of schiderij is gekoppeld voor verwijderen
-    $schilderijResult = query("SELECT COUNT(*) c FROM Schilderij WHERE SubcategorieId = ?", $invoerDatabase);
+    $schilderijResult = query("SELECT COUNT(*) c FROM schilderij WHERE SubcategorieID = ?", $invoerDatabase);
     $verwijderPossible = $schilderijResult[0]["c"] == 0;
 }
 if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
@@ -69,7 +69,7 @@ if (isset($_POST["knopje"])) {
     if (isset($_POST["Subcategorie_Naam"]) && $_POST["Subcategorie_Naam"] !== "") {
         $id = $_GET["id"];
         $invoerDatabase2 = [$_POST["Subcategorie_Naam"], $_POST["BEschrijving"], $_GET["id"]];
-        query("UPDATE Subcategorie SET Subcategorie_naam = ?, Beschrijving = ? WHERE SubcategorieID = ?", $invoerDatabase2);
+        query("UPDATE subcategorie SET Subcategorie_naam = ?, Beschrijving = ? WHERE SubcategorieID = ?", $invoerDatabase2);
         header('location:subcategorieList.php#Wijzigingen zijn opgeslagen');
         exit();
     }

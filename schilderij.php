@@ -10,23 +10,18 @@ renderHtmlStart("Schilderij", "");
 <?php
 $params = array($_GET["id"]);
 
-/* TE DOEN
- * 
- * TOEVOEGEN CONFIRMATIE WANNEER EEN COMMENTAAR IS TOEGEVOEGD DOOR MIDDEL VAN POP UP IN HETZELFDE TABBLAD
- * OPMAAK COMMENTAAR BOX
- * PRINT COMMENTAAR UIT DATABASE VAN DAT SPECIFIEKE SCHILDERIJ 
- *   */
+
 
 // eerst schilderij ophalen
 $schilderijlijst = query("SELECT S.titel, S.jaar, S.hoogte, S.breedte, S.beschrijving, 
             C.Categorie_naam, SC.Subcategorie_naam, M.Materiaal_soort, S.img, S.prijs, S.lijst, 
             S.passepartout, S.isStaand
- FROM Schilderij S 
-  JOIN Categorie C ON C.CategorieID = S.CategorieID 
-  LEFT JOIN SubCategorie SC ON SC.SubcategorieID = S.SubcategorieID 
-  JOIN Materiaal M ON M.MateriaalID = S.MateriaalID
+ FROM schilderij S 
+  JOIN categorie C ON C.CategorieID = S.CategorieID 
+  LEFT JOIN subcategorie SC ON SC.SubcategorieID = S.SubcategorieID 
+  JOIN materiaal M ON M.MateriaalID = S.MateriaalID
   
-  WHERE S.schilderij_id = ?", $params);
+  WHERE S.Schilderij_ID = ?", $params);
 
 if (count($schilderijlijst) != 1) {
     header("location: gallerij.php");
@@ -51,7 +46,7 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
     }
     if ($correct) {
         $input = array($_POST["naam"], $_POST["email"], $_POST["commentaar"], $_GET["id"]);
-        query("insert into commentaar (naam_klant, email_klant, opmerking, schilderij_id) VALUES (?, ?, ?, ?)", $input);
+        query("insert into commentaar (Naam_klant, Email_klant, Opmerking, Schilderij_ID) VALUES (?, ?, ?, ?)", $input);
         ?>
         <script>
             alert("Commentaar is toegevoegd");
@@ -116,7 +111,7 @@ if ($schilderij["prijs"] != "" && $schilderij["prijs"] != null) {
                     <h3 class="commentaar">Commentaar</h3>
                 </div>
 <?php
-$comments = query("SELECT * FROM commentaar C where schilderij_ID=?", $params);
+$comments = query("SELECT * FROM commentaar C where Schilderij_ID=?", $params);
 foreach ($comments as $comment) {
     ?>
                     <div class="comment-box">

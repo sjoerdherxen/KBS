@@ -22,12 +22,12 @@ if (isset($_POST["Toevoegen"]) || isset($_POST["Terug"])) {
     } else {
         // check of categorie naam al eerder is ingevuld
         $invoerDatabase[] = $_POST["Naam"];
-        $uitvoerDatabase = query("SELECT Categorie_naam FROM Categorie Where Categorie_naam = ?", $invoerDatabase);
+        $uitvoerDatabase = query("SELECT Categorie_naam FROM categorie WHERE Categorie_naam = ?", $invoerDatabase);
         if (count($uitvoerDatabase) === 0) { // categorie bestaat nog niet
             $toevoegenCategorie[] = $_POST["Naam"];
             $toevoegenCategorie[] = $_POST["Beschrijving"];
             // add to db
-            query("INSERT INTO Categorie (Categorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenCategorie);
+            query("INSERT INTO categorie (Categorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenCategorie);
             $saved = true;
         } else {
             // bestaat al

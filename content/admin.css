@@ -99,7 +99,6 @@ form td input[type='button'][disabled='disabled']{
     float:left;
     border: 1px solid #888;
     padding: 5px;
-    margin: 0 5px;
 }
 
 .schilderijListItem, .categorieListItem, .subcategorieListItem, .materiaalListItem{
@@ -132,6 +131,13 @@ form td input[type='button'][disabled='disabled']{
     margin-top: -50px;
     left: 50%;
     margin-left: -50px;
+}
+
+.delete-comment{
+   float: right;
+   display: block;
+   width: 100px;
+   text-align: right;
 }
 
 .number{

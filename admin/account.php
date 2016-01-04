@@ -13,7 +13,7 @@ renderHtmlStartAdmin("Account", "", "account");
 if (isset($_POST["oldpassword"])) {
     $wachtwoordHash = hash("sha256", $_POST["oldpassword"]);
     // query voor checken huidige wachtwoord
-    $result = query("SELECT * FROM gebruikers WHERE username = ? AND wachtwoord = ?", array($_SESSION["inlog"], $wachtwoordHash));
+    $result = query("SELECT * FROM gebruikers WHERE Username = ? AND Wachtwoord = ?", array($_SESSION["inlog"], $wachtwoordHash));
    
     if (count($result) === 0) { // ww is niet goed
         $errorMessage = "Huidig wachtwoord klopt niet";

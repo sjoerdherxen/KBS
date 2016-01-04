@@ -14,7 +14,7 @@ function query($query, $params) {
     try {
         // connectie maken
         $pdo = new PDO("mysql:host=localhost;dbname=databasekps01;port=3307", "root", "usbw");
-        // query opbouwe
+        // query opbouwe;dbname=d
         $q = $pdo->prepare($query);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         // uitvoeren
@@ -30,7 +30,7 @@ function query($query, $params) {
 
 function insert($query, $params) { // check query function returns id of inserted record
     try {
-        $pdo = new PDO("mysql:host=localhost;dbname=databasekps01;port=3307", "root", "usbw");
+        $pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
         $q = $pdo->prepare($query);
         $q->execute($params);
         return $pdo->lastInsertId();
