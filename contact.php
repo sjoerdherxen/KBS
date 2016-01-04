@@ -23,13 +23,13 @@ $contact_bericht = "";
 
 <?php
 if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") {
-    
+
     $contact_voornaam = $_POST["contact-voornaam"];
     $contact_achternaam = $_POST["contact-achternaam"];
     $contact_email = $_POST["contact-email"];
     $contact_onderwerp = $_POST["contact-onderwerp"];
     $contact_bericht = $_POST["contact-bericht"];
-    
+
     if (!isset($_POST["contact-voornaam"]) || $_POST["contact-voornaam"] == "") {
         $contact_voornaam_error = "voornaam is niet ingevuld!";
         $controle = false;
@@ -51,14 +51,19 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         $controle = false;
     }
     if ($controle == true) {
-        
+
         $to = query("SELECT email FROM schilder WHERE naam_schilder = 'Thijs Ronda'", NULL);
         $to = $to[0]['email'];
         $subject = $_POST["contact-onderwerp"];
         $message = "naam afzender: " . $_POST["contact-voornaam"] . " " . $_POST["contact-achternaam"] . "\n\n" . $_POST["contact-bericht"];
         $email = $_POST["contact-email"];
         $header = "From:$email \r\n";
-        mail($to, $subject, $message, $header);
+        $verzondenmail = mail($to, $subject, $message, $header);
+        if ($verzondenmail) {
+            
+        } else {
+            
+        }
     }
 }
 ?>
@@ -82,7 +87,12 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
     <?php
     if (isset($_POST["contact-submit"])) {
         if ($_POST["contact-voornaam"] == "" && $_POST["contact-achternaam"] == "" && $_POST["contact-email"] == "" && $_POST["contact-onderwerp"] == "" && $_POST["contact-bericht"] == "") {
-            if ($mail) {
+            if ($verzondenmail == true) {
+                $contact_voornaam = '';
+                $contact_achternaam = '';
+                $contact_email = '';
+                $contact_onderwerp = '';
+                $contact_bericht = '';
                 echo "mail is goed verzonden!";
             } else {
                 echo "Er is iets misgegaan!";
