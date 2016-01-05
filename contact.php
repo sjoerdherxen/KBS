@@ -110,22 +110,6 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
 </div>
 
 <div id="contact-foutmelding">
-    <?php
-    /* if (isset($_POST["contact-submit"])) {
-      if ($_POST["contact-voornaam"] == "" && $_POST["contact-achternaam"] == "" && $_POST["contact-email"] == "" && $_POST["contact-onderwerp"] == "" && $_POST["contact-bericht"] == "") {
-      if ($verzondenmail == true) {
-      $contact_voornaam = '';
-      $contact_achternaam = '';
-      $contact_email = '';
-      $contact_onderwerp = '';
-      $contact_bericht = '';
-      echo "mail is goed verzonden!";
-      } else {
-      echo "Er is iets misgegaan!";
-      }
-      }
-      } */
-    ?>
 </div>
 <?php
 renderHtmlEnd();
