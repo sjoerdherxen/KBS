@@ -488,7 +488,7 @@ div.bordercomment{
 }
 
 .comment-box .comment-beschrijving{
-    white-space: pre;
+    white-space: pre-line;
 }
 /* opmaak commentaar box*/
 td.commentaar{
