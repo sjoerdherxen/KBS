@@ -190,6 +190,10 @@ div.gallerij{
 .space-form {
     height: 2px;
 }
+
+.round_edge {
+    border-radius: 10px;
+}
 //einde css voor contact.php
 /*
 Script voor slider
