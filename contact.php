@@ -82,30 +82,30 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
     ?></div>
 <div id="contact-form">
     <form method="post" action="contact.php">
-        <div class="round_edge"><input style="border-radius: 10px" type="text" name="contact-voornaam" placeholder="Voornaam" value="<?php print($contact_voornaam) ?>"></div>
+        <input style="border-radius: 10px" type="text" name="contact-voornaam" placeholder="Voornaam" value="<?php print($contact_voornaam) ?>">
         <?php print("$contact_voornaam_error"); ?>
         <div class="space-form"></div>
         
-        <div class="round_edge"><input style="border-radius: 10px" type="text" name="contact-achternaam" placeholder="Achternaam" value="<?php print($contact_achternaam) ?>"></div>
+        <input style="border-radius: 10px" type="text" name="contact-achternaam" placeholder="Achternaam" value="<?php print($contact_achternaam) ?>">
         <?php print("$contact_achternaam_error"); ?>
         <div class="space-form"></div>
         
-        <div class="round_edge"><input style="border-radius: 10px" type="email" name="contact-email" placeholder="E-mail adres" value="<?php print($contact_email) ?>"></div>
+        <input style="border-radius: 10px" type="email" name="contact-email" placeholder="E-mail adres" value="<?php print($contact_email) ?>">
         <?php print("$contact_email_error"); ?>
         <div class="space-form"></div>
         
-        <div class="round_edge"><input style="border-radius: 10px" type="text" name="contact-onderwerp" placeholder="onderwerp" value="<?php print($contact_onderwerp) ?>"></div>
+        <input style="border-radius: 10px" type="text" name="contact-onderwerp" placeholder="onderwerp" value="<?php print($contact_onderwerp) ?>">
         <?php print("$contact_onderwerp_error"); ?>
         <div class="space-form"></div>
         
-        <div class="round_edge"><textarea style="border-radius: 10px" rows="4" cols="50" name="contact-bericht" placeholder="voer hier uw bericht in"><?php print($contact_bericht) ?></textarea></div>
+        <textarea style="border-radius: 10px" rows="4" cols="50" name="contact-bericht" placeholder="voer hier uw bericht in"><?php print($contact_bericht) ?></textarea>
         <?php print("$contact_bericht_error"); ?>
         
         <div class="capthapositie1">
             <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div>
         </div>
         <div class="space-form"></div>
-        <div class="round_edge"><input type="submit" name="contact-submit" value="verzenden"></div>
+        <input type="submit" name="contact-submit" value="verzenden">
     </form>
 </div>
 
