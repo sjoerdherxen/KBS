@@ -159,15 +159,11 @@ if (isset($_POST["knop"])) {
             print("Er is een fout opgreteden tijdens het opslaan");
         } else {
             // zet afbeelding correct
-            $newpath = "/content/uploads/" . $id . $imgExtension;
-
-            query("UPDATE schilderij SET Img = ? WHERE Schilderij_ID = ?", array($newpath, $id));
-
-            move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
+             uploadSchilderijImg($id, $imgExtension, null);
 
             if ($_POST["knop"] == "Toevoegen, nieuw") {
-                //header("location: addSchilderij.php#Schilderij is toegevoegd");
-                //exit();
+                header("location: addSchilderij.php#Schilderij is toegevoegd");
+                exit();
             } else {
                 header("location: schilderijList.php#Schilderij is toegevoegd");
                 exit();

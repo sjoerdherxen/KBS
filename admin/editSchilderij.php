@@ -130,15 +130,9 @@ if (isset($_POST["knop"])) {
         query("UPDATE schilderij SET Titel=?, Beschrijving=?, lijst=?, passepartout=?, isStaand=?, Jaar=?, prijs=?, Hoogte=?, Breedte=?, CategorieID=?, MateriaalID=?, SubcategorieID=? WHERE Schilderij_ID=?", $schilderijUpdate);
         if ($updateImg) {
             $resultImg = query("SELECT Img FROM schilderij WHERE Schilderij_ID = ?", array($schilderijId));
-            if (file_exists("./.." . $resultImg[0]["Img"])) {
-                unlink("./.." . $resultImg[0]["Img"]);
-            }
 
-            $newpath = "/content/uploads/" . $schilderijId . $imgExtension;
-            move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
-
-            query("UPDATE schilderij SET Img = ? WHERE Schilderij_ID = ?", array($newpath, $schilderijId));
-        }
+            uploadSchilderijImg($schilderijId, $imgExtension, $resultImg[0]["Img"]);
+           }
 
         header("location: schilderijList.php#Schilderij " . $schilderij["Titel"] . " is aangepast");
         exit();
@@ -357,7 +351,7 @@ if ($doSelectQuery) {
 
     <div class="col-md-6">
         <div id="editSchilderijImg">
-            <img src="<?php echo $schilderij["Img"] . ".?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
+            <img src="/content/uploads/<?php echo $schilderij["Img"] . ".?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
         </div>
     </div>
 

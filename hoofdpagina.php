@@ -24,7 +24,7 @@ renderHtmlStart("Home", "");
         <ul>
             <?php
 
-            $schilderijen = query("SELECT Schilderij_ID, Titel, Img FROM schilderij ORDER BY Schilderij_ID DESC LIMIT 0,6", null);
+            $schilderijen = query("SELECT Schilderij_ID, Titel, Img FROM schilderij ORDER BY Schilderij_ID DESC LIMIT 0,9", null);
 
             $i = 0;
             foreach ($schilderijen as $schilderij) {
@@ -32,7 +32,7 @@ renderHtmlStart("Home", "");
                     echo "<li>";
                 }
                 echo "<a href='/schilderij.php?id=" . $schilderij["Schilderij_ID"] . "'>";
-                echo "<img src='" . $schilderij["Img"] . "'>";
+                echo "<img src='/content/uploads/" . $schilderij["Img"] . "'>";
                 echo "<span class='slider-titel'>" . $schilderij["Titel"] . "</span>";
                 echo "</a>";
                 
