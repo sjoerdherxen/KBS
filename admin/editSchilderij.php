@@ -140,7 +140,7 @@ if (isset($_POST["knop"])) {
             query("UPDATE schilderij SET Img = ? WHERE Schilderij_ID = ?", array($newpath, $schilderijId));
         }
 
-        header("location: SchilderijList.php#Schilderij " . $schilderij["Titel"] . " is aangepast");
+        header("location: schilderijList.php#Schilderij " . $schilderij["Titel"] . " is aangepast");
         exit();
     } else {
         $doSelectQuery = false;
