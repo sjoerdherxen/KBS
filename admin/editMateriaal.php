@@ -39,7 +39,7 @@ if (isset($_POST["knopje"])) {
 <form action="editMateriaal.php?id=<?php echo $id; ?>" method="post">
     <h1>Pas hier de categorienaam en/of beschrijving aan.</h1>
     <table>
-        <?php
+        <?phpk
         foreach ($uitvoerDatabase as $value1) {
             foreach ($value1 as $key2 => $value2) {
 
