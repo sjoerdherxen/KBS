@@ -21,42 +21,79 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                 <input type="submit" value="Filter" name="button">
             </div>
             <div class="col-md-3">
-                Lijst
-                <select name="lijst">
-                    <option value="">Beide</option>
-                    <option>Met</option>
-                    <option>Zonder</option>
-                </select> <br/>
-                Passepartout
-                <select name="passepartout">
-                    <option value="">Beide</option>
-                    <option>Met</option>
-                    <option>Zonder</option>
-                </select> <br/>
-                Orientatie 
-                <select name="orientatie">
-                    <option value="">Beide</option>
-                    <option>Staand</option>
-                    <option>Liggend</option>
-                </select> <br/>
-                Prijs
-                <select name="prijs">
-                    <option value="">Alle</option>
-                    <option>€100 tot €300</option>
-                    <option>€300 tot €600</option>
-                    <option>€600 tot €1000</option>
-                    <option>€1000 en hoger</option>
-                </select> <br/>
-                Categorie
-                <select name="categorie">
-                    <option value="">Alle</option>
-                    <option><!-- function  --></option>
-                </select> <br/>
-                Materiaal
-                <select name="materiaal">
-                    <option value="">Alle</option>
-                    <option><!-- function  --></option>
-                </select> <br/>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        Lijst:
+                    </div>
+                    <div class="col-md-6">
+                        <select name=" divjst">
+                            <option value="">Beide</option>
+                            <option>Met</option>
+                            <option>Zonder</option>
+                        </select> <br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        Passepartout:
+                    </div>
+                    <div class="col-md-6">
+                        <select name="passepartout">
+                            <option value="">Beide</option>
+                            <option>Met</option>
+                            <option>Zonder</option>
+                        </select> <br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        Orientatie:
+                    </div>
+                    <div class="col-md-6">
+                        <select name="orientatie">
+                            <option value="">Beide</option>
+                            <option>Staand</option>
+                            <option>Liggend</option>
+                        </select> <br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        Prijs:
+                    </div>
+                    <div class="col-md-6">
+                        <select name="prijs">
+                            <option value="">Alle</option>
+                            <option>€100 tot €300</option>
+                            <option>€300 tot €600</option>
+                            <option>€600 tot €1000</option>
+                            <option>€1000 en hoger</option>
+                        </select> <br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        Categorie:
+                    </div>
+                    <div class="col-md-6">
+                        <select name="categorie">
+                            <option value="">Alle</option>
+                            <option><!-- function  --></option>
+                        </select> <br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        Materiaal:
+                    </div>
+                    <div class="col-md-6">
+                        <select name="materiaal">
+                            <option value="">Alle</option>
+                            <option><!-- function  --></option>
+                        </select> <br/>
+                    </div>
+                </div>
 
 
             </div>
