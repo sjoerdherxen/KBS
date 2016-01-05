@@ -18,7 +18,6 @@ function printteken($aantal, $teken) {
     }
 }
 // query op db uitvoeren 
-/*
 function query($query, $params) {
     try {
         // connectie maken
@@ -36,8 +35,8 @@ function query($query, $params) {
         return null;
     }
 }
-*/
 
+/*
 //query op db uitvoeren
 function query($query, $params) {
     try {
@@ -56,7 +55,7 @@ function query($query, $params) {
         return null;
     }
 }
-
+*/
 function checkCaptcha($captchaInput) {
     $clientIp = $_SERVER['REMOTE_ADDR'];
 

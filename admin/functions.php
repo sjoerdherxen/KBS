@@ -8,7 +8,7 @@ function isLoggedIn() {
 function getUser() {
     return $_SESSION['inlog'];
 }
-/*
+
 // query op db uitvoeren
 function query($query, $params) {
     try {
@@ -39,7 +39,7 @@ function insert($query, $params) { // check query function returns id of inserte
         return null;
     }
 }
-*/
+/*
 // query op db uitvoeren
 function query($query, $params) {
     try {
@@ -69,7 +69,7 @@ function insert($query, $params) { // check query function returns id of inserte
         return null;
     }
 }
-
+*/
 function in_query_result($data, $search, $column) { 
 // check of waarde in query result staat
 //wordt gebruikt in schilderij edit/add
