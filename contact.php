@@ -1,4 +1,4 @@
-<?php 
+<?php
 include './htmlHelpers.php';
 include './admin/functions.php';
 renderHtmlStart("Contact", "");
@@ -59,10 +59,17 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         $email = $_POST["contact-email"];
         $header = "From:$email \r\n";
         $verzondenmail = mail($to, $subject, $message, $header);
+        print($verzondenmail);
+        
         if ($verzondenmail) {
-            
+            $contact_voornaam = '';
+            $contact_achternaam = '';
+            $contact_email = '';
+            $contact_onderwerp = '';
+            $contact_bericht = '';
+            echo 'De mail is goed verzonden';
         } else {
-            
+            echo 'De mail is niet goed verzonden, probeer het later opnieuw';
         }
     }
 }
@@ -85,7 +92,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
 
 <div id="contact-foutmelding">
     <?php
-    if (isset($_POST["contact-submit"])) {
+    /*if (isset($_POST["contact-submit"])) {
         if ($_POST["contact-voornaam"] == "" && $_POST["contact-achternaam"] == "" && $_POST["contact-email"] == "" && $_POST["contact-onderwerp"] == "" && $_POST["contact-bericht"] == "") {
             if ($verzondenmail == true) {
                 $contact_voornaam = '';
@@ -98,7 +105,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
                 echo "Er is iets misgegaan!";
             }
         }
-    }
+    } */
     ?>
 </div>
 <?php
