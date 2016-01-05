@@ -6,7 +6,7 @@ renderHtmlStart("Home", "");
 
 <div>
     <?php
-    // welkoms text
+    // welkoms text (WelkomsTtekst asshole)
     $uitvoerDatabase = query("SELECT Welkomstekst FROM welkomstekst WHERE ID = 1", NULL);
     foreach ($uitvoerDatabase as $value1){
         foreach ($value1 as $value2){
