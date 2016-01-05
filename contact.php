@@ -59,24 +59,21 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         $email = $_POST["contact-email"];
         $header = "From:$email \r\n";
         $verzondenmail = mail($to, $subject, $message, $header);
-        print($verzondenmail);
-        ?>
-        <div id="contact-foutmelding">
-            <?php
-            if ($verzondenmail) {
-                $contact_voornaam = '';
-                $contact_achternaam = '';
-                $contact_email = '';
-                $contact_onderwerp = '';
-                $contact_bericht = '';
-                echo 'De mail is goed verzonden!';
-            } else {
-                echo 'De mail is niet goed verzonden, probeer het later opnieuw';
-            }
-            ?></div><?php
     }
 }
 ?>
+<div id="contact-foutmelding"> <?php
+    if ($verzondenmail) {
+        $contact_voornaam = '';
+        $contact_achternaam = '';
+        $contact_email = '';
+        $contact_onderwerp = '';
+        $contact_bericht = '';
+        echo 'De mail is goed verzonden!';
+    } else {
+        echo 'De mail is niet goed verzonden, probeer het later opnieuw';
+    }
+    ?></div>
 <div id="contact-form">
     <form method="post" action="contact.php">
         <input type="text" name="contact-voornaam" placeholder="Voornaam" value="<?php print($contact_voornaam) ?>">
@@ -88,7 +85,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         <input type="text" name="contact-onderwerp" placeholder="onderwerp" value="<?php print($contact_onderwerp) ?>">
         <?php print("$contact_onderwerp_error"); ?><br>
         <textarea rows="4" cols="50" name="contact-bericht" placeholder="voer hier uw bericht in"><?php print($contact_bericht) ?></textarea>
-<?php print("$contact_bericht_error"); ?><br>
+        <?php print("$contact_bericht_error"); ?><br>
         <input type="submit" name="contact-submit" value="verzenden">
     </form>
 </div>
