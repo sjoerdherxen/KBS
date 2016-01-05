@@ -1,3 +1,6 @@
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+</script>
 <?php
 include './htmlHelpers.php';
 include './admin/functions.php';
@@ -88,6 +91,9 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         <?php print("$contact_onderwerp_error"); ?><br>
         <textarea rows="4" cols="50" name="contact-bericht" placeholder="voer hier uw bericht in"><?php print($contact_bericht) ?></textarea>
         <?php print("$contact_bericht_error"); ?><br>
+        <div class="capthapositie1">
+            <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div>
+        </div>
         <input type="submit" name="contact-submit" value="verzenden">
     </form>
 </div>
