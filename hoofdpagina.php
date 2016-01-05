@@ -31,9 +31,9 @@ renderHtmlStart("Home", "");
                 if ($i % 3 == 0 && $i != count($schilderijen)) {
                     echo "<li>";
                 }
-                echo "<a href='/schilderij.php?id=" . $schilderij["schilderij_id"] . "'>";
-                echo "<img src='" . $schilderij["img"] . "'>";
-                echo "<span class='slider-titel'>" . $schilderij["titel"] . "</span>";
+                echo "<a href='/schilderij.php?id=" . $schilderij["Schilderij_ID"] . "'>";
+                echo "<img src='" . $schilderij["Img"] . "'>";
+                echo "<span class='slider-titel'>" . $schilderij["Titel"] . "</span>";
                 echo "</a>";
                 
                 $i++;
