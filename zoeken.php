@@ -1,5 +1,4 @@
 <?php
-
 include './htmlHelpers.php';
 include './functions.php';
 renderHtmlStart("Zoeken", "");
@@ -40,6 +39,25 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     <option>Staand</option>
                     <option>Liggend</option>
                 </select> <br/>
+                Prijs
+                <select name="prijs">
+                    <option value="">Alle</option>
+                    <option>€100 tot €300</option>
+                    <option>€300 tot €600</option>
+                    <option>€600 tot €1000</option>
+                    <option>€1000 en hoger</option>
+                </select> <br/>
+                Categorie
+                <select name="categorie">
+                    <option value="">Alle</option>
+                    <option><!-- function  --></option>
+                </select> <br/>
+                Materiaal
+                <select name="materiaal">
+                    <option value="">Alle</option>
+                    <option><!-- function  --></option>
+                </select> <br/>
+
 
             </div>
             <div class="col-md-3">
@@ -54,7 +72,6 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
         </div>
     </form>
     <?php
-
     $pageSize = 20;
     $page = 1;
     if (isset($_GET["page"]) && is_numeric($_GET["page"])) {
@@ -82,6 +99,5 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
 
 </div>
 <?php
-
 renderHtmlEnd();
 ?>
