@@ -26,7 +26,7 @@ echo "<table><tr><td><a href='addCategorie.php' id='addCategorieLink'>Toevoegen<
 echo "<div id='categorieList'>";
 //Categorieën tonen
 foreach ($categorieen as $categorie) {
-    echo "<a class='categorieListItem' href='editcategorie.php?id=" . $categorie["CategorieID"] . "'>"; // link
+    echo "<a class='categorieListItem' href='editCategorie.php?id=" . $categorie["CategorieID"] . "'>"; // link
     echo "<div class='categorieListItemInner'>";// block
     echo "<span class='titel'>" . $categorie["Categorie_naam"] . "</span><br/>  ";  // maam
     echo "<span class='beschrijving'>" . $categorie["Beschrijving"] . "</span><br/>"; // beschrijving
