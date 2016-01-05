@@ -174,7 +174,8 @@ div.gallerij{
 }
 
 #contact-form {
-    margin: auto;
+    margin-left: 0px;
+    //margin: auto;
     position: relative;
 }
 
