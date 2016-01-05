@@ -351,7 +351,7 @@ if ($doSelectQuery) {
 
     <div class="col-md-6">
         <div id="editSchilderijImg">
-            <img src="/content/uploads/<?php echo $schilderij["Img"] . ".?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
+            <img src="/content/uploads/<?php echo $schilderij["Img"] . "?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
         </div>
     </div>
 
