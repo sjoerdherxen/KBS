@@ -172,7 +172,7 @@ div.gallerij{
     padding: 100px;
     box-sizing: border-box;
 }
-
+//css voor de contact.php pagina:
 #contact-form {
     margin-left: 0px;
     //margin: auto;
@@ -186,6 +186,11 @@ div.gallerij{
     float:left;
     width: 20%;
 }
+
+.space-form {
+    height: 2px;
+}
+//einde css voor contact.php
 /*
 Script voor slider
 */
