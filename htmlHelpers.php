@@ -81,7 +81,7 @@ function renderHtmlStartAdmin($title, $extra, $page) {
                     <li><a href="/admin/editContactgegevens.php" <?php if ($page == "contact") echo "class='active'"; ?>>Contactgegevens</a></li>
                     <li class="menu-right"><a href="/admin/uitloggen.php">Uitloggen</a></li>
                     <li class="menu-right"><a href="/admin/account.php" <?php if ($page == "account") echo "class='active'"; ?>><?php echo $_SESSION["inlog"]; ?></a></li>
-                    <li class="menu-right"><a href="/hoofdpagina.php">Website</a></li>
+                    <li class="menu-right"><a target="_blank" href="/hoofdpagina.php">Website</a></li>
                 </ul>
             </div>
             <script>
