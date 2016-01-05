@@ -63,7 +63,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
 }
 ?>
 <div id="contact-foutmelding"> <?php
-    if ($controle == true) {
+    if ($controle == true && isset($_POST["contact-submit"])) {
         if ($verzondenmail) {
             $contact_voornaam = '';
             $contact_achternaam = '';
