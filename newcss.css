@@ -172,29 +172,7 @@ div.gallerij{
     padding: 100px;
     box-sizing: border-box;
 }
-//css voor de contact.php pagina:
-#contact-form {
-    margin-left: 0px;
-    //margin: auto;
-    position: relative;
-}
 
-#contact-foutmelding {
-    position: relative;
-    margin-top: 120px;
-    margin-left: 200px;
-    float:left;
-    width: 20%;
-}
-
-.space-form {
-    height: 2px;
-}
-
-.round_edge {
-    border-radius: 10px;
-}
-/*einde css voor contact.php*/
 /*
 Script voor slider
 */
@@ -357,11 +335,24 @@ div.comment{
     background-color: #fff;
 }
 //Dit is voor de contact.php pagina:
-#contact-form {
+/*#contact-form {
     position: relative;
     margin-top: 100px;
     margin-left: 100px;
     float: left;
+}*/
+
+/*#contact-foutmelding {
+    position: relative;
+    margin-top: 120px;
+    margin-left: 200px;
+    float:left;
+}*/
+
+#contact-form {
+    margin-left: 0px;
+    //margin: auto;
+    position: relative;
 }
 
 #contact-foutmelding {
@@ -369,6 +360,15 @@ div.comment{
     margin-top: 120px;
     margin-left: 200px;
     float:left;
+    width: 20%;
+}
+
+.space-form {
+    height: 2px;
+}
+
+.round_edge {
+    border-radius: 10px;
 }
 //einde opmaak contact.php pagina
 div.comment{
