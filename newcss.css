@@ -174,9 +174,8 @@ div.gallerij{
 }
 
 #contact-form {
+    margin: auto;
     position: relative;
-    margin-top: 100px;
-    margin-left: 100px;
     float: left;
 }
 
