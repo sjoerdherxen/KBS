@@ -50,7 +50,7 @@ if ($saved && isset($_POST["Terug"])) {
     <?php
     if (isset ($_GET["x"])){
         if ($_GET["x"] === "1"){
-            $error = "Categorie is toegevoegd.";
+            $succes = "Categorie is toegevoegd.";
         }
     }
     if(isset($errorMessage)){
@@ -65,8 +65,8 @@ if ($saved && isset($_POST["Terug"])) {
             <td>
                 <input type="text" name="Naam" placeholder="Vul hier de naam in" style="width: 375px">
                 <?php
-                if (isset($error)){
-                    echo '<br>' . $error;
+                if (isset($succes)){
+                    echo '<br>' . $succes;
                 }
                 if (isset($Naamerror)) {
                     echo '<br>' . "<span class=\"incorrect\">$Naamerror</span>";

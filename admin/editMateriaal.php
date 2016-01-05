@@ -40,7 +40,6 @@ if (isset($_POST["knopje"])) {
     <h1>Pas hier de categorienaam en/of beschrijving aan.</h1>
     <table>
         <?php
-                
         foreach ($uitvoerDatabase as $value1) {
             foreach ($value1 as $key2 => $value2) {
 

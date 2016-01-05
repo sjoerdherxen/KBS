@@ -21,7 +21,7 @@ if(isset($_GET["x"])){
     }
 }
 
-echo "<table><tr><td><a href='addSubcategorie.php' id='addSubcategorieLink'>Toevoegen</a></td><td>$error</td></tr></table>";
+echo "<table><tr><td><a href='addSubcategorie.php' id='addSubcategorieLink'>Toevoegen</a></td><td>$succes</td></tr></table>";
 
 echo "<div id='subcategorieList'>";
 // subcategorieen tonen

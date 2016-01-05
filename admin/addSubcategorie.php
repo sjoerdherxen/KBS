@@ -37,25 +37,26 @@ if (isset($_POST["Toevoegen"])) {
     }
 }
 
-if ($saved) {
-    ?>
-    <script>
-        setTimeout(function () {
-            if (confirm("De subcategorie is toegevoegd.\n\nWilt u terug naar het overzicht?")) {
-                location = "/admin/subcategorieList.php";
-            }
-        }, 1);
-    </script>
-    <?php
-
+// terug naar overzicht
+if ($saved && isset($_POST["Terug"])) {
+    header("location:subcategorieList.php?x=1");
+    exit();
+} elseif ($saved && isset($_POST["Toevoegen"])){
+    header("location:addSubcategorie.php?x=1");
+    exit();
 }
 ?>
 <form action="addSubcategorie.php" method="post">
     <h1>Vul hier de subcategorienaam en beschrijving in:</h1>
      <?php
-        if(isset($errorMessage)){
-            echo "<p class='incorrect'>$errorMessage</p>";
+     if (isset ($_GET["x"])){
+        if ($_GET["x"] === "1"){
+            $succes = "Subcategorie is toegevoegd.";
         }
+    }
+    if(isset($errorMessage)){
+        echo "<p class='incorrect'>$errorMessage</p>";
+    }
     ?>
     <table>
         <tr>
@@ -65,7 +66,9 @@ if ($saved) {
             <td>
                 <input type="text" name="Naam" placeholder="Vul hier de naam in" style="width: 375px">
                 <?php
-
+                if (isset($succes)){
+                    echo '<br>' . $succes;
+                }
                 if (isset($Naamerror)) {
                     echo '<br>' . "<span class=\"incorrect\">$Naamerror</span>";
                 }
