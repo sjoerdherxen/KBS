@@ -3,7 +3,8 @@
 </script>
 <?php
 include './htmlHelpers.php';
-include './admin/functions.php';
+//include './admin/functions.php';
+include './functions.php';
 renderHtmlStart("Contact", "");
 ?>
 

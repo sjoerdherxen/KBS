@@ -17,7 +17,7 @@ function printteken($aantal, $teken) {
         print($teken);
     }
 }
-// query op db uitvoeren
+// query op db uitvoeren 
 function query($query, $params) {
     try {
         // connectie maken
@@ -36,6 +36,26 @@ function query($query, $params) {
     }
 }
 
+/*
+//query op db uitvoeren
+function query($query, $params) {
+    try {
+        // connectie maken
+        $pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
+        // query opbouwe
+        $q = $pdo->prepare($query);
+        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        // uitvoeren
+        $q->execute($params);
+        //get results
+        $result =  $q->fetchAll(PDO::FETCH_ASSOC);
+        $pdo = null;// drop connection
+        return $result;
+    } catch (PDOException $e) {
+        return null;
+    }
+}
+*/
 function checkCaptcha($captchaInput) {
     $clientIp = $_SERVER['REMOTE_ADDR'];
 
