@@ -61,14 +61,19 @@ function checkCaptcha($captchaInput) {
 
 function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) {
     $i = 0;
+    $rowAmount = floor(count($schilderijen) / 4);
+    $extra = count($schilderijen) % 4;
+    echo "<div class='row'>";
+    $col = 0;
     foreach ($schilderijen as $schilderij) {
-        if ($i % 4 == 0 && $i != $pageSize) {
-            // elke rij
-            echo "<div class='row'>"; 
+        if($i == 0){
+            echo "<div class='col-md-3'>";
+            $col++;
         }
         $i++;
+        
         ?>
-        <a href="/schilderij.php?id=<?php echo $schilderij["Schilderij_ID"] ?>" class="col-md-3"> 
+        <a href="/schilderij.php?id=<?php echo $schilderij["Schilderij_ID"] ?>" class=""> 
             <div class="img">
                 <img src="<?php echo $schilderij["Img"]; ?> " alt="Logo" >
 
@@ -84,16 +89,18 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) 
             </div> 
         </a>
         <?php
-
-        if ($i % 4 == 0 && $i != 0) {
+       
+        if (($col > $extra && $i >= $rowAmount) || ($col <= $extra && $i > $rowAmount)) { 
             // einde rij
             echo "</div>";
+            $i = 0;
         }
     }
-    if ($i % 4 != 0) {
+    //if ($i % 4 != 0) {
         // einde rij indien niet pagina vullende content
-        echo "</div>";
-    }
+    //    echo "</div>";
+    //}
+    echo "</div>";
     ?>
 
     <div style="clear: both;"></div>

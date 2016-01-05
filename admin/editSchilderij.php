@@ -17,7 +17,7 @@ if (!isset($schilderijId) || $schilderijId == "" || !is_numeric($schilderijId)) 
 }
 
 $doSelectQuery = true;
-$resultMateriaal = query("SELECT MateriaalId, Materiaal_soort FROM materiaal", null);
+$resultMateriaal = query("SELECT MateriaalID, Materiaal_soort FROM materiaal", null);
 $resultCategorie = query("SELECT CategorieID, Categorie_naam FROM categorie", null);
 $resultSubCategorie = query("SELECT SubcategorieID, Subcategorie_naam FROM subcategorie", null);
 
@@ -84,7 +84,7 @@ if (isset($_POST["knop"])) {
     if (!isset($_POST["categorie"]) || trim($_POST["categorie"]) == "") {
         $categorieError = "Categorie is verplicht";
         $correct = false;
-    } elseif (!in_query_result($resultCategorie, $_POST["categorie"], "categorieId")) {
+    } elseif (!in_query_result($resultCategorie, $_POST["categorie"], "CategorieID")) {
         $categorieError = "Categorie bestaat niet";
         $correct = false;
     }
@@ -94,7 +94,7 @@ if (isset($_POST["knop"])) {
     if (!isset($_POST["materiaal"]) || trim($_POST["materiaal"]) == "") {
         $materiaalError = "Materiaal is verplicht";
         $correct = false;
-    } elseif (!in_query_result($resultMateriaal, $_POST["materiaal"], "materiaalId")) {
+    } elseif (!in_query_result($resultMateriaal, $_POST["materiaal"], "MateriaalID")) {
         $materiaalError = "Materiaal bestaat niet";
         $correct = false;
     }
@@ -104,7 +104,7 @@ if (isset($_POST["knop"])) {
     if (!isset($_POST["subcategorie"])) {
         $subcategorieError = "Subcategorie is fout";
         $correct = false;
-    } elseif (trim($_POST["subcategorie"]) != "" && !in_query_result($resultSubCategorie, $_POST["subcategorie"], "subcategorieId")) {
+    } elseif (trim($_POST["subcategorie"]) != "" && !in_query_result($resultSubCategorie, $_POST["subcategorie"], "SubcategorieID")) {
         $subcategorieError = "Subcategorie bestaat niet";
         $correct = false;
     }
@@ -164,8 +164,8 @@ if ($doSelectQuery) {
         }
     }
 } else {
-    // $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
-    //$schilderij["Img"] = $resultImg[0]["Img"];
+    $resultImg = query("SELECT Img FROM schilderij WHERE schilderij_id = ?", array($schilderijId));
+    $schilderij["Img"] = $resultImg[0]["Img"];
 }
 ?>
 <p>
@@ -240,11 +240,11 @@ if ($doSelectQuery) {
 
                             foreach ($resultCategorie as $categorie) {
                                 $selected = "";
-                                if ($categorie["categorieId"] == $schilderij["CategorieID"]) {
+                                if ($categorie["CategorieID"] == $schilderij["CategorieID"]) {
                                     $selected = "selected='selected'";
                                 }
 
-                                echo "<option " . $selected . " value='" . $categorie["categorieId"] . "'>" . $categorie["categorie_naam"] . "</option>";
+                                echo "<option " . $selected . " value='" . $categorie["CategorieID"] . "'>" . $categorie["Categorie_naam"] . "</option>";
                             }
                             ?>
                         </select>
@@ -264,11 +264,11 @@ if ($doSelectQuery) {
 
                             foreach ($resultSubCategorie as $categorie) {
                                 $selected = "";
-                                if ($categorie["subcategorieId"] == $schilderij["SubcategorieID"]) {
+                                if ($categorie["SubcategorieID"] == $schilderij["SubcategorieID"]) {
                                     $selected = "selected='selected'";
                                 }
 
-                                echo "<option " . $selected . " value='" . $categorie["subcategorieId"] . "'>" . $categorie["subcategorie_naam"] . "</option>";
+                                echo "<option " . $selected . " value='" . $categorie["SubcategorieID"] . "'>" . $categorie["Subcategorie_naam"] . "</option>";
                             }
                             ?>
                         </select>
@@ -288,11 +288,11 @@ if ($doSelectQuery) {
 
                             foreach ($resultMateriaal as $materiaal) {
                                 $selected = "";
-                                if ($materiaal["materiaalId"] == $schilderij["MateriaalID"]) {
+                                if ($materiaal["MateriaalID"] == $schilderij["MateriaalID"]) {
                                     $selected = "selected='selected'";
                                 }
 
-                                echo "<option " . $selected . " value='" . $materiaal["materiaalId"] . "'>" . $materiaal["materiaal_soort"] . "</option>";
+                                echo "<option " . $selected . " value='" . $materiaal["MateriaalID"] . "'>" . $materiaal["Materiaal_soort"] . "</option>";
                             }
                             ?>
                         </select>
@@ -399,9 +399,13 @@ if ($doSelectQuery) {
             if (confirm("Weet u zeker dat u de comment van " + name + " wilt verwijderen?")) {
                 var id = element.data("id");
                 $.get("/admin/deleteComment.php?id=" + id).done(function (response) {
-                    if(response == "true"){
+                    if (response == "true") {
                         element.parents(".comment-box").remove();
+                    } else {
+                        alert("Er is een fout opgetreden");
                     }
+                }).fail(function () {
+                    alert("Er is een fout opgetreden");
                 });
             }
         });

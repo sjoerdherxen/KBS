@@ -8,7 +8,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Schilderij bewerken", "", "schilderij");
+renderHtmlStartAdmin("Schilderij toevoegen", "", "schilderij");
 
 // init alle velden 
 $schilderij = array();
@@ -35,7 +35,6 @@ if (isset($_POST["knop"])) {
     $correct = true;
     $schilderij = array(); //zet waardes voor inputs
     $schilderInsert = array(); // waardes voor query params
-
     // check titel
     if (!isset($_POST["titel"]) || trim($_POST["titel"]) == "") {
         $titelError = "Titel is verplicht";
@@ -64,7 +63,7 @@ if (isset($_POST["knop"])) {
     $schilderij["Jaar"] = $_POST["jaar"];
     $schilderInsert[] = $_POST["jaar"];
 
-     // check prijs
+    // check prijs
     if (!is_numeric($_POST["prijs"]) && isset($_POST["prijs"]) && trim($_POST["prijs"]) != "") {
         $jaarError = "Prijs is geen getal";
         $correct = false;
@@ -72,7 +71,7 @@ if (isset($_POST["knop"])) {
     $schilderij["prijs"] = $_POST["prijs"];
     $schilderInsert[] = $_POST["prijs"] == "" ? null : $_POST["prijs"];
 
-     // check hoogte
+    // check hoogte
     if (!isset($_POST["hoogte"]) || trim($_POST["hoogte"]) == "") {
         $hoogteError = "Hoogte is verplicht";
         $correct = false;
@@ -83,7 +82,7 @@ if (isset($_POST["knop"])) {
     $schilderij["Hoogte"] = $_POST["hoogte"];
     $schilderInsert[] = $_POST["hoogte"];
 
-     // check breedte
+    // check breedte
     if (!isset($_POST["breedte"]) || trim($_POST["breedte"]) == "") {
         $breedteError = "Breedte is verplicht";
         $correct = false;
@@ -94,40 +93,40 @@ if (isset($_POST["knop"])) {
     $schilderij["Breedte"] = $_POST["breedte"];
     $schilderInsert[] = $_POST["breedte"];
 
-     // check categorie
+    // check categorie
     if (!isset($_POST["categorie"]) || trim($_POST["categorie"]) == "") {
         $categorieError = "Categorie is verplicht";
         $correct = false;
-    } elseif (!in_query_result($resultCategorie, $_POST["categorie"], "categorieId")) {
+    } elseif (!in_query_result($resultCategorie, $_POST["categorie"], "CategorieID")) {
         $categorieError = "Categorie bestaat niet";
         $correct = false;
     }
     $schilderij["CategorieID"] = $_POST["categorie"];
     $schilderInsert[] = $_POST["categorie"];
 
-     // check materiaal
+    // check materiaal
     if (!isset($_POST["materiaal"]) || trim($_POST["materiaal"]) == "") {
         $materiaalError = "Materiaal is verplicht";
         $correct = false;
-    } elseif (!in_query_result($resultMateriaal, $_POST["materiaal"], "materiaalId")) {
+    } elseif (!in_query_result($resultMateriaal, $_POST["materiaal"], "MateriaalID")) {
         $materiaalError = "Materiaal bestaat niet";
         $correct = false;
     }
     $schilderij["MateriaalID"] = $_POST["materiaal"];
     $schilderInsert[] = $_POST["materiaal"];
 
-     // check subcategorie
+    // check subcategorie
     if (!isset($_POST["subcategorie"])) {
         $subcategorieError = "Subcategorie is fout";
         $correct = false;
-    } elseif (trim($_POST["subcategorie"]) != "" && !in_query_result($resultSubCategorie, $_POST["subcategorie"], "subcategorieId")) {
+    } elseif (trim($_POST["subcategorie"]) != "" && !in_query_result($resultSubCategorie, $_POST["subcategorie"], "SubcategorieID")) {
         $subcategorieError = "Subcategorie bestaat niet";
         $correct = false;
     }
     $schilderij["SubcategorieID"] = $_POST["subcategorie"];
-    $schilderInsert[] = $_POST["subcategorie"];
+    $schilderInsert[] = $_POST["subcategorie"] == "" ? null : $_POST["subcategorie"];
 
-     // check img upload
+    // check img upload
     if (isset($_FILES["img"])) {
         $imgExtension = strtolower(strrchr($_FILES["img"]["name"], "."));
         $correctExtensions = array(".png", ".jpg", ".jpeg", ".gif");
@@ -147,7 +146,7 @@ if (isset($_POST["knop"])) {
         if (count($schilder) == 0) {
             $schilderid = insert("INSERT INTO schilder (Naam_schilder) VALUES (\"Ellen van 't Hof\")", null);
         } else {
-            $schilderid = $schilder[0]["schilderid"];
+            $schilderid = $schilder[0]["SchilderID"];
         }
         $schilderInsert[] = $schilderid;
 
@@ -155,20 +154,24 @@ if (isset($_POST["knop"])) {
         $id = insert("INSERT INTO schilderij (Titel, Beschrijving, lijst, passepartout, isStaand, Jaar, prijs, Hoogte, "
                 . "                             Breedte, CategorieID, MateriaalID, SubcategorieID, SchilderID)"
                 . "  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", $schilderInsert);
-
-        // zet afbeelding correct
-        $newpath = "/content/uploads/" . $id . $imgExtension;
         
-        query("UPDATE schilderij SET Img = ? WHERE Schilderij_ID = ?", array($newpath, $id));
-
-        move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
-
-        if ($_POST["knop"] == "Toevoegen, nieuw") {
-            header("location: addSchilderij.php#Schilderij is toegevoegd");
-            exit();
+        if ($id == null) {
+            print("Er is een fout opgreteden tijdens het opslaan");
         } else {
-            header("location: schilderijList.php#Schilderij is toegevoegd");
-            exit();
+            // zet afbeelding correct
+            $newpath = "/content/uploads/" . $id . $imgExtension;
+
+            query("UPDATE schilderij SET Img = ? WHERE Schilderij_ID = ?", array($newpath, $id));
+
+            move_uploaded_file($_FILES["img"]["tmp_name"], "./.." . $newpath);
+
+            if ($_POST["knop"] == "Toevoegen, nieuw") {
+                //header("location: addSchilderij.php#Schilderij is toegevoegd");
+                //exit();
+            } else {
+                header("location: schilderijList.php#Schilderij is toegevoegd");
+                exit();
+            }
         }
     }
 }
@@ -237,11 +240,11 @@ if (isset($_POST["knop"])) {
 
                     foreach ($resultCategorie as $categorie) {
                         $selected = "";
-                        if ($categorie["categorieId"] == $schilderij["CategorieID"]) {
+                        if ($categorie["CategorieID"] == $schilderij["CategorieID"]) {
                             $selected = "selected='selected'";
                         }
 
-                        echo "<option " . $selected . " value='" . $categorie["categorieId"] . "'>" . $categorie["categorie_naam"] . "</option>";
+                        echo "<option " . $selected . " value='" . $categorie["CategorieID"] . "'>" . $categorie["Categorie_naam"] . "</option>";
                     }
                     ?>
                 </select>
@@ -257,15 +260,16 @@ if (isset($_POST["knop"])) {
             <td>Subcategorie</td>
             <td>
                 <select name="subcategorie">
+                    <option value="">-- Geen --</option>
                     <?php
 
                     foreach ($resultSubCategorie as $categorie) {
                         $selected = "";
-                        if ($categorie["subcategorieId"] == $schilderij["SubcategorieID"]) {
+                        if ($categorie["SubcategorieID"] == $schilderij["SubcategorieID"]) {
                             $selected = "selected='selected'";
                         }
 
-                        echo "<option " . $selected . " value='" . $categorie["subcategorieId"] . "'>" . $categorie["subcategorie_naam"] . "</option>";
+                        echo "<option " . $selected . " value='" . $categorie["SubcategorieID"] . "'>" . $categorie["Subcategorie_naam"] . "</option>";
                     }
                     ?>
                 </select>
@@ -285,11 +289,11 @@ if (isset($_POST["knop"])) {
 
                     foreach ($resultMateriaal as $materiaal) {
                         $selected = "";
-                        if ($materiaal["materiaalId"] == $schilderij["MateriaalID"]) {
+                        if ($materiaal["MateriaalID"] == $schilderij["MateriaalID"]) {
                             $selected = "selected='selected'";
                         }
 
-                        echo "<option " . $selected . " value='" . $materiaal["materiaalId"] . "'>" . $materiaal["materiaal_soort"] . "</option>";
+                        echo "<option " . $selected . " value='" . $materiaal["MateriaalID"] . "'>" . $materiaal["Materiaal_soort"] . "</option>";
                     }
                     ?>
                 </select>

@@ -1,4 +1,7 @@
-<?php 
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+</script>
+<?php
 include './htmlHelpers.php';
 include './admin/functions.php';
 renderHtmlStart("Contact", "");
@@ -50,7 +53,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         $contact_bericht_error = "bericht is niet ingevuld!";
         $controle = false;
     }
-    if ($controle == true) {
+    if ($controle == true && checkCaptcha($_POST["g-recaptcha-response"])) {
 
         $to = query("SELECT email FROM schilder WHERE naam_schilder = 'Thijs Ronda'", NULL);
         $to = $to[0]['email'];
@@ -59,14 +62,23 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         $email = $_POST["contact-email"];
         $header = "From:$email \r\n";
         $verzondenmail = mail($to, $subject, $message, $header);
-        if ($verzondenmail) {
-            
-        } else {
-            
-        }
     }
 }
 ?>
+<div id="contact-foutmelding"> <?php
+    if ($controle == true && isset($_POST["contact-submit"])) {
+        if ($verzondenmail) {
+            $contact_voornaam = '';
+            $contact_achternaam = '';
+            $contact_email = '';
+            $contact_onderwerp = '';
+            $contact_bericht = '';
+            echo 'De mail is goed verzonden!';
+        } else {
+            echo 'De mail is niet goed verzonden,<br>probeer het later opnieuw';
+        }
+    }
+    ?></div>
 <div id="contact-form">
     <form method="post" action="contact.php">
         <input type="text" name="contact-voornaam" placeholder="Voornaam" value="<?php print($contact_voornaam) ?>">
@@ -79,26 +91,29 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         <?php print("$contact_onderwerp_error"); ?><br>
         <textarea rows="4" cols="50" name="contact-bericht" placeholder="voer hier uw bericht in"><?php print($contact_bericht) ?></textarea>
         <?php print("$contact_bericht_error"); ?><br>
+        <div class="capthapositie1">
+            <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div>
+        </div>
         <input type="submit" name="contact-submit" value="verzenden">
     </form>
 </div>
 
 <div id="contact-foutmelding">
     <?php
-    if (isset($_POST["contact-submit"])) {
-        if ($_POST["contact-voornaam"] == "" && $_POST["contact-achternaam"] == "" && $_POST["contact-email"] == "" && $_POST["contact-onderwerp"] == "" && $_POST["contact-bericht"] == "") {
-            if ($verzondenmail == true) {
-                $contact_voornaam = '';
-                $contact_achternaam = '';
-                $contact_email = '';
-                $contact_onderwerp = '';
-                $contact_bericht = '';
-                echo "mail is goed verzonden!";
-            } else {
-                echo "Er is iets misgegaan!";
-            }
-        }
-    }
+    /* if (isset($_POST["contact-submit"])) {
+      if ($_POST["contact-voornaam"] == "" && $_POST["contact-achternaam"] == "" && $_POST["contact-email"] == "" && $_POST["contact-onderwerp"] == "" && $_POST["contact-bericht"] == "") {
+      if ($verzondenmail == true) {
+      $contact_voornaam = '';
+      $contact_achternaam = '';
+      $contact_email = '';
+      $contact_onderwerp = '';
+      $contact_bericht = '';
+      echo "mail is goed verzonden!";
+      } else {
+      echo "Er is iets misgegaan!";
+      }
+      }
+      } */
     ?>
 </div>
 <?php
