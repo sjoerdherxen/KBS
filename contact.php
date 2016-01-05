@@ -53,7 +53,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         $contact_bericht_error = "bericht is niet ingevuld!";
         $controle = false;
     }
-    if ($controle == true) {
+    if ($controle == true && checkCaptcha($_POST["g-recaptcha-response"])) {
 
         $to = query("SELECT email FROM schilder WHERE naam_schilder = 'Thijs Ronda'", NULL);
         $to = $to[0]['email'];
