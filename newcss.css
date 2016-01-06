@@ -69,7 +69,7 @@ div.bovenmenu{
 }
 #headlogo{
     height: 125px;
-    margin-left: 250px;
+    margin-left: 525px;
 
 
 }
@@ -92,6 +92,7 @@ div.bovenmenu{
 
 }
 
+
 .limenu a:hover {
     background-color: #3399FF;
 }
@@ -106,10 +107,6 @@ div.bovenmenu{
 .ulfooter{
     list-style-type: none;
     margin: 5px;
-}
-.lifooter{
-    float: left;
-    text-align: center;
 }
 
 div.img{

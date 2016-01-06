@@ -54,7 +54,7 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
                 function renderHtmlEnd() { // einde klant gedeelte
                     ?>
                 </div>
-                <footer class="footermenu">
+                <footer>
                     <ul>
                         <li><a href="/contact.php" class="menutext">Contact</a></li>
                         <li class="menutext">Powered by Windesheim</li>
