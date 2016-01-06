@@ -79,7 +79,13 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     <div class="col-md-6">
                         <select name="categorie">
                             <option value="">Alle</option>
-                            <option><!-- function  --></option>
+                            <?php
+                            foreach($categorieen as $value1){
+                                foreach($value1 as $key2 => $value2){
+                                    echo"<option value=\"\">$value2</option>";
+                                }
+                            }
+                            ?>
                         </select> <br/>
                     </div>
                 </div>
@@ -90,7 +96,13 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     <div class="col-md-6">
                         <select name="materiaal">
                             <option value="">Alle</option>
-                            <option><!-- function  --></option>
+                            <?php
+                            foreach($materialen as $value1){
+                                foreach($value1 as $key2 => $value2){
+                                    echo"<option value=\"\">$value2</option>";
+                                }
+                            }
+                            ?>
                         </select> <br/>
                     </div>
                 </div>
