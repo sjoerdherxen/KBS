@@ -11,9 +11,9 @@ jQuery(document).ready(function ($) {
      */
 
     setInterval(function () {
-       if ($('#checkbox').is(':checked')) {
+       //if ($('#checkbox').is(':checked')) {
             moveRight();
-        }
+        //}
     }, 5000);
 
     var slideCount = $('#slider ul li').length;

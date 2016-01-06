@@ -23,8 +23,8 @@ renderHtmlStart("Home", "");
         <a href="#" class="control_prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
         <ul>
             <?php
-
-            $schilderijen = query("SELECT Schilderij_ID, Titel, Img FROM schilderij ORDER BY Schilderij_ID DESC LIMIT 0,9", null);
+            
+            $schilderijen = query("SELECT Schilderij_ID, Titel, Img FROM schilderij ORDER BY Schilderij_ID DESC LIMIT 0,15", null);
 
             $i = 0;
             foreach ($schilderijen as $schilderij) {
@@ -32,7 +32,7 @@ renderHtmlStart("Home", "");
                     echo "<li>";
                 }
                 echo "<a href='/schilderij.php?id=" . $schilderij["Schilderij_ID"] . "'>";
-                echo "<img src='/content/uploads/" . $schilderij["Img"] . "'>";
+                echo "<div style='background-image:url(\"/content/uploads/" . $schilderij["Img"] . "\"); '></div>";
                 echo "<span class='slider-titel'>" . $schilderij["Titel"] . "</span>";
                 echo "</a>";
                 
@@ -44,11 +44,11 @@ renderHtmlStart("Home", "");
             ?>
         </ul>  
     </div>
-
+<?php /*
     <div class="slider_option">
         <input type="checkbox" id="checkbox">
         <label for="checkbox">Autoplay Slider</label>
-    </div> 
+    </div> */?>
 </div>
 
 <?php
