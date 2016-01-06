@@ -14,7 +14,6 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
             <script src="/content/bootstrap/js/bootstrap.min.js"></script>
             <script src='https://www.google.com/recaptcha/api.js'></script>
             <?php
-
             echo $extra;
             ?>
             <!--Commentaar -->
@@ -25,7 +24,6 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
                 <div class="bovenmenu">
                     <span class="menutext">
                         <?php
-
                         $result = query("SELECT Email, Telefoon FROM schilder LIMIT 0,1", null);
                         echo "Tel: " . $result[0]["Telefoon"] . " | Email:" . $result[0]["Email"] . " | ";
                         ?>
@@ -40,16 +38,22 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
                         <li role="presentation"><a href="/zoeken.php" class="menutext">Zoeken</a></li>
                         <li role="presentation"><a href="/contact.php" class="menutext">Contact</a></li> 
                     </ul>
-                </div>           
+                </div>  
+                <div class="contentcontent">
 
 
 
-                <?php
 
-            }
 
-            function renderHtmlEnd() { // einde klant gedeelte
-                ?>
+
+
+
+                    <?php
+                }
+
+                function renderHtmlEnd() { // einde klant gedeelte
+                    ?>
+                </div>
                 <footer class="footermenu">
                     <ul>
                         <li><a href="/contact.php" class="menutext">Contact</a></li>
@@ -62,7 +66,6 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
         </body>
     </html>
     <?php
-
 }
 
 function renderHtmlStartAdmin($title, $extra, $page) {
@@ -78,7 +81,6 @@ function renderHtmlStartAdmin($title, $extra, $page) {
             <script src="/content/jquery-1.11.3.min.js"></script> 
             <script src="/content/bootstrap/js/bootstrap.min.js"></script>
             <?php
-
             echo $extra;
             ?>
             <!--Commentaar -->
@@ -105,7 +107,6 @@ function renderHtmlStartAdmin($title, $extra, $page) {
             </script>
             <div id="content">
                 <?php
-
             }
 
             function renderHtmlEndAdmin() {
@@ -114,5 +115,4 @@ function renderHtmlStartAdmin($title, $extra, $page) {
         </body>
     </html>
     <?php
-
 }

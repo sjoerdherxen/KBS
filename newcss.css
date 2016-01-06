@@ -25,21 +25,32 @@ body{
 }
 div.content{
     position: absolute;
-    width: 1250px;
+    width: 100%;
     min-height: 100%;
     display: inline;
     margin: auto;
-    background-color: #A6DCF1;
+    background-color: white;
     top: 0;
     right: 0;
     left: 0;
 
 }
+div.contentcontent{
+    background-color: #A6DCF1;
+    width: 1250px;
+    min-height: 100%;
+    display: block;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    
+}
 
 div.menu{
     width: 100%;
     height: 130px;
-    
+
 }
 div.bovenmenu{
     text-align: right;
@@ -51,14 +62,14 @@ div.bovenmenu{
     padding-left: 10px;
     background-color: grey;
     font-size: 24px;
-   
-   
+
+
 
 }
 #headlogo{
     height: 125px;
     margin-left: 250px;
-    
+
 
 }
 .menutext{
@@ -68,7 +79,7 @@ div.bovenmenu{
 }
 .limenu{
     float: left;
-   
+
 }
 .limenu a.menutext{
     display: block;
@@ -87,7 +98,7 @@ div.bovenmenu{
     position: fixed;
     background-color: darkgray;
     bottom:0;
-    width:1250px;
+    width:100%;
     height:50px;   
     z-index:1000;
 }
@@ -174,8 +185,8 @@ div.gallerij{
 }
 //css voor zoekmachine
 ul.zoekmachine{
-    
-    
+
+
 }
 
 
@@ -492,7 +503,7 @@ div.bordercomment{
     border: 1px solid #999;
     padding: 2px 4px;
     background-color: white;
-    
+
 }
 .comment-box .comment-naam{
     border-bottom: 1px solid #999;
