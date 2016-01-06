@@ -63,6 +63,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         $email = $_POST["contact-email"];
         $header = "From:$email \r\n";
         $verzondenmail = mail($to, $subject, $message, $header);
+        print("$verzondenmail");
     }
 }
 ?>
