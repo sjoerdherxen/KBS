@@ -67,7 +67,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
 }
 ?>
 <div id="contact-page-content">
-    <h2>Voor vragen of opmerkingen, <br>kunt u hier uw gegevens invullen en deze versturen naar Ellen van 't Hof.</h2>
+    <h4>Voor vragen of opmerkingen, <br>kunt u hier uw gegevens invullen en deze versturen naar Ellen van 't Hof.</h4>
 </div>
 <div id="contact-foutmelding"> <?php
     if ($controle == true && isset($_POST["contact-submit"])) {
