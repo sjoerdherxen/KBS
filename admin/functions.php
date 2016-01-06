@@ -79,3 +79,26 @@ function uploadSchilderijImg($id, $imgExtension, $old) {
     imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
     imagejpeg($src, $smallpath, 30);
 }
+
+function checkCaptcha($captchaInput) {
+    $clientIp = $_SERVER['REMOTE_ADDR'];
+
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    $postfields = array(
+        "secret" => "6LdBuRITAAAAADrYsJ3kWF89lQixPx0MntyZYVX0",
+        "response" => $captchaInput,
+        "remoteip" => $clientIp
+    );
+    // curl doet post request naar google
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); // zet op 1 bij upload
+
+    $response = json_decode(curl_exec($ch));
+
+    return $response->success == true;
+}

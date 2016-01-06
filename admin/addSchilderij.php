@@ -344,8 +344,8 @@ if (isset($_POST["knop"])) {
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="Toevoegen, nieuw" name="knop">
-                <input type="submit" value="Toevoegen, naar lijst" name="knop">
+                <input type="submit" value="Toevoegen en naar overzicht" name="knop">
+                <input type="submit" value="Toevoegen en blijven" name="knop">
             </td>
         </tr>
     </table>

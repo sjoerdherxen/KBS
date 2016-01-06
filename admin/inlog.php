@@ -1,4 +1,5 @@
 <?php
+
 // niet via hier openen ga naar /admin/index.php
 
 $usernameError = "";
@@ -6,37 +7,58 @@ $passwordError = "";
 $password = "";
 $username = "";
 $correct = true;
-
+if ($_SESSION["attempts"] == null) {
+    $_SESSION["attempts"] = 0;
+}
 // check post
 if (isset($_POST["username"]) && isset($_POST["password"])) {
-    $password = trim($_POST["password"]);
-    $username = trim($_POST["username"]);
-    if ($username == "") { // check naam input
-        $usernameError = "Naam is verplicht";
-        $correct = false;
-    }
-    if ($password == "") { // check ww input
-        $passwordError = "Wachtwoord is verplicht";
-        $correct = false;
-    }
-    if ($correct) {
-        // check combi naam+ww
-        $password = hash("sha256", $password);
-        $query = "SELECT Username FROM gebruikers WHERE Username = ? AND Wachtwoord = ?";
-        $result = query($query, array($username, $password));
 
-        if (count($result) == 1) { // correct
-            $_SESSION["inlog"] = $_POST["username"];
-            header("location: main.php");
-            exit();
-        } elseif ($result === null) { // database fout
-            $passwordError = "Er kan geen verbinding worden gemaakt met de database, probeer het later opnieuw";
-        } else { 
-            $passwordError = "De combinatie naam en wachtwoord is niet goed.";
+    $_SESSION["attempts"] ++;
+
+    if ($_SESSION["attempts"] < 3 || checkCaptcha()) {
+        $password = trim($_POST["password"]);
+        $username = trim($_POST["username"]);
+        if ($username == "") { // check naam input
+            $usernameError = "Naam is verplicht";
+            $correct = false;
         }
+        if ($password == "") { // check ww input
+            $passwordError = "Wachtwoord is verplicht";
+            $correct = false;
+        }
+        if ($correct) {
+            // check combi naam+ww
+            $password = hash("sha256", $password);
+            $query = "SELECT Username FROM gebruikers WHERE Username = ? AND Wachtwoord = ?";
+            $result = query($query, array($username, $password));
+
+            if (count($result) == 1) { // correct
+                $_SESSION["inlog"] = $_POST["username"];
+                $_SESSION["attempts"] = null;
+                header("location: main.php");
+                exit();
+            } elseif ($result === null) { // database fout
+                $passwordError = "Er kan geen verbinding worden gemaakt met de database, probeer het later opnieuw";
+            } else {
+                $passwordError = "De combinatie naam en wachtwoord is niet goed.";
+            }
+        }
+    } else {
+        $passwordError = "Captcha is niet goed gekeurd";
     }
 }
+
+if ($_SESSION["attempts"] >= 3) {
+    ?>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+            async defer>
+    </script>
+    <?php
+
+}
 ?>
+
+
 <div id="inlog-background">
     <div id="inlog">
         <form method="post" action="#">
@@ -63,6 +85,16 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
                 if ($passwordError != "") {
                     echo "<tr><td></td><td class='incorrect'>" . $passwordError . "</td></tr>";
+                }
+                if ($_SESSION["attempts"] >= 3) {
+                    ?>
+                    <tr>
+                        <td colspan="2">
+                            <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div>
+                        </td>
+                    </tr>
+                    <?php
+
                 }
                 ?>
                 <tr>
