@@ -98,7 +98,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         <?php print("$contact_onderwerp_error"); ?>
         <div class="space-form"></div>
         
-        <div class="round-form"><textarea rows="4" cols="40" name="contact-bericht" placeholder=" Voer hier uw bericht in"><?php print($contact_bericht) ?></textarea></div>
+        <div class="round-form"><textarea rows="4" cols="50" name="contact-bericht" placeholder=" Voer hier uw bericht in"><?php print($contact_bericht) ?></textarea></div>
         <?php print("$contact_bericht_error"); ?>
         <div class="capthapositie1">
             <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div>
