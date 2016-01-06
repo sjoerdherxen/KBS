@@ -14,14 +14,24 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
             <script src="/content/bootstrap/js/bootstrap.min.js"></script>
             <script src='https://www.google.com/recaptcha/api.js'></script>
             <?php
+
             echo $extra;
             ?>
             <!--Commentaar -->
         </head>
-      
+
         <body>
             <div class="content">
-                <div class="bovenmenu"> <span class="menutext">Tel: +31testest | Email:Test@test.nl | </span><a class="menutext" href="/admin/">Login</a> &nbsp; &nbsp;  </div>
+                <div class="bovenmenu">
+                    <span class="menutext">
+                        <?php
+
+                        $result = query("SELECT Email, Telefoon FROM schilder LIMIT 0,1", null);
+                        echo "Tel: " . $result[0]["Telefoon"] . " | Email:" . $result[0]["Email"] . " | ";
+                        ?>
+                    </span>
+                    <a class="menutext" href="/admin/">Login</a> &nbsp; &nbsp;  
+                </div>
                 <div class="menu">
                     <ul class="nav nav-pills" id="ulmenu">
                         <li><img id="headlogo" src="/content/uploads/IMG_2309.jpeg" alt="Logo"></li>
@@ -35,6 +45,7 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
 
 
                 <?php
+
             }
 
             function renderHtmlEnd() { // einde klant gedeelte
@@ -51,6 +62,7 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
         </body>
     </html>
     <?php
+
 }
 
 function renderHtmlStartAdmin($title, $extra, $page) {
@@ -66,6 +78,7 @@ function renderHtmlStartAdmin($title, $extra, $page) {
             <script src="/content/jquery-1.11.3.min.js"></script> 
             <script src="/content/bootstrap/js/bootstrap.min.js"></script>
             <?php
+
             echo $extra;
             ?>
             <!--Commentaar -->
@@ -92,6 +105,7 @@ function renderHtmlStartAdmin($title, $extra, $page) {
             </script>
             <div id="content">
                 <?php
+
             }
 
             function renderHtmlEndAdmin() {
@@ -100,4 +114,5 @@ function renderHtmlStartAdmin($title, $extra, $page) {
         </body>
     </html>
     <?php
+
 }

@@ -172,6 +172,20 @@ div.gallerij{
     padding: 100px;
     box-sizing: border-box;
 }
+//css voor zoekmachine
+ul.zoekmachine{
+    
+    
+}
+
+
+
+//css voor de contact.php pagina:
+#contact-form {
+    margin-left: 0px;
+    //margin: auto;
+    position: relative;
+}
 
 /*
 Script voor slider
@@ -285,9 +299,6 @@ a.control_next {
 #pages a {
     background-color: #fff;
 }
-/*
-Alles hieronder is een test
-*/
 
 
 #contact-form {

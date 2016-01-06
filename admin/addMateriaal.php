@@ -88,7 +88,8 @@ if ($saved && isset($_POST["Terug"])) {
             <td>
             </td>
             <td>
-                <input type="submit" name="Toevoegen" value="Toevoegen">
+                <input type="submit" name="Terug" value="Toevoegen en naar overzicht">
+                <input type="submit" name="Toevoegen" value="Toevoegen en blijven">
             </td>
         </tr>
     </table>
