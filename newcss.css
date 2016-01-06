@@ -16,7 +16,9 @@ overal een border-radius: 2px;
 kleuren nog aanpassen
 
 */
-
+div, ul, img {
+    border: solid 1px ;
+}
 body{
     background-color: white;
     font-family: Californian FB;
@@ -321,12 +323,7 @@ a.control_next {
     float: left;
 }
 
-#contact-foutmelding {
-    position: relative;
-    margin-top: 120px;
-    margin-left: 200px;
-    float:left;
-}
+
 div.comment{
     min-height: 100%;
     margin: auto;
@@ -374,9 +371,10 @@ div.comment{
 }*/
 
 #contact-form {
-    margin-left: 0px;
-    //margin: auto;
     position: relative;
+    margin-top: 100px;
+    margin-left: 100px;
+    float: left;
 }
 
 #contact-foutmelding {
@@ -395,14 +393,7 @@ div.comment{
     border-radius: 10px;
 }
 //einde opmaak contact.php pagina
-div.comment{
-    min-height: 100%;
-    margin: auto;
-    top: 0;
-    right: 0;
-    left: 0;
 
-}
 
 #pages-wrapper{
     position: relative;
