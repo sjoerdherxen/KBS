@@ -51,6 +51,7 @@ div.menu{
     width: 100%;
     height: 125px;
     background-color: grey;
+  padding-left: 450px;
     
 
 }
@@ -387,6 +388,10 @@ div.comment{
 
 .round_edge {
     border-radius: 10px;
+}
+
+#contact-page-content {
+    margin-left: 140px;
 }
 //einde opmaak contact.php pagina
 
