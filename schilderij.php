@@ -57,7 +57,7 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
 ?>
 
 <div class="schilderijimg">
-    <img class="schilderij" alt="schilderij" src="<?php print($schilderij["img"]); ?>">
+    <img class="schilderij" alt="schilderij" src="/content/uploads/<?php print($schilderij["img"]); ?>">
 </div>
 <div class="row schilderijinfo">
     <div class="col-md-4">

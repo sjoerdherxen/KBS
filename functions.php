@@ -17,6 +17,7 @@ function printteken($aantal, $teken) {
         print($teken);
     }
 }
+
 // query op db uitvoeren 
 function query($query, $params) {
     try {
@@ -54,8 +55,8 @@ function query($query, $params) {
     } catch (PDOException $e) {
         return null;
     }
-}
-*/
+}*/
+
 function checkCaptcha($captchaInput) {
     $clientIp = $_SERVER['REMOTE_ADDR'];
 
@@ -95,7 +96,7 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) 
         ?>
         <a href="/schilderij.php?id=<?php echo $schilderij["Schilderij_ID"] ?>" class=""> 
             <div class="img">
-                <img src="<?php echo $schilderij["Img"]; ?> " alt="Logo" >
+                <img src="/content/uploads/small_<?php echo $schilderij["Img"]; ?> " alt="Logo" >
 
                 <div class="title">
                     <?php echo $schilderij["Titel"]; ?>
