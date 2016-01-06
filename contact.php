@@ -83,34 +83,44 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
     ?></div>
 <div id="contact-form">
     <form method="post" action="contact.php">
-        <input style="border-radius: 10px" type="text" name="contact-voornaam" placeholder="Voornaam" value="<?php print($contact_voornaam) ?>">
-        <?php print("$contact_voornaam_error"); ?>
+        <input type="text" name="contact-voornaam" placeholder=" Voornaam" value="<?php print($contact_voornaam) ?>">
+        <?php print("$contact_voornaam_error"); ?><br>
         <div class="space-form"></div>
-        
-        <input style="border-radius: 10px" type="text" name="contact-achternaam" placeholder="Achternaam" value="<?php print($contact_achternaam) ?>">
-        <?php print("$contact_achternaam_error"); ?>
+        <input type="text" name="contact-achternaam" placeholder=" Achternaam" value="<?php print($contact_achternaam) ?>">
+        <?php print("$contact_achternaam_error"); ?><br>
         <div class="space-form"></div>
-        
-        <input style="border-radius: 10px" type="email" name="contact-email" placeholder="E-mail adres" value="<?php print($contact_email) ?>">
-        <?php print("$contact_email_error"); ?>
+        <input type="email" name="contact-email" placeholder=" E-mail adres" value="<?php print($contact_email) ?>">
+        <?php print("$contact_email_error"); ?><br>
         <div class="space-form"></div>
-        
-        <input style="border-radius: 10px" type="text" name="contact-onderwerp" placeholder="onderwerp" value="<?php print($contact_onderwerp) ?>">
-        <?php print("$contact_onderwerp_error"); ?>
+        <input type="text" name="contact-onderwerp" placeholder=" Onderwerp" value="<?php print($contact_onderwerp) ?>">
+        <?php print("$contact_onderwerp_error"); ?><br>
         <div class="space-form"></div>
-        
-        <textarea style="border-radius: 10px" rows="4" cols="50" name="contact-bericht" placeholder="voer hier uw bericht in"><?php print($contact_bericht) ?></textarea>
-        <?php print("$contact_bericht_error"); ?>
-        
+        <textarea rows="4" cols="50" name="contact-bericht" placeholder=" Voer hier uw bericht in"><?php print($contact_bericht) ?></textarea>
+        <?php print("$contact_bericht_error"); ?><br>
         <div class="capthapositie1">
             <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div>
         </div>
-        <div class="space-form"></div>
         <input type="submit" name="contact-submit" value="verzenden">
     </form>
 </div>
 
 <div id="contact-foutmelding">
+    <?php
+    /* if (isset($_POST["contact-submit"])) {
+      if ($_POST["contact-voornaam"] == "" && $_POST["contact-achternaam"] == "" && $_POST["contact-email"] == "" && $_POST["contact-onderwerp"] == "" && $_POST["contact-bericht"] == "") {
+      if ($verzondenmail == true) {
+      $contact_voornaam = '';
+      $contact_achternaam = '';
+      $contact_email = '';
+      $contact_onderwerp = '';
+      $contact_bericht = '';
+      echo "mail is goed verzonden!";
+      } else {
+      echo "Er is iets misgegaan!";
+      }
+      }
+      } */
+    ?>
 </div>
 <?php
 renderHtmlEnd();
