@@ -33,6 +33,7 @@ $naam = "";
 $commentaar = "";
 $correct = true;
 
+
 if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST["g-recaptcha-response"])) {
     $commentaar = trim($_POST["commentaar"]);
     $naam = trim($_POST["naam"]);
@@ -45,7 +46,13 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
         $correct = false;
     }
     if ($correct) {
-        $input = array($_POST["naam"], $_POST["email"], $_POST["commentaar"], $_GET["id"]);
+        $naamklant = str_replace("<", "&lt;", $_POST["naam"]);
+        $naamklant = str_replace(">", "&gt;", $naamklant);
+        $email = str_replace("<", "&lt;", $_POST["email"]);
+        $email = str_replace(">", "&gt;", $email);
+        $commentaar = str_replace("<", "&lt;", $_POST["commentaar"]);
+        $commentaar = str_replace(">", "&gt;", $commentaar);
+        $input = array($naamklant, $email, $commentaar, $_GET["id"]);
         query("insert into commentaar (Naam_klant, Email_klant, Opmerking, Schilderij_ID) VALUES (?, ?, ?, ?)", $input);
         ?>
         <script>
@@ -74,9 +81,9 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
     <div class="col-md-4">
         <ul class="schilderij">
             <li><h3>Extra info</h3></li>
-<?php
-if ($schilderij["prijs"] != "" && $schilderij["prijs"] != null) {
-    ?>
+            <?php
+            if ($schilderij["prijs"] != "" && $schilderij["prijs"] != null) {
+                ?>
                 <li>Prijs indicatie: &euro;<?php print $schilderij["prijs"] ?></li>
                 <?php
             }
@@ -89,13 +96,13 @@ if ($schilderij["prijs"] != "" && $schilderij["prijs"] != null) {
             ?>
             <li>Groote: <?php print $schilderij["hoogte"] ?> X <?php print $schilderij["breedte"] ?> cm</li>   
             <li>Catagorie: 
-            <?php
-            print $schilderij["Categorie_naam"];
-            if ($schilderij["Subcategorie_naam"] != null) {
-                print(", ");
-                print($schilderij["Subcategorie_naam"]);
-            }
-            ?>
+                <?php
+                print $schilderij["Categorie_naam"];
+                if ($schilderij["Subcategorie_naam"] != null) {
+                    print(", ");
+                    print($schilderij["Subcategorie_naam"]);
+                }
+                ?>
             </li>
             <li>Materiaal: <?php print $schilderij["Materiaal_soort"] ?></li>
             <li>Lijst: <?php print $schilderij["lijst"] ? "met lijst" : "zonder lijst"; ?> </li>   
@@ -110,13 +117,13 @@ if ($schilderij["prijs"] != "" && $schilderij["prijs"] != null) {
                 <div>
                     <h3 class="commentaar">Commentaar</h3>
                 </div>
-<?php
-$comments = query("SELECT * FROM commentaar C where Schilderij_ID=?", $params);
-foreach ($comments as $comment) {
-    ?>
+                <?php
+                $comments = query("SELECT * FROM commentaar C where Schilderij_ID=?", $params);
+                foreach ($comments as $comment) {
+                    ?>
                     <div class="comment-box">
                         <div class="comment-naam">
-                    <?php echo $comment["Naam_klant"]; ?>
+                            <?php echo $comment["Naam_klant"]; ?>
                         </div>
                         <div class="comment-beschrijving"><?php echo $comment["Opmerking"]; ?></div>
                     </div>
@@ -137,11 +144,11 @@ foreach ($comments as $comment) {
                 <td class="commentaar">Naam</td>
                 <td>:</td>
                 <td><input name="naam" type="text" id="naam" size="40"/>
-<?PHP
-if (isset($naamleeg)) {
-    echo $naamleeg;
-}
-?></td>
+                    <?PHP
+                    if (isset($naamleeg)) {
+                        echo $naamleeg;
+                    }
+                    ?></td>
             </tr>
             <tr>
                 <td class="commentaar">Email</td>
@@ -152,11 +159,11 @@ if (isset($naamleeg)) {
                 <td class="commentaar">Commentaar</td>
                 <td >:</td>
                 <td><textarea name="commentaar" cols="42" rows="4" id="opmerking" ></textarea>
-<?PHP
-if (isset($commentaarleeg)) {
-    echo $commentaarleeg;
-}
-?>
+                    <?PHP
+                    if (isset($commentaarleeg)) {
+                        echo $commentaarleeg;
+                    }
+                    ?>
                 </td>
             </tr>
             <tr>
