@@ -119,8 +119,8 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
     $params = array();
     if ($zoek != "") {
         $where = " WHERE Titel LIKE ? OR Beschrijving LIKE ?";
-        $params[] = $zoek;
-        $params[] = $zoek;
+        $params[] = "%$zoek%";
+        $params[] = "%$zoek%";
     }
 
     $pageCountResult = query("SELECT COUNT(*) as aantal FROM schilderij" . $where, $params);
