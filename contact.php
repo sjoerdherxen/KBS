@@ -56,7 +56,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
     }
     if ($controle == true && checkCaptcha($_POST["g-recaptcha-response"])) {
 
-        $to = query("SELECT email FROM schilder WHERE naam_schilder = 'Thijs Ronda'", NULL);
+        $to = query("SELECT email FROM schilder limit 0,1", NULL);
         $to = $to[0]['email'];
         $subject = $_POST["contact-onderwerp"];
         $message = "naam afzender: " . $_POST["contact-voornaam"] . " " . $_POST["contact-achternaam"] . "\n\n" . $_POST["contact-bericht"];
