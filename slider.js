@@ -14,7 +14,7 @@ jQuery(document).ready(function ($) {
        //if ($('#checkbox').is(':checked')) {
             moveRight();
         //}
-    }, 5000);
+    }, 10000);
 
     var slideCount = $('#slider ul li').length;
     var slideWidth = $('#slider ul li').width();
