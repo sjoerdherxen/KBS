@@ -204,6 +204,13 @@ ul.zoekmachine{
 /*
 Script voor slider
 */
+
+
+#welkomstekst{
+    text-align: center;
+    white-space: pre;
+    margin: 10px 0;
+}
 #slider {
     position: relative;
     overflow: hidden;

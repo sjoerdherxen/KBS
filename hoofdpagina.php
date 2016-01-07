@@ -10,7 +10,7 @@ renderHtmlStart("Home", "");
     $uitvoerDatabase = query("SELECT Welkomstekst FROM welkomstekst WHERE ID = 1", NULL);
     foreach ($uitvoerDatabase as $value1){
         foreach ($value1 as $value2){
-            echo "<p>$value2</p>";
+            echo "<h4 id='welkomstekst'>$value2</h4>";
         }
     }
     ?>
