@@ -125,15 +125,17 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     </div>
                     <div class="col-md-6">
                         <select name="categorie">
-                            <option value="Alles">Alle</option>
+                            <option value="Alles" <?php if(isset($_GET["categorie"]) && "Alles" == $_GET["categorie"]) {echo "checked='checked'"; } ?>>Alle</option>
                             <?php
 
                             foreach ($categorieen as $value1) {
-                                // foreach($value1 as $key2 => $value2){
-                                // if ($key2 === "Categorie_naam"){
-                                echo"<option value=\"" . $value1['CategorieID'] . "\">" . $value1["Categorie_naam"] . "</option>";
-                                // }
-                                //}
+                                $checked = "";
+                                if(isset($_GET["categorie"]) && $value1['CategorieID'] == $_GET["categorie"]){
+                                    $checked = "checked='checked'";
+                                }
+                             
+                                echo "<option value=\"" . $value1['CategorieID'] . "\" ".$checked.">" . $value1["Categorie_naam"] . "</option>";
+                              
                             }
                             ?>
                         </select> <br/>
