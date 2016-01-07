@@ -73,7 +73,7 @@ function uploadSchilderijImg($id, $imgExtension, $old) {
     list($width, $height) = getimagesize($smallpath);
     $newwidth = 228;
     $newheight = $height / ($width / $newwidth);
-    
+
     $src = imagecreatefromjpeg($smallpath);
     $dst = imagecreatetruecolor($newwidth, $newheight);
     imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
@@ -101,4 +101,24 @@ function checkCaptcha($captchaInput) {
     $response = json_decode(curl_exec($ch));
 
     return $response->success == true;
+}
+
+function uppercase($text) {
+    if (gettype($text) == "string") {
+        if (str_word_count($text) > 1) {
+            $array = explode(".", $text);
+            foreach ($array as $key => $value) {
+                $value = ucfirst($value);
+            }
+            $text = implode($array);
+            return $text;
+        } elseif (str_word_count($text) == 1) {
+            $text = ucfirst($text);
+            return $text;
+        } else {
+            return $text;
+        }
+    } else {
+        return $text;
+    }
 }

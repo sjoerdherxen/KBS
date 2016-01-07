@@ -157,3 +157,23 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) 
 
     }
 }
+
+function uppercase($text) {
+    if (gettype($text) == "string") {
+        if (str_word_count($text) > 1) {
+            $array = explode(".", $text);
+            foreach ($array as $key => $value) {
+               ucfirst($value);
+           }
+            $text = implode($array);
+            return $text;
+        } elseif (str_word_count($text) == 1) {
+            $text = ucfirst($text);
+            return $text;
+        } else {
+            return $text;
+        }
+    } else {
+        return $text;
+    }
+}
