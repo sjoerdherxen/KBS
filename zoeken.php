@@ -3,6 +3,8 @@ include './htmlHelpers.php';
 include './functions.php';
 renderHtmlStart("Zoeken", "");
 
+$where = "";
+$params = array();
 $zoek = "";
 //checken of het knopje is ingedrukt
 if (isset($_GET['button'])) {
@@ -35,6 +37,15 @@ if (isset($categorieWaar)){
 if (isset($materiaalWaar)){
         $uitvoerMateriaal = query("SELECT * FROM schilderij WHERE MateriaalID = ?", $invoerMateriaal);
         var_dump($uitvoerMateriaal);
+}
+
+//checken of er zowel een categorie als een materiaal is geselecteerd om where statement samen te voegen 
+if (isset($categorieWaar) && isset($materiaalWaar)){
+    $where = "WHERE Schilderij_ID = " . '$uitvoerCategorie["Schilderij_ID"]' . "AND Schilderij_ID = " . '$uitvoerMateriaal["Schilderij_ID"]';
+} elseif (isset($categorieWaar) && $categorieWaar == true && (!isset($materiaalWaar) || $materiaalWaar == false)){
+    $where = "WHERE Schilderij_ID = " . '$uitvoerCategorie["Schilderij_ID"]';
+} elseif (isset($materiaalWaar) && $materiaalWaar == true && (!isset($categorieWaar) || $categorieWaar == false)){
+    $where = "WHERE Schilderij_ID = " . '$uitvoerMateriaal["Schilderij_ID"]';
 }
 
 $categorieen = query("SELECT * FROM categorie c WHERE (SELECT COUNT(*) FROM schilderij s WHERE s.CategorieID = c.CategorieID) >= 1", null);
@@ -160,8 +171,7 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
         $page = $_GET["page"];
     }
 
-    $where = "";
-    $params = array();
+    
     if ($zoek != "") {
         $where = " WHERE Titel LIKE ? OR Beschrijving LIKE ?";
         $params[] = "%$zoek%";
