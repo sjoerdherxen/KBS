@@ -164,8 +164,7 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
     if ($where != "") {
         $where = " WHERE 1=1 " . $where;
     }
-
-    print("SELECT COUNT(*) as aantal FROM schilderij " . $where);
+    
     $pageCountResult = query("SELECT COUNT(*) as aantal FROM schilderij " . $where, $params);
     $pageCount = ceil($pageCountResult[0]["aantal"] / $pageSize);
     if ($page > $pageCount) {
