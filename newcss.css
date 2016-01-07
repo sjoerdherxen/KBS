@@ -51,12 +51,12 @@ div.menu{
     width: 100%;
     height: 160px;
     background-color: grey;
-    padding-left: 450px;
 
 }
 div.line{
-    margin-right: 525px;
+    margin: auto;
     border-bottom: solid #a18e8e 2px;
+    width: 750px;
 }
 div.bovenmenu{
     text-align: right;
@@ -69,11 +69,7 @@ div.bovenmenu{
     background-color: grey;
     font-size: 24px;
     margin: auto;
-    width: 1250px;
-
-
-
-
+    width: 750px;
 }
 #headlogo{
     height: 125px;
