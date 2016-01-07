@@ -32,6 +32,27 @@ if (isset($_GET['button'])) {
         $params[] = "%$zoek%";
         $params[] = "%$zoek%";
     }
+    
+    if ($_GET["lijst"] !== "2"){
+        $where .= " AND lijst = " . $_GET["lijst"] . " ";
+    }
+    if ($_GET["passepartout"] !== "2"){
+        $where .= " AND passepartout = " . $_GET["passepartout"] . " "; 
+    }
+    if ($_GET["orientatie"] !== "2"){
+        $where .= " AND isStaand = " . $_GET["orientatie"] . " ";
+    }
+    if ($_GET["prijs"] !== "4"){
+        if ($_GET["prijs"] === "0"){
+            $where .= " AND (prijs >= 0 AND prijs < 300 "; 
+        } elseif ($_GET["prijs"] === "1"){
+            $where .= " AND (prijs >= 300 AND prijs < 600 ";
+        } elseif ($_GET["prijs"] === "2"){
+            $where .= " AND (prijs >= 600 AND prijs < 1000 ";
+        } elseif ($_GET["prijs"] === "3"){
+            $where .= " AND prijs >= 1000 ";
+        }
+    }
 }
 
 $categorieen = query("SELECT * FROM categorie c WHERE (SELECT COUNT(*) FROM schilderij s WHERE s.CategorieID = c.CategorieID) >= 1", null);
@@ -53,10 +74,10 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                         Lijst:
                     </div>
                     <div class="col-md-6">
-                        <select name=" divjst">
-                            <option value="">Beide</option>
-                            <option>Met</option>
-                            <option>Zonder</option>
+                        <select name="lijst">
+                            <option value="2">Beide</option>
+                            <option value="1">Met</option>
+                            <option value="0">Zonder</option>
                         </select> <br/>
                     </div>
                 </div>
@@ -66,9 +87,9 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     </div>
                     <div class="col-md-6">
                         <select name="passepartout">
-                            <option value="">Beide</option>
-                            <option>Met</option>
-                            <option>Zonder</option>
+                            <option value="2">Beide</option>
+                            <option value="1">Met</option>
+                            <option value="0">Zonder</option>
                         </select> <br/>
                     </div>
                 </div>
@@ -78,9 +99,9 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     </div>
                     <div class="col-md-6">
                         <select name="orientatie">
-                            <option value="">Beide</option>
-                            <option>Staand</option>
-                            <option>Liggend</option>
+                            <option value="2">Beide</option>
+                            <option value="1">Staand</option>
+                            <option value="0">Liggend</option>
                         </select> <br/>
                     </div>
                 </div>
@@ -90,11 +111,11 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     </div>
                     <div class="col-md-6">
                         <select name="prijs">
-                            <option value="">Alle</option>
-                            <option>€100 tot €300</option>
-                            <option>€300 tot €600</option>
-                            <option>€600 tot €1000</option>
-                            <option>€1000 en hoger</option>
+                            <option value="4">Alle</option>
+                            <option value="0">€100 tot €300</option>
+                            <option vaiue="1">€300 tot €600</option>
+                            <option value="2">€600 tot €1000</option>
+                            <option value="3">€1000 en hoger</option>
                         </select> <br/>
                     </div>
                 </div>
