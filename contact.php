@@ -1,6 +1,4 @@
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-        async defer>
-</script>
+
 <?php
 include './htmlHelpers.php';
 //include './admin/functions.php';
@@ -82,27 +80,40 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
             echo 'De mail is niet goed verzonden,<br>probeer het later opnieuw';
         }
     }
+    //dit is een stukje oefencode
+/*    if ($controle == false) {
+        $testtext = "hallo dit is een stukje tekst";
+        $testtext = uppercase($testtext);
+        print_r($testtext);
+    } */
+    //einde stukje oefencode
     ?></div>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+</script>
+
 <div id="contact-form">
     <form method="post" action="contact.php">
         <div class="round_edge"><input type="text" name="contact-voornaam" placeholder="Voornaam" value="<?php print($contact_voornaam) ?>"></div>
         <?php print("$contact_voornaam_error"); ?>
         <div class="space-form"></div>
-        
+
         <div class="round_edge"><input type="text" name="contact-achternaam" placeholder="Achternaam" value="<?php print($contact_achternaam) ?>"></div>
         <?php print("$contact_achternaam_error"); ?>
         <div class="space-form"></div>
-        
+
         <div class="round_edge"><input type="email" name="contact-email" placeholder="E-mail adres" value="<?php print($contact_email) ?>"></div>
         <?php print("$contact_email_error"); ?>
         <div class="space-form"></div>
-        
+
         <div class="round_edge"><input type="text" name="contact-onderwerp" placeholder="Onderwerp" value="<?php print($contact_onderwerp) ?>"></div>
         <?php print("$contact_onderwerp_error"); ?>
         <div class="space-form"></div>
-        
+
         <div class="round_edge"><textarea rows="4" cols="50" name="contact-bericht" placeholder="Voer hier uw bericht in"><?php print($contact_bericht) ?></textarea></div>
         <?php print("$contact_bericht_error"); ?>
+ 
         <div class="capthapositie1">
             <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div>
         </div>
