@@ -59,9 +59,10 @@ foreach ($uitvoerDatabase as $value1) {
     foreach ($value1 as $key2 => $value2) {
         if ($key2 == "Woonplaats") {
             $woonplaats = $value2;
-        } elseif ($key2 == "Gebdat") {
+        } /*elseif ($key2 == "Gebdat") {
             $gebdat = $value2;
-        } elseif ($key2 == "Adres") {
+        }*/
+          elseif ($key2 == "Adres") {
             $adres = $value2;
         } elseif ($key2 == "Email") {
             $email = $value2;
@@ -90,14 +91,14 @@ foreach ($uitvoerDatabase as $value1) {
                 ?>
             </td>
         </tr>
-        <tr>
+        <!--<tr>
             <td>
                 Geboortedatum:
             </td>
             <td>
                 <input type="date" name="Gebdat" value="<?php echo $gebdat; ?>">
             </td>
-        </tr>
+        </tr> -->
         <tr>
             <td>
                 Adres:
