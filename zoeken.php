@@ -131,7 +131,7 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                             foreach ($categorieen as $value1) {
                                 $checked = "";
                                 if(isset($_GET["categorie"]) && $value1['CategorieID'] == $_GET["categorie"]){
-                                    $checked = "checked='checked'";
+                                    $checked = "selected";
                                 }
                              
                                 echo "<option value=\"" . $value1['CategorieID'] . "\" ".$checked.">" . $value1["Categorie_naam"] . "</option>";
