@@ -54,6 +54,13 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
         $commentaar = str_replace(">", "&gt;", $commentaar);
         $input = array($naamklant, $email, $commentaar, $_GET["id"]);
         query("insert into commentaar (Naam_klant, Email_klant, Opmerking, Schilderij_ID) VALUES (?, ?, ?, ?)", $input);
+        //mailen van het commentaar
+        $to = query("SELECT email FROM schilder limit 0,1", NULL);
+        $to = $to[0]['email'];
+        $subject = "Commentaar op schilderij " . query("SELECT Titel FROM schilderij WHERE id=?", array($_GET["id"]));
+        $message = "Naam afzender: " . $naamklant . "\nEmail-adres afzenden: " . $email . "\nCommentaar op " . query("SELECT Titel FROM schilderij WHERE id=?", array($_GET["id"])) . ": " . $commentaar;
+        $header = "From:commentaar@hofvanellen.nl \r\n";
+        mail($to, $subject, $message, $header);
         ?>
         <script>
             alert("Commentaar is toegevoegd");

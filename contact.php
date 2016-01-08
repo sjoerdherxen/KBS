@@ -57,9 +57,8 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         $to = query("SELECT email FROM schilder limit 0,1", NULL);
         $to = $to[0]['email'];
         $subject = $_POST["contact-onderwerp"];
-        $message = "naam afzender: " . $_POST["contact-voornaam"] . " " . $_POST["contact-achternaam"] . "\n\n" . $_POST["contact-bericht"];
-        $email = $_POST["contact-email"];
-        $header = "From:$email \r\n";
+        $message = "naam afzender: " . $_POST["contact-voornaam"] . " " . $_POST["contact-achternaam"] . "\n email afzender: " . $_POST['contact-email'] . "\n\n" . $_POST["contact-bericht"];
+        $header = "From:contact@hofvanellen.nl \r\n";
         $verzondenmail = mail($to, $subject, $message, $header);
     }
 }
@@ -81,11 +80,11 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         }
     }
     //dit is een stukje oefencode
-/*    if ($controle == false) {
-        $testtext = "hallo dit is een stukje tekst";
-        $testtext = uppercase($testtext);
-        print_r($testtext);
-    } */
+    /*    if ($controle == false) {
+      $testtext = "hallo dit is een stukje tekst";
+      $testtext = uppercase($testtext);
+      print_r($testtext);
+      } */
     //einde stukje oefencode
     ?></div>
 
@@ -113,7 +112,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
 
         <div class="round_edge"><textarea rows="4" cols="50" name="contact-bericht" placeholder="Voer hier uw bericht in"><?php print($contact_bericht) ?></textarea></div>
         <?php print("$contact_bericht_error"); ?>
- 
+
         <div class="capthapositie1">
             <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div>
         </div>
