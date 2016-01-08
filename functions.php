@@ -22,7 +22,7 @@ function printteken($aantal, $teken) {
 function query($query, $params) {
     try {
         // connectie maken
-        $pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
+        $pdo = new PDO("mysql:host=localhost;dbname=databasekps01;port=3307", "root", "usbw");
         // query opbouwe
         $q = $pdo->prepare($query);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
