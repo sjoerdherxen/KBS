@@ -11,7 +11,7 @@ if (isset($_GET["id"]) && is_numeric($_GET["id"])) {// get is goed
     $result1 = query("SELECT Id FROM commentaar WHERE Schilderijen_ID = ?", array($_GET["id"])); // check of schilderij commentaar heeft
     if (count($result == 1)) {
         // verwijderen
-        if (count($result1 > 0)) {
+        /*if (count($result1 > 0)) {
             $to = query("SELECT email FROM schilder limit 0,1", NULL);
             $to = $to[0]['email'];
             $subject = "Al het commentaar van schilderij " . query("SELECT Titel FROM schilderij WHERE id=?", $_GET["id"]);
@@ -21,7 +21,7 @@ if (isset($_GET["id"]) && is_numeric($_GET["id"])) {// get is goed
             if ($mailcheck) {
                 query("DELETE FROM commentaar WHERE Schilderij_ID = ?", array($_GET["id"])); // het commentaar op het schilderij verwijderen
             }
-        }
+        } */
         query("DELETE FROM schilderij WHERE Schilderij_ID = ?", array($_GET["id"])); // het schilderij verwijderen
         header("location: schilderijList.php#Schilderij " . $result[0]["titel"] . " is verwijderd!");
         exit();
