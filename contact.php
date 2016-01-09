@@ -57,7 +57,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         $to = query("SELECT email FROM schilder limit 0,1", NULL);
         $to = $to[0]['email'];
         $subject = $_POST["contact-onderwerp"];
-        $message = "naam afzender: " . $_POST["contact-voornaam"] . " " . $_POST["contact-achternaam"] . "\n email afzender: " . $_POST['contact-email'] . "\n\n" . $_POST["contact-bericht"];
+        $message = "naam afzender: " . $_POST["contact-voornaam"] . " " . $_POST["contact-achternaam"] . "\nemail afzender: " . $_POST['contact-email'] . "\n\n" . $_POST["contact-bericht"];
         $header = "From:contact@hofvanellen.nl \r\n";
         $verzondenmail = mail($to, $subject, $message, $header);
     }

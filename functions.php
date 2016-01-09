@@ -161,12 +161,7 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) 
 function uppercase($text) {
     if (gettype($text) == "string") {
         if (str_word_count($text) > 1) {
-            $array = explode(".", $text);
-            foreach ($array as $key => $value) {
-               ucfirst($value);
-           }
-            $text = $array; //implode($array);
-            return $text;
+            preg_match($pattern, $subject);
         } elseif (str_word_count($text) == 1) {
             $text = ucfirst($text);
             return $text;
