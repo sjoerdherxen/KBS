@@ -11,11 +11,11 @@ if (isset($_GET["id"]) && is_numeric($_GET["id"])) {// get is goed
     $result1 = query("SELECT Id FROM commentaar WHERE Schilderijen_ID = ?", array($_GET["id"])); // check of schilderij commentaar heeft
     if (count($result == 1)) {
         // verwijderen
-        if (count($result1 != 0)) {
+        if (count($result1 > 0)) {
             $to = query("SELECT email FROM schilder limit 0,1", NULL);
             $to = $to[0]['email'];
             $subject = "Al het commentaar van schilderij " . query("SELECT Titel FROM schilderij WHERE id=?", $_GET["id"]);
-            $message = query("SELECT * FROM commentaar WHERE Schilderij_ID = ?", $_GET["id"]);
+            $message = query("SELECT Email_klant, Opmerking, Naam_klant FROM commentaar WHERE Schilderij_ID = ?", $_GET["id"]);
             $header = "From:commentaar-backup@hofvanellen.nl \r\n";
             $mailcheck = mail($to, $subject, $message, $header); // al het gegeven commentaar op het desbetreffende schilderij mailen
             if ($mailcheck) {
