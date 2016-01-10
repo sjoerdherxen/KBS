@@ -101,7 +101,7 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
                 <?php
             }
             ?>
-            <li>Groote: <?php print $schilderij["hoogte"] ?> X <?php print $schilderij["breedte"] ?> cm</li>   
+            <li>Grootte: <?php print $schilderij["hoogte"] ?> X <?php print $schilderij["breedte"] ?> cm</li>   
             <li>Catagorie: 
                 <?php
                 print $schilderij["Categorie_naam"];
