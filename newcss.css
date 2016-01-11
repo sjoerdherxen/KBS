@@ -409,8 +409,21 @@ div.comment{
     height: 2px;
 }
 
-.round_edge {
-    border-radius: 10px;
+.round_edge input, .round_edge textarea {
+    width: 400px;
+}
+
+.round_edge input[type="submit"] {
+    width: 100px;
+    position: relative;
+    left: 40%;
+    margin: auto;
+}
+
+.round_edge .capthapositie1 {
+    position: relative;
+    left: 15%;
+    margin: auto;
 }
 
 #contact-page-content {
