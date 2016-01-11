@@ -21,7 +21,7 @@ $schilderijlijst = query("SELECT S.titel, S.jaar, S.hoogte, S.breedte, S.beschri
   LEFT JOIN subcategorie SC ON SC.SubcategorieID = S.SubcategorieID 
   JOIN materiaal M ON M.MateriaalID = S.MateriaalID
   
-  WHERE S.Schilderij_ID = ?", $params);
+  WHERE S.Schilderij_ID = ? AND S.OpWebsite = 1", $params);
 
 if (count($schilderijlijst) != 1) {
     header("location: gallerij.php");

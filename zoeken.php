@@ -4,7 +4,7 @@ include './htmlHelpers.php';
 include './functions.php';
 renderHtmlStart("Zoeken", "");
 
-$where = "";
+$where = " WHERE OpWebsite = 1 ";
 $params = array();
 $zoek = "";
 //checken of het knopje is ingedrukt
@@ -171,10 +171,6 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
     $page = 1;
     if (isset($_GET["page"]) && is_numeric($_GET["page"])) {
         $page = $_GET["page"];
-    }
-
-    if ($where != "") {
-        $where = " WHERE 1=1 " . $where;
     }
 
     $pageCountResult = query("SELECT COUNT(*) as aantal FROM schilderij " . $where, $params);

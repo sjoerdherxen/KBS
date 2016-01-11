@@ -44,10 +44,10 @@ renderHtmlStart("Gallerij", "<script src='/content/gallerij.js'></script>");
     if (isset($_GET["page"]) && is_numeric($_GET["page"])) {
         $page = $_GET["page"];
     }
-    $where = "";
+    $where = " WHERE OpWebsite = 1";
     $params = [];
     if ($selectedcat != 0) {
-        $where = " WHERE CategorieID = ? ";
+        $where = " WHERE OpWebsite = 1 AND CategorieID = ? ";
         $params[] = $selectedcat;
     }
     // haal aantal pagina's op
