@@ -31,6 +31,7 @@ if (count($schilderijlijst) != 1) {
 $schilderij = $schilderijlijst[0];
 $naam = "";
 $commentaar = "";
+$email = "";
 $correct = true;
 
 
@@ -48,10 +49,13 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
     if ($correct) {
         $naamklant = str_replace("<", "&lt;", $_POST["naam"]);
         $naamklant = str_replace(">", "&gt;", $naamklant);
+        $naamklant = uppercase($naamklant);
         $email = str_replace("<", "&lt;", $_POST["email"]);
         $email = str_replace(">", "&gt;", $email);
+        $email = uppercase($naamklant);
         $commentaar = str_replace("<", "&lt;", $_POST["commentaar"]);
         $commentaar = str_replace(">", "&gt;", $commentaar);
+        $commentaar = uppercase($commentaar);
         $input = array($naamklant, $email, $commentaar, $_GET["id"]);
         query("insert into commentaar (Naam_klant, Email_klant, Opmerking, Schilderij_ID) VALUES (?, ?, ?, ?)", $input);
         //mailen van het commentaar
@@ -150,7 +154,7 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
             <tr>
                 <td class="commentaar">Naam</td>
                 <td>:</td>
-                <td><input name="naam" type="text" id="naam" size="40"/>
+                <td><input name="naam" type="text" id="naam" size="40" value="<?php print("$naam"); ?>"/>
                     <?PHP
                     if (isset($naamleeg)) {
                         echo $naamleeg;
@@ -160,12 +164,12 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
             <tr>
                 <td class="commentaar">Email</td>
                 <td>:</td>
-                <td><input name="email" type="email" id="email" size="40" /></td>
+                <td><input name="email" type="email" id="email" size="40" value="<?php print("$email"); ?>"/></td>
             </tr>
             <tr>
                 <td class="commentaar">Commentaar</td>
                 <td >:</td>
-                <td><textarea name="commentaar" cols="42" rows="4" id="opmerking" ></textarea>
+                <td><textarea name="commentaar" cols="42" rows="4" id="opmerking"><?php print("$commentaar"); ?></textarea>
                     <?PHP
                     if (isset($commentaarleeg)) {
                         echo $commentaarleeg;
