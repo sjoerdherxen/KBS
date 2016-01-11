@@ -105,13 +105,10 @@ function checkCaptcha($captchaInput) {
 
 function uppercase($text) {
     if (gettype($text) == "string") {
+        $text = trim($text);
         if (str_word_count($text) > 1) {
-            $array = explode(".", $text);
-            foreach ($array as $key => $value) {
-                $value = ucfirst($value);
-            }
-            $text = implode($array);
-            return $text;
+           $text = preg_replace('/([.!?])\s*(\w)/e', "strtoupper('\\1 \\2')", ucfirst(strtolower($text)));
+           return $text;
         } elseif (str_word_count($text) == 1) {
             $text = ucfirst($text);
             return $text;
