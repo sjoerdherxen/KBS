@@ -57,10 +57,8 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
         //mailen van het commentaar
         $to = query("SELECT email FROM schilder limit 0,1", NULL);
         $to = $to[0]['email'];
-        $subject = query("SELECT Titel FROM schilderij WHERE id=?", $_GET["id"]);
-        $subject = "Commentaar op schilderij". $subject[0]['Titel'];
-        $message = query("SELECT Titel FROM schilderij WHERE id=?", $_GET["id"]);
-        $message = "Naam afzender: " . $naamklant . "\nEmail-adres afzenden: " . $email . "\nCommentaar op " . $message[0]['Titel'] . ": " . $commentaar;
+        $subject = "Commentaar op ". $schilderij['titel'];
+        $message = "Naam afzender: " . $naamklant . "\nEmail-adres afzender: " . $email . "\nCommentaar op " . $schilderij['titel'] . ":\n " . $commentaar;
         $header = "From:commentaar@hofvanellen.nl \r\n";
         mail($to, $subject, $message, $header);
         ?>
