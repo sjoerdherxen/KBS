@@ -41,11 +41,11 @@ if (isset($_POST["knop"])) {
         $titelError = "Titel is verplicht";
         $correct = false;
     }
+    $schilderij["Titel"] = $_POST["titel"];
+    $schilderInsert[] = uppercase($_POST["titel"]); 
+    
     $schilderij["OpWebsite"] = $_POST["OpWebsite"];
     $schilderInsert[] = $_POST["OpWebsite"] ? 1 : 0;
-    
-    $schilderij["Titel"] = $_POST["titel"];
-    $schilderInsert[] = uppercase($_POST["titel"]);
 
     $schilderij["Beschrijving"] = $_POST["beschrijving"];
     $schilderInsert[] = uppercase($_POST["beschrijving"]);
