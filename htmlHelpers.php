@@ -39,9 +39,11 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
                         <li role="presentation" class="topmenu"><a href="/gallerij.php" class="menutext">Galerij</a></li>
                         <li role="presentation" class="topmenu"><a href="/zoeken.php" class="menutext">Zoeken</a></li>
                         <li role="presentation" class="topmenu"><a href="/contact.php" class="menutext">Contact</a></li> 
+                        <li><h1>Hof van Ellen</h1></li>
                     </ul>
+                    
                     <div class="line">
-
+                    
                     </div>
                 </div>  
                 <div class="contentcontent">
