@@ -79,13 +79,6 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
             echo 'De mail is niet goed verzonden,<br>probeer het later opnieuw';
         }
     }
-    //dit is een stukje oefencode
-    /*    if ($controle == false) {
-      $testtext = "hallo dit is een stukje tekst";
-      $testtext = uppercase($testtext);
-      print_r($testtext);
-      } */
-    //einde stukje oefencode
     ?></div>
 
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
