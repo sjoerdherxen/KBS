@@ -26,8 +26,8 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
                         <?php
                         //result is uitgezet omdat het email adres nu nog niet geshowed hoeft te worden!!
                         
-                        //$result = query("SELECT Email, Telefoon FROM schilder LIMIT 0,1", null);
-                        //echo "Tel: " . $result[0]["Telefoon"] . " | Email:" . $result[0]["Email"] . " | ";
+                        $result = query("SELECT Email, Telefoon FROM schilder LIMIT 0,1", null);
+                        echo "Tel: " . $result[0]["Telefoon"] . " | Email:" . $result[0]["Email"] . " | ";
                         ?>
                     </span>
                     <a class="menutext" href="/admin/">Login</a> &nbsp; &nbsp;  
