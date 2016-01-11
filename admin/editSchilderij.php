@@ -134,7 +134,7 @@ if (isset($_POST["knop"])) {
         if ($updateImg) {
             $resultImg = query("SELECT Img FROM schilderij WHERE Schilderij_ID = ?", array($schilderijId));
 
-            uploadSchilderijImg($schilderijId, $imgExtension, $resultImg[0]["Img"]);
+            uploadSchilderijImg($schilderijId, $imgExtension, $resultImg[0]["Img"], null);
            }
 
         header("location: schilderijList.php#Schilderij " . $schilderij["Titel"] . " is aangepast");

@@ -40,37 +40,39 @@ function insert($query, $params) { // check query function returns id of inserte
         return null;
     }
 }
-/*
-// query op db uitvoeren
-function query($query, $params) {
-    try {
-        // connectie maken
-        $pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
-        // query opbouwe
-        $q = $pdo->prepare($query);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        // uitvoeren
-        $q->execute($params);
-        //get results
-        $result =  $q->fetchAll(PDO::FETCH_ASSOC);
-        $pdo = null;// drop connection
-        return $result;
-    } catch (PDOException $e) {
-        return null;
-    }
-}
 
-function insert($query, $params) { // check query function returns id of inserted record
-    try {
-        $pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
-        $q = $pdo->prepare($query);
-        $q->execute($params);
-        return $pdo->lastInsertId();
-    } catch (PDOException $e) {
-        return null;
-    }
-}
+/*
+  // query op db uitvoeren
+  function query($query, $params) {
+  try {
+  // connectie maken
+  $pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
+  // query opbouwe
+  $q = $pdo->prepare($query);
+  $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+  // uitvoeren
+  $q->execute($params);
+  //get results
+  $result =  $q->fetchAll(PDO::FETCH_ASSOC);
+  $pdo = null;// drop connection
+  return $result;
+  } catch (PDOException $e) {
+  return null;
+  }
+  }
+
+  function insert($query, $params) { // check query function returns id of inserted record
+  try {
+  $pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
+  $q = $pdo->prepare($query);
+  $q->execute($params);
+  return $pdo->lastInsertId();
+  } catch (PDOException $e) {
+  return null;
+  }
+  }
  */
+
 function in_query_result($data, $search, $column) {
 // check of waarde in query result staat
 //wordt gebruikt in schilderij edit/add
@@ -82,7 +84,7 @@ function in_query_result($data, $search, $column) {
     return false;
 }
 
-function uploadSchilderijImg($id, $imgExtension, $old) {
+function uploadSchilderijImg($id, $imgExtension, $old, $preupload) {
     if ($old != null) {
         if (file_exists("./../content/uploads/" . $old)) {
             unlink("./../content/uploads/" . $old);
@@ -96,8 +98,11 @@ function uploadSchilderijImg($id, $imgExtension, $old) {
     $smallpath = "./../content/uploads/small_" . $id . $imgExtension;
 
     query("UPDATE schilderij SET Img = ? WHERE Schilderij_ID = ?", array($id . $imgExtension, $id));
-
-    move_uploaded_file($_FILES["img"]["tmp_name"], $newpath);
+    if ($preupload == null) {
+        move_uploaded_file($_FILES["img"]["tmp_name"], $newpath);
+    } else {
+        copy($preupload, $newpath);
+    }
     copy($newpath, $smallpath);
 
     list($width, $height) = getimagesize($smallpath);
@@ -137,8 +142,8 @@ function uppercase($text) {
     if (gettype($text) == "string") {
         $text = trim($text);
         if (str_word_count($text) > 1) {
-           $text = preg_replace('/([.!?])\s*(\w)/e', "strtoupper('\\1 \\2')", ucfirst(strtolower($text)));
-           return $text;
+            $text = preg_replace('/([.!?])\s*(\w)/e', "strtoupper('\\1 \\2')", ucfirst(strtolower($text)));
+            return $text;
         } elseif (str_word_count($text) == 1) {
             $text = ucfirst($text);
             return $text;

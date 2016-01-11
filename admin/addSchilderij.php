@@ -25,6 +25,7 @@ $schilderij["passepartout"] = 0;
 $schilderij["isStaand"] = 0;
 $schilderij["prijs"] = "";
 $schilderij["OpWebsite"] = 1;
+$afbeeldingCorrect = false;
 
 // haal alle gerelateerde gegevens op voor dropdowns
 $resultMateriaal = query("SELECT MateriaalID, Materiaal_soort FROM materiaal", null);
@@ -33,6 +34,7 @@ $resultSubCategorie = query("SELECT SubcategorieID, Subcategorie_naam FROM subca
 
 // submit is gedaan
 if (isset($_POST["knop"])) {
+
     $correct = true;
     $schilderij = array(); //zet waardes voor inputs
     $schilderInsert = array(); // waardes voor query params
@@ -42,8 +44,8 @@ if (isset($_POST["knop"])) {
         $correct = false;
     }
     $schilderij["Titel"] = $_POST["titel"];
-    $schilderInsert[] = uppercase($_POST["titel"]); 
-    
+    $schilderInsert[] = uppercase($_POST["titel"]);
+
     $schilderij["OpWebsite"] = $_POST["OpWebsite"];
     $schilderInsert[] = $_POST["OpWebsite"] ? 1 : 0;
 
@@ -138,10 +140,16 @@ if (isset($_POST["knop"])) {
         if (!in_array($imgExtension, $correctExtensions) || $_FILES["img"]["error"] !== 0 || $_FILES["img"]["size"] == 0) {
             $afbeeldingError = "Geen afbeelding gekozen";
             $correct = false;
+        } else {
+            $afbeeldingCorrect = true;
+            $date = new DateTime();
+            $afbeeldingCorrectId = $date->getTimestamp();
         }
-    } else {
+    } elseif (!isset($_POST["img_uploaded"])) {
         $afbeeldingError = "Geen afbeelding gekozen";
         $correct = false;
+    } else {
+        $afbeeldingCorrectId = $_POST["img_uploaded"];
     }
 
     if ($correct) {
@@ -154,17 +162,21 @@ if (isset($_POST["knop"])) {
         }
         $schilderInsert[] = $schilderid;
 
+
         // insert 
         $id = insert("INSERT INTO schilderij (Titel, OpWebsite, Beschrijving, lijst, passepartout, isStaand, Jaar, prijs, Hoogte, "
                 . "                             Breedte, CategorieID, MateriaalID, SubcategorieID, SchilderID)"
                 . "  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", $schilderInsert);
-        
+
         if ($id == null) {
             print("Er is een fout opgreteden tijdens het opslaan");
         } else {
             // zet afbeelding correct
-             uploadSchilderijImg($id, $imgExtension, null);
-
+            if (isset($afbeeldingCorrectId)) {
+                uploadSchilderijImg($id, $imgExtension, null, "./../content/uploads/tmp/" . $afbeeldingCorrectId . $_POST["img_uploaded_ext"]);
+            } else {
+                uploadSchilderijImg($id, $imgExtension, null, null);
+            }
             if ($_POST["knop"] == "Toevoegen en blijven") {
                 header("location: addSchilderij.php#Schilderij is toegevoegd");
                 exit();
@@ -173,6 +185,8 @@ if (isset($_POST["knop"])) {
                 exit();
             }
         }
+    } elseif ($afbeeldingCorrect) {
+        move_uploaded_file($_FILES["img"]["tmp_name"], "./../content/uploads/tmp/" . $afbeeldingCorrectId . $imgExtension);
     }
 }
 ?>
@@ -345,11 +359,20 @@ if (isset($_POST["knop"])) {
         </tr>
         <tr>
             <td colspan="2">
-                <input type="file" name="img" accept="image/*">
                 <?php
 
-                if (isset($afbeeldingError)) {
-                    echo "<span class='incorrect'>" . $afbeeldingError . "</span>";
+                if (!$afbeeldingCorrect) {
+                    ?>
+                    <input type="file" name="img" accept="image/*">
+                    <?php
+
+                    if (isset($afbeeldingError)) {
+                        echo "<span class='incorrect'>" . $afbeeldingError . "</span>";
+                    }
+                } else {
+                    echo "Er is al een bestand gekozen.";
+                    echo "<input type='hidden' name='img_uploaded' value='" . $afbeeldingCorrectId . "'>";
+                    echo "<input type='hidden' name='img_uploaded_ext' value='" . $imgExtension . "'>";
                 }
                 ?>
             </td>
