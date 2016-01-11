@@ -33,13 +33,13 @@ if (isset($_POST["knop"])) {
         $correct = false;
     }
     $schilderij["Titel"] = $_POST["titel"];
-    $schilderijUpdate[] = $_POST["titel"];
+    $schilderijUpdate[] = uppercase($_POST["titel"]);
     
     $schilderij["OpWebsite"] = $_POST["OpWebsite"];
     $schilderijUpdate[] = $_POST["OpWebsite"] ? 1 : 0;
 
     $schilderij["Beschrijving"] = $_POST["beschrijving"];
-    $schilderijUpdate[] = $_POST["beschrijving"];
+    $schilderijUpdate[] = uppercase($_POST["beschrijving"]);
 
     $schilderij["lijst"] = isset($_POST["lijst"]);
     $schilderijUpdate[] = $schilderij["lijst"] ? 1 : 0;
