@@ -45,10 +45,10 @@ if (isset($_POST["knop"])) {
     $schilderijInsert[] = $_POST["OpWebsite"] ? 1 : 0;
     
     $schilderij["Titel"] = $_POST["titel"];
-    $schilderInsert[] = $_POST["titel"];
+    $schilderInsert[] = uppercase($_POST["titel"]);
 
     $schilderij["Beschrijving"] = $_POST["beschrijving"];
-    $schilderInsert[] = $_POST["beschrijving"];
+    $schilderInsert[] = uppercase($_POST["beschrijving"]);
 
     $schilderij["lijst"] = isset($_POST["lijst"]);
     $schilderInsert[] = $schilderij["lijst"] ? 1 : 0;
