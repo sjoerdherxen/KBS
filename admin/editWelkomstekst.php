@@ -12,7 +12,7 @@ $naamerror = false;
 
 if (isset($_POST["verzendknop"])){
     if (isset($_POST["Beschrijving"]) && $_POST["Beschrijving"] !== ""){
-        $invoerDatabase = [$_POST["Beschrijving"]];
+        $invoerDatabase = [uppercase($_POST["Beschrijving"])];
         query("UPDATE welkomstekst SET Welkomstekst = ? WHERE ID = 1", $invoerDatabase);
     } else {
         $naamerror = true;
