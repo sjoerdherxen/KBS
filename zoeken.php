@@ -116,7 +116,7 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     <option value="4" <?php showSelected($prijs, "4"); ?>>Alle</option>
                     <option value="0" <?php showSelected($prijs, "0"); ?>>€0 tot €100</option>
                     <option value="1" <?php showSelected($prijs, "1"); ?>>€100 tot €200</option>
-                    <option value="2" <?php showSelected($prijs, "2"); ?>>€200 tot €5000</option>
+                    <option value="2" <?php showSelected($prijs, "2"); ?>>€200 tot €500</option>
                     <option value="3" <?php showSelected($prijs, "3"); ?>>€500 en hoger</option>
                 </select>
             </div>
