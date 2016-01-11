@@ -36,7 +36,7 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
                     <ul class="nav nav-pills" id="ulmenu">
                         <li ><a href="http://hofvanellen.nl/schilderij.php?id=1" class="bootstrapoveride"><img id="headlogo" src="/content/uploads/IMG_2309.jpeg" alt="Logo"></a></li>
                         <li role="presentation" class="topmenu"><a href="/hoofdpagina.php" class="menutext">Home</a></li>
-                        <li role="presentation" class="topmenu"><a href="/gallerij.php" class="menutext">Gallerij</a></li>
+                        <li role="presentation" class="topmenu"><a href="/galerij.php" class="menutext">Gallerij</a></li>
                         <li role="presentation" class="topmenu"><a href="/zoeken.php" class="menutext">Zoeken</a></li>
                         <li role="presentation" class="topmenu"><a href="/contact.php" class="menutext">Contact</a></li> 
                     </ul>
