@@ -103,13 +103,14 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         <?php print("$contact_onderwerp_error"); ?>
         <div class="space-form"></div>
 
-        <div class="round_edge"><textarea rows="4" cols="50" name="contact-bericht" placeholder="Voer hier uw bericht in"><?php print($contact_bericht) ?></textarea></div>
+        <div class="round_edge"><textarea rows="4" name="contact-bericht" placeholder="Voer hier uw bericht in"><?php print($contact_bericht) ?></textarea></div>
         <?php print("$contact_bericht_error"); ?>
+        <div class="space-form"></div>
 
-        <div class="capthapositie1">
-            <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div>
-        </div>
-        <input type="submit" name="contact-submit" value="verzenden">
+        <div class="round_edge"><div class="capthapositie1">
+                <div class="g-recaptcha" data-sitekey="6LdBuRITAAAAABvjWzxipScramaFIs51kveTqRUc"></div>
+            </div> </div>
+        <div class="round_edge"><input type="submit" name="contact-submit" value="Verzenden"></div>
     </form>
 </div>
 
