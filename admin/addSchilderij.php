@@ -24,6 +24,7 @@ $schilderij["lijst"] = 0;
 $schilderij["passepartout"] = 0;
 $schilderij["isStaand"] = 0;
 $schilderij["prijs"] = "";
+$schilderij["OpWebsite"] = 1;
 
 // haal alle gerelateerde gegevens op voor dropdowns
 $resultMateriaal = query("SELECT MateriaalID, Materiaal_soort FROM materiaal", null);
@@ -40,6 +41,9 @@ if (isset($_POST["knop"])) {
         $titelError = "Titel is verplicht";
         $correct = false;
     }
+    $schilderij["OpWebsite"] = $_POST["OpWebsite"];
+    $schilderijInsert[] = $_POST["OpWebsite"] ? 1 : 0;
+    
     $schilderij["Titel"] = $_POST["titel"];
     $schilderInsert[] = $_POST["titel"];
 
@@ -151,9 +155,9 @@ if (isset($_POST["knop"])) {
         $schilderInsert[] = $schilderid;
 
         // insert 
-        $id = insert("INSERT INTO schilderij (Titel, Beschrijving, lijst, passepartout, isStaand, Jaar, prijs, Hoogte, "
+        $id = insert("INSERT INTO schilderij (Titel, OpWebsite, Beschrijving, lijst, passepartout, isStaand, Jaar, prijs, Hoogte, "
                 . "                             Breedte, CategorieID, MateriaalID, SubcategorieID, SchilderID)"
-                . "  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", $schilderInsert);
+                . "  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", $schilderInsert);
         
         if ($id == null) {
             print("Er is een fout opgreteden tijdens het opslaan");
@@ -320,6 +324,14 @@ if (isset($_POST["knop"])) {
                     <option value="false" <?php if (!$schilderij["isStaand"]) echo "selected='selected'"; ?> >liggend</option>
                     <option value="true" <?php if ($schilderij["isStaand"]) echo "selected='selected'"; ?> >staand</option>
                 </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Op website
+            </td>
+            <td>
+                <input type="checkbox" value="true" name="OpWebsite" checked="checked">
             </td>
         </tr>
         <tr>
