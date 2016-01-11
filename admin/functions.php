@@ -71,7 +71,7 @@ function insert($query, $params) { // check query function returns id of inserte
   return null;
   }
   }
- */
+ 
 
 function in_query_result($data, $search, $column) {
 // check of waarde in query result staat
