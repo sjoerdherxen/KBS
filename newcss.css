@@ -52,6 +52,12 @@ div.menu{
     background-color: grey;
 
 }
+.menu-hofvanellen{
+    float: right;
+    font-size: 24px;
+    font-family: 'times new';
+}
+
 div.line{
     margin: auto;
     border-bottom: solid #a18e8e 2px;
@@ -567,7 +573,7 @@ img.schilderij{
         padding-left: 5px;
         padding-right: 5px;
     }
-    
+
     div.slider2{ 
         zoom: 0.8;
     }

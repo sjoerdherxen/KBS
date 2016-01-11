@@ -14,6 +14,7 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
             <script src="/content/bootstrap/js/bootstrap.min.js"></script>
             <script src='https://www.google.com/recaptcha/api.js'></script>
             <?php
+
             echo $extra;
             ?>
             <!--Commentaar -->
@@ -24,27 +25,28 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
                 <div class="bovenmenu">
                     <span class="menutext">
                         <?php
+
                         //result is uitgezet omdat het email adres nu nog niet geshowed hoeft te worden!!
-                        
+
                         $result = query("SELECT Email, Telefoon FROM schilder LIMIT 0,1", null);
                         echo "Tel: " . $result[0]["Telefoon"] . " | Email:" . $result[0]["Email"] . " | ";
                         ?>
                     </span>
                     <a class="menutext" href="/admin/">Login</a> &nbsp; &nbsp;  
                 </div>
-                
+
                 <div class="menu">
+                    <span class="menu-hofvanellen">Hof van Ellen</span>
                     <ul class="nav nav-pills" id="ulmenu">
-                        
+
                         <li ><a href="http://hofvanellen.nl/schilderij.php?id=1" class="bootstrapoveride"><img id="headlogo" src="/content/uploads/IMG_2309.jpeg" alt="Logo"></a></li>
                         <li role="presentation" class="topmenu"><a href="/hoofdpagina.php" class="menutext">Home</a></li>
                         <li role="presentation" class="topmenu"><a href="/gallerij.php" class="menutext">Galerij</a></li>
                         <li role="presentation" class="topmenu"><a href="/zoeken.php" class="menutext">Zoeken</a></li>
                         <li role="presentation" class="topmenu"><a href="/contact.php" class="menutext">Contact</a></li> 
-                        <li>Hof van Ellen</li>
                     </ul>
                     <div class="line">
-                    
+
                     </div>
                 </div>  
                 <div class="contentcontent">
@@ -57,6 +59,7 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
 
 
                     <?php
+
                 }
 
                 function renderHtmlEnd() { // einde klant gedeelte
@@ -74,6 +77,7 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
         </body>
     </html>
     <?php
+
 }
 
 function renderHtmlStartAdmin($title, $extra, $page) {
@@ -88,9 +92,10 @@ function renderHtmlStartAdmin($title, $extra, $page) {
             <link href="/content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
             <script src="/content/jquery-1.11.3.min.js"></script> 
             <script src="/content/bootstrap/js/bootstrap.min.js"></script>
-            <?php
-            echo $extra;
-            ?>
+    <?php
+
+    echo $extra;
+    ?>
             <!--Commentaar -->
         </head>
         <body>
@@ -115,13 +120,15 @@ function renderHtmlStartAdmin($title, $extra, $page) {
                 }
             </script>
             <div id="content">
-                <?php
-            }
+    <?php
 
-            function renderHtmlEndAdmin() {
-                ?>
+}
+
+function renderHtmlEndAdmin() {
+    ?>
             </div>
         </body>
     </html>
     <?php
+
 }
