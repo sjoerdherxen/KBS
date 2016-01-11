@@ -21,11 +21,11 @@ if (isset($_POST["Toevoegen"]) || isset($_POST["Terug"])) {
         $Naamerror = "Er moet een naam worden ingevuld.";
     } else {
         // check of categorie naam al eerder is ingevuld
-        $invoerDatabase[] = $_POST["Naam"];
+        $invoerDatabase[] = uppercase($_POST["Naam"]);
         $uitvoerDatabase = query("SELECT Categorie_naam FROM categorie WHERE Categorie_naam = ?", $invoerDatabase);
         if (count($uitvoerDatabase) === 0) { // categorie bestaat nog niet
-            $toevoegenCategorie[] = $_POST["Naam"];
-            $toevoegenCategorie[] = $_POST["Beschrijving"];
+            $toevoegenCategorie[] = uppercase($_POST["Naam"]);
+            $toevoegenCategorie[] = uppercase($_POST["Beschrijving"]);
             // add to db
             query("INSERT INTO categorie (Categorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenCategorie);
             $saved = true;
