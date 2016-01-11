@@ -198,9 +198,9 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
     }
 
     $pageCountResult = query("SELECT COUNT(*) as aantal FROM schilderij " . $where, $params);
-    print("SELECT COUNT(*) as aantal FROM schilderij " . $where . "<br/>");
-    var_dump($params);
-    echo "<br/>";
+    //print("SELECT COUNT(*) as aantal FROM schilderij " . $where . "<br/>");
+    //var_dump($params);
+    //echo "<br/>";
     $pageCount = ceil($pageCountResult[0]["aantal"] / $pageSize);
     if ($page > $pageCount) {
         $page = $pageCount;
@@ -208,7 +208,7 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
             $page = 1;
         }
     }
-    print("SELECT * FROM schilderij " . $where . " LIMIT " . (($page * $pageSize) - $pageSize) . ", " . $pageSize);
+    //print("SELECT * FROM schilderij " . $where . " LIMIT " . (($page * $pageSize) - $pageSize) . ", " . $pageSize);
     $schilderijen = query("SELECT s.* FROM schilderij s " . $where . " LIMIT " . (($page * $pageSize) - $pageSize) . ", " . $pageSize, $params);
 //echo "<div class='row'>";
     toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, "/zoeken.php?zoek=" . $zoek . "&button=Filter&");
