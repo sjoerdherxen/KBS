@@ -32,16 +32,17 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
                     </span>
                     <a class="menutext" href="/admin/">Login</a> &nbsp; &nbsp;  
                 </div>
+                
                 <div class="menu">
                     <ul class="nav nav-pills" id="ulmenu">
+                        
                         <li ><a href="http://hofvanellen.nl/schilderij.php?id=1" class="bootstrapoveride"><img id="headlogo" src="/content/uploads/IMG_2309.jpeg" alt="Logo"></a></li>
                         <li role="presentation" class="topmenu"><a href="/hoofdpagina.php" class="menutext">Home</a></li>
                         <li role="presentation" class="topmenu"><a href="/gallerij.php" class="menutext">Galerij</a></li>
                         <li role="presentation" class="topmenu"><a href="/zoeken.php" class="menutext">Zoeken</a></li>
                         <li role="presentation" class="topmenu"><a href="/contact.php" class="menutext">Contact</a></li> 
-                        <li><h1>Hof van Ellen</h1></li>
+                        <li>Hof van Ellen</li>
                     </ul>
-                    
                     <div class="line">
                     
                     </div>
