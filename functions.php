@@ -5,12 +5,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 // spaties printen
 function printspace($aantal) {
     for ($i = 0; $i < $aantal; $i++) {
         print(" ");
     }
 }
+
 //print teken
 function printteken($aantal, $teken) {
     for ($i = 0; $i < $aantal; $i++) {
@@ -29,8 +31,8 @@ function query($query, $params) {
         // uitvoeren
         $q->execute($params);
         //get results
-        $result =  $q->fetchAll(PDO::FETCH_ASSOC);
-        $pdo = null;// drop connection
+        $result = $q->fetchAll(PDO::FETCH_ASSOC);
+        $pdo = null; // drop connection
         return $result;
     } catch (PDOException $e) {
         return null;
@@ -38,24 +40,24 @@ function query($query, $params) {
 }
 
 /*
-//query op db uitvoeren
-function query($query, $params) {
-    try {
-        // connectie maken
-        $pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
-        // query opbouwe
-        $q = $pdo->prepare($query);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        // uitvoeren
-        $q->execute($params);
-        //get results
-        $result =  $q->fetchAll(PDO::FETCH_ASSOC);
-        $pdo = null;// drop connection
-        return $result;
-    } catch (PDOException $e) {
-        return null;
-    }
-}*/
+  //query op db uitvoeren
+  function query($query, $params) {
+  try {
+  // connectie maken
+  $pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
+  // query opbouwe
+  $q = $pdo->prepare($query);
+  $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+  // uitvoeren
+  $q->execute($params);
+  //get results
+  $result =  $q->fetchAll(PDO::FETCH_ASSOC);
+  $pdo = null;// drop connection
+  return $result;
+  } catch (PDOException $e) {
+  return null;
+  }
+  } */
 
 function checkCaptcha($captchaInput) {
     $clientIp = $_SERVER['REMOTE_ADDR'];
@@ -86,39 +88,42 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) 
     $extra = count($schilderijen) % 4;
     echo "<div class='row'>";
     $col = 0;
-    foreach ($schilderijen as $schilderij) {
-        if($i == 0){
-            echo "<div class='col-md-3'>";
-            $col++;
-        }
-        $i++;
-        
-        ?>
-        <a href="/schilderij.php?id=<?php echo $schilderij["Schilderij_ID"] ?>" class=""> 
-            <div class="img">
-                <img src="/content/uploads/small_<?php echo $schilderij["Img"]; ?> " alt="Logo" >
+    if (count($schilderijen) == 0) {
+        echo "<p style='text-align:center;'>Er zijn geen schilderijen gevonden.</p>";
+    } else {
+        foreach ($schilderijen as $schilderij) {
+            if ($i == 0) {
+                echo "<div class='col-md-3'>";
+                $col++;
+            }
+            $i++;
+            ?>
+            <a href="/schilderij.php?id=<?php echo $schilderij["Schilderij_ID"] ?>" class=""> 
+                <div class="img">
+                    <img src="/content/uploads/small_<?php echo $schilderij["Img"]; ?> " alt="Logo" >
 
-                <div class="title">
-                    <?php echo $schilderij["Titel"]; ?>
-                </div>
-                <div class="extraInfo">
-                    <?php echo $schilderij["Hoogte"]; ?> x <?php echo $schilderij["Breedte"]; ?> cm
-                </div>
-                <div class="extraInfoRight">
-                    <?php echo $schilderij["Jaar"] == "0000" ? "" : $schilderij["Jaar"]; ?>
-                </div>
-            </div> 
-        </a>
-        <?php
-       
-        if (($col > $extra && $i >= $rowAmount) || ($col <= $extra && $i > $rowAmount)) { 
-            // einde rij
-            echo "</div>";
-            $i = 0;
+                    <div class="title">
+                        <?php echo $schilderij["Titel"]; ?>
+                    </div>
+                    <div class="extraInfo">
+                        <?php echo $schilderij["Hoogte"]; ?> x <?php echo $schilderij["Breedte"]; ?> cm
+                    </div>
+                    <div class="extraInfoRight">
+                        <?php echo $schilderij["Jaar"] == "0000" ? "" : $schilderij["Jaar"]; ?>
+                    </div>
+                </div> 
+            </a>
+            <?php
+
+            if (($col > $extra && $i >= $rowAmount) || ($col <= $extra && $i > $rowAmount)) {
+                // einde rij
+                echo "</div>";
+                $i = 0;
+            }
         }
     }
     //if ($i % 4 != 0) {
-        // einde rij indien niet pagina vullende content
+    // einde rij indien niet pagina vullende content
     //    echo "</div>";
     //}
     echo "</div>";
@@ -126,6 +131,7 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) 
 
     <div style="clear: both;"></div>
     <?php
+
 // pager
     if ($pageCount >= 2) {
         ?>
@@ -134,7 +140,7 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) 
                 <?php
 
                 //prev button
-                $prevPageHref = $page == 1 ? "" : 'href="'.$url.'page=' . ($page - 1) . '"';
+                $prevPageHref = $page == 1 ? "" : 'href="' . $url . 'page=' . ($page - 1) . '"';
                 echo '<a class="btn btn-default prev" ' . $prevPageHref . '><span class="glyphicon glyphicon-chevron-left"></span></a>';
 
                 for ($i = 1; $i <= $pageCount; $i++) {
@@ -143,12 +149,12 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) 
                         echo "<span class='active btn btn-default btn-active'>" . $i . "</span>";
                     } else {
                         // other pages
-                        echo "<a class='btn btn-default' href='".$url."page=" . $i . "'>" . $i . "</a>";
+                        echo "<a class='btn btn-default' href='" . $url . "page=" . $i . "'>" . $i . "</a>";
                     }
                 }
 
                 // next button
-                $nextPageHref = $page == $pageCount ? "" : 'href="'.$url.'page=' . ($page + 1) . '"';
+                $nextPageHref = $page == $pageCount ? "" : 'href="' . $url . 'page=' . ($page + 1) . '"';
                 echo '<a class="btn btn-default next" ' . $nextPageHref . '><span class="glyphicon glyphicon-chevron-right"></span></a>';
                 ?>
             </div>

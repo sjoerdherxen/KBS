@@ -47,13 +47,13 @@ if (isset($_GET['button'])) {
     }
     if ($_GET["prijs"] !== "4") {
         if ($_GET["prijs"] === "0") {
-            $where .= " AND prijs >= 0 AND prijs <= 300 ";
+            $where .= " AND prijs >= 0 AND prijs <= 100 ";
         } elseif ($_GET["prijs"] === "1") {
-            $where .= " AND prijs >= 300 AND prijs <= 600 ";
+            $where .= " AND prijs >= 100 AND prijs <= 200 ";
         } elseif ($_GET["prijs"] === "2") {
-            $where .= " AND prijs >= 600 AND prijs <= 1000 ";
+            $where .= " AND prijs >= 200 AND prijs <= 500 ";
         } elseif ($_GET["prijs"] === "3") {
-            $where .= " AND prijs >= 1000 ";
+            $where .= " AND prijs >= 500 ";
         }
         //$params[] = $_GET["prijs"];
     }
@@ -67,120 +67,100 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
 <div class="gallerij">
     <form method="get" action="zoeken.php">
         <div class="gallerij-zoek row">
-            <div class="col-md-12">
-                Zoek: <input type="text" name="zoek" id="gallerij-zoek-text" value="<?php echo $zoek; ?>">
-                <input type="submit" value="Filter" name="button">
+            <div class="col-md-2">
+                Zoek: 
+            </div> 
+            <div class="col-md-4">
+                <input type="text" name="zoek" id="gallerij-zoek-text" value="<?php echo $zoek; ?>">
             </div>
-            <div class="col-md-3">
 
-                <div class="row">
-                    <div class="col-md-5">
-                        Lijst:
-                    </div>
-                    <div class="col-md-6">
-                        <select name="lijst">
-                            <?php $lijst = isset($_GET["lijst"]) ? $_GET["lijst"] : null; ?>
-                            <option value="2" <?php showSelected($lijst, "2"); ?>>Beide</option>
-                            <option value="1" <?php showSelected($lijst, "1"); ?>>Met</option>
-                            <option value="0" <?php showSelected($lijst, "0"); ?>>Zonder</option>
-                        </select> <br/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">
-                        Passepartout:
-                    </div>
-                    <div class="col-md-6">
-                        <select name="passepartout">
-                            <?php $passepartout = isset($_GET["passepartout"]) ? $_GET["passepartout"] : null; ?>
-                            <option value="2" <?php showSelected($passepartout, "2"); ?>>Beide</option>
-                            <option value="1" <?php showSelected($passepartout, "1"); ?>>Met</option>
-                            <option value="0" <?php showSelected($passepartout, "0"); ?>>Zonder</option>
-                        </select> <br/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">
-                        Orientatie:
-                    </div>
-                    <div class="col-md-6">
-                        <select name="orientatie">
-                            <?php $orientatie = isset($_GET["orientatie"]) ? $_GET["orientatie"] : null; ?>
-                            <option value="2" <?php showSelected($orientatie, "2"); ?>>Beide</option>
-                            <option value="1" <?php showSelected($orientatie, "1"); ?>>Staand</option>
-                            <option value="0" <?php showSelected($orientatie, "0"); ?>>Liggend</option>
-                        </select> <br/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">
-                        Prijs:
-                    </div>
-                    <div class="col-md-6">
-                        <select name="prijs">
-                            <?php $prijs = isset($_GET["prijs"]) ? $_GET["prijs"] : null; ?>
-                            <option value="4" <?php showSelected($prijs, "4"); ?>>Alle</option>
-                            <option value="0" <?php showSelected($prijs, "0"); ?>>€100 tot €300</option>
-                            <option vaiue="1" <?php showSelected($prijs, "1"); ?>>€300 tot €600</option>
-                            <option value="2" <?php showSelected($prijs, "2"); ?>>€600 tot €1000</option>
-                            <option value="3" <?php showSelected($prijs, "3"); ?>>€1000 en hoger</option>
-                        </select> <br/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">
-                        Categorie:
-                    </div>
-                    <div class="col-md-6">
-                        <select name="categorie">
-                            <option value="Alles">Alle</option>
-                            <?php
-
-                            foreach ($categorieen as $value1) {
-                                $checked = "";
-                                if (isset($_GET["categorie"]) && $value1['CategorieID'] == $_GET["categorie"]) {
-                                    $checked = "selected";
-                                }
-
-                                echo "<option value=\"" . $value1['CategorieID'] . "\" " . $checked . ">" . $value1["Categorie_naam"] . "</option>";
-                            }
-                            ?>
-                        </select> <br/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">
-                        Materiaal:
-                    </div>
-                    <div class="col-md-6">
-                        <select name="materiaal">
-                            <option value="Alles">Alle</option>
-                            <?php
-
-                            foreach ($materialen as $value1) {
-                                $checked = "";
-                                if (isset($_GET["materiaal"]) && $value1['MateriaalID'] == $_GET["materiaal"]) {
-                                    $checked = "selected";
-                                }
-                                echo"<option value=\"" . $value1["MateriaalID"] . "\" " . $checked . ">" . $value1["Materiaal_soort"] . "</option>";
-                                // }
-                                //  }
-                            }
-                            ?>
-                        </select> <br/>
-                    </div>
-                </div>
-
-
+            <div class="col-md-2">
+                Lijst:
             </div>
-            <div class="col-md-3">
-
+            <div class="col-md-4">
+                <select name="lijst">
+                    <?php $lijst = isset($_GET["lijst"]) ? $_GET["lijst"] : null; ?>
+                    <option value="2" <?php showSelected($lijst, "2"); ?>>Beide</option>
+                    <option value="1" <?php showSelected($lijst, "1"); ?>>Met</option>
+                    <option value="0" <?php showSelected($lijst, "0"); ?>>Zonder</option>
+                </select> 
             </div>
-            <div class="col-md-3">
-
+            <div class="col-md-2">
+                Passepartout:
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
+                <select name="passepartout">
+                    <?php $passepartout = isset($_GET["passepartout"]) ? $_GET["passepartout"] : null; ?>
+                    <option value="2" <?php showSelected($passepartout, "2"); ?>>Beide</option>
+                    <option value="1" <?php showSelected($passepartout, "1"); ?>>Met</option>
+                    <option value="0" <?php showSelected($passepartout, "0"); ?>>Zonder</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                Orientatie:
+            </div>
+            <div class="col-md-4">
+                <select name="orientatie">
+                    <?php $orientatie = isset($_GET["orientatie"]) ? $_GET["orientatie"] : null; ?>
+                    <option value="2" <?php showSelected($orientatie, "2"); ?>>Beide</option>
+                    <option value="1" <?php showSelected($orientatie, "1"); ?>>Staand</option>
+                    <option value="0" <?php showSelected($orientatie, "0"); ?>>Liggend</option>
+                </select> 
+            </div>
+            <div class="col-md-2">
+                Prijs:
+            </div>
+            <div class="col-md-4">
+                <select name="prijs">
+                    <?php $prijs = isset($_GET["prijs"]) ? $_GET["prijs"] : null; ?>
+                    <option value="4" <?php showSelected($prijs, "4"); ?>>Alle</option>
+                    <option value="0" <?php showSelected($prijs, "0"); ?>>€0 tot €100</option>
+                    <option value="1" <?php showSelected($prijs, "1"); ?>>€100 tot €200</option>
+                    <option value="2" <?php showSelected($prijs, "2"); ?>>€200 tot €5000</option>
+                    <option value="3" <?php showSelected($prijs, "3"); ?>>€500 en hoger</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                Categorie:
+            </div>
+            <div class="col-md-4">
+                <select name="categorie">
+                    <option value="Alles">Alle</option>
+                    <?php
 
+                    foreach ($categorieen as $value1) {
+                        $checked = "";
+                        if (isset($_GET["categorie"]) && $value1['CategorieID'] == $_GET["categorie"]) {
+                            $checked = "selected";
+                        }
+
+                        echo "<option value=\"" . $value1['CategorieID'] . "\" " . $checked . ">" . $value1["Categorie_naam"] . "</option>";
+                    }
+                    ?>
+                </select> 
+            </div>
+            <div class="col-md-2">
+                Materiaal:
+            </div>
+            <div class="col-md-4">
+                <select name="materiaal">
+                    <option value="Alles">Alle</option>
+                    <?php
+
+                    foreach ($materialen as $value1) {
+                        $checked = "";
+                        if (isset($_GET["materiaal"]) && $value1['MateriaalID'] == $_GET["materiaal"]) {
+                            $checked = "selected";
+                        }
+                        echo"<option value=\"" . $value1["MateriaalID"] . "\" " . $checked . ">" . $value1["Materiaal_soort"] . "</option>";
+                    }
+                    ?>
+                </select> 
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-4">
+                <input type="submit" value="Zoeken" name="button">
             </div>
         </div>
     </form>
