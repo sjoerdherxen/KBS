@@ -333,7 +333,7 @@ if ($doSelectQuery) {
                         Op website:
                     </td>
                     <td>
-                        <input type="checkbox" value="true" name="OpWebsite" <?php if ($schilderij["OpWebsite"] === 1){ echo'checked="checked"'; }?>>
+                        <input type="checkbox" value="true" name="OpWebsite" <?php if ($schilderij["OpWebsite"]){ echo'checked="checked"'; }?>>
                     </td>
                 </tr>
                 <tr>
