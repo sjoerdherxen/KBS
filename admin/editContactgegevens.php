@@ -31,12 +31,12 @@ if (isset($_POST["knopske"])) {
                 $telefoon1 = NULL;
             }
             if (isset($_POST["Woonplaats"]) && $_POST["Woonplaats"] !== ""){
-                $woonplaats1 = $_POST["Woonplaats"];
+                $woonplaats1 = uppercase($_POST["Woonplaats"]);
             } else {
                 $woonplaats1 = NULL;
             }
             if (isset($_POST["Adres"]) && $_POST["Adres"] !== ""){
-                $adres1 = $_POST["Adres"];
+                $adres1 = uppercase($_POST["Adres"]);
             } else {
                 $adres1 = NULL;
             }
