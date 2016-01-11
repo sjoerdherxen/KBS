@@ -64,4 +64,12 @@ foreach ($uitvoerDatabase as $value1){
 </script>
 
 <?php
+if (isset($_POST["verzendknop"])){
+    if ($_POST["verzendknop"] == "Opslaan") {
+        header("location: editWelkomstekst.php#Welkomsttekst is aangepast");
+        exit();
+    }
+}
+
+
 renderHtmlEndAdmin();
