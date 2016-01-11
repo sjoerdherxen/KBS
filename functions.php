@@ -58,7 +58,7 @@ function query($query, $params) {
   return null;
   }
   } 
-*/
+
 function checkCaptcha($captchaInput) {
     $clientIp = $_SERVER['REMOTE_ADDR'];
 
