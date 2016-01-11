@@ -6,6 +6,11 @@ renderHtmlStart("Gallerij", "<script src='/content/gallerij.js'></script>");
 ?>
 
 <div class="gallerij">
+    <div id="gallerijcategorie">
+        
+    </div>
+    
+    
     <?php
 
 // zet pagina waardes voor gallerij
