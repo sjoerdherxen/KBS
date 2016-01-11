@@ -99,7 +99,7 @@ function renderHtmlStartAdmin($title, $extra, $page) {
                     <li><a href="/admin/subcategorieList.php" <?php if ($page == "subcategorie") echo "class='active'"; ?>>Subcategori&euml;n</a></li>
                     <li><a href="/admin/materiaalList.php" <?php if ($page == "materiaal") echo "class='active'"; ?>>Materialen</a></li>
                     <li><a href="/admin/editContactgegevens.php" <?php if ($page == "contact") echo "class='active'"; ?>>Contactgegevens</a></li>
-                    <li><a href="/admin/editWelkomstekst.php" <?php if ($page == "Welkomteskst") echo "class='active'"; ?>>Welkomstekst</a></li>
+                    <li><a href="/admin/editWelkomstekst.php" <?php if ($page == "Welkomsttekst") echo "class='active'"; ?>>Welkomsttekst</a></li>
                     <li class="menu-right"><a href="/admin/uitloggen.php">Uitloggen</a></li>
                     <li class="menu-right"><a href="/admin/account.php" <?php if ($page == "account") echo "class='active'"; ?>><?php echo $_SESSION["inlog"]; ?></a></li>
                     <li class="menu-right"><a target="_blank" href="/hoofdpagina.php">Website</a></li>
