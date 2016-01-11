@@ -6,7 +6,7 @@ if (!isLoggedIn()) {
     exit();
 }
 require '../htmlHelpers.php';
-renderHtmlStartAdmin("Welkomstekst", "", "Welkomteskst");
+renderHtmlStartAdmin("Welkomsttekst", "", "Welkomsttekst");
 
 $naamerror = false;
 
