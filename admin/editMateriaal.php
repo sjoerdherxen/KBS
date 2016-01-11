@@ -27,7 +27,7 @@ if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
 if (isset($_POST["knopje"])) {
     if (isset($_POST["Materiaal_Soort"]) && $_POST["Materiaal_Soort"] !== "") {
         $id = $_GET["id"];
-        $invoerDatabase2 = [$_POST["Materiaal_Soort"], $_POST["BEschrijving"], $_GET["id"]];
+        $invoerDatabase2 = [uppercase($_POST["Materiaal_Soort"]), uppercase($_POST["BEschrijving"]), $_GET["id"]];
         query("UPDATE materiaal SET Materiaal_soort = ?, Beschrijving = ? WHERE MateriaalID = ?", $invoerDatabase2);
         header('location:materiaalList.php#Wijzigingen zijn opgeslagen');
         exit();
