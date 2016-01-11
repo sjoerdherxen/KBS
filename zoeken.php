@@ -32,26 +32,30 @@ if (isset($_GET['button'])) {
         $params[] = "%$zoek%";
         $params[] = "%$zoek%";
     }
-    
-    if ($_GET["lijst"] !== "2"){
-        $where .= " AND lijst = " . $_GET["lijst"] . " ";
+
+    if ($_GET["lijst"] !== "2") {
+        $where .= " AND lijst = ? ";
+        $params[] = $_GET["lijst"];
     }
-    if ($_GET["passepartout"] !== "2"){
-        $where .= " AND passepartout = " . $_GET["passepartout"] . " "; 
+    if ($_GET["passepartout"] !== "2") {
+        $where .= " AND passepartout = ? ";
+        $params[] = $_GET["passepartout"];
     }
-    if ($_GET["orientatie"] !== "2"){
-        $where .= " AND isStaand = " . $_GET["orientatie"] . " ";
+    if ($_GET["orientatie"] !== "2") {
+        $where .= " AND isStaand = ? ";
+        $params[] = $_GET["orientatie"];
     }
-    if ($_GET["prijs"] !== "4"){
-        if ($_GET["prijs"] === "0"){
-            $where .= " AND (prijs >= 0 AND prijs < 300 "; 
-        } elseif ($_GET["prijs"] === "1"){
-            $where .= " AND (prijs >= 300 AND prijs < 600 ";
-        } elseif ($_GET["prijs"] === "2"){
-            $where .= " AND (prijs >= 600 AND prijs < 1000 ";
-        } elseif ($_GET["prijs"] === "3"){
+    if ($_GET["prijs"] !== "4") {
+        if ($_GET["prijs"] === "0") {
+            $where .= " AND prijs >= 0 AND prijs <= 300 ";
+        } elseif ($_GET["prijs"] === "1") {
+            $where .= " AND prijs >= 300 AND prijs <= 600 ";
+        } elseif ($_GET["prijs"] === "2") {
+            $where .= " AND prijs >= 600 AND prijs <= 1000 ";
+        } elseif ($_GET["prijs"] === "3") {
             $where .= " AND prijs >= 1000 ";
         }
+        //$params[] = $_GET["prijs"];
     }
 }
 
@@ -75,9 +79,10 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     </div>
                     <div class="col-md-6">
                         <select name="lijst">
-                            <option value="2">Beide</option>
-                            <option value="1">Met</option>
-                            <option value="0">Zonder</option>
+                            <?php $lijst = isset($_GET["lijst"]) ? $_GET["lijst"] : null; ?>
+                            <option value="2" <?php showSelected($lijst, "2"); ?>>Beide</option>
+                            <option value="1" <?php showSelected($lijst, "1"); ?>>Met</option>
+                            <option value="0" <?php showSelected($lijst, "0"); ?>>Zonder</option>
                         </select> <br/>
                     </div>
                 </div>
@@ -87,9 +92,10 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     </div>
                     <div class="col-md-6">
                         <select name="passepartout">
-                            <option value="2">Beide</option>
-                            <option value="1">Met</option>
-                            <option value="0">Zonder</option>
+                            <?php $passepartout = isset($_GET["passepartout"]) ? $_GET["passepartout"] : null; ?>
+                            <option value="2" <?php showSelected($passepartout, "2"); ?>>Beide</option>
+                            <option value="1" <?php showSelected($passepartout, "1"); ?>>Met</option>
+                            <option value="0" <?php showSelected($passepartout, "0"); ?>>Zonder</option>
                         </select> <br/>
                     </div>
                 </div>
@@ -99,9 +105,10 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     </div>
                     <div class="col-md-6">
                         <select name="orientatie">
-                            <option value="2">Beide</option>
-                            <option value="1">Staand</option>
-                            <option value="0">Liggend</option>
+                            <?php $orientatie = isset($_GET["orientatie"]) ? $_GET["orientatie"] : null; ?>
+                            <option value="2" <?php showSelected($orientatie, "2"); ?>>Beide</option>
+                            <option value="1" <?php showSelected($orientatie, "1"); ?>>Staand</option>
+                            <option value="0" <?php showSelected($orientatie, "0"); ?>>Liggend</option>
                         </select> <br/>
                     </div>
                 </div>
@@ -111,11 +118,12 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     </div>
                     <div class="col-md-6">
                         <select name="prijs">
-                            <option value="4">Alle</option>
-                            <option value="0">€100 tot €300</option>
-                            <option vaiue="1">€300 tot €600</option>
-                            <option value="2">€600 tot €1000</option>
-                            <option value="3">€1000 en hoger</option>
+                            <?php $prijs = isset($_GET["prijs"]) ? $_GET["prijs"] : null; ?>
+                            <option value="4" <?php showSelected($prijs, "4"); ?>>Alle</option>
+                            <option value="0" <?php showSelected($prijs, "0"); ?>>€100 tot €300</option>
+                            <option vaiue="1" <?php showSelected($prijs, "1"); ?>>€300 tot €600</option>
+                            <option value="2" <?php showSelected($prijs, "2"); ?>>€600 tot €1000</option>
+                            <option value="3" <?php showSelected($prijs, "3"); ?>>€1000 en hoger</option>
                         </select> <br/>
                     </div>
                 </div>
@@ -125,17 +133,16 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                     </div>
                     <div class="col-md-6">
                         <select name="categorie">
-                            <option value="Alles" <?php if(isset($_GET["categorie"]) && "Alles" == $_GET["categorie"]) {echo "checked='checked'"; } ?>>Alle</option>
+                            <option value="Alles">Alle</option>
                             <?php
 
                             foreach ($categorieen as $value1) {
                                 $checked = "";
-                                if(isset($_GET["categorie"]) && $value1['CategorieID'] == $_GET["categorie"]){
+                                if (isset($_GET["categorie"]) && $value1['CategorieID'] == $_GET["categorie"]) {
                                     $checked = "selected";
                                 }
-                             
-                                echo "<option value=\"" . $value1['CategorieID'] . "\" ".$checked.">" . $value1["Categorie_naam"] . "</option>";
-                              
+
+                                echo "<option value=\"" . $value1['CategorieID'] . "\" " . $checked . ">" . $value1["Categorie_naam"] . "</option>";
                             }
                             ?>
                         </select> <br/>
@@ -151,9 +158,11 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
                             <?php
 
                             foreach ($materialen as $value1) {
-                                // foreach($value1 as $key2 => $value2){
-                                // if ($key2 === "Materiaal_soort"){
-                                echo"<option value=\"" . $value1["MateriaalID"] . "\">" . $value1["Materiaal_soort"] . "</option>";
+                                $checked = "";
+                                if (isset($_GET["materiaal"]) && $value1['MateriaalID'] == $_GET["materiaal"]) {
+                                    $checked = "selected";
+                                }
+                                echo"<option value=\"" . $value1["MateriaalID"] . "\" " . $checked . ">" . $value1["Materiaal_soort"] . "</option>";
                                 // }
                                 //  }
                             }
@@ -187,14 +196,20 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
     if ($where != "") {
         $where = " WHERE 1=1 " . $where;
     }
-    
+
     $pageCountResult = query("SELECT COUNT(*) as aantal FROM schilderij " . $where, $params);
+    print("SELECT COUNT(*) as aantal FROM schilderij " . $where . "<br/>");
+    var_dump($params);
+    echo "<br/>";
     $pageCount = ceil($pageCountResult[0]["aantal"] / $pageSize);
     if ($page > $pageCount) {
         $page = $pageCount;
+        if ($page == 0) {
+            $page = 1;
+        }
     }
-
-    $schilderijen = query("SELECT s.* FROM schilderij s " . $where . " LIMIT " . ($page * $pageSize - $pageSize) . ", " . $pageSize, $params);
+    print("SELECT * FROM schilderij " . $where . " LIMIT " . (($page * $pageSize) - $pageSize) . ", " . $pageSize);
+    $schilderijen = query("SELECT s.* FROM schilderij s " . $where . " LIMIT " . (($page * $pageSize) - $pageSize) . ", " . $pageSize, $params);
 //echo "<div class='row'>";
     toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, "/zoeken.php?zoek=" . $zoek . "&button=Filter&");
     ?>
@@ -203,4 +218,10 @@ $materialen = query("SELECT * FROM materiaal c WHERE (SELECT COUNT(*) FROM schil
 <?php
 
 renderHtmlEnd();
+
+function showSelected($get, $value) {
+    if (isset($get) && $value == $get) {
+        echo "selected";
+    }
+}
 ?>

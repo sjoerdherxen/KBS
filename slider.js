@@ -1,4 +1,4 @@
-
+var intervalMove = 0;
 // wat is dit voor kutcode
 
 jQuery(document).ready(function ($) {
@@ -9,12 +9,12 @@ jQuery(document).ready(function ($) {
      }, 3000);
      });
      */
-
-    setInterval(function () {
-       //if ($('#checkbox').is(':checked')) {
+    var setIntervalMove = function() {
+        clearInterval(intervalMove);
+        intervalMove = setInterval(function () {
             moveRight();
-        //}
-    }, 10000);
+        }, 10000);
+    }
 
     var slideCount = $('#slider ul li').length;
     var slideWidth = $('#slider ul li').width();
@@ -46,10 +46,12 @@ jQuery(document).ready(function ($) {
     }
 
     $('a.control_prev').click(function () {
+        setIntervalMove();
         moveLeft();
     });
 
     $('a.control_next').click(function () {
+        setIntervalMove();
         moveRight();
     });
 
