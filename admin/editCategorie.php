@@ -65,7 +65,7 @@ if (isset($_GET["id"])) {
 if (isset($_POST["knopje"])) {
     if (isset($_POST["Categorie_Naam"]) && $_POST["Categorie_Naam"] !== "") { // correcte invoer
         $id = $_GET["id"];
-        $invoerDatabase2 = [$_POST["Categorie_Naam"], $_POST["BEschrijving"], $id]; // BEschrijving?? (zelfde als op regel 38)
+        $invoerDatabase2 = [uppercase($_POST["Categorie_Naam"]), uppercase($_POST["BEschrijving"]), $id]; // BEschrijving?? (zelfde als op regel 38)
         query("UPDATE categorie SET Categorie_naam = ?, Beschrijving = ? WHERE CategorieID = ?", $invoerDatabase2);
         header('location:categorieList.php#Wijzigingen zijn opgeslagen');
         exit();

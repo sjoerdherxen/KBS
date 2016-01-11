@@ -21,12 +21,12 @@ if (isset($_POST["Toevoegen"])) {
         $Naamerror = "Er moet een naam worden ingevuld.";
     } else {
         // check naam al bestaad
-        $invoerDatabase[] = $_POST["Naam"];
+        $invoerDatabase[] = uppercase($_POST["Naam"]);
         $uitvoerDatabase = query("SELECT Subcategorie_naam FROM subcategorie WHERE Subcategorie_naam = ?", $invoerDatabase);
         if (count($uitvoerDatabase) === 0) {
             // subcat bestaat nog niet dus invoeren
-            $toevoegenSubcategorie[] = $_POST["Naam"];
-            $toevoegenSubcategorie[] = $_POST["Beschrijving"];
+            $toevoegenSubcategorie[] = uppercase($_POST["Naam"]);
+            $toevoegenSubcategorie[] = uppercase($_POST["Beschrijving"]);
             query("INSERT INTO subcategorie (Subcategorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenSubcategorie);
             $saved = true;
         } else {
