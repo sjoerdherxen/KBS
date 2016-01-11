@@ -18,9 +18,10 @@ renderHtmlStart("Home", "");
 <?php // slider  ?>
 <script src="slider.js"></script>
 <div class="slider2">
+    <a href="#" class="control_next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a href="#" class="control_prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    
     <div id="slider">
-        <a href="#" class="control_next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-        <a href="#" class="control_prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
         <ul>
             <?php
             

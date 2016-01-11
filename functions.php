@@ -93,7 +93,7 @@ function toonSchilderijLijst($schilderijen, $page, $pageCount, $pageSize, $url) 
     } else {
         foreach ($schilderijen as $schilderij) {
             if ($i == 0) {
-                echo "<div class='col-md-3'>";
+                echo "<div class='col-sm-3'>";
                 $col++;
             }
             $i++;

@@ -220,6 +220,13 @@ Script voor slider
     white-space: pre;
     margin: 10px 0;
 }
+
+.slider2 {
+    width: 1030px;
+    margin: auto;
+    position: relative;
+}
+
 #slider {
     position: relative;
     overflow: hidden;
@@ -531,3 +538,25 @@ td.commentaar{
 img.schilderij{
     max-width: 1150px;
 }
+
+/* resize voor mobile een beetje */
+@media (max-width: 1250px){
+    div.contentcontent{ 
+        width: 850px;
+    }
+    div.img{
+        width: 150px;
+    }
+    div.line{
+        width: 850px;
+    }
+    div.col-sm-3{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    div.slider2{ 
+        zoom: 0.8;
+    }
+}
+
