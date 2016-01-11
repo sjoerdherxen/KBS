@@ -21,12 +21,12 @@ if (isset($_POST["Toevoegen"])) {
         $Naamerror = "Er moet een naam worden ingevuld.";
     } else {
         // check of materiaal al bestaat indb
-        $invoerDatabase[] = $_POST["Naam"];
+        $invoerDatabase[] = uppercase($_POST["Naam"]);
         $uitvoerDatabase = query("SELECT Materiaal_soort FROM materiaal WHERE Materiaal_soort = ?", $invoerDatabase);
         if (count($uitvoerDatabase) === 0) { 
             // materiaal bestaat nog niet 
-            $toevoegenMateriaal[] = $_POST["Naam"];
-            $toevoegenMateriaal[] = $_POST["Beschrijving"];
+            $toevoegenMateriaal[] = uppercase($_POST["Naam"]);
+            $toevoegenMateriaal[] = uppercase($_POST["Beschrijving"]);
             // add materiaal
             query("INSERT INTO materiaal (Materiaal_soort, Beschrijving) VALUES (?, ?)", $toevoegenMateriaal);
             $saved = true;
