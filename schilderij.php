@@ -35,7 +35,7 @@ $correct = true;
 
 
 if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST["g-recaptcha-response"])) {
-    $commentaar = trim($_POST["commentaar"]);
+    $commentaar = uppercase($_POST["commentaar"]);
     $naam = trim($_POST["naam"]);
     if ($naam == "") {
         $naamleeg = "Naam is verplicht";
@@ -57,8 +57,10 @@ if (isset($_POST["naam"]) && isset($_POST["commentaar"]) && checkCaptcha($_POST[
         //mailen van het commentaar
         $to = query("SELECT email FROM schilder limit 0,1", NULL);
         $to = $to[0]['email'];
-        $subject = "Commentaar op schilderij " . query("SELECT Titel FROM schilderij WHERE id=?", $_GET["id"]);
-        $message = "Naam afzender: " . $naamklant . "\nEmail-adres afzenden: " . $email . "\nCommentaar op " . query("SELECT Titel FROM schilderij WHERE id=?", $_GET["id"]) . ": " . $commentaar;
+        $subject = query("SELECT Titel FROM schilderij WHERE id=?", $_GET["id"]);
+        $subject = "Commentaar op schilderij". $subject[0]['Titel'];
+        $message = query("SELECT Titel FROM schilderij WHERE id=?", $_GET["id"]);
+        $message = "Naam afzender: " . $naamklant . "\nEmail-adres afzenden: " . $email . "\nCommentaar op " . $message[0]['Titel'] . ": " . $commentaar;
         $header = "From:commentaar@hofvanellen.nl \r\n";
         mail($to, $subject, $message, $header);
         ?>
