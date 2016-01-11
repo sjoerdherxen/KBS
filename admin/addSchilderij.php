@@ -42,7 +42,7 @@ if (isset($_POST["knop"])) {
         $correct = false;
     }
     $schilderij["OpWebsite"] = $_POST["OpWebsite"];
-    $schilderijInsert[] = $_POST["OpWebsite"] ? 1 : 0;
+    $schilderInsert[] = $_POST["OpWebsite"] ? 1 : 0;
     
     $schilderij["Titel"] = $_POST["titel"];
     $schilderInsert[] = uppercase($_POST["titel"]);
@@ -165,7 +165,7 @@ if (isset($_POST["knop"])) {
             // zet afbeelding correct
              uploadSchilderijImg($id, $imgExtension, null);
 
-            if ($_POST["knop"] == "Toevoegen, nieuw") {
+            if ($_POST["knop"] == "Toevoegen en blijven") {
                 header("location: addSchilderij.php#Schilderij is toegevoegd");
                 exit();
             } else {

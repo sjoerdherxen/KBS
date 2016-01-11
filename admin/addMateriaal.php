@@ -47,7 +47,7 @@ if ($saved && isset($_POST["Terug"])) {
     exit();
 }
 ?>
-<form action="addmateriaal.php" method="post">
+<form action="addMateriaal.php" method="post">
     <h1>Vul hier de materiaal soort en beschrijving in:</h1>
     <?php
     if (isset ($_GET["x"])){
