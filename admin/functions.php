@@ -102,6 +102,7 @@ function uploadSchilderijImg($id, $imgExtension, $old, $preupload) {
         move_uploaded_file($_FILES["img"]["tmp_name"], $newpath);
     } else {
         copy($preupload, $newpath);
+        delete($preupload);
     }
     copy($newpath, $smallpath);
 
@@ -113,6 +114,7 @@ function uploadSchilderijImg($id, $imgExtension, $old, $preupload) {
     $dst = imagecreatetruecolor($newwidth, $newheight);
     imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
     imagejpeg($src, $smallpath, 30);
+    
 }
 
 function checkCaptcha($captchaInput) {
