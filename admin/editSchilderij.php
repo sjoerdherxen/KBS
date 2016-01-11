@@ -34,6 +34,9 @@ if (isset($_POST["knop"])) {
     }
     $schilderij["Titel"] = $_POST["titel"];
     $schilderijUpdate[] = $_POST["titel"];
+    
+    $schilderij["OpWebsite"] = $_POST["OpWebsite"];
+    $schilderijUpdate[] = $_POST["OpWebsite"] ? 1 : 0;
 
     $schilderij["Beschrijving"] = $_POST["beschrijving"];
     $schilderijUpdate[] = $_POST["beschrijving"];
@@ -127,7 +130,7 @@ if (isset($_POST["knop"])) {
 
     $schilderijUpdate[] = $schilderijId;
     if ($correct) {
-        query("UPDATE schilderij SET Titel=?, Beschrijving=?, lijst=?, passepartout=?, isStaand=?, Jaar=?, prijs=?, Hoogte=?, Breedte=?, CategorieID=?, MateriaalID=?, SubcategorieID=? WHERE Schilderij_ID=?", $schilderijUpdate);
+        query("UPDATE schilderij SET Titel=?, OpWebsite=?, Beschrijving=?, lijst=?, passepartout=?, isStaand=?, Jaar=?, prijs=?, Hoogte=?, Breedte=?, CategorieID=?, MateriaalID=?, SubcategorieID=? WHERE Schilderij_ID=?", $schilderijUpdate);
         if ($updateImg) {
             $resultImg = query("SELECT Img FROM schilderij WHERE Schilderij_ID = ?", array($schilderijId));
 
@@ -323,6 +326,14 @@ if ($doSelectQuery) {
                     <td>Prijs</td>
                     <td>
                         &euro; <input type="text" name="prijs" class="number" value="<?php echo $schilderij["prijs"]; ?>">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Op website:
+                    </td>
+                    <td>
+                        <input type="checkbox" value="true" name="OpWebsite" <?php if ($schilderij["OpWebsite"] === 1){ echo'checked="checked"'; }?>>
                     </td>
                 </tr>
                 <tr>
