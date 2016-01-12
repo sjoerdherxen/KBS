@@ -26,7 +26,7 @@ renderHtmlStart("Home", "");
     <div id="slider">
         <ul>
             <?php
-
+            // schilderijen voor slider ophalen uit database
             $categorieen = query("SELECT CategorieID FROM schilderij WHERE OpWebsite = 1 GROUP BY CategorieID HAVING COUNT(*) >= 3 LIMIT 0,5", null);
             $query = "";
             $union = "";
