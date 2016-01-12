@@ -39,7 +39,7 @@ foreach ($uitvoerDatabase as $value1){
         </tr>
         <tr>
             <td>
-                <textarea name="Beschrijving" rows="4" cols="50" id="text"
+                <textarea name="Beschrijving" rows="20" cols="75" id="text"
                           placeholder="Vul de welkomstekst (die op de hoofdpagina wordt weergeven) hier in"><?php echo $waarde; ?></textarea>
             </td>
         </tr>
