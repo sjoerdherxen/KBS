@@ -42,6 +42,7 @@ if (isset($_POST["Toevoegen"])) {
 if ($saved && isset($_POST["Terug"])) {
     header("location:materiaalList.php?x=1");
     exit();
+// op pagina blijven
 } elseif ($saved && isset($_POST["Toevoegen"])){
     header("location:addMateriaal.php?x=1");
     exit();
@@ -52,6 +53,7 @@ if ($saved && isset($_POST["Terug"])) {
 <form action="addMateriaal.php" method="post">
     <h1>Vul hier de materiaal soort en beschrijving in:</h1>
     <?php
+    // code die checked of de categorie daadwerkelijk is toegevoegd (wordt gestart als "toevoegen en blijven" wordt geklikt
     if (isset ($_GET["x"])){
         if ($_GET["x"] === "1"){
             $succes = "Materiaal is toegevoegd.";
@@ -69,9 +71,11 @@ if ($saved && isset($_POST["Terug"])) {
             <td>
                 <input type="text" name="Naam" placeholder="Vul hier de soort in" style="width: 375px">
                 <?php
+                // toont het eerder geïnitialiseerde succesbericht
                 if (isset($error)){
                     echo '<br>' . $succes;
                 }
+                // deze error komt te voorschijn als er geen naam is ingevuld
                 if (isset($Naamerror)) {
                     echo '<br>' . "<span class=\"incorrect\">$Naamerror</span>";
                 }

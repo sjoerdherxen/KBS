@@ -41,6 +41,7 @@ if (isset($_POST["Toevoegen"])) {
 if ($saved && isset($_POST["Terug"])) {
     header("location:subcategorieList.php?x=1");
     exit();
+// op pagina blijven
 } elseif ($saved && isset($_POST["Toevoegen"])){
     header("location:addSubcategorie.php?x=1");
     exit();
@@ -50,8 +51,9 @@ if ($saved && isset($_POST["Terug"])) {
 <!-- this form is used to retrieve the user data-->
 <form action="addSubcategorie.php" method="post">
     <h1>Vul hier de subcategorienaam en beschrijving in:</h1>
-     <?php
-     if (isset ($_GET["x"])){
+    <?php
+    // code die checked of de categorie daadwerkelijk is toegevoegd (wordt gestart als "toevoegen en blijven" wordt geklikt
+    if (isset ($_GET["x"])){
         if ($_GET["x"] === "1"){
             $succes = "Subcategorie is toegevoegd.";
         }
@@ -68,9 +70,11 @@ if ($saved && isset($_POST["Terug"])) {
             <td>
                 <input type="text" name="Naam" placeholder="Vul hier de naam in" style="width: 375px">
                 <?php
+                // toont het eerder geïnitialiseerde succesbericht
                 if (isset($succes)){
                     echo '<br>' . $succes;
                 }
+                // deze error komt te voorschijn als er geen naam is ingevuld
                 if (isset($Naamerror)) {
                     echo '<br>' . "<span class=\"incorrect\">$Naamerror</span>";
                 }
