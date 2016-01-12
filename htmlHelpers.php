@@ -79,7 +79,7 @@ function renderHtmlStart($title, $extra) {// top van html voor klant gedeelte
     <?php
 
 }
-
+// start html voor admin-pagina's
 function renderHtmlStartAdmin($title, $extra, $page) {
     ?>
     <html>
@@ -123,7 +123,7 @@ function renderHtmlStartAdmin($title, $extra, $page) {
     <?php
 
 }
-
+// einde html voor admin-pagina's
 function renderHtmlEndAdmin() {
     ?>
             </div>
