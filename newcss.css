@@ -224,7 +224,7 @@ Script voor slider
 
 #welkomstekst{
     text-align: left;
-    white-space: pre;
+    white-space: pre-line;
     margin: 10px 0;
 }
 
