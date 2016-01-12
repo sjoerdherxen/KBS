@@ -192,7 +192,7 @@ if (isset($_POST["knop"])) {
 ?>
 
 <!-- this form is used to retrieve the user data-->
-<p><a href="schilderijList.php">Terug naar lijst</a></p>
+
 <form action="addSchilderij.php" method="post" class="editform" enctype="multipart/form-data">
     <table>
         <tr>
@@ -382,6 +382,11 @@ if (isset($_POST["knop"])) {
             <td colspan="2">
                 <input type="submit" value="Toevoegen en naar overzicht" name="knop">
                 <input type="submit" value="Toevoegen en blijven" name="knop">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="schilderijList.php"><button type="button"><span style="color: #333333">Terug naar lijst</span></button></a>
             </td>
         </tr>
         <tr>

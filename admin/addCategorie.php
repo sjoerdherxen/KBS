@@ -98,6 +98,12 @@ if ($saved && isset($_POST["Terug"])) {
             </td>
         </tr>
         <tr>
+            <td></td>
+            <td>
+                <a href="schilderijList.php"><button type="button"><span style="color: #333333">Terug naar lijst</span></button></a>
+            </td>
+        </tr>
+        <tr>
             <td>
                 Alle velden met een ster zijn verplicht
             </td>
