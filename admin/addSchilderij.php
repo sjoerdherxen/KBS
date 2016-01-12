@@ -172,8 +172,8 @@ if (isset($_POST["knop"])) {
             print("Er is een fout opgreteden tijdens het opslaan");
         } else {
             // zet afbeelding correct
-            if (isset($afbeeldingCorrectId)) {
-                uploadSchilderijImg($id, $imgExtension, null, "./../content/uploads/tmp/" . $afbeeldingCorrectId . $_POST["img_uploaded_ext"]);
+            if (!$afbeeldingCorrect) {
+                uploadSchilderijImg($id,  $_POST["img_uploaded_ext"], null, "./../content/uploads/tmp/" . $afbeeldingCorrectId . $_POST["img_uploaded_ext"]);
             } else {
                 uploadSchilderijImg($id, $imgExtension, null, null);
             }
