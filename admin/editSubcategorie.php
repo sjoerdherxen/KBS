@@ -59,7 +59,11 @@ if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
                 ?>
             </td>
         </tr>
-
+        <tr>
+            <td>
+                Alle velden met een ster zijn verplicht
+            </td>
+        </tr>
     </table>
 </form>
 

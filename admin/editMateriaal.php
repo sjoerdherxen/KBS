@@ -75,7 +75,11 @@ if (isset($_POST["knopje"])) {
                 ?>
             </td>
         </tr>
-
+        <tr>
+            <td>
+                Alle velden met een ster zijn verplicht
+            </td>
+        </tr>
     </table>
 </form>
 

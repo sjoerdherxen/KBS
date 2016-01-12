@@ -356,6 +356,11 @@ if ($doSelectQuery) {
                         <input type="button" value="Verwijder" class="button" id="verwijderen">
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        Alle velden met een ster zijn verplicht
+                    </td>
+                </tr>
             </table>
         </form>
     </div>

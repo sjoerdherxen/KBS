@@ -55,7 +55,11 @@ if (isset($_GET["id"])) {
                 ?>
             </td>
         </tr>
-
+        <tr>
+            <td>
+                Alle velden met een ster zijn verplicht
+            </td>
+        </tr>
     </table>
 </form>
 

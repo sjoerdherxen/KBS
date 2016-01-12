@@ -54,6 +54,11 @@ foreach ($uitvoerDatabase as $value1){
                 <input type ="submit" name="verzendknop" value="Opslaan">
             </td>
         </tr>
+        <tr>
+            <td>
+                Alle velden met een ster zijn verplicht
+            </td>
+        </tr>
     </table>
 </form>
 

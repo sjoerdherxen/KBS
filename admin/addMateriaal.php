@@ -92,6 +92,11 @@ if ($saved && isset($_POST["Terug"])) {
                 <input type="submit" name="Toevoegen" value="Toevoegen en blijven">
             </td>
         </tr>
+        <tr>
+            <td>
+                Alle velden met een ster zijn verplicht
+            </td>
+        </tr>
     </table>
 </form>     
 <?php

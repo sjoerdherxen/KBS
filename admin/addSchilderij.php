@@ -383,6 +383,11 @@ if (isset($_POST["knop"])) {
                 <input type="submit" value="Toevoegen en blijven" name="knop">
             </td>
         </tr>
+        <tr>
+            <td>
+                Alle velden met een ster zijn verplicht
+            </td>
+        </tr>
     </table>
 </form>
 <?php
