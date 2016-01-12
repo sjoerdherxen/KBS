@@ -253,7 +253,7 @@ if (isset($_POST["knop"])) {
             <td>
                 <select name="categorie">
                     <?php
-
+                    // deze code laat alle mogelijke categorieën zien in een dropdown
                     foreach ($resultCategorie as $categorie) {
                         $selected = "";
                         if ($categorie["CategorieID"] == $schilderij["CategorieID"]) {
@@ -278,7 +278,7 @@ if (isset($_POST["knop"])) {
                 <select name="subcategorie">
                     <option value="">-- Geen --</option>
                     <?php
-
+                    // deze code laat alle mogelijke subcategorieën zien in een dropdown
                     foreach ($resultSubCategorie as $categorie) {
                         $selected = "";
                         if ($categorie["SubcategorieID"] == $schilderij["SubcategorieID"]) {
@@ -302,7 +302,7 @@ if (isset($_POST["knop"])) {
             <td>
                 <select name="materiaal">
                     <?php
-
+                    // deze code laat alle mogelijke materialen zien in een dropdown
                     foreach ($resultMateriaal as $materiaal) {
                         $selected = "";
                         if ($materiaal["MateriaalID"] == $schilderij["MateriaalID"]) {
@@ -367,7 +367,6 @@ if (isset($_POST["knop"])) {
                     ?>
                     <input type="file" name="img" accept="image/*">
                     <?php
-
                     if (isset($afbeeldingError)) {
                         echo "<span class='incorrect'>" . $afbeeldingError . "</span>";
                     }
