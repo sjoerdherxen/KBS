@@ -15,7 +15,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
     $_SESSION["attempts"] ++;
 
-    if ($_SESSION["attempts"] < 3 || checkCaptcha()) {
+    if ($_SESSION["attempts"] < 3 || checkCaptcha($_POST["g-recaptcha-response"])) {
         $password = trim($_POST["password"]);
         $username = trim($_POST["username"]);
         if ($username == "") { // check naam input
@@ -99,7 +99,8 @@ if ($_SESSION["attempts"] >= 3) {
                 ?>
                 <tr>
                     <td></td>
-                    <td><input type="submit" name="button" value="Inloggen"></td>
+                    <td><input type="submit" name="button" value="Inloggen">
+                        <a href="/hoofdpagina.php"><button type="button"><span style="color: rgb(51, 51, 51);">Terug naar website</span></button></a>
                 </tr>
             </table>
         </form>
