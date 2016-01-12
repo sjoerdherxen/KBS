@@ -101,6 +101,10 @@ form td input[type='button'][disabled='disabled']{
     padding: 5px;
 }
 
+#editSchilderijImg img{
+    max-width: 100%;
+}
+
 .schilderijListItem, .categorieListItem, .subcategorieListItem, .materiaalListItem{
     color: black;
     display: block;

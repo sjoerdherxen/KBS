@@ -578,5 +578,15 @@ img.schilderij{
     div.slider2{ 
         zoom: 0.8;
     }
+    #headlogo{
+        margin-right: 0;
+    }
+    
+    #ulmenu, .bovenmenu, div.menu{
+        width: 850px;
+    }
+    .menu-hofvanellen{
+        margin: 53px 20px;
+    }
 }
 
