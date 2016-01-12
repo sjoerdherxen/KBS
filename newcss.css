@@ -56,7 +56,9 @@ div.menu{
     float: right;
     font-size: 24px;
     font-family: 'times new';
-    margin:53px 40px;
+    margin-top: 60px;
+    margin-right: 100px;
+    color: black;
 }
 
 div.line{
