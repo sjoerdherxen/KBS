@@ -34,7 +34,7 @@ foreach ($uitvoerDatabase as $value1){
     <table>
         <tr>
             <td>
-                Tekst:
+                Tekst
             </td>
         </tr>
         <tr>
