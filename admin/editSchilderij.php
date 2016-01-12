@@ -357,9 +357,7 @@ if ($doSelectQuery) {
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        Alle velden met een ster zijn verplicht
-                    </td>
+                    <td>Alle velden met een ster zijn verplicht</td>
                 </tr>
             </table>
         </form>
