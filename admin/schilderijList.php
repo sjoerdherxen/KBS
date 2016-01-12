@@ -23,7 +23,7 @@ if (isset($_GET["zoek"]) && $_GET["zoek"] != "") { // zoek boxje zoeken
 
 <div id='schilderijList'>
     <form method="get" action="schilderijList.php">
-        <a href='addSchilderij.php'>Toevoegen</a>
+        <a href='addSchilderij.php'><button type="button"><span style="color: #333333">Toevoegen</span></button></a>
         <input name="zoek" placeholder="Zoeken" value="<?php echo $zoek; ?>">
         <input type="submit" value="Zoek">
     </form>

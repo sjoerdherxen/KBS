@@ -91,7 +91,7 @@ form td input[type='button'][disabled='disabled']{
    edits+ lijsten --------------------------------------------------------------------------------
 */
 
-#schilderijList, #addSchilderijLink, #categorieList{
+#schilderijList, #addSchilderijLink, #categorieList, #subcategorieList, #materiaalList {
     padding: 5px;
 }
 
