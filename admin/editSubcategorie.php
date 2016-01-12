@@ -71,6 +71,7 @@ if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
 
 <?php
 
+// verwerken van formulier gegevens en naar database schrijven
 if (isset($_POST["knopje"])) {
     if (isset($_POST["Subcategorie_Naam"]) && $_POST["Subcategorie_Naam"] !== "") {
         $id = $_GET["id"];
@@ -82,6 +83,7 @@ if (isset($_POST["knopje"])) {
 }
 ?>
 
+<!-- script voor pop-up verwijderen -->
 <script>
     document.getElementById("verwijderen").onclick = function () {
         if (confirm("Weet u zeker dat u deze subcategorie wilt verwijderen?")) {

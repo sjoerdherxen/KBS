@@ -25,7 +25,7 @@ if (isset($_GET["id"])) {
 <form action="editCategorie.php?id=<?php echo $id; ?>" method="post">
     <table>
         <?php
-
+        
         foreach ($uitvoerDatabase as $value1) {
             foreach ($value1 as $key2 => $value2) {
 
@@ -67,7 +67,7 @@ if (isset($_GET["id"])) {
 
 
 <?php
-// post
+// verwerkern gegevens formulier en naar database schrijven
 if (isset($_POST["knopje"])) {
     if (isset($_POST["Categorie_Naam"]) && $_POST["Categorie_Naam"] !== "") { // correcte invoer
         $id = $_GET["id"];
@@ -79,6 +79,7 @@ if (isset($_POST["knopje"])) {
 }
 ?>
 
+<!-- script voor pop-up verwijderen -->
 <script>
     document.getElementById("verwijderen").onclick = function () {
         if (confirm("Weet u zeker dat u deze categorie wilt verwijderen?")) {

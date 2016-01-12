@@ -127,7 +127,7 @@ if (isset($_POST["knop"])) {
             $updateImg = true;
         }
     }
-
+    // nieuwe waarden naar database schrijven
     $schilderijUpdate[] = $schilderijId;
     if ($correct) {
         query("UPDATE schilderij SET Titel=?, OpWebsite=?, Beschrijving=?, lijst=?, passepartout=?, isStaand=?, Jaar=?, prijs=?, Hoogte=?, Breedte=?, CategorieID=?, MateriaalID=?, SubcategorieID=? WHERE Schilderij_ID=?", $schilderijUpdate);
@@ -394,6 +394,7 @@ if ($doSelectQuery) {
     </div>
 </div>
 <script>
+    /* script voor pop-up verwijderen schilderij */
     $(function () {
 
         $("#verwijderen").click(function () {
@@ -401,7 +402,7 @@ if ($doSelectQuery) {
                 window.location = "deleteSchilderij.php?id=<?php echo $schilderijId; ?>";
             }
         });
-
+        /* script voor pop-up verwijderen commentaar */
         $(".delete-comment").click(function () {
             var element = $(this);
             var name = element.data("name");

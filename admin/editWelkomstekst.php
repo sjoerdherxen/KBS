@@ -58,7 +58,7 @@ foreach ($uitvoerDatabase as $value1){
         </tr>
     </table>
 </form>
-
+<!-- script om veld leeg te maken -->
 <script>
     document.getElementById("leegmaakknop").onclick=function(){
         document.getElementById("text").value="";
@@ -66,6 +66,7 @@ foreach ($uitvoerDatabase as $value1){
 </script>
 
 <?php
+// pop-up voor bevestigen aan gebruiker
 if (isset($_POST["verzendknop"])){
     if ($_POST["verzendknop"] == "Opslaan") {
         header("location: editWelkomstekst.php#Welkomsttekst is aangepast");

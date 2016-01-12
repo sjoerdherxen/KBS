@@ -24,6 +24,7 @@ if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
     exit();
 }
 
+// verwerken gegevens formulier en naar database schrijven
 if (isset($_POST["knopje"])) {
     if (isset($_POST["Materiaal_Soort"]) && $_POST["Materiaal_Soort"] !== "") {
         $id = $_GET["id"];
@@ -84,7 +85,7 @@ if (isset($_POST["knopje"])) {
         </tr>
     </table>
 </form>
-
+<!-- script voor pup-up verwijderen -->
 <script>
     document.getElementById("verwijderen").onclick = function () {
         if (confirm("Weet u zeker dat u dit materiaal wilt verwijderen?")) {
