@@ -190,6 +190,8 @@ if (isset($_POST["knop"])) {
     }
 }
 ?>
+
+<!-- this form is used to retrieve the user data-->
 <p><a href="schilderijList.php">Terug naar lijst</a></p>
 <form action="addSchilderij.php" method="post" class="editform" enctype="multipart/form-data">
     <table>

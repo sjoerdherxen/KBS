@@ -24,6 +24,8 @@ if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
     exit();
 }
 ?>
+
+<!-- this form is used to retrieve the user data-->
 <form action="editSubcategorie.php?id=<?php echo $id; ?>" method="post">
     <table>
         <?php

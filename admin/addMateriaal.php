@@ -47,6 +47,8 @@ if ($saved && isset($_POST["Terug"])) {
     exit();
 }
 ?>
+
+<!-- this form is used to retrieve the user data-->
 <form action="addMateriaal.php" method="post">
     <h1>Vul hier de materiaal soort en beschrijving in:</h1>
     <?php

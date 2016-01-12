@@ -170,6 +170,7 @@ if ($doSelectQuery) {
 </p>
 <div class="row">
     <div class="col-md-3">
+        <!-- this form is used to retrieve the user data-->
         <form action="editSchilderij.php?id=<?php echo $schilderijId; ?>" method="post" class="editform" enctype="multipart/form-data">
             <table>
                 <colgroup>

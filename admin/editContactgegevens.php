@@ -75,6 +75,8 @@ foreach ($uitvoerDatabase as $value1) {
 }
 
 ?>
+
+<!-- this form is used to retrieve the user data-->
 <form action="editContactgegevens.php" method="post">
     <table>
         <tr>

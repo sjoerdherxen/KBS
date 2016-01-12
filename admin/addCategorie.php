@@ -45,6 +45,8 @@ if ($saved && isset($_POST["Terug"])) {
     exit();
 }
 ?>
+
+<!-- this form is used to retrieve the user data-->
 <form action="addCategorie.php" method="post">
     <h1>Vul hier de categorienaam en beschrijving in:</h1>
     <?php

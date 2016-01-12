@@ -30,6 +30,8 @@ foreach ($uitvoerDatabase as $value1){
     }
 }
 ?>
+
+<!-- this form is used to retrieve the user data-->
 <form action="editWelkomstekst.php" method="post">
     <table>
         <tr>

@@ -20,6 +20,8 @@ if (isset($_GET["id"])) {
     $verwijderPossible = $schilderijResult[0]["c"] == 0;
 }
 ?>
+
+<!-- this form is used to retrieve the user data-->
 <form action="editCategorie.php?id=<?php echo $id; ?>" method="post">
     <table>
         <?php
