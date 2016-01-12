@@ -32,7 +32,7 @@ if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
             foreach ($value1 as $key2 => $value2) {
 
                 if ($key2 == "Subcategorie_naam") {
-                    echo"<tr><td>Naam subcategorie</td>";
+                    echo"<tr><td>Naam subcategorie*</td>";
                     echo"<td><input type=\"text\" name=\"Subcategorie_Naam\" value=\"$value2\"></td></tr>";
                     $Subcategorie_naam = $value2;
                 } elseif ($key2 == "SubcategorieID") {

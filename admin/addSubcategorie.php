@@ -61,7 +61,7 @@ if ($saved && isset($_POST["Terug"])) {
     <table>
         <tr>
             <td>
-                Naam subcategorie
+                Naam subcategorie*
             </td>
             <td>
                 <input type="text" name="Naam" placeholder="Vul hier de naam in" style="width: 375px">

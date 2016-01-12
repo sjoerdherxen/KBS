@@ -79,7 +79,7 @@ foreach ($uitvoerDatabase as $value1) {
     <table>
         <tr>
             <td>
-                Naam:
+                Naam*
             </td>
             <td>
                 <input type="text" name="Naam_schilder" value="<?php echo $naam; ?>">
@@ -101,7 +101,7 @@ foreach ($uitvoerDatabase as $value1) {
         </tr> -->
         <tr>
             <td>
-                Adres:
+                Adres
             </td>
             <td>
                 <input type="text" name="Adres" value="<?php echo $adres; ?>">
@@ -109,7 +109,7 @@ foreach ($uitvoerDatabase as $value1) {
         </tr>
         <tr>
             <td>
-                Woonplaats:
+                Woonplaats
             </td>
             <td>
                 <input type="text" name="Woonplaats" value="<?php echo $woonplaats; ?>">
@@ -117,7 +117,7 @@ foreach ($uitvoerDatabase as $value1) {
         </tr>
         <tr>
             <td>
-                Telefoonnummer:
+                Telefoonnummer
             </td>
             <td>
                 <input type="text" name="Telefoon" value="<?php echo $tel; ?>">
@@ -125,7 +125,7 @@ foreach ($uitvoerDatabase as $value1) {
         </tr>
         <tr>
             <td>
-                Email:
+                Email*
             </td>
             <td>
                 <input type="email" name="Email" value="<?php echo $email; ?>">

@@ -62,7 +62,7 @@ if ($saved && isset($_POST["Terug"])) {
     <table>
         <tr>
             <td>
-                Soort materiaal
+                Soort materiaal*
             </td>
             <td>
                 <input type="text" name="Naam" placeholder="Vul hier de soort in" style="width: 375px">

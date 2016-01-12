@@ -28,7 +28,7 @@ if (isset($_GET["id"])) {
             foreach ($value1 as $key2 => $value2) {
 
                 if ($key2 == "Categorie_naam") {
-                    echo"<tr><td>Naam categorie</td>";
+                    echo"<tr><td>Naam categorie*</td>";
                     echo"<td><input type=\"text\" name=\"Categorie_Naam\" value=\"$value2\"></td></tr>";
                     $Categorie_naam = $value2;
                 } elseif ($key2 == "CategorieID") {

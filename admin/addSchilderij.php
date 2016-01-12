@@ -194,7 +194,7 @@ if (isset($_POST["knop"])) {
 <form action="addSchilderij.php" method="post" class="editform" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>Titel</td>
+            <td>Titel*</td>
             <td>
                 <input type="text" name="titel" value="<?php echo $schilderij["Titel"]; ?>">
                 <?php
@@ -224,7 +224,7 @@ if (isset($_POST["knop"])) {
             </td>
         </tr>
         <tr>
-            <td>Hoogte</td>
+            <td>Hoogte*</td>
             <td>
                 <input type="text" class="number" name="hoogte" value="<?php echo $schilderij["Hoogte"]; ?>"> cm
                 <?php
@@ -235,7 +235,7 @@ if (isset($_POST["knop"])) {
                 ?>
             </td>
         </tr><tr>
-            <td>Breedte</td>
+            <td>Breedte*</td>
             <td>
                 <input type="text" class="number" name="breedte" value="<?php echo $schilderij["Breedte"]; ?>"> cm
                 <?php
@@ -247,7 +247,7 @@ if (isset($_POST["knop"])) {
             </td>
         </tr>
         <tr>
-            <td>Categorie</td>
+            <td>Categorie*</td>
             <td>
                 <select name="categorie">
                     <?php
@@ -296,7 +296,7 @@ if (isset($_POST["knop"])) {
             </td>
         </tr>
         <tr>
-            <td>Materiaal</td>
+            <td>Materiaal*</td>
             <td>
                 <select name="materiaal">
                     <?php

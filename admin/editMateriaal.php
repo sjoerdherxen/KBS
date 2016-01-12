@@ -44,7 +44,7 @@ if (isset($_POST["knopje"])) {
             foreach ($value1 as $key2 => $value2) {
 
                 if ($key2 == "Materiaal_soort") {
-                    echo"<tr><td>Soort materiaal</td>";
+                    echo"<tr><td>Soort materiaal*</td>";
                     echo"<td><input type=\"text\" name=\"Materiaal_Soort\" value=\"$value2\">";
                     if (isset($Naamerror)) {
                     echo '<br>' . "<span class=\"incorrect\">$Naamerror</span>";
