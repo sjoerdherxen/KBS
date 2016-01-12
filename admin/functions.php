@@ -107,14 +107,29 @@ function uploadSchilderijImg($id, $imgExtension, $old, $preupload) {
     copy($newpath, $smallpath);
 
     list($width, $height) = getimagesize($smallpath);
+    $fileSize = filesize($newpath);
     $newwidth = 228;
     $newheight = $height / ($width / $newwidth);
+    if ($fileSize > 500000) {
+        $rescale = 500000 / $fileSize * 100;
+
+        $src = imagecreatefromjpeg($newpath);
+        $dst = imagecreatetruecolor($newwidth, $newheight);
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+        imagejpeg($src, $newpath, $rescale);
+    }
+
+    
 
     $src = imagecreatefromjpeg($smallpath);
     $dst = imagecreatetruecolor($newwidth, $newheight);
     imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-    imagejpeg($src, $smallpath, 30);
-    
+    if ($fileSize > 15000) {
+        $rescale = 15000 / $fileSize * 100;
+    } else {
+        $rescale = 100;
+    }
+    imagejpeg($src, $smallpath, $rescale);
 }
 
 function checkCaptcha($captchaInput) {
