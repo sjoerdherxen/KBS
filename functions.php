@@ -6,20 +6,6 @@
  * and open the template in the editor.
  */
 
-// spaties printen
-function printspace($aantal) {
-    for ($i = 0; $i < $aantal; $i++) {
-        print(" ");
-    }
-}
-
-//print teken
-function printteken($aantal, $teken) {
-    for ($i = 0; $i < $aantal; $i++) {
-        print($teken);
-    }
-}
-
 // query op db uitvoeren 
 function query($query, $params) {
     try {
