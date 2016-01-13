@@ -16,6 +16,8 @@ jQuery(document).ready(function ($) {
         }, 10000);
     };
 
+    setIntervalMove();
+
     var slideCount = $('#slider ul li').length;
     var slideWidth = $('#slider ul li').width();
     var slideHeight = $('#slider ul li').height();
