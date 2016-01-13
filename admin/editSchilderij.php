@@ -258,6 +258,7 @@ if ($doSelectQuery) {
                     <td>Subcategorie</td>
                     <td>
                         <select name="subcategorie">
+                            <option value="">--geen--</option>
                             <?php
 
                             foreach ($resultSubCategorie as $categorie) {
