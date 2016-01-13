@@ -58,7 +58,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
         $to = $to[0]['email'];
         $subject = $_POST["contact-onderwerp"];
         $message = "naam afzender: " . $_POST["contact-voornaam"] . " " . $_POST["contact-achternaam"] . "\nemail afzender: " . $_POST['contact-email'] . "\n\n" . $_POST["contact-bericht"];
-        $header = "From:commentaar@hofvanellen.nl \r\n";
+        $header = "From:contact@hofvanellen.nl \r\n";
         $verzondenmail = mail($to, $subject, $message, $header);
         }
 }
