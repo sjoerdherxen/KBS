@@ -48,7 +48,7 @@ renderHtmlStart("Home", "");
                     echo "<li>";
                 }
                 echo "<a href='/schilderij.php?id=" . $schilderij["Schilderij_ID"] . "'>";
-                echo "<div style='background-image:url(\"/content/uploads/" . $schilderij["Img"] . "\"); '></div>";
+                echo "<div style='background-image:url(\"/content/uploads/small_" . $schilderij["Img"] . "\"); '></div>";
                 echo "<span class='slider-titel'>" . $schilderij["Titel"] . "</span>";
                 echo "</a>";
 
