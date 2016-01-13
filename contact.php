@@ -75,7 +75,7 @@ if (isset($_POST["contact-submit"]) && $_POST["contact-submit"] == "verzenden") 
             $contact_onderwerp = '';
             $contact_bericht = '';
             echo 'De mail is goed verzonden!';
-        } elseif ($verzondenmail == false) {
+        } else {
             echo 'De mail is niet goed verzonden,<br>probeer het later opnieuw';
         }
     }
