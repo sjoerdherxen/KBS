@@ -15,6 +15,8 @@ if (isset($_GET["id"])) {
     $uitvoerDatabase = query("SELECT * FROM subcategorie WHERE SubcategorieID = ?", $invoerDatabase);
 
 
+
+
 // check of schiderij is gekoppeld voor verwijderen
     $schilderijResult = query("SELECT COUNT(*) c FROM schilderij WHERE SubcategorieID = ?", $invoerDatabase);
     $verwijderPossible = $schilderijResult[0]["c"] == 0;
@@ -28,24 +30,28 @@ if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
 <!-- this form is used to retrieve the user data-->
 <form action="editSubcategorie.php?id=<?php echo $id; ?>" method="post">
     <table>
-        <?php
+        <?php 
+        $subcat = $uitvoerDatabase[0];
 
-        foreach ($uitvoerDatabase as $value1) {
-            foreach ($value1 as $key2 => $value2) {
+        echo"<tr><td>Naam subcategorie*</td>";
+        echo"<td><input type=\"text\" name=\"Subcategorie_Naam\" value=\"" . $subcat["Subcategorie_naam"] . "\"></td></tr>";
 
-                if ($key2 == "Subcategorie_naam") {
-                    echo"<tr><td>Naam subcategorie*</td>";
-                    echo"<td><input type=\"text\" name=\"Subcategorie_Naam\" value=\"$value2\"></td></tr>";
-                    $Subcategorie_naam = $value2;
-                } elseif ($key2 == "SubcategorieID") {
-                    echo"<input type=\"hidden\" name=\"ID\" value=\"$value2\">";
-                } else {
-                    echo"<tr><td>Beschrijving subcategorie</td>";
-                    echo"<td><textarea rows=\"4\" cols=\"50\" name=\"BEschrijving\">$value2</textarea></td></tr>";
-                    $Beschrijving = $value2;
-                }
+        echo"<tr><td>Valt onder categorie*</td>";
+        echo"<td><select name='categorie' style='width: 199px;'>";
+        $categorieen = query("SELECT * FROM categorie", null);
+        foreach ($categorieen as $cat) {
+            if ($cat["CategorieID"] == $subcat["CategorieID"]) {
+                echo "<option value='" . $cat["CategorieID"] . "' selected>" . $cat["Categorie_naam"] . "</option>";
+            } else {
+                echo "<option value='" . $cat["CategorieID"] . "' >" . $cat["Categorie_naam"] . "</option>";
             }
         }
+        echo"</select></td></tr>";
+
+        echo"<input type=\"hidden\" name=\"ID\" value=\"" . $subcat["SubcategorieID"] . "\">";
+
+        echo"<tr><td>Beschrijving subcategorie</td>";
+        echo"<td><textarea rows=\"4\" cols=\"50\" name=\"BEschrijving\">" . $subcat["Beschrijving"] . "</textarea></td></tr>";
         ?>
         <tr>
             <td></td>
@@ -73,10 +79,10 @@ if (!isset($uitvoerDatabase) || count($uitvoerDatabase) == 0) {
 
 // verwerken van formulier gegevens en naar database schrijven
 if (isset($_POST["knopje"])) {
-    if (isset($_POST["Subcategorie_Naam"]) && $_POST["Subcategorie_Naam"] !== "") {
+    if (isset($_POST["Subcategorie_Naam"]) && $_POST["Subcategorie_Naam"] !== "" && is_numeric($_POST["categorie"])) {
         $id = $_GET["id"];
-        $invoerDatabase2 = [uppercase($_POST["Subcategorie_Naam"]), uppercase($_POST["BEschrijving"]), $_GET["id"]];
-        query("UPDATE subcategorie SET Subcategorie_naam = ?, Beschrijving = ? WHERE SubcategorieID = ?", $invoerDatabase2);
+        $invoerDatabase2 = [uppercase($_POST["Subcategorie_Naam"]), uppercase($_POST["BEschrijving"]),$_POST["categorie"], $_GET["id"]];
+        query("UPDATE subcategorie SET Subcategorie_naam = ?, Beschrijving = ?, CategorieID = ? WHERE SubcategorieID = ?", $invoerDatabase2);
         header('location:subcategorieList.php#Wijzigingen zijn opgeslagen');
         exit();
     }

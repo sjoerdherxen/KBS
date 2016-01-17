@@ -14,10 +14,13 @@ $saved = false;
 $toevoegenSubcategorie = [];
 $doorgaan_naam = false;
 $invoerDatabase = [];
+$postnaam = "";
+$postbeschrijving = "";
+$postcat = "";
 
 // post is gedaan
 if (isset($_POST["Toevoegen"])) {
-    if (!isset($_POST["Naam"]) || $_POST["Naam"] == "") { // check naam is leeg
+    if (!isset($_POST["Naam"]) || $_POST["Naam"] == "" || !is_numeric($_POST["categorie"])) { // check naam is leeg
         $Naamerror = "Er moet een naam worden ingevuld.";
     } else {
         // check naam al bestaad
@@ -27,14 +30,18 @@ if (isset($_POST["Toevoegen"])) {
             // subcat bestaat nog niet dus invoeren
             $toevoegenSubcategorie[] = uppercase($_POST["Naam"]);
             $toevoegenSubcategorie[] = uppercase($_POST["Beschrijving"]);
-            query("INSERT INTO subcategorie (Subcategorie_naam, Beschrijving) VALUES (?, ?)", $toevoegenSubcategorie);
+            $toevoegenSubcategorie[] = $_POST["categorie"];
+            query("INSERT INTO subcategorie (Subcategorie_naam, Beschrijving, CategorieID) VALUES (?, ?, ?)", $toevoegenSubcategorie);
             $saved = true;
         } else {
             // bestaat al
             $errorMessage = "Toevoegen subcategorie is mislukt, subcategorie bestaat al.";
-
         }
     }
+
+    $postnaam = $_POST["Naam"];
+    $postbeschrijving = $_POST["Beschrijving"];
+    $postcat = $_POST["categorie"];
 }
 
 // terug naar overzicht
@@ -42,7 +49,7 @@ if ($saved && isset($_POST["Terug"])) {
     header("location:subcategorieList.php?x=1");
     exit();
 // op pagina blijven
-} elseif ($saved && isset($_POST["Toevoegen"])){
+} elseif ($saved && isset($_POST["Toevoegen"])) {
     header("location:addSubcategorie.php?x=1");
     exit();
 }
@@ -52,13 +59,14 @@ if ($saved && isset($_POST["Terug"])) {
 <form action="addSubcategorie.php" method="post">
     <h1>Vul hier de subcategorienaam en beschrijving in:</h1>
     <?php
+
     // code die checked of de categorie daadwerkelijk is toegevoegd (wordt gestart als "toevoegen en blijven" wordt geklikt
-    if (isset ($_GET["x"])){
-        if ($_GET["x"] === "1"){
+    if (isset($_GET["x"])) {
+        if ($_GET["x"] === "1") {
             $succes = "Subcategorie is toegevoegd.";
         }
     }
-    if(isset($errorMessage)){
+    if (isset($errorMessage)) {
         echo "<p class='incorrect'>$errorMessage</p>";
     }
     ?>
@@ -68,10 +76,11 @@ if ($saved && isset($_POST["Terug"])) {
                 Naam subcategorie*
             </td>
             <td>
-                <input type="text" name="Naam" placeholder="Vul hier de naam in" style="width: 375px">
+                <input type="text" name="Naam" placeholder="Vul hier de naam in" style="width: 375px" value="<?php echo $postnaam ?>">
                 <?php
+
                 // toont het eerder geïnitialiseerde succesbericht
-                if (isset($succes)){
+                if (isset($succes)) {
                     echo '<br>' . $succes;
                 }
                 // deze error komt te voorschijn als er geen naam is ingevuld
@@ -83,10 +92,30 @@ if ($saved && isset($_POST["Terug"])) {
         </tr>
         <tr>
             <td>
+                Valt onder categorie*
+            </td>
+            <td>
+                <select name='categorie' style='width: 375px;'>
+                    <?php
+
+                    $categorieen = query("SELECT * FROM categorie", null);
+                    foreach ($categorieen as $cat) {
+                        if ($cat["CategorieID"] == $postcat) {
+                            echo "<option value='" . $cat["CategorieID"] . "' selected>" . $cat["Categorie_naam"] . "</option>";
+                        } else {
+                            echo "<option value='" . $cat["CategorieID"] . "' >" . $cat["Categorie_naam"] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 Beschrijving subcategorie
             </td>
             <td>
-                <textarea rows="4" cols="50" name="Beschrijving" placeholder="Vul hier de beschrijving in"></textarea>
+                <textarea rows="4" cols="50" name="Beschrijving" placeholder="Vul hier de beschrijving in"><?php echo $postbeschrijving ?></textarea>
                 <?php ?>
             </td>
         </tr>
