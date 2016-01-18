@@ -73,6 +73,8 @@
 
 #content{
     padding: 5px;
+    width: 100%;
+    position: absolute;
 }
 
 form td{
@@ -90,6 +92,26 @@ form td input[type='button'][disabled='disabled']{
 /*
    edits+ lijsten --------------------------------------------------------------------------------
 */
+
+.gallerij{
+    width: 1250px !important;
+}
+
+.schilderijPreviewList{
+    float: right;
+    width: 530px;
+}
+
+.schilderijPreviewList .schilderijListItemImg{
+    float:right;
+}    
+
+
+.schilderijPreviewList .schilderijPreviewListPlus{
+    top: 33px;
+    font-size: 30px;
+    float:right;
+}
 
 #schilderijList, #addSchilderijLink, #categorieList, #subcategorieList, #materiaalList {
     padding: 5px;

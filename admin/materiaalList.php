@@ -31,6 +31,7 @@ foreach ($materiaalen as $materiaal) {
     echo "<span class='titel'>" . $materiaal["Materiaal_soort"] . "</span><br/>  ";
     echo "<span class='beschrijving'>" . $materiaal["Beschrijving"] . "</span><br/>";
     echo "</div>";
+    showSmallImagesList(query("SELECT * FROM schilderij WHERE MateriaalID = ? LIMIT 0,5", [$materiaal["MateriaalID"]]), query("SELECT COUNT(*) as count FROM schilderij WHERE MateriaalID = ?", [$materiaal["MateriaalID"]]));
     echo "</a>";
 }
 echo "</div>";

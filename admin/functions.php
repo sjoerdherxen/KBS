@@ -13,14 +13,14 @@ function getUser() {
 // query op db uitvoeren
 function query($query, $params) {
     try {
-        // connectie maken
+// connectie maken
         $pdo = new PDO("mysql:host=localhost;dbname=databasekps01;port=3307", "root", "usbw");
-        //$pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
+//$pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
         $q = $pdo->prepare($query);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        // uitvoeren
+// uitvoeren
         $q->execute($params);
-        //get results
+//get results
         $result = $q->fetchAll(PDO::FETCH_ASSOC);
         $pdo = null; // drop connection
         return $result;
@@ -32,7 +32,7 @@ function query($query, $params) {
 function insert($query, $params) { // check query function returns id of inserted record
     try {
         $pdo = new PDO("mysql:host=localhost;dbname=databasekps01;port=3307", "root", "usbw");
-        //$pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
+//$pdo = new PDO("mysql:host=localhost;dbname=dirvan2_schilderijen;port=3306", "dirvan2_admin", "hEwhBPLqGv6kbkF");
         $q = $pdo->prepare($query);
         $q->execute($params);
         return $pdo->lastInsertId();
@@ -40,6 +40,7 @@ function insert($query, $params) { // check query function returns id of inserte
         return null;
     }
 }
+
 /*
 
   // query op db uitvoeren
@@ -72,7 +73,8 @@ function insert($query, $params) { // check query function returns id of inserte
   }
   }
 
-*/
+ */
+
 function in_query_result($data, $search, $column) {
 // check of waarde in query result staat
 //wordt gebruikt in schilderij edit/add
@@ -119,7 +121,7 @@ function uploadSchilderijImg($id, $imgExtension, $old, $preupload) {
         imagejpeg($src, $newpath, $rescale);
     }
 
-    
+
 
     $src = imagecreatefromjpeg($smallpath);
     $dst = imagecreatetruecolor($newwidth, $newheight);
@@ -141,7 +143,7 @@ function checkCaptcha($captchaInput) {
         "response" => $captchaInput,
         "remoteip" => $clientIp
     );
-    // curl doet post request naar google
+// curl doet post request naar google
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
@@ -170,4 +172,64 @@ function uppercase($text) {
     } else {
         return $text;
     }
+}
+
+function showSmallImagesList($queryresult, $count) {
+    echo "<div class='schilderijPreviewList'>";
+    if ($count[0]["count"] > count($queryresult)) {
+        echo "<span class='glyphicon glyphicon-plus schilderijPreviewListPlus'></span>";
+    }
+    foreach ($queryresult as $schilderij) {
+        echo "<div class='schilderijListItemImg' style='background-image: url(\"/content/uploads/small_" . $schilderij["Img"] . "?_=" . strtotime(date("Y-m-d H:i:s")) . "\");'></div>";
+    }
+
+    echo "</div>";
+}
+
+function toonSchilderijLijst($schilderijen) {
+    echo '<div class="gallerij">';
+    $i = 0;
+    $rowAmount = floor(count($schilderijen) / 4);
+    $extra = count($schilderijen) % 4;
+    echo "<div class='row'>";
+    $col = 0;
+    if (count($schilderijen) == 0) {
+        echo "<p style='text-align:center;'>Er zijn hiervan geen schilderijen.</p>";
+    } else {
+        foreach ($schilderijen as $schilderij) {
+            if ($i == 0) {
+                echo "<div class='col-sm-3'>";
+                $col++;
+            }
+            $i++;
+            ?>
+            <a href="/admin/editSchilderij.php?id=<?php echo $schilderij["Schilderij_ID"] ?>" class=""> 
+                <div class="img">
+                    <img src="/content/uploads/small_<?php echo $schilderij["Img"]; ?> " alt="Logo" >
+
+                    <div class="title">
+                        <?php echo $schilderij["Titel"]; ?>
+                    </div>
+                    <div class="extraInfo">
+                        <?php echo $schilderij["Hoogte"]; ?> x <?php echo $schilderij["Breedte"]; ?> cm
+                    </div>
+                    <div class="extraInfoRight">
+                        <?php echo $schilderij["Jaar"] == "0000" ? "" : $schilderij["Jaar"]; ?>
+                    </div>
+                </div> 
+            </a>
+            <?php
+
+            if (($col > $extra && $i >= $rowAmount) || ($col <= $extra && $i > $rowAmount)) {
+// einde rij
+                echo "</div>";
+                $i = 0;
+            }
+        }
+    }
+    
+    echo "</div>";
+    echo '<div style="clear: both;"></div>';
+    echo "</div>";
+    echo '<div style="clear: both;"></div>';
 }

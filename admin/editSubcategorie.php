@@ -98,6 +98,9 @@ if (isset($_POST["knopje"])) {
     };
 </script> <?php
 
+$schilderijen = query("SELECT * FROM schilderij WHERE SubcategorieID = ?", [$id]);
+toonSchilderijLijst($schilderijen);
+
 renderHtmlEndAdmin();
 
 /*

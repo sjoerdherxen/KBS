@@ -31,6 +31,7 @@ foreach ($categorieen as $categorie) {
     echo "<span class='titel'>" . $categorie["Categorie_naam"] . "</span><br/>  ";  // maam
     echo "<span class='beschrijving'>" . $categorie["Beschrijving"] . "</span><br/>"; // beschrijving
     echo "</div>";
+    showSmallImagesList(query("SELECT * FROM schilderij WHERE CategorieID = ? LIMIT 0,5", [$categorie["CategorieID"]]), query("SELECT COUNT(*) as count FROM schilderij WHERE CategorieID = ?", [$categorie["CategorieID"]]));
     echo "</a>";
 }
 echo "</div>";

@@ -30,7 +30,7 @@ $afbeeldingCorrect = false;
 // haal alle gerelateerde gegevens op voor dropdowns
 $resultMateriaal = query("SELECT MateriaalID, Materiaal_soort FROM materiaal", null);
 $resultCategorie = query("SELECT CategorieID, Categorie_naam FROM categorie", null);
-$resultSubCategorie = query("SELECT SubcategorieID, Subcategorie_naam FROM subcategorie", null);
+$resultSubCategorie = query("SELECT SubcategorieID, Subcategorie_naam,CategorieID FROM subcategorie", null);
 
 // submit is gedaan
 if (isset($_POST["knop"])) {
@@ -173,7 +173,7 @@ if (isset($_POST["knop"])) {
         } else {
             // zet afbeelding correct
             if (!$afbeeldingCorrect) {
-                uploadSchilderijImg($id,  $_POST["img_uploaded_ext"], null, "./../content/uploads/tmp/" . $afbeeldingCorrectId . $_POST["img_uploaded_ext"]);
+                uploadSchilderijImg($id, $_POST["img_uploaded_ext"], null, "./../content/uploads/tmp/" . $afbeeldingCorrectId . $_POST["img_uploaded_ext"]);
             } else {
                 uploadSchilderijImg($id, $imgExtension, null, null);
             }
@@ -251,8 +251,9 @@ if (isset($_POST["knop"])) {
         <tr>
             <td>Categorie*</td>
             <td>
-                <select name="categorie">
+                <select name="categorie" id="categorieSelect">
                     <?php
+
                     // deze code laat alle mogelijke categorieën zien in een dropdown
                     foreach ($resultCategorie as $categorie) {
                         $selected = "";
@@ -275,19 +276,8 @@ if (isset($_POST["knop"])) {
         <tr>
             <td>Subcategorie</td>
             <td>
-                <select name="subcategorie">
+                <select name="subcategorie" id="subcategorieSelect">
                     <option value="">-- Geen --</option>
-                    <?php
-                    // deze code laat alle mogelijke subcategorieën zien in een dropdown
-                    foreach ($resultSubCategorie as $categorie) {
-                        $selected = "";
-                        if ($categorie["SubcategorieID"] == $schilderij["SubcategorieID"]) {
-                            $selected = "selected='selected'";
-                        }
-
-                        echo "<option " . $selected . " value='" . $categorie["SubcategorieID"] . "'>" . $categorie["Subcategorie_naam"] . "</option>";
-                    }
-                    ?>
                 </select>
                 <?php
 
@@ -302,6 +292,7 @@ if (isset($_POST["knop"])) {
             <td>
                 <select name="materiaal">
                     <?php
+
                     // deze code laat alle mogelijke materialen zien in een dropdown
                     foreach ($resultMateriaal as $materiaal) {
                         $selected = "";
@@ -367,6 +358,7 @@ if (isset($_POST["knop"])) {
                     ?>
                     <input type="file" name="img" accept="image/*">
                     <?php
+
                     if (isset($afbeeldingError)) {
                         echo "<span class='incorrect'>" . $afbeeldingError . "</span>";
                     }
@@ -396,6 +388,42 @@ if (isset($_POST["knop"])) {
         </tr>
     </table>
 </form>
+<script>
+    $(function () {
+        var subcats = [
+<?php
+
+foreach ($resultSubCategorie as $subcategorie) {
+    $selected = "false";
+    if ($subcategorie["SubcategorieID"] == $schilderij["SubcategorieID"]) {
+        $selected = "true";
+    }
+
+    echo "{id: " . $subcategorie["SubcategorieID"] . ", naam: '" . $subcategorie["Subcategorie_naam"] . "', categorieID: " . $subcategorie["CategorieID"] . ", selected:" . $selected . "},";
+}
+?>
+        ];
+        function updateSubcat() {
+            var cat = $("#categorieSelect").val();
+            var options = "<option value=''>-- Geen --</option>";
+                    var selected = "";
+            for (var key in subcats) {
+                if (subcats[key].categorieID == cat) {
+                    options += "<option value='" + subcats[key].id + "'>" + subcats[key].naam + "</option>";
+                    if (subcats[key].selected) {
+                        selected = subcats[key].id;
+                    }
+                }
+            }
+            $("#subcategorieSelect").html(options);
+            $("#subcategorieSelect").val(selected);
+        }
+        updateSubcat();
+        $("#categorieSelect").change(function () {
+            updateSubcat();
+        });
+    });
+</script>
 <?php
 
 renderHtmlEndAdmin();
