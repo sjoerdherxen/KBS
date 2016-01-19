@@ -355,13 +355,14 @@ if ($doSelectQuery) {
     </div>
 
     <div class="col-md-6">
-        <div id="editSchilderijImg">
-            <img src="/content/uploads/<?php echo $schilderij["Img"] . "?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
-        </div>
         <form action="rotate-img.php?id=<?php echo $schilderijId ?>" method="post">
                 <input type="submit" value="afbeelding draaien" name="rotate_img" id="rotate_img">
                 <?php ?>
         </form>
+        <div id="editSchilderijImg">
+            <img src="/content/uploads/<?php echo $schilderij["Img"] . "?_=" . strtotime(date("Y-m-d H:i:s")); ?>">
+        </div>
+        
     </div>
 
     <div class="col-md-3">
