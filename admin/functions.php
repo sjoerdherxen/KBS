@@ -108,30 +108,9 @@ function uploadSchilderijImg($id, $imgExtension, $old, $preupload) {
     }
     copy($newpath, $smallpath);
 
-    list($width, $height) = getimagesize($smallpath);
-    $fileSize = filesize($newpath);
-    $newwidth = 228;
-    $newheight = $height / ($width / $newwidth);
-    if ($fileSize > 500000) {
-        $rescale = 500000 / $fileSize * 100;
-
-        $src = imagecreatefromjpeg($newpath);
-        $dst = imagecreatetruecolor($newwidth, $newheight);
-        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-        imagejpeg($src, $newpath, $rescale);
-    }
-
-
-
-    $src = imagecreatefromjpeg($smallpath);
-    $dst = imagecreatetruecolor($newwidth, $newheight);
-    imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-    if ($fileSize > 15000) {
-        $rescale = 15000 / $fileSize * 100;
-    } else {
-        $rescale = 100;
-    }
-    imagejpeg($src, $smallpath, $rescale);
+    resizeImg(1150, $newpath, $imgExtension, 75);
+    resizeImg(228, $smallpath, $imgExtension, 50);
+ 
 }
 
 function checkCaptcha($captchaInput) {
@@ -227,9 +206,59 @@ function toonSchilderijLijst($schilderijen) {
             }
         }
     }
-    
+
     echo "</div>";
     echo '<div style="clear: both;"></div>';
     echo "</div>";
     echo '<div style="clear: both;"></div>';
+}
+
+function resizeImg($newWidth, $targetFile, $extension, $verkleining) {
+    //get image size from $src handle
+    list($width, $height) = getimagesize($targetFile);
+
+    $newHeight = ($height / $width) * $newWidth;
+
+    $tmp = imagecreatetruecolor($newWidth, $newHeight);
+    $src = null;
+    switch (strtolower($extension)) {
+        case '.jpg':
+        case '.jpeg':
+            $src = imagecreatefromjpeg($targetFile);
+            break;
+        case '.png':
+            $src = imagecreatefrompng($targetFile);
+            break;
+        case '.gif':
+            $src = imagecreatefromgif($targetFile);
+            break;
+    }
+    imagecopyresampled($tmp, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+    //allow transparency for pngs
+    imagealphablending($tmp, false);
+    imagesavealpha($tmp, false);
+
+    if (file_exists($targetFile)) {
+        unlink($targetFile);
+    }
+
+    //handle different image types.
+    //imagepng() uses quality 0-9
+    switch (strtolower($extension)) {
+        case '.jpg':
+        case '.jpeg':
+            imagejpeg($tmp, $targetFile, $verkleining);
+            break;
+        case '.png':
+            imagepng($tmp, $targetFile, round($verkleining/11.1111111), 2);
+            break;
+        case '.gif':
+            imagegif($tmp, $targetFile);
+            break;
+    }
+
+    //destroy image resources
+    imagedestroy($tmp);
+    imagedestroy($src);
 }
