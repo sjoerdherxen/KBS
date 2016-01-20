@@ -51,7 +51,7 @@ if (!isset($_POST["rotate_img"])) {
     $smallimagepath = "./../content/uploads/small_" . $schilderij["Img"];
     copy($imagepath, $smallimagepath);
     resizeImg(228, $smallimagepath, $extension, 50);
-    header("location:editschilderij.php?id=$_GET[id]");
+    header("location:editSchilderij.php?id=$_GET[id]");
     exit();
 }
 ?>
