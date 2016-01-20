@@ -112,7 +112,7 @@ if (isset($_POST["knop"])) {
         $correct = false;
     }
     $schilderij["SubcategorieID"] = $_POST["subcategorie"];
-    $schilderijUpdate[] = $_POST["subcategorie"];
+    $schilderijUpdate[] = trim($_POST["subcategorie"]) == "" ? null : $_POST["subcategorie"];
 
 
     $updateImg = false;
