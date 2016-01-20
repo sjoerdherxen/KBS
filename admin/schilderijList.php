@@ -31,9 +31,9 @@ if (isset($_GET["zoek"]) && $_GET["zoek"] != "") { // zoek boxje zoeken
     <?php
     // schilderijen tonen
     foreach ($schilderijen as $schilderij) {
-        if ($result != $schilderij["s.CategorieID"]) {
-            $result = $schilderij["s.CategorieID"];
-            $result_naam = $schilderij["c.Categorie_naam"];
+        if ($result != $schilderij["CategorieID"]) {
+            $result = $schilderij["CategorieID"];
+            $result_naam = $schilderij["Categorie_naam"];
             echo "<h2>$result_naam</h2>";
         }
         echo "<a class='schilderijListItem' href='editSchilderij.php?id=" . $schilderij["Schilderij_ID"] . "'>";
