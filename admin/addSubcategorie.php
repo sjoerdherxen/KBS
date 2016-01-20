@@ -19,7 +19,7 @@ $postbeschrijving = "";
 $postcat = "";
 
 // post is gedaan
-if (isset($_POST["Toevoegen"])) {
+if (isset($_POST["Toevoegen"]) || isset($_POST["Terug"])) {
     if (!isset($_POST["Naam"]) || $_POST["Naam"] == "" || !is_numeric($_POST["categorie"])) { // check naam is leeg
         $Naamerror = "Er moet een naam worden ingevuld.";
     } else {
